@@ -1,0 +1,9 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #1a1a1a;
+  height: 100vh;  /*vh means view port height meaning it is now in 100 so on bigger screen i want 100 view port height and in smaller screen I also want view port height */  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
