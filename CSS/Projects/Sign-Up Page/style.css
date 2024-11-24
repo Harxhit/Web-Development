@@ -2,47 +2,60 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-  background-color: #1a1a1a;
-  height: 100vh; /*vh means view port height meaning it is now in 100 so on bigger screen i want 100 view port height and in smaller screen I also want view port height */
+  background-color: #fff;
+  height: 100vh; /* 100% viewport height */
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .card {
-  background-color: #d5d4d4;
+  background-color: #fff;
   border-radius: 6px;
-  width: 300px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  width: 240px;
   padding: 30px;
 }
+
 h1 {
   text-align: center;
   margin-top: 8px;
-  color: rgb(20, 88, 106);
+  color: black;
   padding-bottom: 5px;
   margin-bottom: 15px;
 }
+
 form {
   display: flex;
   flex-direction: column;
 }
+
 input {
   margin-bottom: 8px;
   padding: 5px;
   border-radius: 6px;
   border: 1px solid black;
+  box-sizing: border-box; 
 }
+
+input:hover {
+  border: 2px solid #0099fe;
+}
+
+.name {
+  display: flex;
+  gap: 8px; 
+}
+
+.name input {
+  flex: 1; 
+}
+
 button {
-  background-color: rgba(4, 87, 241, 0.627);
+  background-color: #0099fe;
   color: #fff;
   border-radius: 8px;
   padding: 5px;
   border: 1px black solid;
-}
-button:hover {
-  background-color: blue;
   cursor: pointer;
 }
-input:hover {
-  border-color: red;
-}
-/* Padding is inner breathing space*/
