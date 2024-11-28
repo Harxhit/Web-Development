@@ -37,8 +37,14 @@ I have gained experience in core web development skills, including:
 - **W3Schools**: For quick reference and learning web development basics.
 - **Udemy**: For detailed courses and tutorials on web development.
 - **Hitesh Choudhary (Chai Code)**: Practical and beginner-friendly coding tutorials.
--
+- **Google Fonts** : Google fonts for more fonts and better looks . 
+
 
 ## 🚀 Next Steps
 
 I look forward to expanding my skills with more complex projects, exploring backend development, and enhancing my knowledge of React and JavaScript frameworks.
+
+## Contact Me 
+
+ **Email** : harsxit04@gmail.com 
+ 
