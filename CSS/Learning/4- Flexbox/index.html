@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Flexbox</h1>
+
+    <!-- 1. Default Flex (row) -->
+    <div class="container">
+      <h2>1. Default Flex (row)</h2>
+      <div class="flex-container">
+        <!-- Display flex makes our element line in a row -->
+        <div class="circle pastel-1">1</div>
+        <div class="circle pastel-2">2</div>
+        <div class="circle pastel-3">3</div>
+        <div class="circle pastel-4">4</div>
+        <div class="circle pastel-5">5</div>
+      </div>
+    </div>
+
+    <!-- 2. Flex Direction (column) -->
+    <div class="container">
+      <h2>2. Flex Direction (column)</h2>
+      <div class="flex-container" style="flex-direction: column">
+        <!-- Flex direction changes the layout to a column. We can also use column-reverse to reverse the numbering of the column -->
+        <div class="circle pastel-1">1</div>
+        <div class="circle pastel-2">2</div>
+        <div class="circle pastel-3">3</div>
+        <div class="circle pastel-4">4</div>
+        <div class="circle pastel-5">5</div>
+      </div>
+    </div>
+
+    <!-- 3. Justify Content (space-between) -->
+    <div class="container">
+      <h2>3. Justify Content (space-between)</h2>
+      <div class="flex-container" style="justify-content: space-between">
+        <!-- Justify content works from left to right -->
+        <div class="circle pastel-1">1</div>
+        <div class="circle pastel-2">2</div>
+        <div class="circle pastel-3">3</div>
+        <div class="circle pastel-4">4</div>
+        <div class="circle pastel-5">5</div>
+      </div>
+    </div>
+
+    <!-- 4. Align Items (center) -->
+    <div class="container">
+      <h2>4. Align Items (center)</h2>
+      <div class="flex-container" style="align-items: center">
+        <!-- Align items centers the content vertically -->
+        <div class="circle pastel-1">1</div>
+        <div class="circle pastel-2">2</div>
+        <div class="circle pastel-3">3</div>
+        <div class="circle pastel-4">4</div>
+        <div class="circle pastel-5">5</div>
+      </div>
+    </div>
+
+    <!-- 5. Wrap (wrap) -->
+    <div class="container">
+      <h2>5. Flex Wrap</h2>
+      <div class="flex-container" style="flex-wrap: wrap">
+        <!-- Flex wrap moves content to the next line when space is insufficient -->
+        <div class="circle pastel-1">1</div>
+        <div class="circle pastel-2">2</div>
+        <div class="circle pastel-3">3</div>
+        <div class="circle pastel-4">4</div>
+        <div class="circle pastel-5">5</div>
+        <div class="circle pastel-1">6</div>
+        <div class="circle pastel-2">7</div>
+        <div class="circle pastel-3">8</div>
+        <div class="circle pastel-4">9</div>
+        <div class="circle pastel-5">10</div>
+      </div>
+    </div>
+
+    <!-- 6. Align Content (space-around with wrap) -->
+    <div class="container">
+      <h2>6. Align Content (space-around with wrap)</h2>
+      <div
+        class="flex-container"
+        style="flex-wrap: wrap; align-content: space-around"
+      >
+        <!--Not able to understant this revise it to fully understand what the heck it is what I understand is that we first wrap the elemets and then use align-content space which treats it as a one box-->
+        <div class="circle pastel-1">1</div>
+        <div class="circle pastel-2">2</div>
+        <div class="circle pastel-3">3</div>
+        <div class="circle pastel-4">4</div>
+        <div class="circle pastel-5">5</div>
+        <div class="circle pastel-1">6</div>
+        <div class="circle pastel-2">7</div>
+        <div class="circle pastel-3">8</div>
+        <div class="circle pastel-4">9</div>
+        <div class="circle pastel-5">10</div>
+      </div>
+    </div>
+
+    <!-- 7. Order Property -->
+    <div class="container">
+      <h2>7. Order Property</h2>
+      <div class="flex-container">
+        <!-- Order property rearranges the visual order -->
+        <div class="circle pastel-1" style="order: 3">1</div>
+        <div class="circle pastel-2" style="order: 1">2</div>
+        <div class="circle pastel-3" style="order: 5">3</div>
+        <div class="circle pastel-4" style="order: 2">4</div>
+        <div class="circle pastel-5" style="order: 4">5</div>
+      </div>
+    </div>
+    <div class="container">
+      <h2>8. Flex Grow</h2>
+      <div class="flex-container">
+        <!--It is used for how many growths they can take-->
+        <div class="circle pastel-1" style="flex-grow: 1">1</div>
+        <div class="circle pastel-2" style="flex-grow: 1">2</div>
+        <div class="circle pastel-3" style="flex-grow: 1">3</div>
+        <div class="circle pastel-4" style="flex-grow: 1">4</div>
+        <div class="circle pastel-5" style="flex-grow: 1">5</div>
+      </div>
+    </div>
+    <div class="container">
+      <h2>9. Align Self</h2>
+      <div class="flex-container">
+        <div class="circle pastel-1" style="align-self: flex-end">1</div>
+        <div class="circle pastel-2" style="align-self: flex-start">2</div>
+        <div class="circle pastel-3" style="align-self: center">3</div>
+        <div class="circle pastel-4" style="align-self: stretch; height: auto">
+          4
+        </div>
+        <div class="circle pastel-5">5</div>
+      </div>
+    </div>
+  </body>
+</html>
