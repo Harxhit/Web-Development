@@ -142,9 +142,7 @@ body {
   margin-top: 13px;
   background-color: #460365;
   color: white;
-  width: 100%;
-  padding: 5px;
+  padding: none;
+  
   border: none;
-  padding-left: 12px;
-  padding-right: 12px;
 }
