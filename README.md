@@ -27,6 +27,8 @@ I have gained experience in core web development skills, including:
 
 - Login Page
 - SignUp Page
+- Navbar
+- Coming Soon Page
 
 ## Resources I Used
 
