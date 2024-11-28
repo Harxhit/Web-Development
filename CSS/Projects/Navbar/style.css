@@ -30,12 +30,12 @@ body {
 }
 .nav1 a {
   text-decoration: none;
-  padding: 4px 15px;  
+  padding: 4px 15px;
   border-radius: 9px;
   color: black;
   position: relative;
 }
-.nav1 a::after{
+.nav1 a::after {
   content: ""; /* We have to always put a content when we use ::after*/
   position: absolute;
   height: 2px;
@@ -47,7 +47,7 @@ body {
   background-color: #0a65c7;
 }
 
-.nav1 a:hover::after{
+.nav1 a:hover::after {
   transform: scale(1);
 }
 
@@ -60,3 +60,91 @@ body {
   cursor: pointer;
 }
 
+.nav2 {
+  padding: 0;
+  margin: 0;
+  background-color: #a513e9;
+  padding: 10px;
+  width: 200px;
+}
+
+.nav2 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav2 li {
+  margin-bottom: 18px;
+}
+
+.nav2 a {
+  text-decoration: none;
+  padding: 15px;
+  width: 84%;
+  color: #fff;
+  display: block;
+}
+
+.nav2 a:hover {
+  background-color: #460365;
+}
+
+.nav2 button {
+  background-color: #45115c;
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav3{
+  margin: 0;
+  padding: 0;
+  background-color: #a513e9;
+}
+
+.nav3 ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+}
+.nav3 li{
+  padding: 15px;
+}
+
+.nav3 a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 15px;
+}
+
+.nav3 .dropdown-container {
+  visibility: hidden;
+  position: absolute;
+  background-color: #a513e9;
+  padding: 5px 12px;
+  margin-top: 16px;
+  
+}
+
+
+.nav3 .dropdown:hover .dropdown-container{
+  visibility: visible;
+}
+
+.nav3 .login-btn{
+  margin-top: 13px;
+  background-color: #460365;
+  color: white;
+  width: 100%;
+  padding: 5px;
+  border: none;
+  padding-left: 12px;
+  padding-right: 12px;
+}

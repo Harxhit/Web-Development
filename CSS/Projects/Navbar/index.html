@@ -21,8 +21,8 @@
 
     <div class="nav-container">
       <h1>Variation 2: Vertical with hover effect</h1>
-      <ul>
       <nav class="nav2">
+        <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Products</a></li>
@@ -35,7 +35,14 @@
       <nav class="nav3">
         <ul>
           <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
+          <li class="dropdown">
+            <a href="#">About</a>
+            <div class="dropdown-container">
+              <a href="#">Our Story</a>
+              <a href="#">Team</a>
+              <a href="#">Contact</a>
+            </div>
+          </li>
           <li><a href="#">Products</a></li>
           <li><button class="login-btn">Login</button></li>
         </ul>
