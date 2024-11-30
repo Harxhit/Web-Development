@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+h1,
+h2 {
+  color: #333;
+}
+.container {
+  background-color: #fff;
+  border: 1px solid black;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.grid-container{
+  display: grid;
+  gap: 10px;
+  background-color: #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.box {
+  background-color: #3498db;
+  color: #fff;
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+/*What I did here is I overide the above property and changed color.*/
+.box:nth-child(even) {
+  background-color: #e74c3c;
+}

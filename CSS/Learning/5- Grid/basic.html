@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Basics</title>
+    <style>
+      .grid-container {
+        display: grid;
+
+        /* grid-template-columns: 1fr 1fr 1fr; */
+        grid-template-columns: repeat(3, 1fr);
+        /*Takes two things how many grids and fraction you have to give them . It do the same thing like above but if we have dozens of grid it comes very handy .*/
+        grid-template-rows: 100px 200px;
+        /*In grid-template-rows, the second value 200px defines the height for the fourth div or any additional rows if present.*/
+      }
+      .item {
+        background-color: orange;
+        border: 1px solid black;
+      }
+      .item1{
+        grid-column: 1/3;
+        grid-row: 1/2;
+      }
+      .item2{
+        grid-column: 3/4;
+        grid-row: 1/3;
+      }
+      .item6{
+        grid-column: 2/4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item item6">6</div>
+      <!-- <div class="item">4</div> -->
+      <!--If I add another div here, it will automatically shift to the next line because, in the style tag, the `grid-template-columns` property is set to `1fr 1fr 1fr`, which only defines space for three columns. The fourth div will move to the next row.-->
+    </div>
+  </body>
+</html>
