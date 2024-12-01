@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-image: url(../assets/images/ad.jpeg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  border-radius: 15px;
+  background-color: gold;
+  
+}
+
+img {
+ border-radius: 15px;
+ border: 2px black solid;
+ height: 350px;
+}
+h1{
+  text-align: center;
+  font-size: 29px;
+  color: brown;
+  margin-bottom: 10px;
+}
+h2{
+  text-align: center;
+  font-size: 20px;
+  justify-content: center;
+  background-color: red;
+  margin-left: 95px;
+  margin-right: 95px;
+  margin-bottom: 20px;
+}
+.btn1{
+  padding: 5px;
+  border-radius: 20px;
+  border: 1px black solid;
+  cursor: pointer;
+  margin-right: 150px;
+  background-color: chocolate;
+}
+.btn2{
+  padding: 5px;
+  border-radius: 20px;
+  border: 1px black solid;
+  cursor: pointer;
+  background-color: chocolate;
+}
