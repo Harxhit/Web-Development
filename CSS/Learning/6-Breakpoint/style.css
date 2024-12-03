@@ -1,0 +1,31 @@
+body {
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.responsive {
+  width: 100%;
+  max-width: 1200px;
+  color: #fff;
+  background-color: violet;
+  padding: 20px;
+  font-size: 26px;
+}
+@media (max-width: 600px) {
+  body {
+    align-items: flex-start;
+  }
+  .responsive {
+    background-color: #ffd700;
+  }
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    align-items: flex-end;
+  }
+  .responsive {
+    background-color: red;
+  }
+}

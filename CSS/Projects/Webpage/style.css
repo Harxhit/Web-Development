@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #000;
+}
+.youtube-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-top: 20px;
+  padding: 20px;
+}
+.card {
+  text-align: center;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.box1 {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(24, 39, 153, 1) 19%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  padding: 20px;
+  border-radius: 20px;
+}
+.box1 h1 {
+  margin-top: 10px;
+  font-size: 24px;
+  color: #fff;
+}
+.box1 img {
+  border-radius: 15px;
+}
+.box1 button {
+  width: 100%;
+  border-radius: 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+.box1 button:hover {
+  background: rgb(38, 158, 78);
+  background: linear-gradient(
+    90deg,
+    rgba(38, 158, 78, 1) 1%,
+    rgba(40, 153, 24, 1) 31%,
+    rgba(34, 84, 77, 1) 100%
+  );
+}
+.box2 {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(24, 144, 153, 1) 33%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  padding: 20px;
+  border-radius: 10px;
+}
+.box2 h1 {
+  margin-top: 10px;
+  font-size: 24px;
+  color: #fff;
+}
+.box2 img {
+  border-radius: 10px;
+}
+.box2 button {
+  width: 100%;
+  background-color: #000;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+}
+.box2 button:hover {
+  background: rgb(38, 158, 78);
+  background: linear-gradient(
+    90deg,
+    rgba(38, 158, 78, 1) 1%,
+    rgba(40, 153, 24, 1) 31%,
+    rgba(34, 84, 77, 1) 100%
+  );
+}
+.box3 {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(44, 32, 134, 1) 32%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  padding: 20px;
+  border-radius: 20px;
+}
+.box3 h1 {
+  margin-top: 10px;
+  font-size: 24px;
+  color: #fff;
+}
+.box3 img {
+  border-radius: 10px;
+}
+.box3 button {
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+}
+.box3 button:hover {
+  background: rgb(38, 158, 78);
+  background: linear-gradient(
+    90deg,
+    rgba(38, 158, 78, 1) 1%,
+    rgba(40, 153, 24, 1) 31%,
+    rgba(34, 84, 77, 1) 100%
+  );
+}
+footer{
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.conact{
+  padding: 10px;
+}
+.contact h1{
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+.contact p{
+  margin-top: -10px;
+  font-weight: bold;
+}
+.contact a{
+  text-decoration: none;
+  color: black;
+}
+
