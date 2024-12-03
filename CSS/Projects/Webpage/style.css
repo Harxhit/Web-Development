@@ -127,27 +127,104 @@ body {
     rgba(34, 84, 77, 1) 100%
   );
 }
-footer{
+footer {
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
 }
-.conact{
+.conact {
   padding: 10px;
 }
-.contact h1{
+.contact h1 {
   font-size: 20px;
   font-weight: bold;
   color: #000;
 }
-.contact p{
+.contact p {
   margin-top: -10px;
   font-weight: bold;
 }
-.contact a{
+.contact a {
   text-decoration: none;
   color: black;
 }
 
+/* For mobile phones */
+@media (max-width: 480px) {
+  .box1,
+  .box2,
+  .box3 {
+    margin-left: 25px;
+    margin-top: -30px;
+    padding: 30px;
+    border-radius: 20px;
+  }
+  .contact button:hover {
+    background: rgb(38, 158, 78);
+    background: linear-gradient(
+      90deg,
+      rgba(38, 158, 78, 1) 1%,
+      rgba(40, 153, 24, 1) 31%,
+      rgba(34, 84, 77, 1) 100%
+    );
+  }
+}
+/* Landscapes Phones */
+@media (min-width: 481px) and (max-width: 767px) {
+  .box1,
+  .box2,
+  .box3 {
+    margin-left: 29px;
+    background-color: red;
+    margin-top: -25px;
+    padding: 30px;
+    border-radius: 20px;
+  }
+
+  .contact button:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(38, 158, 78, 1) 1%,
+      rgba(40, 153, 24, 1) 31%,
+      rgba(34, 84, 77, 1) 100%
+    );
+  }
+}
+/* Tablets*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around ;
+  }
+
+  .contact button:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(38, 158, 78, 1) 1%,
+      rgba(40, 153, 24, 1) 31%,
+      rgba(34, 84, 77, 1) 100%
+    );
+  }
+}
+/*Landscapes Tablets*/
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .card{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around ;
+  }
+
+  .contact button:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(38, 158, 78, 1) 1%,
+      rgba(40, 153, 24, 1) 31%,
+      rgba(34, 84, 77, 1) 100%
+    );
+  }
+}
