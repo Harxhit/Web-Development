@@ -36,6 +36,10 @@ Welcome to my web development journey! This README highlights the skills I have 
 - **Sign-Up Page**: A user-friendly registration form.  
 - **Webpage**: A multi-section styled webpage showcasing combined HTML and CSS skills.  
 
+### **Tailwind**
+- **404 Error** :This project is a custom-designed 404 error page built with HTML and Tailwind CSS. It provides a visually appealing and responsive interface to notify users when they navigate to a non-existent page.
+- **Login Page** : This project is a login page for **AnimeTV**, designed with a modern and responsive UI using HTML and Tailwind CSS. The page provides an engaging experience for anime enthusiasts with a visually appealing layout and a secure login form. 
+
 ### **TailwindCSS & Bootstrap**  
 - **Responsive Designs**: Built layouts optimized for all devices using TailwindCSS.  
 - **Bootstrap Components**: Implemented pre-styled components like modals, carousels, and forms.  
