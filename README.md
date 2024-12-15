@@ -44,8 +44,9 @@ Welcome to my web development journey! This README highlights the skills I have 
 ### **Tailwind**
 
 - **404 Error** :This project is a custom-designed 404 error page built with HTML and Tailwind CSS. It provides a visually appealing and responsive interface to notify users when they navigate to a non-existent page.
-- **Login Page** : This project is a login page for **AnimeTV**, designed with a modern and responsive UI using HTML and Tailwind CSS. The page provides an engaging experience for anime enthusiasts with a visually appealing layout and a secure login form. \
+- **Login Page** : This project is a login page for **AnimeTV**, designed with a modern and responsive UI using HTML and Tailwind CSS. The page provides an engaging experience for anime enthusiasts with a visually appealing layout and a secure login form.
 - **Blog Page** : This project is a custom desgined for a AnimeTV blog page which is built only HTML and TAILWINDCSS . It provides visually appealing and responsive interface to users .
+- **Destination Page** : This project is a custom desgined for a travel page which is built only HTML and TAILWINDCSS . It provides information about travel services, packages, and destinations. The website features interactive sections such as travel service offerings, popular locations, and customizable travel packages.
 
 ### **TailwindCSS & Bootstrap**
 
