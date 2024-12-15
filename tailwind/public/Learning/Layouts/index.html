@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout</title>
+    <link rel="stylesheet" href="/tailwind/public/style.css" />
+  </head>
+  <body>
+    <!-- Two-Column Layout -->
+    <div class="grid m-4 gap-4 grid-cols-1 sm:grid-cols-2">
+      <div class="rounded-lg min-h-[100px] bg-orange-500 shadow"></div>
+      <div class="rounded-lg min-h-[100px] bg-purple-500 shadow"></div>
+    </div>
+
+    <!-- Three-Column Layout -->
+    <div class="grid m-4 gap-4 grid-cols-1 sm:grid-cols-3">
+      <div class="rounded-lg min-h-[100px] bg-orange-500 shadow"></div>
+      <div class="rounded-lg min-h-[100px] bg-purple-500 shadow"></div>
+      <div class="rounded-lg min-h-[100px] bg-red-500 shadow"></div>
+    </div>
+
+    <!-- Central Content with Sidebars -->
+    <div class="grid m-4 gap-4 grid-cols-1 sm:grid-cols-12">
+      <div
+        class="bg-orange-500 rounded-lg min-h-[100px] shadow sm:col-span-2 hidden sm:block"
+      ></div>
+      <div
+        class="bg-purple-500 rounded-lg min-h-[100px] shadow sm:col-span-8"
+      ></div>
+      <div
+        class="bg-blue-500 rounded-lg min-h-[100px] shadow sm:col-span-2 hidden sm:block"
+      ></div>
+    </div>
+  </body>
+</html>
