@@ -1,4 +1,4 @@
-# Project Name: AnimeTV Blog
+# AnimeTV Blog
 
 **AnimeTV Blog** is a responsive blog dedicated to anime enthusiasts. Built using **Tailwind CSS**, it offers a sleek and responsive design for content related to anime series, movies, reviews, and recommendations.
 
