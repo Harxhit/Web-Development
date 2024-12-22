@@ -42,15 +42,12 @@ Identify the type of a triangle (Equilateral, Isosceles, or Scalene) based on si
 
 ## Objectives
 
-- Understand and practice variable declaration and initialization.
-- Work with basic data types in JavaScript.
-- Perform common operations on arrays, such as adding, removing, and accessing elements.
-- Learn to create and manipulate objects.
-- Practice checking data types using `typeof`.
+- Understand and practice **conditional statements** (if-else, else-if, and ternary operators).
+- Learn to apply logical operators like `&&` (AND), `||` (OR), and comparison operators like `==`, `===`, `<`, `>`, etc.
+- Practice handling multiple conditions and applying them to real-world problems.
+- Understand and implement JavaScript concepts like **variable declaration**, **initialization**, and **data manipulation**.
 
 ## Key Concepts Reinforced
 
-- JavaScript data types: **string**, **number**, **boolean**, **undefined**, **null**.
-- Array manipulation using methods like `push` and `shift`.
-- Object creation and property updates.
-- Basic type checking using `typeof`.
+- **Conditional statements**: Using `if`, `else if`, `else` to make decisions based on conditions.
+- **Comparison operators**: Using operators like `==`, `===`, `>`, `<`, `!=`, `>=`, `<=` to compare values.
