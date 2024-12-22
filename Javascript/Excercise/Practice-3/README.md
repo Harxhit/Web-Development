@@ -1,4 +1,4 @@
-#Conditional Statements and Operations
+# Conditional Statements and Operations
 
 This repository contains JavaScript exercises designed to practice working with conditional statements, arrays, and other basic JavaScript concepts. The exercises include various use cases like checking if a number is positive or negative, calculating the largest number, checking eligibility for voting, assigning grades to students, and more.
 
