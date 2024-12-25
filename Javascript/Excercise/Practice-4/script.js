@@ -318,3 +318,4 @@ for (let k = 0; k < triangle.length; k++) {
   // console.log(triangle[k].join(" ")); 
   
 }
+
