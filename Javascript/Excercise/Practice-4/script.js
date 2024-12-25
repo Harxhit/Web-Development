@@ -199,27 +199,122 @@ Question 15:
 Write a program that takes a list of numbers and counts how many numbers are divisible by 3 using a loop.
 */
 
+let divisibleByThree = 0;
+
+for (let i = 0; i < listNumber.length; i++) {
+  if (listNumber[i] % 3 === 0) {
+    divisibleByThree++;
+  }
+}
+// console.log(divisibleByThree);
 /* 
 Question 16:
 Write a program to merge two sorted lists into one sorted list using a loop.
 */
 
-/* 
-Question 17:
-Write a program that implements a "guess the number" game using loops and conditions.
-*/
+let array1 = [
+  "Dancing in the dark",
+  "Heartbreak Anniversary",
+  "90201",
+  "Room no 420",
+];
+let array2 = ["Blinding by lights", "Die for you", "Less than Zero"];
+let combineArray = [];
+
+let l = 0;
+let m = 0;
+
+while (l < array1.length && m < array2.length) {
+  if (array1[l] < array2[m]) {
+    combineArray.push(array1[l]);
+    l++;
+  } else {
+    combineArray.push(array2[m]);
+    m++;
+  }
+}
+
+while (l < array1.length) {
+  combineArray.push(array1[l]);
+  l++;
+}
+
+while (m < array2.length) {
+  combineArray.push(array2[m]);
+  m++;
+}
+
+// console.log(combineArray);
 
 /* 
-Question 18:
+Question 17:
 Write a program to calculate the GCD (Greatest Common Divisor) of two numbers using a loop.
 */
 
+let num1 = 399;
+let num2 = 1212;
+let greatestCommonDivisor = [];
+let smallNumber;
+
+if (num1 < num2) {
+  smallNumber = num1;
+} else {
+  smallNumber = num2;
+}
+for (let i = 1; i <= smallNumber; i++) {
+  if (num1 % i === 0 && num2 % i === 0) {
+    greatestCommonDivisor.push(i);
+  }
+}
+let gcd = greatestCommonDivisor[0];
+
+for (let j = 1; j < greatestCommonDivisor.length; j++) {
+  if (greatestCommonDivisor[j] > gcd) {
+    gcd = greatestCommonDivisor[j];
+  }
+}
+// console.log(gcd);
 /* 
-Question 19:
+Question 18:
 Write a program to find all pairs of numbers in a list whose sum is equal to a target value using loops.
 */
 
+let targetValue = 46;
+let listNumbers = [
+  12, 34, 4, 5, 6, 43, 3, 4, 32, 9, 8, 35, 28, 14, 27, 23, 45, 2, 1,
+];
+let equalTargetValue = [];
+
+for (let i = 0; i < listNumbers.length; i++) {
+  for (let j = i + 1; j < listNumbers.length; j++) {
+    let sum = listNumbers[i] + listNumbers[j];
+    if (sum === targetValue) {
+      equalTargetValue.push([listNumbers[i], listNumbers[j]]);
+    }
+  }
+}
+// console.log(equalTargetValue);
 /* 
-Question 20:
+Question 19:
 Write a program that prints the Pascal's Triangle for a given number of rows using nested loops.
 */
+
+let rows = 10;
+let triangle = [];
+
+for (let i = 0; i < rows; i++) {
+  let row = [];
+  for (let j = 0; j <= i; j++) {
+    if (j === 0 || j === i) {
+      row.push(1);
+    } else {
+      row.push(triangle[i - 1][j - 1] + triangle[i - 1][j]);
+    }
+  }
+  triangle.push(row); 
+}
+
+for (let k = 0; k < triangle.length; k++) {
+  // console.log(triangle[k].join(" ")); 
+  
+}
