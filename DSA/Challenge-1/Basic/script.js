@@ -45,11 +45,6 @@ What is the difference between `let`, `var`, and `const`?
 */
 
 /* 
-Question 5:
-Write a function that adds two numbers and returns the result. 
-*/
-
-/* 
 Question 6:
 Create an object representing a student with properties `name`, `age`, and `grade`.
 */
@@ -77,14 +72,6 @@ if (number % 2 === 0) {
 } else {
   // console.log('Number is odd.')
 }
-
-/* 
-Question 8:
-What is the output of `"5" == 5` and why? 
-*/
-
-//It will be 55.
-// console.log('5' + 5);
 
 /* 
 Question 9:
@@ -116,38 +103,27 @@ Question 12:
 Write a program to find the largest of three numbers using nested `if`.
 */
 
-let num1 = 22; 
-let num2 = 12; 
-let num3 = 23; 
+let num1 = 22;
+let num2 = 12;
+let num3 = 23;
 
-
-
-
+if (num1 > num2 && num1 > num3) {
+  // console.log('Num1 is largest');
+}
+if (num2 > num1 && num2 > num3) {
+  // console.log('Num3 is greater.');
+}
+if (num3 > num1 && num3 > num2) {
+  // console.log('Num3 is greater.');
+}
 
 /* 
 Question 13:
 How can you find the length of a string? 
 */
 
-/* 
-Question 14:
-Write a function that checks if an array contains a specific element.
-*/
-
-/* 
-Question 15:
-Use the `typeof` operator to check the data type of a variable.
-*/
-
-/* 
-Question 16:
-Create an array of numbers and add a new element to it.
-*/
-
-/* 
-Question 17:
-Write a program to reverse a string.
-*/
+let string = "Glimpse of Us";
+// console.log(string.length);
 
 /* 
 Question 18:
@@ -159,15 +135,45 @@ Question 19:
 Write a program that prints Pascal's Triangle for a given number of rows using nested loops.
 */
 
+let rows = 10;
+let triangle = [];
+
+for (let i = 0; i < rows; i++) {
+  let row = [];
+  for (let j = 0; j <= i; j++) {
+    if (j === 0 || j === i) {
+      row.push(1);
+    } else {
+      row.push(triangle[i - 1][j - 1] + triangle[i - 1][j]);
+    }
+  }
+  triangle.push(row);
+}
+for (let k = 0; k < triangle.length; k++) {
+  //console.log(triangle[k].join(""));
+}
+
 /* 
 Question 20:
 Create an array of numbers and find its sum using a loop.
 */
-
+let numArray = [12, 23, 343, 545, 54646, 575768, 7573, 424, 23232];
+let sum = [];
+for (let i = 0; i < numArray.length; i++) {
+  let element = numArray[i];
+  // console.log(element);
+}
 /* 
 Question 21:
 Write a `do-while` loop to print numbers from 1 to 3.
 */
+
+let condt = 1;
+
+do {
+  // console.log(condt);
+  condt++;
+} while (condt <= 3);
 
 /* 
 Question 22:
@@ -175,24 +181,27 @@ What is the difference between `==` and `===`?
 */
 
 /* 
-Question 23:
-Write a function to convert Celsius to Fahrenheit.
-*/
-
-/* 
 Question 24:
 How do you access the first element of an array?
 */
+
+let rappers = ["seedhe maut", "krishna", " rap demon", "raftaar"];
+// console.log(rappers[0]);
 
 /* 
 Question 25:
 Write a program to find the smallest number in an array.
 */
 
-/* 
-Question 26:
-Create a function to check if a string is a palindrome.
-*/
+let numbers = [3, 56, 64, 3, 664, 64, 34, 231, 2, 1, 342];
+let smallest = numbers[0];
+for (let i = 0; i < numbers.length; i++) {
+  let element = numbers[i];
+  if (element < smallest) {
+    smallest = element;
+  }
+}
+// console.log(smallest);
 
 /* 
 Question 27:
@@ -213,6 +222,17 @@ What is the difference between `null` and `undefined`?
 Question 30:
 Write a program that checks whether a number is divisible by both 3 and 5.
 */
+
+let n = 12;
+if (n % 3 === 0 && n % 5 === 0) {
+  // console.log("FizzBuzz");
+}
+if (n % 3 === 0) {
+  // console.log("Fizz");
+}
+if (n % 5 === 0) {
+  // console.log("Buzz");
+}
 
 /* 
 Question 31:
@@ -244,45 +264,77 @@ Question 36:
 Write a program to print the Fibonacci series up to `n` terms.
 */
 
+
 /* 
 Question 37:
 How do you add a new property to an object?
 */
 
+let obj = {
+  name: "Sicko Mode",
+  singer: "Travis Scott",
+};
+obj.collabration = "Drake";
+// console.log(obj);
 /* 
 Question 38:
 Write a program to count the number of vowels in a string.
 */
+
+let string3 = "Glock on my lap";
+let vowels = 0;
+for (let i = 0; i < string3.length; i++) {
+  if (
+    string3[i] === "a" ||
+    string3[i] === "e" ||
+    string3[i] === "i" ||
+    string3[i] === "o" ||
+    string3[i] === "u" ||
+    string3[i] === "A" ||
+    string3[i] === "E" ||
+    string3[i] === "I" ||
+    string3[i] === "O" ||
+    string3[i] === "U"
+  ) {
+    vowels++;
+  }
+}
+// console.log(vowels);
 
 /* 
 Question 39:
 What will be the result of `5 + "5"` in JavaScript and why?
 */
 
-/* 
-Question 40:
-Create a function to find the greatest common divisor (GCD) of two numbers.
-*/
-
-/* 
-Question 41:
-How do you convert an object to a JSON string in JavaScript?
-*/
+//Answer = the output would be 55 .
 
 /* 
 Question 42:
 Write a program to merge two arrays into a single array.
 */
 
+let arr = ["Nose", "hairs"];
+let arr2 = ["stomach", "eyes"];
+
+// console.log([...arr, ...arr2]);
+
 /* 
 Question 43:
 What is the output of `"1" + 2 - 1` in JavaScript?
 */
+// Answer - Output would be 11
 
 /* 
 Question 44:
 Write a program to check if a given string contains a specific character.
 */
+
+let str = "Less than zero";
+for (let i = 0; i < str.length; i++) {
+  if (str[i] === "t") {
+    // console.log("Found");
+  }
+}
 
 /* 
 Question 45:
@@ -294,6 +346,12 @@ Question 46:
 Write a program that prints the multiplication table of a number.
 */
 
+let m = 2;
+for (let i = 1; i <= 10; i++) {
+  let mult = i * m;
+  // console.log(mult);
+}
+
 /* 
 Question 47:
 How do you find the index of an element in an array?
@@ -303,6 +361,8 @@ How do you find the index of an element in an array?
 Question 48:
 Write a program that removes a specific element from an array.
 */
+
+let lang = ["English", "Hindi", "Spanish ", "French"];
 
 /* 
 Question 49:
