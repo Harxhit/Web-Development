@@ -134,7 +134,7 @@ Write a program that implements a simple calculator for addition, subtraction, m
 //     let secondNumber = Number(prompt("Enter second number:"));
 //     let result = firstNumber + secondNumber;
 //     console.log(Number(result));
-//     break; 
+//     break;
 //   } else if (input === "sub" || input === "subtraction") {
 //     let firstNumber = Number(prompt("Enter first number:"));
 //     let secondNumber = Number(prompt("Enter second number:"));
@@ -168,7 +168,7 @@ Write a program that implements a simple calculator for addition, subtraction, m
 //       break;
 //     }
 //   } else {
-//     break; 
+//     break;
 //   }
 // }
 // console.log("Please choose type correct operations...");
@@ -188,10 +188,40 @@ Question 58:
 Write a program that takes an array of strings and finds the longest string.
 */
 
+let arrayString = [
+  "Bleach",
+  "Hunter X Hunter",
+  "Naruto",
+  "Welcome to demon school Iruma kun",
+  "The day I was reincarnated as 7th prince",
+];
+let longestString = null;
+
+for (let i = 0; i < arrayString.length; i++) {
+  let longest = arrayString[0].length;
+  let element = arrayString[i].length;
+  if (element > longest) {
+    longestString = arrayString[i];
+  }
+}
+// console.log('The longest string is: ',longestString);
+
 /* 
 Question 59:
 Write a program that removes duplicate elements from an array.
 */
+
+let array = [1, 2, 1, 1, 3, 4, 5, 7, 8, 8, 6, 5, 2, 3, 1];
+
+for (let i = 0; i < array.length; i++) {
+  for (let j = i + 1; j < array.length; j++) {
+    if (array[i] === array[j]) {
+      array.splice(j, 1);
+      j--;
+    }
+  }
+}
+// console.log(array);
 
 /* 
 Question 60:
