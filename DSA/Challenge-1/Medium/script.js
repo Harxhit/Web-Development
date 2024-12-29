@@ -3,29 +3,130 @@ Question 51:
 Write a program to generate all prime numbers up to a given number.
 */
 
+let till = 100;
+let primeArray = [];
+
+for (let nums = 2; nums <= till; nums++) {
+  let isPrime = true;
+  for (let j = 2; j <= Math.sqrt(nums); j++) {
+    if (nums % j === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime) {
+    primeArray.push(nums);
+  }
+}
+// console.log(primeArray) ;
 /* 
 Question 52:
-Create a function that accepts an object and returns an array of its keys.
+Write a program that prints an object's keys.
 */
 
+let obj = {
+  name: "Lionel Messi",
+  profession: "Footballer",
+};
+
+for (const key in obj) {
+  if (Object.prototype.hasOwnProperty.call(obj, key)) {
+    const element = obj[key];
+    // console.log(element);
+  }
+}
 /* 
 Question 53:
 Write a program to find the most frequent element in an array.
 */
 
-/* 
-Question 54:
-Create a program that sorts an array of numbers in ascending order.
-*/
+let numArray = [
+  11,
+  232,
+  42,
+  12,
+  1,
+  32,
+  442,
+  1,
+  1,
+  13,
+  43,
+  5,
+  2,
+  3,
+  1,
+  3,
+  4,
+  56,
+  7,
+  7,
+  3,
+  21,
+  3,
+  45,
+  1,
+  31,
+  ,
+  31,
+  313,
+  32,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  11,
+];
+let maxCount = 0;
+let frequentElement = null;
+
+for (let i = 0; i < numArray.length; i++) {
+  let count = 0;
+  for (let j = i + 1; j < numArray.length; j++) {
+    if (numArray[count] === numArray[j]) {
+      count++;
+    }
+  }
+  if (count > maxCount) {
+    maxCount = count;
+    frequentElement = numArray[i];
+  }
+}
+// console.log('Most frequent element is', frequentElement);
+// console.log('the frequency of element is', maxCount);
 
 /* 
+Question 54:
+Write a program that sorts an array of numbers in ascending order.
+*/
+
+let numberArray = [9, 7, 8, 4, 2, 1, 5, 0];
+let sortedArray = [];
+
+for (let i = 0; i < numberArray.length; i++) {
+  let index = 0;
+  for (let j = i + 1; j < numberArray.length; j++) {
+    if (numberArray[index] > numberArray[j]) {
+      index = j;
+    }
+  }
+  let minValue = numberArray[index]; 
+  numberArray.splice(index, 1); 
+  sortedArray.push(minValue); 
+  i--; 
+}
+// console.log(sortedArray); 
+/* 
 Question 55:
-Write a program to implement a simple calculator that performs addition, subtraction, multiplication, and division based on user input.
+Write a program that implements a simple calculator for addition, subtraction, multiplication, and division based on user input.
 */
 
 /* 
 Question 56:
-How do you check if an object is empty in JavaScript?
+Write a program that checks if an object is empty in JavaScript.
 */
 
 /* 
@@ -35,17 +136,17 @@ Write a program that generates a random number between a given range.
 
 /* 
 Question 58:
-Create a function that takes an array of strings and returns the longest string.
+Write a program that takes an array of strings and finds the longest string.
 */
 
 /* 
 Question 59:
-Write a program to remove duplicate elements from an array.
+Write a program that removes duplicate elements from an array.
 */
 
 /* 
 Question 60:
-Create a program to create a deep copy of an array or object.
+Write a program that creates a deep copy of an array or object.
 */
 
 /* 
@@ -55,42 +156,42 @@ Write a program that checks whether a string is a valid number.
 
 /* 
 Question 62:
-Create a function that merges two objects, with properties from the second object overwriting the first if they share keys.
+Write a program that merges two objects, with properties from the second object overwriting the first if they share keys.
 */
 
 /* 
 Question 63:
-Write a program to check if a number is a perfect square.
+Write a program that checks if a number is a perfect square.
 */
 
 /* 
 Question 64:
-Write a program to check if a number is a prime number.
+Write a program that checks if a number is a prime number.
 */
 
 /* 
 Question 65:
-Create a program that removes all falsy values from an array.
+Write a program that removes all falsy values from an array.
 */
 
 /* 
 Question 66:
-Write a program to count the number of occurrences of each element in an array.
+Write a program that counts the number of occurrences of each element in an array.
 */
 
 /* 
 Question 67:
-Create a function to flatten a nested array.
+Write a program that flattens a nested array.
 */
 
 /* 
 Question 68:
-Write a program to find the intersection of two arrays.
+Write a program that finds the intersection of two arrays.
 */
 
 /* 
 Question 69:
-Create a program that checks if a string is a valid email address.
+Write a program that checks if a string is a valid email address.
 */
 
 /* 
@@ -100,102 +201,102 @@ Write a program that adds the digits of a number together until the result is a 
 
 /* 
 Question 71:
-Write a function that formats a number to have commas separating thousands.
+Write a program that formats a number to have commas separating thousands.
 */
 
 /* 
 Question 72:
-Write a program to implement the bubble sort algorithm.
+Write a program that implements the bubble sort algorithm.
 */
 
 /* 
 Question 73:
-Write a program to implement the insertion sort algorithm.
+Write a program that implements the insertion sort algorithm.
 */
 
 /* 
 Question 74:
-Create a program that finds all unique elements in an array.
+Write a program that finds all unique elements in an array.
 */
 
 /* 
 Question 75:
-Write a program to generate a random hexadecimal color code.
+Write a program that generates a random hexadecimal color code.
 */
 
 /* 
 Question 76:
-Create a function that accepts an array of numbers and returns the sum of the squares of all the numbers.
+Write a program that accepts an array of numbers and finds the sum of the squares of all the numbers.
 */
 
 /* 
 Question 77:
-Write a program to check if a number is a palindrome.
+Write a program that checks if a number is a palindrome.
 */
 
 /* 
 Question 78:
-Create a program to find the longest substring without repeating characters in a string.
+Write a program that finds the longest substring without repeating characters in a string.
 */
 
 /* 
 Question 79:
-Write a program to reverse the words in a sentence.
+Write a program that reverses the words in a sentence.
 */
 
 /* 
 Question 80:
-Create a function that checks if an array is sorted.
+Write a program that checks if an array is sorted.
 */
 
 /* 
 Question 81:
-Write a program to check if two strings are anagrams of each other.
+Write a program that checks if two strings are anagrams of each other.
 */
 
 /* 
 Question 82:
-Write a function that formats a string to have the first letter of each word capitalized.
+Write a program that formats a string to have the first letter of each word capitalized.
 */
 
 /* 
 Question 83:
-Create a program that returns a list of all divisors of a given number.
+Write a program that returns a list of all divisors of a given number.
 */
 
 /* 
 Question 84:
-Write a program to calculate the factorial of a number recursively.
+Write a program that calculates the factorial of a number recursively.
 */
 
 /* 
 Question 85:
-Write a program to calculate the sum of digits of a number.
+Write a program that calculates the sum of digits of a number.
 */
 
 /* 
 Question 86:
-Create a program that simulates a simple ATM system.
+Write a program that simulates a simple ATM system.
 */
 
 /* 
 Question 87:
-Write a function to remove a specified item from an array by index.
+Write a program that removes a specified item from an array by index.
 */
 
 /* 
 Question 88:
-Create a program that converts a string to title case (first letter of each word capitalized).
+Write a program that converts a string to title case (first letter of each word capitalized).
 */
 
 /* 
 Question 89:
-Write a program to get the unique values from two arrays.
+Write a program that finds the unique values from two arrays.
 */
 
 /* 
 Question 90:
-Create a program that computes the total number of vowels in a string.
+Write a program that computes the total number of vowels in a string.
 */
 
 /* 
@@ -210,17 +311,17 @@ Write a program that merges two sorted arrays into one sorted array.
 
 /* 
 Question 93:
-Create a program that returns the index of the first occurrence of a value in an array.
+Write a program that finds the index of the first occurrence of a value in an array.
 */
 
 /* 
 Question 94:
-Write a program to calculate the sum of even numbers in an array.
+Write a program that calculates the sum of even numbers in an array.
 */
 
 /* 
 Question 95:
-Create a program that converts an object to a query string format.
+Write a program that converts an object to a query string format.
 */
 
 /* 
@@ -230,7 +331,7 @@ Write a program that calculates the LCM (Least Common Multiple) of two numbers.
 
 /* 
 Question 97:
-Create a function that finds the middle element(s) of an array.
+Write a program that finds the middle element(s) of an array.
 */
 
 /* 
@@ -240,10 +341,10 @@ Write a program that checks if a given number is a perfect number.
 
 /* 
 Question 99:
-Write a program to find all prime numbers in a range.
+Write a program that finds all prime numbers in a range.
 */
 
 /* 
 Question 100:
-Create a program that finds the second smallest number in an array.
+Write a program that finds the second smallest number in an array.
 */
