@@ -89,6 +89,8 @@ Question 10:
 What is the type of `null` in JavaScript?
 */
 
+// console.log(typeof null);  output -> object .
+
 /* 
 Question 11:
 How do you access a property of an object using dot notation?
@@ -129,6 +131,9 @@ let string = "Glimpse of Us";
 Question 18:
 How do you convert a string to a number in JavaScript?
 */
+
+let numString = Number("1233");
+// console.log(typeof (numString));
 
 /* 
 Question 19:
@@ -185,6 +190,9 @@ Question 24:
 How do you access the first element of an array?
 */
 
+// == -> Do type coercion while comparing two types of values .
+// === => Does not do type coercion while comparing two values .
+
 let rappers = ["seedhe maut", "krishna", " rap demon", "raftaar"];
 // console.log(rappers[0]);
 
@@ -208,15 +216,32 @@ Question 27:
 Explain what an object is in JavaScript.
 */
 
+// AN object is a type of data in javascript which comes under category of non-primitive data types .Objects holds a key and it value which you can access and also change its value you can also adds keys and its value in javascript it is very usefull to store informations.
+
 /* 
 Question 28:
 How do you iterate over an object’s properties using a `for...in` loop?
 */
 
+let obj1 = {
+  name: "Mia khalifa",
+  age: 31,
+};
+
+for (const key in obj1) {
+  if (Object.prototype.hasOwnProperty.call(obj1, key)) {
+    const element = obj1[key];
+    // console.log(element);
+  }
+}
+
 /* 
 Question 29:
 What is the difference between `null` and `undefined`?
 */
+
+// null -> It is intentionally not defined value usually done by developer .
+// undefined -> It is a value that does not exist or value not defined genrally done by javascript itself .
 
 /* 
 Question 30:
@@ -244,27 +269,67 @@ Question 32:
 Write a program to find the average of all elements in an array.
 */
 
+// Average formula = sum of two number / 2 ;
+
+let arrayNumbers = [
+  12313, 32, 34343, 55356, 674, 7477, 424, 424, 5464, 2424, 36464,
+];
+
+let averageArray = [];
+
+for (let i = 1; i < arrayNumbers.length; i++) {
+  let number1 = arrayNumbers[i];
+  let number2 = arrayNumbers[i - 1];
+  let average = Number((number1 + number2) / 2);
+  if (!averageArray.includes(average)) {
+    averageArray.push(average);
+  }
+}
+// console.log(averageArray);
 /* 
 Question 33:
 How do you remove the last element of an array in JavaScript?
 */
+
+let IndianSpices = ["Black pepper", "Red chilli", "Turmeric"];
+IndianSpices.pop();
+// console.log(IndianSpices);
 
 /* 
 Question 34:
 Write a program to convert a number to a string.
 */
 
+let h1 = 23;
+
+if (typeof h1 !== "string") {
+  let convertValue = String(h1);
+  // console.log(convertValue);
+  // console.log(typeof (convertValue));
+}
+
 /* 
 Question 35:
 What is the result of `typeof NaN`?
 */
+
+// console.log(typeof (NaN));  => output number .
 
 /* 
 Question 36:
 Write a program to print the Fibonacci series up to `n` terms.
 */
 
+let fibonacciArray = [0, 1];
+let terms = 50;
 
+for (let i = 0; i < terms; i++) {
+  let firstElement = fibonacciArray[i];
+  let secondElement = fibonacciArray[i + 1];
+  let thirdElement = firstElement + secondElement;
+  fibonacciArray.push(thirdElement);
+}
+// console.log(fibonacciArray);
 /* 
 Question 37:
 How do you add a new property to an object?
@@ -341,6 +406,8 @@ Question 45:
 What is the result of `[] + {}` and why?
 */
 
+// console.log([] + {});  => Output is [object Object]
+
 /* 
 Question 46:
 Write a program that prints the multiplication table of a number.
@@ -357,19 +424,58 @@ Question 47:
 How do you find the index of an element in an array?
 */
 
+let indexArray = ["bla-bla", "ooooolalaaalalala", "wowowowodaowdowao"];
+// console.log(indexArray.indexOf("ooooolalaaalalala"));
+
 /* 
 Question 48:
 Write a program that removes a specific element from an array.
 */
 
-let lang = ["English", "Hindi", "Spanish ", "French"];
+let lang = [
+  "English",
+  "Hindi",
+  "Spanish ",
+  "French",
+  "Portugese",
+  "Kanada",
+  "Marathi",
+  "Sanskrit",
+];
+let i = lang.indexOf("Portugese");
+let elementRemove = "Portugese";
 
+if (i !== -1) {
+  lang.splice(i, 1);
+}
+// console.log(lang);
 /* 
 Question 49:
 What is the difference between `push()` and `unshift()` in JavaScript arrays?
 */
 
+// push => Adds one more element at the end of array .
+// unshift => Adds one more element at the starting of array .
+
 /* 
 Question 50:
 Write a program to find the second largest number in an array.
 */
+
+let numArray2 = [
+  12, 324, 353, 464646, 23231313, 353535353, 66446464646, 3242424242424,
+  35366464,
+];
+let largest = numArray2[0];
+let secondLargest = numArray2[1];
+
+for (let i = 0; i < numArray2.length; i++) {
+  if (numArray2[i] > largest) {
+    secondLargest = largest;
+    largest = numArray2[i];
+  } else if (numArray2[i] > secondLargest && numArray2[i] !== largest) {
+    secondLargest = number[i];
+  }
+}
+// console.log("The largest number is", largest);
+// console.log("The second largest number is", secondLargest);
