@@ -113,16 +113,65 @@ for (let i = 0; i < numberArray.length; i++) {
       index = j;
     }
   }
-  let minValue = numberArray[index]; 
-  numberArray.splice(index, 1); 
-  sortedArray.push(minValue); 
-  i--; 
+  let minValue = numberArray[index];
+  numberArray.splice(index, 1);
+  sortedArray.push(minValue);
+  i--;
 }
-// console.log(sortedArray); 
+// console.log(sortedArray);
 /* 
 Question 55:
 Write a program that implements a simple calculator for addition, subtraction, multiplication, and division based on user input.
 */
+
+// let input = prompt(
+//   `Enter the operation you want to perform (addition , subtraction , divide , multiplication):  `
+// );
+
+// while (true) {
+//   if (input === "add" || input === "addition") {
+//     let firstNumber = Number(prompt("Enter first number:"));
+//     let secondNumber = Number(prompt("Enter second number:"));
+//     let result = firstNumber + secondNumber;
+//     console.log(Number(result));
+//     break; 
+//   } else if (input === "sub" || input === "subtraction") {
+//     let firstNumber = Number(prompt("Enter first number:"));
+//     let secondNumber = Number(prompt("Enter second number:"));
+//     if (firstNumber > secondNumber) {
+//       let result = firstNumber - secondNumber;
+//       console.log(result);
+//       break;
+//     } else {
+//       result = secondNumber - firstNumber;
+//       console.log(result);
+//       break;
+//     }
+//   } else if (input === "div" || input === "divide") {
+//     let firstNumber = Number(prompt("Enter first number:"));
+//     let secondNumber = Number(prompt("Enter second number:"));
+//     if (firstNumber > secondNumber) {
+//       let result = firstNumber / secondNumber;
+//       console.log(result);
+//       break;
+//     } else {
+//       result = secondNumber / firstNumber;
+//       console.log(result);
+//       break;
+//     }
+//   } else if (input === "mult" || input === "multiplication") {
+//     let firstNumber = Number(prompt("Enter first number:"));
+//     let secondNumber = Number(prompt("Enter second number:"));
+//     if (firstNumber > secondNumber) {
+//       let result = firstNumber * secondNumber;
+//       console.log(result);
+//       break;
+//     }
+//   } else {
+//     break; 
+//   }
+// }
+// console.log("Please choose type correct operations...");
 
 /* 
 Question 56:
