@@ -233,197 +233,261 @@ Question 61:
 Write a program that checks whether a string is a valid number.
 */
 
+let str = "122.323";
+let isValid = true;
+let haveDigits = false;
+let haveDecimals = false;
+
+if (str.length === 0) {
+  isValid = false;
+}
+
+for (let i = 0; i < str.length && isValid; i++) {
+  let element = str[i];
+
+  if ((element === "+" || element === "-") && i === 0) {
+    continue;
+  }
+  if (element === ".") {
+    if (haveDecimals) {
+      isValid = false;
+    } else {
+      haveDecimals = true;
+    }
+    continue;
+  }
+  if (element >= "0" && element <= "9") {
+    haveDigits = true;
+    continue;
+  }
+
+  isValid = false;
+}
+if (!haveDigits) {
+  isValid = false;
+}
+
+// console.log(isValid);
+
 /* 
-Question 62:
-Write a program that merges two objects, with properties from the second object overwriting the first if they share keys.
+  Question 62:
+  Write a program that merges two objects, with properties from the second object overwriting the first if they share keys.
 */
 
 /* 
-Question 63:
-Write a program that checks if a number is a perfect square.
+  Question 63:
+  Write a program that checks if a number is a perfect square.
+*/
+
+let n = 12;
+let isPerfectSquare = false;
+let squareRoot = Math.floor(Math.sqrt(n));
+
+for (let i = 0; i <= n; i++) {
+  if (squareRoot * squareRoot === n) {
+    isPerfectSquare = true;
+  }
+}
+// console.log('The given number is perfect square:',isPerfectSquare);
+
+// console.log(isPerfectSquare);
+/* 
+  Question 64:
+  Write a program that checks if a number is a prime number.
+*/
+
+let num = 4;
+
+let isPrime = true;
+for (let i = 2; i <= num; i++) {
+  for (let j = 2; j <= Math.sqrt(i); j++) {
+    if (i % j === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime) {
+    isPrime = true;
+  }
+}
+// console.log('Is number a prime:',isPrime);
+
+/* 
+  Question 65:
+  Write a program that removes all falsy values from an array.
 */
 
 /* 
-Question 64:
-Write a program that checks if a number is a prime number.
+  Question 66:
+  Write a program that counts the number of occurrences of each element in an array.
 */
 
 /* 
-Question 65:
-Write a program that removes all falsy values from an array.
+  Question 67:
+  Write a program that flattens a nested array.
 */
 
 /* 
-Question 66:
-Write a program that counts the number of occurrences of each element in an array.
+  Question 68:
+  Write a program that finds the intersection of two arrays.
 */
 
 /* 
-Question 67:
-Write a program that flattens a nested array.
+  Question 69:
+  Write a program that checks if a string is a valid email address.
 */
 
 /* 
-Question 68:
-Write a program that finds the intersection of two arrays.
+  Question 70:
+  Write a program that adds the digits of a number together until the result is a single digit.
 */
 
 /* 
-Question 69:
-Write a program that checks if a string is a valid email address.
+  Question 71:
+  Write a program that formats a number to have commas separating thousands.
 */
 
 /* 
-Question 70:
-Write a program that adds the digits of a number together until the result is a single digit.
+  Question 72:
+  Write a program that implements the bubble sort algorithm.
 */
 
 /* 
-Question 71:
-Write a program that formats a number to have commas separating thousands.
+  Question 73:
+  Write a program that implements the insertion sort algorithm.
 */
 
 /* 
-Question 72:
-Write a program that implements the bubble sort algorithm.
+  Question 74:
+  Write a program that finds all unique elements in an array.
 */
 
 /* 
-Question 73:
-Write a program that implements the insertion sort algorithm.
+  Question 75:
+  Write a program that generates a random hexadecimal color code.
 */
 
 /* 
-Question 74:
-Write a program that finds all unique elements in an array.
+  Question 76:
+  Write a program that accepts an array of numbers and finds the sum of the squares of all the numbers.
 */
 
 /* 
-Question 75:
-Write a program that generates a random hexadecimal color code.
+  Question 77:
+  Write a program that checks if a number is a palindrome.
 */
 
 /* 
-Question 76:
-Write a program that accepts an array of numbers and finds the sum of the squares of all the numbers.
-*/
+  Question 78:
+  Write a program that finds the longest substring without repeating characters in a string.
+  */
 
 /* 
-Question 77:
-Write a program that checks if a number is a palindrome.
-*/
+  Question 79:
+  Write a program that reverses the words in a sentence.
+  */
 
 /* 
-Question 78:
-Write a program that finds the longest substring without repeating characters in a string.
-*/
+  Question 80:
+  Write a program that checks if an array is sorted.
+  */
 
 /* 
-Question 79:
-Write a program that reverses the words in a sentence.
-*/
+  Question 81:
+  Write a program that checks if two strings are anagrams of each other.
+  */
 
 /* 
-Question 80:
-Write a program that checks if an array is sorted.
-*/
+  Question 82:
+  Write a program that formats a string to have the first letter of each word capitalized.
+  */
 
 /* 
-Question 81:
-Write a program that checks if two strings are anagrams of each other.
-*/
+  Question 83:
+  Write a program that returns a list of all divisors of a given number.
+  */
 
 /* 
-Question 82:
-Write a program that formats a string to have the first letter of each word capitalized.
-*/
+  Question 84:
+  Write a program that calculates the factorial of a number recursively.
+  */
 
 /* 
-Question 83:
-Write a program that returns a list of all divisors of a given number.
-*/
+  Question 85:
+  Write a program that calculates the sum of digits of a number.
+  */
 
 /* 
-Question 84:
-Write a program that calculates the factorial of a number recursively.
-*/
+  Question 86:
+  Write a program that simulates a simple ATM system.
+  */
 
 /* 
-Question 85:
-Write a program that calculates the sum of digits of a number.
-*/
+  Question 87:
+  Write a program that removes a specified item from an array by index.
+  */
 
 /* 
-Question 86:
-Write a program that simulates a simple ATM system.
-*/
+  Question 88:
+  Write a program that converts a string to title case (first letter of each word capitalized).
+  */
 
 /* 
-Question 87:
-Write a program that removes a specified item from an array by index.
-*/
+  Question 89:
+  Write a program that finds the unique values from two arrays.
+  */
 
 /* 
-Question 88:
-Write a program that converts a string to title case (first letter of each word capitalized).
-*/
+  Question 90:
+  Write a program that computes the total number of vowels in a string.
+  */
 
 /* 
-Question 89:
-Write a program that finds the unique values from two arrays.
-*/
+  Question 91:
+  Write a program that calculates the greatest common divisor (GCD) of two numbers iteratively.
+  */
 
 /* 
-Question 90:
-Write a program that computes the total number of vowels in a string.
-*/
+  Question 92:
+  Write a program that merges two sorted arrays into one sorted array.
+  */
 
 /* 
-Question 91:
-Write a program that calculates the greatest common divisor (GCD) of two numbers iteratively.
-*/
+  Question 93:
+  Write a program that finds the index of the first occurrence of a value in an array.
+  */
 
 /* 
-Question 92:
-Write a program that merges two sorted arrays into one sorted array.
-*/
+  Question 94:
+  Write a program that calculates the sum of even numbers in an array.
+  */
 
 /* 
-Question 93:
-Write a program that finds the index of the first occurrence of a value in an array.
-*/
+  Question 95:
+  Write a program that converts an object to a query string format.
+  */
 
 /* 
-Question 94:
-Write a program that calculates the sum of even numbers in an array.
-*/
+  Question 96:
+  Write a program that calculates the LCM (Least Common Multiple) of two numbers.
+  */
 
 /* 
-Question 95:
-Write a program that converts an object to a query string format.
-*/
+  Question 97:
+  Write a program that finds the middle element(s) of an array.
+  */
 
 /* 
-Question 96:
-Write a program that calculates the LCM (Least Common Multiple) of two numbers.
-*/
+  Question 98:
+  Write a program that checks if a given number is a perfect number.
+  */
 
 /* 
-Question 97:
-Write a program that finds the middle element(s) of an array.
-*/
+  Question 99:
+  Write a program that finds all prime numbers in a range.
+  */
 
 /* 
-Question 98:
-Write a program that checks if a given number is a perfect number.
-*/
-
-/* 
-Question 99:
-Write a program that finds all prime numbers in a range.
-*/
-
-/* 
-Question 100:
-Write a program that finds the second smallest number in an array.
-*/
+  Question 100:
+  Write a program that finds the second smallest number in an array.
+  */
