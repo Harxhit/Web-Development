@@ -178,6 +178,15 @@ Question 56:
 Write a program that checks if an object is empty in JavaScript.
 */
 
+let obj2 = {};
+
+for (const key in obj2) {
+  if (Object.prototype.hasOwnProperty.call(obj2, key)) {
+    console.log("Object holds some value.");
+  }
+}
+// console.log('Object is empty');
+
 /* 
 Question 57:
 Write a program that generates a random number between a given range.
@@ -227,7 +236,12 @@ for (let i = 0; i < array.length; i++) {
 Question 60:
 Write a program that creates a deep copy of an array or object.
 */
+let array1 = [1, 2, 3, { a: 10, b: 10 }, 5, 6];
+let deepCopy = structuredClone(array1);
 
+deepCopy[3].b = "I changed the value";
+// console.log(array1);
+// console.log(deepCopy);
 /* 
 Question 61:
 Write a program that checks whether a string is a valid number.
@@ -317,6 +331,28 @@ for (let i = 2; i <= num; i++) {
   Write a program that removes all falsy values from an array.
 */
 
+//A falsy array is an array where all its elements evaluate to falsy values in JavaScript. Falsy values include:
+//false, 0, -0, "" (empty string), null, undefined, and NaN
+
+let falsyArray = [1, 2, false, 0, -0, "", null, undefined, NaN, 3];
+
+for (let i = falsyArray.length - 1; i >= 0; i--) {
+  let element = falsyArray[i];
+
+  if (
+    element === false ||
+    element === 0 ||
+    element === -0 ||
+    element === null ||
+    element === "" ||
+    element === undefined ||
+    (typeof element === "number" && isNaN(element))
+  ) {
+    falsyArray.splice(i, 1);
+  }
+}
+// console.log(falsyArray);
+
 /* 
   Question 66:
   Write a program that counts the number of occurrences of each element in an array.
@@ -337,6 +373,54 @@ for (let i = 2; i <= num; i++) {
   Write a program that checks if a string is a valid email address.
 */
 
+let string = "harsxit04@gmail.com";
+let valid = true;
+let haveDot = false;
+let haveAt = false;
+
+if (string.length === 0) {
+  valid = false;
+}
+
+for (let index = 0; index < string.length && valid; index++) {
+  let element = string[index];
+  if (element === "@") {
+    if (haveAt) {
+      //Check if mail have more than one @ sign.
+      valid = false;
+      break;
+    } else {
+      haveAt = true;
+      continue;
+    }
+  }
+  if (element === ".") {
+    if (haveDot) {
+      valid = false;
+      break;
+    }
+    if (haveAt) {
+      haveDot = true;
+      continue;
+    }
+  }
+  if (haveAt || haveDot) {
+    let atIndex = string.indexOf("@");
+    let dotIndex = string.indexOf(".", atIndex);
+    if (
+      dotIndex === -1 ||
+      dotIndex < atIndex + 2 ||
+      dotIndex === string.length - 1
+    ) {
+      valid = false;
+      break;
+    }
+  }
+}
+if (!haveAt || !haveDot) {
+  valid = false;
+}
+// console.log(valid);
 /* 
   Question 70:
   Write a program that adds the digits of a number together until the result is a single digit.
