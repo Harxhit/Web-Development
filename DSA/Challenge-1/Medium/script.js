@@ -358,16 +358,63 @@ for (let i = falsyArray.length - 1; i >= 0; i--) {
   Write a program that counts the number of occurrences of each element in an array.
 */
 
+let arrayNum = [1, 1, 3, 4, 5, 3, 4, 5, 5, 3, 3, 4, 68, 7, 6, 5, 4];
+let occurrence = {};
+
+for (let i = 0; i < arrayNum.length; i++) {
+  let element = arrayNum[i];
+
+  if (occurrence[element]) {
+    occurrence[element]++;
+  } else {
+    occurrence[element] = 1;
+  }
+}
+// console.log(occurrence);
 /* 
   Question 67:
   Write a program that flattens a nested array.
 */
 
+let nestedArray = [1, 2, [3, 4], [5, 6, [7, 8]], 9];
+let flattensArray = [];
+
+for (let i = 0; i < nestedArray.length; i++) {
+  let element = nestedArray[i];
+  if (Array.isArray(element)) {
+    for (let j = 0; j < element.length; j++) {
+      if (Array.isArray(element[j])) {
+        for (let k = 0; k < element[j].length; k++) {
+          flattensArray.push(element[j][k]);
+        }
+      } else {
+        flattensArray.push(element[j]);
+      }
+    }
+  } else {
+    flattensArray.push(element);
+  }
+}
+// console.log(flattensArray);
 /* 
   Question 68:
   Write a program that finds the intersection of two arrays.
 */
 
+let arr = [1, 2, 3, 4, 5];
+let arr2 = [4, 5, 6, 7, 8];
+let intersection = [];
+
+for (let i = 0; i < arr.length; i++) {
+  const element = arr[i];
+  for (let j = 0; j < arr2.length; j++) {
+    let k = arr2[j];
+    if (element === k) {
+      intersection.push(element);
+    }
+  }
+}
+// console.log(intersection);
 /* 
   Question 69:
   Write a program that checks if a string is a valid email address.
