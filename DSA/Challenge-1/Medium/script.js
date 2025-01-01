@@ -192,6 +192,11 @@ Question 57:
 Write a program that generates a random number between a given range.
 */
 
+let min = 1;
+let max = 100;
+
+let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+// console.log(randomNumber);
 /* 
 Question 58:
 Write a program that takes an array of strings and finds the longest string.
@@ -543,6 +548,16 @@ for (let i = 0; i < arr4.length; i++) {
   Write a program that generates a random hexadecimal color code.
 */
 
+let arrayStr = ["A", "B", "C", "D", "E", "F"];
+let arrayNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let char = [...arrayStr, ...arrayNumber];
+let hexadecimal = "#";
+
+for (let i = 0; i < 6; i++) {
+  let randomIndex = Math.floor(Math.random() * char.length);
+  hexadecimal += char[randomIndex];
+}
+// console.log(hexadecimal);
 /* 
   Question 76:
   Write a program that accepts an array of numbers and finds the sum of the squares of all the numbers.
