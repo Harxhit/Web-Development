@@ -483,16 +483,61 @@ if (!haveAt || !haveDot) {
   Write a program that implements the bubble sort algorithm.
 */
 
+let array3 = [5, 7, 9, 2, 0, 4, 3, 6, 1, 8];
+
+for (let i = 0; i < array3.length; i++) {
+  let index = i;
+  for (let j = i + 1; j < array3.length; j++) {
+    if (array3[index] > array3[j]) {
+      index = j;
+    }
+  }
+  if (index !== i) {
+    let element = array3[i];
+    array3[i] = array3[index];
+    array3[index] = element;
+  }
+}
+// console.log(array3);
 /* 
   Question 73:
   Write a program that implements the insertion sort algorithm.
 */
 
+let arr3 = [3, 8, 12, 4, 53, 5, 6, 9];
+
+for (let i = 0; i < arr3.length; i++) {
+  let current = arr3[i];
+  let j = i - 1;
+
+  while (j >= 0 && arr3[j] > current) {
+    arr3[j + 1] = arr3[j];
+    j--;
+  }
+  arr3[j + 1] = current;
+}
+// console.log(arr3);
+
 /* 
   Question 74:
   Write a program that finds all unique elements in an array.
 */
+let arr4 = [12, 12, 2, 2, 124, 4, 6, 4, 64, 7, 5, 5, 8, 1, 3, 78, 5];
+let resultArray = [];
 
+for (let i = 0; i < arr4.length; i++) {
+  let element = arr4[i];
+  let count = 0;
+  for (let j = 0; j < arr4.length; j++) {
+    if (element === arr4[j]) {
+      count++;
+    }
+  }
+  if (count === 1) {
+    resultArray.push(element);
+  }
+}
+// console.log(resultArray);
 /* 
   Question 75:
   Write a program that generates a random hexadecimal color code.
