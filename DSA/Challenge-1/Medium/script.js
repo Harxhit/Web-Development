@@ -568,6 +568,18 @@ for (let i = 0; i < 6; i++) {
   Write a program that checks if a number is a palindrome.
 */
 
+let integer = 221;
+let strInt = integer.toString();
+let index = strInt.length - 1;
+let isPalindrome = true;
+
+for (let i = 0; i <= Math.floor(index / 2); i++) {
+  if (strInt[i] !== strInt[index - i]) {
+    isPalindrome = false;
+    break; 
+  }
+}
+// console.log(isPalindrome); 
 /* 
   Question 78:
   Write a program that finds the longest substring without repeating characters in a string.
