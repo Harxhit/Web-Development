@@ -576,29 +576,55 @@ let isPalindrome = true;
 for (let i = 0; i <= Math.floor(index / 2); i++) {
   if (strInt[i] !== strInt[index - i]) {
     isPalindrome = false;
-    break; 
+    break;
   }
 }
-// console.log(isPalindrome); 
+// console.log(isPalindrome);
 /* 
   Question 78:
   Write a program that finds the longest substring without repeating characters in a string.
-  */
+*/
 
+let str2 = "harshit";
+let longestSubString = "";
+
+for (let i = 0; i < str2.length; i++) {
+  let tempSub = "";
+  let char = new Set();
+
+  for (let j = i; j < str2.length; j++) {
+    if (char.has(str2[j])) {
+      break;
+    } else {
+      tempSub += str2[j];
+      char.add(str2[j]);
+    }
+  }
+  if (tempSub.length > longestSubString.length) {
+    longestSubString = tempSub; 
+  }
+}
+// console.log(longestSubString); 
 /* 
   Question 79:
   Write a program that reverses the words in a sentence.
-  */
+*/
 
-/* 
-  Question 80:
+let str1 =
+  "Sometimes I look into her eyes and thats where find the glimpse of us";
+let result = "";
+for (let i = str1.length - 1; i >= 0; i--) {
+  result += str1[i];
+}
+// console.log(result);str2
+/*Question 80:
   Write a program that checks if an array is sorted.
-  */
+*/
 
 /* 
   Question 81:
   Write a program that checks if two strings are anagrams of each other.
-  */
+*/
 
 /* 
   Question 82:
