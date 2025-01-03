@@ -840,7 +840,7 @@ for (let i = 0; i < animeNames.length; i++) {
     }
   }
   if (count === 1 && !uniqueArray.includes(animeNames[i])) {
-    uniqueArray.push(animeNames[i]); 
+    uniqueArray.push(animeNames[i]);
   }
 }
 for (let i = 0; i < superheroNames.length; i++) {
@@ -854,21 +854,60 @@ for (let i = 0; i < superheroNames.length; i++) {
     uniqueArray.push(superheroNames[i]);
   }
 }
-// console.log(uniqueArray); 
+// console.log(uniqueArray);
 /* 
   Question 90:
   Write a program that computes the total number of vowels in a string.
 */
 
+let str4 = "Hello world";
+let count = 0;
+
+for (let i = 0; i < str4.length; i++) {
+  let element = str4[i];
+
+  if (
+    element === "a" ||
+    element === "e" ||
+    element === "i" ||
+    element === "o" ||
+    element === "u" ||
+    element === "A" ||
+    element === "E" ||
+    element === "I" ||
+    element === "O" ||
+    element === "U"
+  ) {
+    count++;
+  }
+}
+// console.log(count);
 /* 
   Question 91:
   Write a program that calculates the greatest common divisor (GCD) of two numbers iteratively.
 */
 
+let n1 = 30;
+let n2 = 45;
+let greatestCommonDivisor;
+
+for (let i = 1; i <= n1; i++) {
+  if (n1 % i === 0) {
+    for (let j = 0; j <= n2; j++) {
+      if (n2 % i === 0 && i === j) {
+        greatestCommonDivisor = i;
+      }
+    }
+  }
+}
+// console.log(greatestCommonDivisor);
 /* 
   Question 92:
   Write a program that merges two sorted arrays into one sorted array.
 */
+
+let a1 = [1, 3, 5, 7]; 
+let a2 = [2, 4, 6, 8];
 
 /* 
   Question 93:
