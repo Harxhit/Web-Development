@@ -601,10 +601,10 @@ for (let i = 0; i < str2.length; i++) {
     }
   }
   if (tempSub.length > longestSubString.length) {
-    longestSubString = tempSub; 
+    longestSubString = tempSub;
   }
 }
-// console.log(longestSubString); 
+// console.log(longestSubString);
 /* 
   Question 79:
   Write a program that reverses the words in a sentence.
@@ -617,106 +617,295 @@ for (let i = str1.length - 1; i >= 0; i--) {
   result += str1[i];
 }
 // console.log(result);str2
-/*Question 80:
-  Write a program that checks if an array is sorted.
+/*
+Question 80: 
+Write a program that checks if an array is sorted.
 */
 
+let unSorted = [9, 5, 3, 7, 6, 8, 2, 1, 4];
+let isSorted = true;
+
+for (let i = 0; i < unSorted.length; i++) {
+  if (unSorted[i] > unSorted[i + 1]) {
+    isSorted = false;
+    break;
+  }
+}
+if (isSorted) {
+  // console.log('Array is sorted');
+} else {
+  // console.log('Array is not sorted');
+}
+
 /* 
-  Question 81:
-  Write a program that checks if two strings are anagrams of each other.
+Question 81:
+Write a program that checks if two strings are anagrams of each other.
 */
+
+let string1 = "listen";
+let string2 = "silent";
+let isAnargram = true;
+
+if (string1.length !== string2.length) {
+  isAnargram = false;
+} else {
+  let str1 = string1.split("").sort().join("");
+  let str2 = string2.split("").sort().join("");
+
+  if (str1 !== str2) {
+    isAnargram = false;
+  }
+}
+// console.log(isAnargram);
 
 /* 
   Question 82:
   Write a program that formats a string to have the first letter of each word capitalized.
-  */
+*/
 
 /* 
   Question 83:
   Write a program that returns a list of all divisors of a given number.
-  */
+*/
+
+let m = 100;
+let listDivisor = [];
+
+for (let i = 1; i <= m; i++) {
+  if (m % i === 0) {
+    listDivisor.push(i);
+  }
+}
+// console.log(listDivisor);
 
 /* 
   Question 84:
   Write a program that calculates the factorial of a number recursively.
-  */
+*/
 
 /* 
   Question 85:
   Write a program that calculates the sum of digits of a number.
-  */
+*/
 
 /* 
   Question 86:
   Write a program that simulates a simple ATM system.
-  */
+*/
+
+const data = {
+  Account1: {
+    name: "Travis Scott",
+    account_no: 3215,
+    account_balance: 100000,
+    pin: 4111,
+  },
+  Account2: {
+    name: "Kylie Jennner",
+    account_no: 3217,
+    account_balance: 10000,
+    pin: 4322,
+  },
+  Account3: {
+    name: "Kendric Lamar",
+    account_no: 3219,
+    account_balance: 10000000,
+    pin: 4222,
+  },
+};
+
+let validAccount = true;
+
+// while (true) {
+//   let user = prompt("Please enter your account number: ");
+
+//   let currentAccount = Object.values(data).find(
+//     (acc) => acc.account_no === parseInt(user)
+//   );
+
+//   if (currentAccount) {
+//     let password = prompt("Please enter your ATM pin");
+
+//     if (currentAccount.pin === parseInt(password)) {
+//       console.log(`Welcome ${currentAccount.name}`);
+//       alert(`Welcome ${currentAccount.name}`);
+
+//       let input = prompt(
+//         "Press 1 : To check balance, Press 2 : Withdraw Money , Press 3 : Deposit Money , Press 4: Exit"
+//       );
+
+//       while (true) {
+//         if (parseInt(input) == 1) {
+//           console.log(
+//             `Your available balance is: $${currentAccount.account_balance}`
+//           );
+//           alert(
+//             `Your available balance is: $${currentAccount.account_balance}`
+//           );
+//         } else if (parseInt(input) == 2) {
+//           let amount = prompt("How much would you like to withdraw: ");
+//           if (
+//             parseFloat(amount) > 0 &&
+//             parseFloat(amount) <= currentAccount.account_balance
+//           ) {
+//             currentAccount.account_balance -= amount;
+//             console.log(
+//               `Available balance is $${currentAccount.account_balance}`
+//             );
+//             alert(`Available balance is $${currentAccount.account_balance}`);
+//           } else {
+//             alert("Insufficient balance or invalid amount.");
+//           }
+//         } else if (parseInt(input) == 3) {
+//           let deposit = prompt("How much would you like to deposit: ");
+//           if (parseFloat(deposit) > 0) {
+//             currentAccount.account_balance += parseFloat(deposit);
+//             console.log(
+//               `Your available balance is $${currentAccount.account_balance}`
+//             );
+//             alert(
+//               `Your available balance is $${currentAccount.account_balance}`
+//             );
+//           } else {
+//             alert("Invalid deposit amount.");
+//           }
+//         } else if (parseInt(input) === 4) {
+//           console.log(
+//             `Thank you for using our services, ${currentAccount.name}`
+//           );
+//           alert(`Thank you for using our services, ${currentAccount.name}`);
+//           break;
+//         } else {
+//           alert("Invalid option, please try again.");
+//         }
+
+//         if (parseInt(input) !== 4) {
+//           input = prompt(
+//             "Press 1 : To check balance, Press 2 : Withdraw Money , Press 3 : Deposit Money , Press 4: Exit"
+//           );
+//         }
+//       }
+//       break;
+//     } else {
+//       alert("Incorrect pin, please try again.");
+//     }
+//   } else {
+//     alert("Account not found.");
+//   }
+// }
 
 /* 
   Question 87:
   Write a program that removes a specified item from an array by index.
-  */
+*/
+
+let arr6 = ["Batman", "Superman", "SpiderMan", "Pokeman"];
+let indexRemove = 2;
+
+arr6.splice(indexRemove, 1);
+// console.log(arr6);
 
 /* 
   Question 88:
   Write a program that converts a string to title case (first letter of each word capitalized).
-  */
+*/
 
 /* 
   Question 89:
   Write a program that finds the unique values from two arrays.
-  */
+*/
+let animeNames = [
+  "Naruto",
+  "One Piece",
+  "Naruto",
+  "Demon Slayer",
+  "My Hero Academia",
+  "One Piece",
+];
+let superheroNames = [
+  "Spider-Man",
+  "Iron Man",
+  "Wonder Woman",
+  "Batman",
+  "Captain America",
+  "Iron Man",
+];
+let uniqueArray = [];
 
+for (let i = 0; i < animeNames.length; i++) {
+  let count = 0;
+  for (let k = 0; k < animeNames.length; k++) {
+    if (animeNames[i] === animeNames[k]) {
+      count++;
+    }
+  }
+  if (count === 1 && !uniqueArray.includes(animeNames[i])) {
+    uniqueArray.push(animeNames[i]); 
+  }
+}
+for (let i = 0; i < superheroNames.length; i++) {
+  let count = 0;
+  for (let k = 0; k < superheroNames.length; k++) {
+    if (superheroNames[i] === superheroNames[k]) {
+      count++;
+    }
+  }
+  if (count === 1 && !uniqueArray.includes(superheroNames[i])) {
+    uniqueArray.push(superheroNames[i]);
+  }
+}
+// console.log(uniqueArray); 
 /* 
   Question 90:
   Write a program that computes the total number of vowels in a string.
-  */
+*/
 
 /* 
   Question 91:
   Write a program that calculates the greatest common divisor (GCD) of two numbers iteratively.
-  */
+*/
 
 /* 
   Question 92:
   Write a program that merges two sorted arrays into one sorted array.
-  */
+*/
 
 /* 
   Question 93:
   Write a program that finds the index of the first occurrence of a value in an array.
-  */
+*/
 
 /* 
   Question 94:
   Write a program that calculates the sum of even numbers in an array.
-  */
+*/
 
 /* 
   Question 95:
   Write a program that converts an object to a query string format.
-  */
+*/
 
 /* 
   Question 96:
   Write a program that calculates the LCM (Least Common Multiple) of two numbers.
-  */
+*/
 
 /* 
   Question 97:
   Write a program that finds the middle element(s) of an array.
-  */
+*/
 
 /* 
   Question 98:
   Write a program that checks if a given number is a perfect number.
-  */
+*/
 
 /* 
   Question 99:
   Write a program that finds all prime numbers in a range.
-  */
+*/
 
 /* 
   Question 100:
   Write a program that finds the second smallest number in an array.
-  */
+*/
