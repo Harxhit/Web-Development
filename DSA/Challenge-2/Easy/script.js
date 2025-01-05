@@ -335,56 +335,192 @@ Question 28:
 Write a function that checks if a number is prime.
 */
 
+function prime(number) {
+  if (number < 2) {
+    console.log("Number is not a prime number");
+  }
+  let isPrime = true;
+  for (let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) {
+      console.log("It is not a prime");
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime) {
+    console.log("Number is a prime number");
+  }
+}
+// prime(3);
+
 /* 
 Question 29:
 Write a function that returns the nth Fibonacci number.
 */
 
+function fibonacci(number) {
+  let fibonacciArray = [0, 1];
+  for (let i = 2; i < number; i++) {
+    nextElement = fibonacciArray[i - 2] + fibonacciArray[i - 1];
+    fibonacciArray.push(nextElement);
+  }
+  return fibonacciArray[number - 1];
+}
+// console.log(fibonacci(5));
 /* 
 Question 30:
 Write a function that finds the sum of all numbers in an array.
 */
 
+function additionArray(array) {
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    sum += element;
+  }
+  return sum;
+}
+// console.log(additionArray([1, 24, 3, 53, 53, 353]));
 /* 
 Question 31:
 Write a function that multiplies all numbers in an array.
 */
 
+function multiplicationArray(array) {
+  let sum = 1;
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    sum *= element;
+  }
+  return sum;
+}
+// console.log(multiplicationArray([1, 2, 3, 4, 5, 5]));
 /* 
 Question 32:
 Write a function that finds the average of all numbers in an array.
 */
-
+function averageArray(array) {
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    sum += element;
+  }
+  let average = sum / array.length - 1;
+  return average;
+}
+// console.log(averageArray([1, 2, 3, 4, 5]));
 /* 
 Question 33:
 Write a function that finds the largest number in an array.
 */
 
+function largestInArray(array) {
+  let largest = array[0];
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (largest < element) {
+      largest = element;
+    }
+  }
+  return largest;
+}
+// console.log(largestInArray([1, 213, 13, 3, 1, 3414, 1241, 2]));
 /* 
 Question 34:
 Write a function that finds the smallest number in an array.
 */
 
+function smallestInArray(array) {
+  let smallest = array[0];
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (smallest > element) {
+      smallest = element;
+    }
+  }
+  return smallest;
+}
+// console.log(smallestInArray([12, 121, 1, 31, 31, 31, 31, 3]));
 /* 
 Question 35:
 Write a function that removes duplicate elements from an array.
 */
 
+function duplicateRemove(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[i] === array[j]) {
+        index = j;
+        array.splice(index, 1);
+      }
+    }
+  }
+  return array;
+}
+// console.log(duplicateRemove([1, 2, 3, 4, 5, 3, 2, 6]));
 /* 
 Question 36:
 Write a function that checks if an array is sorted in ascending order.
 */
 
+function ascendingArray(array) {
+  let isSorted = true;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] > array[i + 1]) {
+      isSorted = false;
+    }
+  }
+  return isSorted;
+}
+// console.log(ascendingArray([1, 2, 3, 4, 5, 8, 7]));
 /* 
 Question 37:
 Write a function that flattens a nested array.
 */
+
+function flattensArray(array) {
+  let flattens = [];
+  for (let i = 0; i < array.length; i++) {
+    let element = array[i];
+    if (Array.isArray(element)) {
+      for (let j = 0; j < element.length; j++) {
+        if (Array.isArray(element[j])) {
+          for (let k = 0; k < element[j].length; k++) {
+            flattens.push(element[j][k]);
+          }
+        } else {
+          flattens.push(element[j]);
+        }
+      }
+    } else {
+      flattens.push(element);
+    }
+  }
+  console.log(flattens);
+}
+
+// flattensArray([1, 2, [3, 4], [5, 6, [7, 8]], 9]);
 
 /* 
 Question 38:
 Write a function that merges two arrays without duplicates.
 */
 
+function mergeArray(array1, array2) {
+  let array3 = [...array1, ...array2];
+  for (let i = 0; i < array3.length; i++) {
+    let index = i;
+    for (let j = i + 1; j < array3.length; j++) {
+      if (array3[index] === array3[j]) {
+        index = j;
+        array3.splice(index, 1);
+        j--;
+      }
+    }
+  }
+  return array3;
+}
+// console.log(mergeArray([1, 2, 3, 4, 5, 4], [2, 8, 9]));
 /* 
 Question 39:
 Write a function that sorts an array in ascending order.

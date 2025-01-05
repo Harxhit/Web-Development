@@ -403,7 +403,7 @@ for (let i = 0; i < nestedArray.length; i++) {
     flattensArray.push(element);
   }
 }
-// console.log(flattensArray);
+console.log(flattensArray);
 /* 
   Question 68:
   Write a program that finds the intersection of two arrays.
