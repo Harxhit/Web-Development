@@ -292,6 +292,12 @@ if (!haveDigits) {
   Question 62:
   Write a program that merges two objects, with properties from the second object overwriting the first if they share keys.
 */
+let obj1 = { a: 1, b: 2, c: 3 };
+let obj3 = { b: 4, c: 5, d: 6 };
+
+let mergedObject = { ...obj1, ...obj3 };
+
+// console.log(mergedObject);
 
 /* 
   Question 63:
@@ -335,9 +341,6 @@ for (let i = 2; i <= num; i++) {
   Question 65:
   Write a program that removes all falsy values from an array.
 */
-
-//A falsy array is an array where all its elements evaluate to falsy values in JavaScript. Falsy values include:
-//false, 0, -0, "" (empty string), null, undefined, and NaN
 
 let falsyArray = [1, 2, false, 0, -0, "", null, undefined, NaN, 3];
 
@@ -478,10 +481,26 @@ if (!haveAt || !haveDot) {
   Write a program that adds the digits of a number together until the result is a single digit.
 */
 
+let number2 = 12345;
+let number2String = number2.toString();
+let sumTotal = 0;
+
+while (number2String.length > 1) {
+  sumTotal = 0;
+  for (let i = 0; i < number2String.length; i++) {
+    sumTotal += parseInt(number2String[i]);
+  }
+  number2String = sumTotal.toString();
+}
+// console.log(sumTotal);
 /* 
   Question 71:
   Write a program that formats a number to have commas separating thousands.
 */
+
+let simpleNumber = 12123131313;
+let outputConversion = simpleNumber.toLocaleString();
+// console.log(outputConversion);
 
 /* 
   Question 72:
@@ -562,6 +581,15 @@ for (let i = 0; i < 6; i++) {
   Question 76:
   Write a program that accepts an array of numbers and finds the sum of the squares of all the numbers.
 */
+
+let squareArray = [1, 2, 3, 4, 5];
+let add = 0;
+
+for (let i = 0; i < squareArray.length; i++) {
+  let result = squareArray[i] * squareArray[i];
+  add += result;
+}
+// console.log(add);
 
 /* 
   Question 77:
@@ -663,6 +691,14 @@ if (string1.length !== string2.length) {
   Write a program that formats a string to have the first letter of each word capitalized.
 */
 
+let inputCase = "I praise the lord than break the law";
+let words = inputCase.split(" ");
+
+for (let i = 0; i < words.length; i++) {
+  words[i] = words[i][0].toUpperCase() + words[i].slice(1).toLowerCase();
+}
+const resultString = words.join(" ");
+// console.log(resultString);
 /* 
   Question 83:
   Write a program that returns a list of all divisors of a given number.
@@ -683,11 +719,26 @@ for (let i = 1; i <= m; i++) {
   Write a program that calculates the factorial of a number recursively.
 */
 
+let factorialNumber = 5;
+let factorial = 1;
+
+for (let i = 1; i <= factorialNumber; i++) {
+  factorial *= i;
+}
+// console.log(factorial);
 /* 
   Question 85:
   Write a program that calculates the sum of digits of a number.
 */
 
+let input = 12345;
+let stringInput = input.toString();
+let totalSum = 0;
+
+for (let i = 0; i < stringInput.length; i++) {
+  totalSum += parseInt(stringInput[i]);
+}
+// console.log(totalSum);
 /* 
   Question 86:
   Write a program that simulates a simple ATM system.
@@ -810,6 +861,16 @@ arr6.splice(indexRemove, 1);
   Write a program that converts a string to title case (first letter of each word capitalized).
 */
 
+let testCase = "this is a test";
+let charSet = testCase.split(" ");
+
+for (let i = 0; i < charSet.length; i++) {
+  charSet[i] = charSet[i][0].toUpperCase() + charSet[i].slice(1).toLowerCase();
+}
+
+const capitalWords = charSet.join(" ");
+// console.log(capitalWords);
+
 /* 
   Question 89:
   Write a program that finds the unique values from two arrays.
@@ -906,45 +967,186 @@ for (let i = 1; i <= n1; i++) {
   Write a program that merges two sorted arrays into one sorted array.
 */
 
-let a1 = [1, 3, 5, 7]; 
+let a1 = [1, 3, 5, 7];
 let a2 = [2, 4, 6, 8];
+let sortArray = [...a1, ...a2];
 
+for (let i = 0; i < sortArray.length; i++) {
+  let index = i;
+  for (let j = i + 1; j < sortArray.length; j++) {
+    if (sortArray[index] > sortArray[j]) {
+      index = j;
+    }
+  }
+  let element = sortArray[i];
+  sortArray[i] = sortArray[index];
+  sortArray[index] = element;
+}
+// console.log(sortArray);
 /* 
   Question 93:
   Write a program that finds the index of the first occurrence of a value in an array.
 */
+let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let target = 3;
 
+for (let i = 0; i < numbersArray.length; i++) {
+  let element = numbersArray[i];
+  if (element === target) {
+    // console.log("The index of target element is:",i);
+  }
+}
 /* 
   Question 94:
   Write a program that calculates the sum of even numbers in an array.
 */
-
+let sum = 0;
+for (let i = 0; i < numbersArray.length; i++) {
+  let element = numbersArray[i];
+  if (element % 2 === 0) {
+    sum += element;
+  }
+}
+// console.log(sum);
 /* 
   Question 95:
   Write a program that converts an object to a query string format.
 */
+
+const obje = {
+  name: "John",
+  age: 30,
+  hobbies: ["reading", "traveling"],
+  address: {
+    city: "New York",
+    zip: "10001",
+  },
+};
+
+let queryString = "";
+const entries = Object.entries(obje);
+
+for (let i = 0; i < entries.length; i++) {
+  const key = entries[i][0];
+  const value = entries[i][1];
+
+  if (Array.isArray(value)) {
+    for (let j = 0; j < value.length; j++) {
+      queryString += `${encodeURIComponent(key)}[]=${encodeURIComponent(
+        value[j]
+      )}&`;
+    }
+  } else if (typeof value === "object" && value !== null) {
+    const subEntries = Object.entries(value);
+    for (let j = 0; j < subEntries.length; j++) {
+      const subKey = subEntries[j][0];
+      const subValue = subEntries[j][1];
+      queryString += `${encodeURIComponent(key)}[${encodeURIComponent(
+        subKey
+      )}]=${encodeURIComponent(subValue)}&`;
+    }
+  } else {
+    queryString += `${encodeURIComponent(key)}=${encodeURIComponent(value)}&`;
+  }
+}
+
+if (queryString.endsWith("&")) {
+  queryString = queryString.slice(0, -1);
+}
+
+// console.log(queryString);
 
 /* 
   Question 96:
   Write a program that calculates the LCM (Least Common Multiple) of two numbers.
 */
 
+let num1 = 14;
+let num2 = 16;
+
 /* 
   Question 97:
   Write a program that finds the middle element(s) of an array.
 */
+
+let arrayOfNumber = [1, 2, 3, 5, 35, 636, 6, 3];
+let middleElement = Math.floor(arrayOfNumber.length / 2);
+
+if (arrayOfNumber.length % 2 === 0) {
+  // console.log(
+  //   "Middle element for a even array are:",
+  //   arrayOfNumber[middleElement - 1],
+  //   "and",
+  //   arrayOfNumber[middleElement],
+  //   ".There index are",
+  //   middleElement - 1,
+  //   "and",
+  //   middleElement
+  // );
+} else {
+  // console.log(
+  //   "Middle element for odd length array is:",
+  //   arrayOfNumber[middleElement],
+  //   ".There index are",
+  //   middleElement
+  // );
+}
 
 /* 
   Question 98:
   Write a program that checks if a given number is a perfect number.
 */
 
+let number1 = 6;
+let isPerfectNumber = false;
+let total = 0;
+for (let i = 1; i < 6; i++) {
+  if (number1 % i === 0) {
+    total += i;
+  }
+}
+if (total === number1) {
+  isPerfectNumber = true;
+}
+// console.log(isPerfectNumber);
 /* 
   Question 99:
   Write a program that finds all prime numbers in a range.
 */
 
+let minRange = 10;
+let maxRange = 100;
+let prime = [];
+
+for (let i = minRange; i <= maxRange; i++) {
+  let isPrime = true;
+  for (let j = 2; j <= Math.sqrt(i); j++) {
+    if (i % j === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime) {
+    prime.push(i);
+  }
+}
+// console.log(prime);
 /* 
   Question 100:
   Write a program that finds the second smallest number in an array.
 */
+
+let nums = [12, 242, 45, 46, 47, 68, 24, 24242];
+let secondSmallest = Infinity;
+let smallest = Infinity;
+
+for (let i = 0; i < nums.length; i++) {
+  if (smallest > nums[i]) {
+    secondSmallest = smallest;
+    smallest = nums[i];
+  } else if (nums[i] < secondSmallest && smallest !== nums[i]) {
+    secondSmallest = nums[i];
+  }
+}
+// console.log('The smallest number is:',smallest);
+// console.log('The second smallest number is:',secondSmallest);

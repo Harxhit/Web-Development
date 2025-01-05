@@ -147,6 +147,14 @@ Question 11:
 Write a program that prints a multiplication table for a given number using a loop.
 */
 
+let nums = 2;
+let multiplicationArray = [];
+
+for (let i = 1; i <= 10; i++) {
+  let element = i * nums; 
+  multiplicationArray.push(element); 
+}
+// console.log(multiplicationArray); 
 // let input = prompt('Enter a number you want to find multiplication table.')
 let number = 2;
 ``;
@@ -311,11 +319,9 @@ for (let i = 0; i < rows; i++) {
       row.push(triangle[i - 1][j - 1] + triangle[i - 1][j]);
     }
   }
-  triangle.push(row); 
+  triangle.push(row);
 }
 
 for (let k = 0; k < triangle.length; k++) {
-  // console.log(triangle[k].join(" ")); 
-  
+  // console.log(triangle[k].join(" "));
 }
-
