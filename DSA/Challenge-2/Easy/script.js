@@ -205,7 +205,15 @@ function spaces(string) {
 Question 16:
 Write a function that checks if a string contains a specific substring.
 */
+function specificString(string, substring) {
+  if (string.includes(substring)) {
+    console.log(true);
+  } else {
+    console.log(false);
+  }
+}
 
+// specificString("string", "str");
 /* 
 Question 17:
 Write a function that returns the first character of a string.
@@ -303,7 +311,10 @@ function arrayToString(array) {
 Question 25:
 Write a function that joins elements of an array into a string with a custom separator.
 */
-
+function joinElement(element, seperator) {
+  return element.join(seperator);
+}
+// console.log(joinElement(['apple','mango','banana'],','))
 /* 
 Question 26:
 Write a function that finds the longest word in a string.
@@ -330,6 +341,10 @@ Question 27:
 Write a function that repeats a string a specified number of times.
 */
 
+function stringRepeat(string, number) {
+  return string.repeat(number);
+}
+// console.log(stringRepeat("hello",3));
 /* 
 Question 28:
 Write a function that checks if a number is prime.
@@ -526,57 +541,152 @@ Question 39:
 Write a function that sorts an array in ascending order.
 */
 
+function ascendingOrder(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[i] > array[j]) {
+        let element = array[i];
+        array[i] = array[j];
+        array[j] = element;
+      }
+    }
+  }
+  return array;
+}
+// console.log(ascendingOrder([9, 8, 6, 7, 3, 5, 3, 1, 4]));
 /* 
 Question 40:
 Write a function that sorts an array in descending order.
 */
 
+function descendingOrder(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[i] < array[j]) {
+        let element = array[i];
+        array[i] = array[j];
+        array[j] = element;
+      }
+    }
+  }
+  return array;
+}
+// console.log(descendingOrder([1, 2, 3, 4, 5, 6]));
 /* 
 Question 41:
 Write a function that finds the index of a specific element in an array.
 */
 
+function findIndex(array) {
+  let element = 6;
+  let index;
+  for (let i = 0; i < array.length; i++) {
+    if (element === array[i]) {
+      index = i;
+    }
+  }
+  return index;
+}
+// console.log(findIndex([1, 2, 3, 6, 4, 9]));
 /* 
 Question 42:
 Write a function that removes an element from an array at a specific index.
 */
 
+function removeElement(array, index) {
+  array.splice(index, 1);
+  return array;
+}
+// console.log(removeElement([10, 20, 30, 40, 50], 2));
 /* 
 Question 43:
 Write a function that removes all occurrences of a specific element from an array.
 */
 
+function occurrenceElement(array, element) {
+  for (let i = 0; i < array.length; i++) {
+    let index = 0;
+    if (element === array[i]) {
+      index = i;
+      array.splice(index, 1);
+      i--;
+    }
+  }
+  return array;
+}
+// console.log(occurrenceElement([1, 2, 3, 4, 2, 5, 2],2));
 /* 
 Question 44:
 Write a function that checks if an array contains a specific element.
 */
 
+function specificElement(array) {
+  let element = 6;
+  for (let i = 0; i < array.length; i++) {
+    if (element === array[i]) {
+      console.log(true);
+      return;
+    }
+  }
+  console.log(false);
+  x;
+}
+// specificElement([1, 2, 3, 4, 5, 6]);
 /* 
 Question 45:
 Write a function that splits a string into an array of words.
 */
+function StringToArray(string) {
+  let words = string.split(" ");
+  return words;
+}
+// console.log(StringToArray("Bankai Senbonzakura kageyoshi"));
 
 /* 
 Question 46:
 Write a function that returns a substring from a string starting at a specific index.
 */
 
+function substring(string, index) {
+  return string.slice(index);
+}
+// console.log(substring("JavaScript is awesome", 4));
+
 /* 
 Question 47:
 Write a function that checks if an object is empty.
 */
 
+function objectIsEmpty(object) {
+  for (const key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      console.log(false);
+      return;
+    }
+  }
+  console.log(true);
+}
+// objectIsEmpty({});
 /* 
 Question 48:
 Write a function that merges two objects into one.
 */
-
+// console.log(copiesObject({ a: 1, b: 2, c: 3 }, { b: 4, c: 5, d: 6 }));
 /* 
 Question 49:
 Write a function that copies the properties of one object to another.
 */
-
+function copiesObject(obj1, obj2) {
+  let mergedObject = { ...obj1, ...obj2 };
+  return mergedObject;
+}
+// console.log(copiesObject({ a: 1, b: 2, c: 3 }, { b: 4, c: 5, d: 6 }));
 /* 
 Question 50:
 Write a function that checks if a key exists in an object.
 */
+
+function keyObject(object, key) {
+  return object.hasOwnProperty(key);
+}
+// console.log(keyObject({ a: 1, b: 2 }, "a"));
