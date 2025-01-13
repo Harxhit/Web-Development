@@ -372,7 +372,7 @@ function validSquare(number) {
   }
   return false;
 }
-// console.log(validSquare(8)); 
+// console.log(validSquare(8));
 /**/
 /**/
 /**/
