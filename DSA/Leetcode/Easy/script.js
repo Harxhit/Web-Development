@@ -286,3 +286,96 @@ function gcd(array) {
   return parseInt(number);
 }
 // console.log(gcd([2, 5, 6, 9, 10]));
+
+/*
+Question 15 : Length of last word
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.
+Example 1:
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5. 
+*/
+
+function lastWord(string) {
+  let words = string.split(" ");
+  let lastWord = "";
+  for (let i = 0; i < words.length; i++) {
+    if (words[i] !== "") {
+      lastWord = words[i];
+    }
+  }
+  return lastWord.length;
+}
+// console.log(lastWord("Hello World"));
+
+/*
+Question 16 : Plus One 
+You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+Increment the large integer by one and return the resulting array of digits.
+Example 1:
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].
+*/
+
+function addOne(array) {
+  for (let i = array.length - 1; i >= 0; i--) {
+    array[i] += 1;
+    if (array[i] < 10) {
+      return array;
+    }
+    array[i] = 0;
+  }
+  array.unshift(1);
+  return array;
+}
+// console.log(addOne([9]));
+/*
+Question 17 :  Sqrt(x)
+Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
+You must not use any built-in exponent function or operator.
+For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
+Example 1:
+Input: x = 4
+Output: 2
+Explanation: The square root of 4 is 2, so we return 2.
+*/
+function squareRoot(number) {
+  let i = 0;
+  while (i * i <= number) {
+    i++;
+  }
+  return i - 1;
+}
+// console.log(squareRoot(8));
+/*
+Question 18 : Valid Perfect Square
+Given a positive integer num, return true if num is a perfect square or false otherwise.
+A perfect square is an integer that is the square of an integer. In other words, it is the product of some integer with itself.
+You must not use any built-in library function, such as sqrt.
+Example 1:
+Input: num = 16
+Output: true
+Explanation: We return true because 4 * 4 = 16 and 4 is an integer.
+*/
+
+function validSquare(number) {
+  let i = 1;
+  while (i * i <= number) {
+    if (i * i === number) {
+      return true;
+    }
+    i++;
+  }
+  return false;
+}
+// console.log(validSquare(8)); 
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
