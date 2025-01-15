@@ -183,5 +183,6 @@ let every = exampleArray.every((number) => number % 2 === 0);
 // console.log(some);
 // console.log(every);
 
-/**/
-
+/* 
+Array Searching => Array searching refers to the process of finding a specific element or elements within an array. It involves checking each element of the array until the target is found or the array has been completely searched.
+*/
