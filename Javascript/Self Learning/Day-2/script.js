@@ -186,3 +186,42 @@ let every = exampleArray.every((number) => number % 2 === 0);
 /* 
 Array Searching => Array searching refers to the process of finding a specific element or elements within an array. It involves checking each element of the array until the target is found or the array has been completely searched.
 */
+
+/*
+1.Linear Search : Description: The simplest method where you check each element of the array one by one until you find the target element or reach the end of the array.
+Use case : Works on both sorted and un-sorted array . 
+When to Use:
+-When the array is unsorted or you don't know whether the array is sorted.
+-For small arrays where performance isn't a concern.
+-When you need to find multiple occurrences of the target element (can easily modify to track all occurrences).
+*/
+
+function linearSearch(array, target) {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (element === target) {
+      return i;
+    }
+  }
+  return -1;
+}
+// console.log(linearSearch([1, 2, 3, 4, 5], 6));
+
+/*
+2.Binary Search :  This method works on sorted arrays by repeatedly dividing the search range in half. The middle element is compared to the target, and based on whether the target is smaller or larger, the search continues in the left or right half.
+Use Case: Only works on sorted arrays.
+When to Use:
+- When the array is sorted (either in ascending or descending order).
+- When you need a fast search and performance is a priority, especially for large arrays.
+- If you're working with a sorted data structure like a sorted list of integers.
+
+*/
+
+
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
