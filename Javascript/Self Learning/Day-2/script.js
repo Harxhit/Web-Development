@@ -214,12 +214,85 @@ When to Use:
 - When the array is sorted (either in ascending or descending order).
 - When you need a fast search and performance is a priority, especially for large arrays.
 - If you're working with a sorted data structure like a sorted list of integers.
-
 */
 
+function binarySearch(array, target) {
+  let leftIndex = 0;
+  let rightIndex = array.length - 1;
+  while (leftIndex <= rightIndex) {
+    let middleIndex = Math.floor((leftIndex + rightIndex) / 2);
+    if (target === array[middleIndex]) {
+      return middleIndex;
+    } else if (target < array[middleIndex]) {
+      rightIndex = middleIndex - 1;
+    } else {
+      leftIndex = middleIndex + 1;
+    }
+  }
+  return -1;
+}
+// console.log(binarySearch([1, 2, 3, 4, 5], 3));
+// console.log(binarySearch([1, 2, 3, 4, 5], 1));
+/*
+3.Jump Search 
+Description: Jump Search is used on sorted arrays by jumping ahead by a fixed number of elements (usually the square root of the array length) and then performing a linear search within the block where the target may be found.
+Use Case: Best for large sorted arrays.
+When to Use:
+-When the array is sorted, and you're looking for an alternative to Binary Search.
+-If the array is large and the performance of Binary Search might be a concern.
+-When you want a more optimized search than Linear Search but without the requirement of exact midpoints in Binary Search.
+*/
 
-/**/
-/**/
+function jumpSearch(array, target) {
+  let length = array.length;
+  let start = 0;
+  let jump = Math.floor(Math.sqrt(length));
+
+  while (start < length && array[Math.min(jump, length) - 1] < target) {
+    start = jump;
+    jump += Math.floor(Math.sqrt(length));
+  }
+  for (let i = start; i < Math.min(jump, length); i++) {
+    if (array[i] === target) {
+      return i;
+    }
+  }
+  return -1;
+}
+// console.log(jumpSearch([12, 13, 23, 34, 45, 54, 65, 78], 23));
+/*
+4. Exponential Search 
+Description: This is a variation of binary search, where you first find the range in which the target element lies by exponentially increasing the range, and then perform binary search within that range.
+Use Case: Efficient for large sorted arrays with unknown lengths.
+When to Use:
+- When the size of the array is unknown or when the array is of dynamic size.
+- When the array is sorted, and you want a more efficient search than Linear Search for a large array.
+- In situations where data may not be indexed (e.g., an infinite or very large data set).
+*/
+function exponentialSearch(arr, target) {
+  let n = arr.length;
+
+  if (arr[0] === target) return 0;
+
+  let bound = 1;
+  while (bound < n && arr[bound] < target) {
+    bound *= 2;
+  }
+
+  let left = Math.floor(bound / 2);
+  let right = Math.min(bound, n - 1);
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (arr[mid] === target) return mid;
+    else if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+
+  return -1;
+}
+// console.log(exponentialSearch([1, 3, 5, 7, 9, 11, 13, 15, 17], 11));
+
 /**/
 /**/
 /**/
