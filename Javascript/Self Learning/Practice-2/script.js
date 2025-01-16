@@ -3,25 +3,86 @@
  * Output: 15
  */
 
+// function sumElement(array) {
+//   const sum = array.reduce(
+//     (accumulatar, currentValue) => accumulatar + currentValue,
+//     0
+//   );
+//   console.log(sum);
+// }
+
+function sumElement(array) {
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    sum += array[i];
+  }
+  return sum;
+}
+
+// console.log(sumElement([1, 2, 3, 4, 5]));
+
 /** Problem 2: Find the largest and smallest element in an array.
  * Input: [4, 2, 8, 1]
  * Output: Largest: 8, Smallest: 1
  */
 
+function largetSmallest(array) {
+  let smallest = array[0];
+  let largest = array[0];
+  for (let i = 0; i < array.length; i++) {
+    if (smallest > array[i]) {
+      smallest = array[i];
+    }
+    if (largest < array[i]) {
+      largest = array[i];
+    }
+  }
+  return `Smallest:${smallest} and largest:${largest}`;
+}
+// console.log(largetSmallest([4, 2, 8, 1]));
+
 /** Problem 3: Check if an array is sorted in ascending order.
- * Input: [1, 2, 3, 4, 5]
+ * Input: [1, 2, 3, 4, 5 ]
  * Output: True
  */
+function isSorted(array) {
+  for (let i = 0; i < array.length - 1; i++) {
+    if (array[i] > array[i + 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+// console.log(isSorted([1, 2, 3, 4, 5, 8, 7]));
 
 /** Problem 4: Count the number of even and odd numbers in an array.
  * Input: [1, 2, 3, 4, 5]
  * Output: Even: 2, Odd: 3
  */
 
+function oddAndEven(array) {
+  let oddCount = 0;
+  let evenCount = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      evenCount++;
+    } else if (array[i] % 2 === 1) {
+      oddCount++;
+    }
+  }
+  return `Odd Count:${oddCount} and Even count:${evenCount}`;
+}
+// console.log(oddAndEven([1, 2, 3, 4, 5]));
+
 /** Problem 5: Reverse an array.
  * Input: [1, 2, 3]
  * Output: [3, 2, 1]
  */
+
+function reverse(array) {
+  return array.reverse();
+}
+// console.log(reverse([1, 2, 3]));
 
 /** Problem 6: Rotate an array by `k` positions.
  * Input: [1, 2, 3, 4], k = 1
@@ -33,20 +94,75 @@
  * Output: [1, 2, 3, 4, 5, 6]
  */
 
+// function mergeSorted(array1, array2) {
+//   let sorted  = [...array1,...array2]
+//   return sorted.sort((a, b) => a - b);
+// }
+
+function mergeSorted(arr1, arr2) {
+  let sortedArray = [];
+  let i = 0;
+  let j = 0;
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] < arr2[j]) {
+      sortedArray.push(arr1[i]);
+      i++;
+    } else {
+      sortedArray.push(arr2[j]);
+      j++;
+    }
+  }
+  while (i < arr1.length) {
+    sortedArray.push(arr1[i]);
+    i++;
+  }
+  while (j < arr2.length) {
+    sortedArray.push(arr2[j]);
+    j++;
+  }
+  return sortedArray;
+}
+// console.log(mergeSorted([1, 3, 5], [2, 4, 6]));
+
 /** Problem 8: Remove duplicates from a sorted array.
  * Input: [1, 1, 2, 2, 3, 3]
  * Output: [1, 2, 3]
  */
+
+function removeDuplicate(array) {
+  for (let i = 0; i < array.length; i++) {
+    let index = i;
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[index] === array[j]) {
+        array.splice(j, 1);
+        j++;
+      }
+    }
+  }
+  return array;
+}
+// console.log(removeDuplicate([1, 1, 2, 2, 3, 3]));
 
 /** Problem 9: Find the index of the first occurrence of a target value.
  * Input: [1, 2, 3, 4, 5], target = 3
  * Output: 2
  */
 
+function findTarget(array, target) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === target) {
+      return i;
+    }
+  }
+  return -1;
+}
+// console.log(findTarget([1, 2, 3, 4, 5], (target = 3)));
+
 /** Problem 10: Implement bubble sort on an array.
  * Input: [5, 2, 9, 1, 5, 6]
  * Output: [1, 2, 5, 5, 6, 9]
  */
+
 
 /** Medium Problems (15) */
 
