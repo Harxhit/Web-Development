@@ -373,8 +373,47 @@ function validSquare(number) {
   return false;
 }
 // console.log(validSquare(8));
-/**/
-/**/
+/*
+Question 19: Missing Number 
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+Example 1:
+Input: nums = [3,0,1]
+Output: 2
+*/
+function missingNumber(array) {
+  let n = array.length;
+  let totalSum = n * ((n + 1) / 2);
+  let arraySum = 0;
+  for (let i = 0; i < array.length; i++) {
+    arraySum += array[i];
+  }
+  return totalSum - arraySum;
+}
+
+/*
+Question 20 : Missing kth number
+Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
+Return the kth positive integer that is missing from this array.
+Example 1:
+Input: arr = [2,3,4,7,11], k = 5
+Output: 9
+Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
+*/
+
+function missingKthValue(array, k) {
+  let missingArray = [];
+  let currentValue = 0;
+  let i = 0;
+  while (missingArray.length < k) {
+    if (array[i] !== currentValue) {
+      missingArray.push(currentValue);
+    } else {
+      i++;
+    }
+    currentValue++;
+  }
+  return missingArray[k - 1];
+}
 /**/
 /**/
 /**/

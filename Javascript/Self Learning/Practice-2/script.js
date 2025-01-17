@@ -3,6 +3,8 @@
  * Output: 15
  */
 
+const { RingGeometry } = require("three");
+
 // function sumElement(array) {
 //   const sum = array.reduce(
 //     (accumulatar, currentValue) => accumulatar + currentValue,
@@ -163,6 +165,23 @@ function findTarget(array, target) {
  * Output: [1, 2, 5, 5, 6, 9]
  */
 
+function bubbleSortAlgorithum(array) {
+  let swapped;
+  do {
+    swapped = false;
+    for (let i = 0; i < array.length - 1; i++) {
+      if (array[i] > array[i + 1]) {
+        let element = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = element;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+  return array;
+}
+
+// console.log(bubbleSortAlgorithum([5, 2, 9, 1, 5, 6]));
 
 /** Medium Problems (15) */
 
@@ -186,16 +205,49 @@ function findTarget(array, target) {
  * Output: 2 (index of target)
  */
 
+function binarySearch(array, target) {
+  let leftIndex = 0;
+  let rightIndex = array.length - 1;
+  while (leftIndex <= rightIndex) {
+    let middleIndex = Math.floor((leftIndex + rightIndex) / 2);
+    if (array[middleIndex] === target) {
+      return middleIndex;
+    } else if (array[middleIndex] < target) {
+      leftIndex = middleIndex + 1;
+    } else {
+      rightIndex = middleIndex - 1;
+    }
+  }
+  return -1;
+}
+// console.log(binarySearch([1, 2, 3, 4, 5], (target = 5)));
+
 /** Problem 5: Find the kth smallest element in an unsorted array.
  * Input: [7, 10, 4, 3, 20, 15], k = 4
  * Output: 10
  */
 
+function smallestKthElement(arr, k) {
+  const sortedArray = arr.sort((a, b) => a - b);
+  return sortedArray[k - 1];
+}
+// console.log(smallestKthElement([7, 10, 4, 3, 20, 15], (k = 4)));
+
 /** Problem 6: Find the missing number in an array of 1 to N.
- * Input: [1, 2, 4, 5, 6], N = 6
+ * Input: [1, 2, 4, 5, 6], n = 6
  * Output: 3
  */
 
+function missingNumber(array) {
+  let n = array.length + 1;
+  let arraySum = 0;
+  let totalSum = n * ((n + 1) / 2);
+  for (let i = 0; i < array.length; i++) {
+    arraySum += array[i];
+  }
+  return totalSum - arraySum
+}
+console.log(missingNumber([1, 2, 4, 5, 6], (n = 6)));
 /** Problem 7: Find the longest consecutive sequence in an unsorted array.
  * Input: [100, 4, 200, 1, 3, 2]
  * Output: 4 (The sequence is [1, 2, 3, 4])
