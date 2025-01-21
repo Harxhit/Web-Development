@@ -414,6 +414,22 @@ function missingKthValue(array, k) {
   }
   return missingArray[k - 1];
 }
+function findKthElement(array, k) {
+  let left = 0;
+  let right = array.length - 1;
+  while (left <= right) {
+    let middleIndex = Math.floor((left + right) / 2);
+    let missing = array[middleIndex] - (middleIndex + 1);
+    if (missing < k) {
+      left = middleIndex + 1;
+    } else {
+      right = middleIndex - 1;
+    }
+  }
+  return left + k;
+}
+// console.log(findKthElement([2, 3, 4, 7, 11], 5));
+
 /**/
 /**/
 /**/

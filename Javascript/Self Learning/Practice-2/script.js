@@ -245,9 +245,10 @@ function missingNumber(array) {
   for (let i = 0; i < array.length; i++) {
     arraySum += array[i];
   }
-  return totalSum - arraySum
+  return totalSum - arraySum;
 }
-console.log(missingNumber([1, 2, 4, 5, 6], (n = 6)));
+
+// console.log(missingNumber([1, 2, 4, 5, 6], (n = 6)));
 /** Problem 7: Find the longest consecutive sequence in an unsorted array.
  * Input: [100, 4, 200, 1, 3, 2]
  * Output: 4 (The sequence is [1, 2, 3, 4])
