@@ -23,7 +23,7 @@ function maxArea(array) {
       i++;
     }
   }
-  return area; 
+  return area;
 }
 // console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
 /*
@@ -70,3 +70,33 @@ function product(array) {
   return nums;
 }
 // console.log(product([1, 2, 3, 4]));
+
+/* 
+Question 21 : Longest Consecutive Sequence
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+You must write an algorithm that runs in O(n) time.
+Example 1:
+Input: nums = [100,4,200,1,3,2]
+Output: 4
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+*/
+
+function longestConsecutiveSequence(array) {
+  let newSet = new Set(array);
+  let maxLength = 0;
+  for (let i = 0; i < array.length; i++) {
+    const num = array[i];
+    if (!newSet.has(num - 1)) {
+      let currentNumber = num;
+      let longestLength = 1;
+      while (newSet.has(currentNumber + 1)) {
+        currentNumber++;
+        longestLength++;
+        newSet.delete(currentNumber);
+      }
+      maxLength = Math.max(longestLength, maxLength);
+    }
+  }
+  return maxLength;
+}
+// console.log(longestConsecutiveSequence([100, 4, 200, 1, 3, 2]));

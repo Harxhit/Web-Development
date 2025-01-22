@@ -3,8 +3,6 @@
  * Output: 15
  */
 
-const { RingGeometry } = require("three");
-
 // function sumElement(array) {
 //   const sum = array.reduce(
 //     (accumulatar, currentValue) => accumulatar + currentValue,
@@ -249,10 +247,31 @@ function missingNumber(array) {
 }
 
 // console.log(missingNumber([1, 2, 4, 5, 6], (n = 6)));
+
 /** Problem 7: Find the longest consecutive sequence in an unsorted array.
  * Input: [100, 4, 200, 1, 3, 2]
  * Output: 4 (The sequence is [1, 2, 3, 4])
  */
+
+function longestConsecutiveSequence(array) {
+  let newSet = new Set(array);
+  let maxLength = 0;
+  for (let i = 0; i < array.length; i++) {
+    const num = array[i];
+    if (!newSet.has(num - 1)) {
+      let currentNumber = num;
+      let longestLength = 1;
+      while (newSet.has(currentNumber + 1)) {
+        currentNumber++;
+        longestLength++;
+        newSet.delete(currentNumber);
+      }
+      maxLength = Math.max(maxLength, longestLength);
+    }
+  }
+  return maxLength;
+}
+// console.log(longestConsecutiveSequence([100, 4, 200, 1, 3, 2]));
 
 /** Problem 8: Find the intersection of two arrays.
  * Input: [1, 2, 2, 1], [2, 2]
@@ -278,6 +297,39 @@ function missingNumber(array) {
  * Input: [4, 5, 1, 2, 0, 4, 5]
  * Output: 1
  */
+function nonRepeatingElement(array) {
+  let element = new Map();
+  for (let i = 0; i < array.length; i++) {
+    const num = array[i];
+    if (element.has(num)) {
+      element.set(num, element.get(num) + 1);
+    } else {
+      element.set(num, 1);
+    }
+  }
+  for (let j = 0; j < array.length; j++) {
+    if (element.get(array[j]) === 1) {
+      return j;
+    }
+  }
+}
+// console.log(nonRepeatingElement([4, 5, 1, 2, 0, 4, 5]));
+let s = "loveleetcode";
+let frequency = new Map();
+for (let i = 0; i < s.length; i++) {
+  let element = s[i];
+  if (frequency.has(element)) {
+    frequency.set(element, frequency.get(element) + 1);
+  } else {
+    frequency.set(element, 1);
+  }
+}
+for (let i = 0; i < s.length; i++) {
+  if (frequency.get(s[i]) === 1) {
+    console.log(i);
+    break;
+  }
+}
 
 /** Problem 13: Find the subarray with the maximum sum (Kadane's Algorithm).
  * Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]
@@ -287,12 +339,13 @@ function missingNumber(array) {
 /** Problem 14: Find the longest palindrome in an array of strings.
  * Input: ["babad", "cbbd"]
  * Output: "bab"
- */
+*/
 
 /** Problem 15: Implement a two-pointer technique to find pairs with a target sum.
  * Input: [1, 2, 3, 4, 5], target = 6
  * Output: [[1, 5], [2, 4]]
- */
+*/
+
 
 /** Hard Problems (25) */
 

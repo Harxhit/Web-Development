@@ -430,7 +430,34 @@ function findKthElement(array, k) {
 }
 // console.log(findKthElement([2, 3, 4, 7, 11], 5));
 
-/**/
+/*
+Question 22 : First Unique Character in String
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+Example 1:
+Input: s = "leetcode"
+Output: 0
+Explanation:
+The character 'l' at index 0 is the first character that does not occur at any other index.
+*/
+
+function firstUniqueCharacterInString(string) {
+  let frequency = new Map();
+  for (let i = 0; i < string.length; i++) {
+    const word = string[i];
+    if (frequency.has(word)) {
+      frequency.set(word, frequency.get(word) + 1);
+    } else {
+      frequency.set(word, 1);
+    }
+  }
+  for (let i = 0; i < string.length; i++) {
+    if (frequency.get(string[i]) === 1) {
+      return i;
+    }
+  }
+  return -1;
+}
+// console.log(firstUniqueCharacterInString('loveleetcode'))
 /**/
 /**/
 /**/
