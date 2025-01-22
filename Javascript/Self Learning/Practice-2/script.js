@@ -3,6 +3,8 @@
  * Output: 15
  */
 
+const { CompressedTextureLoader } = require("three");
+
 // function sumElement(array) {
 //   const sum = array.reduce(
 //     (accumulatar, currentValue) => accumulatar + currentValue,
@@ -293,6 +295,36 @@ function longestConsecutiveSequence(array) {
  * Output: [1, 3, 12, 0, 0]
  */
 
+function moveAllZero(array) {
+  let nonZero = [];
+  for (let i = 0; i < array.length; i++) {
+    let element = array[i];
+    if (element !== 0) {
+      nonZero.push(element);
+    }
+  }
+  while (nonZero.length < array.length) {
+    nonZero.push(0);
+  }
+  return nonZero;
+}
+
+function sortingZeroElement(array) {
+  let index = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] !== 0) {
+      array[index] = array[i];
+      index++;
+    }
+  }
+  for (let i = index; i < array.length; i++) {
+    array[i] = 0;
+  }
+  return array;
+}
+// console.log(sortingZeroElement([0, 1, 0, 3, 12]));
+// console.log(moveAllZero([0, 1, 0, 3, 12]));
+
 /** Problem 12: Find the first non-repeating element in an array.
  * Input: [4, 5, 1, 2, 0, 4, 5]
  * Output: 1
@@ -314,22 +346,6 @@ function nonRepeatingElement(array) {
   }
 }
 // console.log(nonRepeatingElement([4, 5, 1, 2, 0, 4, 5]));
-let s = "loveleetcode";
-let frequency = new Map();
-for (let i = 0; i < s.length; i++) {
-  let element = s[i];
-  if (frequency.has(element)) {
-    frequency.set(element, frequency.get(element) + 1);
-  } else {
-    frequency.set(element, 1);
-  }
-}
-for (let i = 0; i < s.length; i++) {
-  if (frequency.get(s[i]) === 1) {
-    console.log(i);
-    break;
-  }
-}
 
 /** Problem 13: Find the subarray with the maximum sum (Kadane's Algorithm).
  * Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]
@@ -339,13 +355,12 @@ for (let i = 0; i < s.length; i++) {
 /** Problem 14: Find the longest palindrome in an array of strings.
  * Input: ["babad", "cbbd"]
  * Output: "bab"
-*/
+ */
 
 /** Problem 15: Implement a two-pointer technique to find pairs with a target sum.
  * Input: [1, 2, 3, 4, 5], target = 6
  * Output: [[1, 5], [2, 4]]
-*/
-
+ */
 
 /** Hard Problems (25) */
 

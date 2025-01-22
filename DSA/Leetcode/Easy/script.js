@@ -10,6 +10,8 @@ Output: [0,1]
 Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 */
 
+const { NeverDepth } = require("three");
+
 function twoSum(array, target) {
   for (let i = 0; i < array.length; i++) {
     for (let j = i + 1; j < array.length; j++) {
@@ -458,6 +460,56 @@ function firstUniqueCharacterInString(string) {
   return -1;
 }
 // console.log(firstUniqueCharacterInString('loveleetcode'))
-/**/
-/**/
+/*
+Question 23 : Moving Zeros
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+Note that you must do this in-place without making a copy of the array.
+Example 1:
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+*/
+function movingZeros(array) {
+  let index = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] !== 0) {
+      array[index] = array[i];
+      index++;
+    }
+  }
+  for (let i = index; i < array.length; i++) {
+    array[i] = 0;
+  }
+  return array;
+}
+// console.log(movingZeros([0, 1, 0, 3, 12]));
+/*
+Question 24 : Single Number 
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+Example 1:
+Input: nums = [4,1,2,1,2]
+Output: 4
+*/
+function singleNumber(array) {
+  for (let i = 0; i < array.length; i++) {
+    let count = 0;
+    for (let j = 0; j < array.length; j++) {
+      if (array[i] === array[j]) {
+        count++;
+      }
+    }
+    if (count === 1) {
+      return array[i];
+    }
+  }
+}
+function singleNumberApproach2(array) {
+  let result = 0;
+  for (let i = 0; i < array.length; i++) {
+    result ^= array[i];
+  }
+  return result;
+}
+// console.log(singleNumberApproach2([4, 4, 1, 2, 3, 1, 2]));
+// console.log(singleNumber([4, 4, 1, 2, 3, 1, 2]));
 /**/
