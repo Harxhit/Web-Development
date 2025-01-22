@@ -279,7 +279,19 @@ function longestConsecutiveSequence(array) {
  * Input: [1, 2, 2, 1], [2, 2]
  * Output: [2, 2]
  */
-
+function findIntersection(array1, array2) {
+  let result = [];
+  for (let i = 0; i < array1.length; i++) {
+    for (let j = 0; j < array2.length; j++) {
+      if (array1[i] === array2[j]) {
+        result.push(array1[i]);
+        break;
+      }
+    }
+  }
+  return result;
+}
+console.log(findIntersection([1, 2, 2, 1], [2, 2]));
 /** Problem 9: Sort an array of 0s, 1s, and 2s (Dutch National Flag problem).
  * Input: [2, 0, 1, 2, 0, 1, 1]
  * Output: [0, 0, 1, 1, 1, 2, 2]
