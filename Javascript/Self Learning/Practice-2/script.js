@@ -291,7 +291,17 @@ function findIntersection(array1, array2) {
   }
   return result;
 }
-console.log(findIntersection([1, 2, 2, 1], [2, 2]));
+function findIntersection(array1, array2) {
+  let result = new Set();
+  for (let i = 0; i < array1.length; i++) {
+    if (array2.includes(array1[i])) {
+      result.add(array1[i]);
+    }
+  }
+  return [...result];
+}
+// console.log(findIntersection([1, 2, 2, 1], [2, 2]));
+
 /** Problem 9: Sort an array of 0s, 1s, and 2s (Dutch National Flag problem).
  * Input: [2, 0, 1, 2, 0, 1, 1]
  * Output: [0, 0, 1, 1, 1, 2, 2]

@@ -293,8 +293,135 @@ function exponentialSearch(arr, target) {
 }
 // console.log(exponentialSearch([1, 3, 5, 7, 9, 11, 13, 15, 17], 11));
 
+/*
+5.Interpolation Search 
+Description: A variation of binary search, which is optimized for uniformly distributed data. It estimates the position of the target element based on a formula, and then performs a binary search-like operation.
+When to Use:
+- When the array is sorted and contains uniformly distributed values.
+- When you expect the target value to be near the mean of the data distribution (e.g., numeric data that follows a roughly linear distribution).
+- When the array is large, and you want a potentially faster alternative to Binary Search.
+Use Case: Searching for a value in a large sorted array of numbers (e.g., finding a price in a list of stock prices sorted by increasing value).
+*/
+function interpolationSearch(arr, target) {
+  let low = 0;
+  let high = arr.length - 1;
+
+  while (low <= high && target >= arr[low] && target <= arr[high]) {
+    let pos =
+      low +
+      Math.floor(((target - arr[low]) / (arr[high] - arr[low])) * (high - low));
+
+    if (arr[pos] === target) {
+      return pos;
+    } else if (arr[pos] < target) {
+      low = pos + 1;
+    } else {
+      high = pos - 1;
+    }
+  }
+
+  return -1;
+}
+// console.log(interpolationSearch([1, 3, 5, 7, 9, 11, 13, 15, 17], 11));
 /**/
-/**/
-/**/
-/**/
-/**/
+/*
+6.Ternary Search
+Description: Similar to binary search but instead of dividing the array into two parts, it divides the array into three parts. The element is compared with two midpoints, and the search proceeds in the appropriate third.
+When to Use:
+- When the array is sorted.
+- If you're looking for a more balanced search between Binary Search and Linear Search.
+- In cases where the array is small to medium-sized, and you want an efficient search with fewer comparisons.
+Use Case: Searching for an element in a sorted array when you prefer dividing the array into three parts rather than two (useful in divide-and-conquer algorithms).
+*/
+function ternarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (right >= left) {
+    let mid1 = left + Math.floor((right - left) / 3);
+    let mid2 = right - Math.floor((right - left) / 3);
+
+    if (arr[mid1] === target) {
+      return mid1;
+    } else if (arr[mid2] === target) {
+      return mid2;
+    } else if (target < arr[mid1]) {
+      right = mid1 - 1;
+    } else if (target > arr[mid2]) {
+      left = mid2 + 1;
+    } else {
+      left = mid1 + 1;
+      right = mid2 - 1;
+    }
+  }
+
+  return -1;
+}
+// console.log(ternarySearch([1, 3, 5, 7, 9, 11, 13, 15, 17], 11))
+/*
+7.Fibonacci Search
+Description: A search algorithm based on Fibonacci numbers. It works by dividing the array into parts using Fibonacci numbers, and progressively narrowing down the search range.
+When to Use:
+- When the array is sorted, and you want an alternative to Binary Search.
+- When you're dealing with arrays that are small to medium-sized.
+- When you're working with specific algorithms (e.g., Fibonacci-related problems or applications).
+Use Case: Searching for a value in a sorted array where you want to exploit the Fibonacci sequence for efficient searching.
+*/
+function fibonacciSearch(arr, target) {
+  let n = arr.length;
+  let fibMMm2 = 0;
+  let fibMMm1 = 1;
+  let fibM = fibMMm1 + fibMMm2;
+
+  while (fibM < n) {
+    fibMMm2 = fibMMm1;
+    fibMMm1 = fibM;
+    fibM = fibMMm1 + fibMMm2;
+  }
+
+  let offset = -1;
+
+  while (fibM > 1) {
+    let i = Math.min(offset + fibMMm2, n - 1);
+
+    if (arr[i] < target) {
+      fibM = fibMMm1;
+      fibMMm1 = fibMMm2;
+      fibMMm2 = fibM - fibMMm1;
+      offset = i;
+    } else if (arr[i] > target) {
+      fibM = fibMMm2;
+      fibMMm2 = fibMMm1 - fibMMm2;
+      fibMMm1 = fibM - fibMMm2;
+    } else {
+      return i;
+    }
+  }
+
+  if (fibMMm1 && arr[offset + 1] === target) {
+    return offset + 1;
+  }
+
+  return -1;
+}
+// console.log(fibonacciSearch([1, 3, 5, 7, 9, 11, 13, 15, 17], 11));
+/*
+Sorting and Reversing 
+.sort() =>  The .sort() method sorts elements as strings by default. To sort numbers correctly, you need a comparison function.
+*/
+
+function sort(array) {
+  let sort = array.sort((a, b) => b - a);
+  return sort;
+}
+// console.log(sort([7, 6, 4, 3, 1, 5, 2]));
+
+/*
+.reverse => The .reverse() method reverses the order of the array.
+*/
+
+function reverse(array) {
+  array.reverse();
+  return array;
+}
+// console.log(reverse([1, 2, 3, 4, 5, 6, 7]));
