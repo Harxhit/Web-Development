@@ -113,32 +113,48 @@ Object.defineProperties(obj, {
 /*
 14. Object.getPrototypeOf() => Returns the prototype of an object.
 */
+let protoType = Object.getPrototypeOf(object);
+// console.log(protoType);
+/*
+15. Object.setPrototypeOf() => Sets the prototype of an object.
+*/
 
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
+let animals = { type: "Mammal", sound: "Some generic animal sound" };
+let dog = { breed: "Labrador", color: "Brown" };
+Object.setPrototypeOf(dog, animals);
+
+// console.log(dog.type);
+// console.log(dog.sound);
+// console.log(dog.breed);
+// console.log(dog.color);
+/*
+16. Object.is() => Compares if two values are the same (better than === for some cases).
+*/
+let obj1 = {};
+// console.log(Object.is(obj1, obj1));
+// console.log(Object.is(25, 25));
+// console.log(Object.is(25, "25"));
+
+/*
+17. Object.isFrozen() => Checks if an object is frozen (i.e., Object.freeze() applied).
+*/
+let checkFrozen = Object.isFrozen(object);
+// console.log(checkFrozen);
+/*
+18. Object.isSealed() => Checks if an object is sealed (i.e., Object.seal() applied).
+*/
+
+let isSealed = Object.isSealed(object);
+// console.log(isSealed);
+
+/*
+19. Object.isExtensible() => Checks if an object can have new properties added.
+*/
+let isExtensible = Object.isExtensible(object);
+// console.log(isExtensible);
+/*
+20. Object.preventExtensions() => Prevents an object from adding new properties but allows modifications to existing ones.
+*/
+let preventExtensions = Object.preventExtensions(object);
+// console.log(preventExtensions);
+
