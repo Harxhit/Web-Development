@@ -346,7 +346,7 @@ function colorSort(array) {
       right--;
     }
   }
-  return array
+  return array;
 }
 // console.log(colorSort([2, 0, 1, 2, 0, 1, 1]));
 // console.log(dutchNationalFlag([2, 0, 1, 2, 0, 1, 1]));
@@ -450,7 +450,9 @@ function nonRepeatingElement(array) {
 /** Problem 13: Find the subarray with the maximum sum (Kadane's Algorithm).
  * Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]
  * Output: 6 (The subarray is [4, -1, 2, 1])
- */
+*/
+
+
 
 /** Problem 14: Find the longest palindrome in an array of strings.
  * Input: ["babad", "cbbd"]
@@ -461,7 +463,24 @@ function nonRepeatingElement(array) {
  * Input: [1, 2, 3, 4, 5], target = 6
  * Output: [[1, 5], [2, 4]]
  */
-
+function twoPointer(array, target) {
+  let leftIndex = 0;
+  let rightIndex = array.length - 1;
+  result = [];
+  while (leftIndex < rightIndex) {
+    let sum = array[leftIndex] + array[rightIndex];
+    if (sum === target) {
+      result.push([array[leftIndex], array[rightIndex]]);
+    }
+    if (sum < target) {
+      leftIndex++;
+    } else {
+      rightIndex--;
+    }
+  }
+  return result; 
+}
+// console.log(twoPointer([1, 2, 3, 4, 5], (target = 6)));
 /** Hard Problems (25) */
 
 /** Problem 1: Find the maximum product of two integers in an array.
