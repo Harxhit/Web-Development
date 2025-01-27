@@ -3,8 +3,6 @@
  * Output: 15
  */
 
-const { CompressedTextureLoader } = require("three");
-
 // function sumElement(array) {
 //   const sum = array.reduce(
 //     (accumulatar, currentValue) => accumulatar + currentValue,
@@ -450,14 +448,38 @@ function nonRepeatingElement(array) {
 /** Problem 13: Find the subarray with the maximum sum (Kadane's Algorithm).
  * Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]
  * Output: 6 (The subarray is [4, -1, 2, 1])
-*/
+ */
 
-
+function kadaneAlgorithum(array) {
+  let start = 0;
+  let end = 0;
+  let temp = 0;
+  let maxSum = array[0];
+  let currentSum = array[0];
+  for (let i = 1; i < array.length; i++) {
+    if (array[i] > currentSum + array[i]) {
+      currentSum = array[i];
+      temp = i;
+    } else {
+      currentSum += array[i];
+    }
+    if (currentSum > maxSum) {
+      maxSum = currentSum;
+      start = temp;
+      end = i;
+    }
+  }
+  let subArray = array.slice(start, end + 1);
+  return subArray;
+}
+// console.log(kadaneAlgorithum([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
 
 /** Problem 14: Find the longest palindrome in an array of strings.
  * Input: ["babad", "cbbd"]
  * Output: "bab"
  */
+
+function longestPalindrome(array) {}
 
 /** Problem 15: Implement a two-pointer technique to find pairs with a target sum.
  * Input: [1, 2, 3, 4, 5], target = 6
@@ -478,15 +500,30 @@ function twoPointer(array, target) {
       rightIndex--;
     }
   }
-  return result; 
+  return result;
 }
 // console.log(twoPointer([1, 2, 3, 4, 5], (target = 6)));
+
 /** Hard Problems (25) */
 
 /** Problem 1: Find the maximum product of two integers in an array.
  * Input: [3, 5, -1, 8, -6]
  * Output: 48
  */
+
+function maxProduct(array) {
+  let maximumProduct = array[0] * array[1];
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      let sum = Math.abs(array[i]) * Math.abs(array[j]);
+      if (maximumProduct < sum) {
+        maximumProduct = sum;
+      }
+    }
+  }
+  return maximumProduct;
+}
+// console.log(maxProduct([3, 5, -1, 8, -6]));
 
 /** Problem 2: Implement a fast algorithm to find the median of an unsorted array.
  * Input: [1, 3, 2, 4, 5]

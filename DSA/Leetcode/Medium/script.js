@@ -154,7 +154,37 @@ function secondMethod(array) {
 }
 // console.log(colorSort([2, 0, 2, 1, 1, 0]));
 // console.log(secondMethod([2, 0, 2, 1, 1, 0]));
-/**/
+/*
+Question 23 : Maximum Subarray
+Given an integer array nums, find the 
+subarray with the largest sum, and return its sum.
+Example 1:
+Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+Output: 6
+Explanation: The subarray [4,-1,2,1] has the largest sum 6.
+*/
+function maximumSubArray(array) {
+  let start = 0;
+  let end = 0;
+  let temp = 0;
+  let maxSum = array[0];
+  let currentSum = array[0];
+  for (let i = 1; i < array.length; i++) {
+    if (array[i] > currentSum + array[i]) {
+      currentSum = array[i];
+      temp = i;
+    } else {
+      currentSum += array[i];
+    }
+    if (maxSum < currentSum) {
+      maxSum = currentSum;
+      start = temp;
+      end = i;
+    }
+  }
+  return maxSum;
+}
+// console.log(maximumSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
 /**/
 /**/
 /**/
