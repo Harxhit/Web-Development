@@ -100,3 +100,61 @@ function longestConsecutiveSequence(array) {
   return maxLength;
 }
 // console.log(longestConsecutiveSequence([100, 4, 200, 1, 3, 2]));
+
+/*
+Question 22 : Color sort
+Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+You must solve this problem without using the library's sort function.
+Example 1:
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+*/
+function colorSort(array) {
+  let zero = 0;
+  let one = 0;
+  let two = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === 0) {
+      zero++;
+    } else if (array[i] === 1) {
+      one++;
+    } else {
+      two++;
+    }
+  }
+  for (let i = 0; i < array.length; i++) {
+    if (i < zero) {
+      array[i] = 0;
+    } else if (i >= zero && i < one + zero) {
+      array[i] = 1;
+    } else {
+      array[i] = 2;
+    }
+  }
+  return array;
+}
+function secondMethod(array) {
+  let left = 0;
+  let right = array.length - 1;
+  let current = 0;
+  while (current <= right) {
+    if (array[current] === 0) {
+      [array[left], array[current]] = [array[current], array[left]];
+      left++;
+      current++;
+    } else if (array[current] === 1) {
+      current++;
+    } else {
+      [array[right], array[current]] = [array[current], array[right]];
+      right--;
+    }
+  }
+  return array;
+}
+// console.log(colorSort([2, 0, 2, 1, 1, 0]));
+// console.log(secondMethod([2, 0, 2, 1, 1, 0]));
+/**/
+/**/
+/**/
+/**/

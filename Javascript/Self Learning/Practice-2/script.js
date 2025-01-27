@@ -306,12 +306,90 @@ function findIntersection(array1, array2) {
  * Input: [2, 0, 1, 2, 0, 1, 1]
  * Output: [0, 0, 1, 1, 1, 2, 2]
  */
-
+function dutchNationalFlag(array) {
+  let zero = 0;
+  let one = 0;
+  let two = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === 0) {
+      zero++;
+    } else if (array[i] === 1) {
+      one++;
+    } else {
+      two++;
+    }
+  }
+  for (let i = 0; i < array.length; i++) {
+    if (i < zero) {
+      array[i] = 0;
+    } else if (i >= zero && i < zero + one) {
+      array[i] = 1;
+    } else {
+      array[i] = 2;
+    }
+  }
+  return array;
+}
+function colorSort(array) {
+  let left = 0;
+  let right = array.length - 1;
+  let current = 0;
+  while (current <= right) {
+    if (array[current] === 0) {
+      [array[left], array[current]] = [array[current], array[left]];
+      left++;
+      current++;
+    } else if (array[current] === 1) {
+      current++;
+    } else {
+      [array[right], array[current]] = [array[current], array[right]];
+      right--;
+    }
+  }
+  return array
+}
+// console.log(colorSort([2, 0, 1, 2, 0, 1, 1]));
+// console.log(dutchNationalFlag([2, 0, 1, 2, 0, 1, 1]));
 /** Problem 10: Find the pair with the minimum absolute sum in an unsorted array.
  * Input: [-1, 2, 3, -4, 5]
  * Output: [-1, 2]
  */
-
+function minimumAbsolute(array) {
+  let minimumPair = [];
+  let minimumSum = Infinity;
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      let sum = array[i] + array[j];
+      if (Math.abs(sum) < Math.abs(minimumSum)) {
+        minimumSum = sum;
+        minimumPair = [array[i], array[j]];
+      }
+    }
+  }
+  return minimumPair;
+}
+function minimumAbsolutePair(array) {
+  array.sort((a, b) => a - b);
+  let minimumSum = Infinity;
+  let minimumAbsolutePair = [];
+  let leftIndex = 0;
+  let rightIndex = array.length - 1;
+  while (leftIndex < rightIndex) {
+    let sum = array[leftIndex] + array[rightIndex];
+    if (Math.abs(sum) < Math.abs(minimumSum)) {
+      minimumSum = sum;
+      minimumAbsolutePair = [array[leftIndex], array[rightIndex]];
+    }
+    if (sum < 0) {
+      leftIndex++;
+    } else {
+      rightIndex--;
+    }
+  }
+  return minimumAbsolutePair;
+}
+// console.log(minimumAbsolutePair([-1, 2, 3, -4, 5]));
+// console.log(minimumAbsolute([-1, 2, 3, -4, 5]));
 /** Problem 11: Move all zeroes to the end of an array.
  * Input: [0, 1, 0, 3, 12]
  * Output: [1, 3, 12, 0, 0]
