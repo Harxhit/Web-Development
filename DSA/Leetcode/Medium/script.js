@@ -185,6 +185,30 @@ function maximumSubArray(array) {
   return maxSum;
 }
 // console.log(maximumSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
-/**/
+/*
+Question 24 : Maximum Product Subarray 
+Given an integer array nums, find a 
+subarray that has the largest product, and return the product.
+The test cases are generated so that the answer will fit in a 32-bit integer.
+Example 1:
+Input: nums = [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.
+
+*/
+function maxProduct(array) {
+  let temp = -Infinity;
+  for (let i = 0; i < array.length; i++) {
+    sum = 1;
+    for (let j = i; j < array.length; j++) {
+      sum *= array[j];
+      if (sum > temp) {
+        temp = sum;
+      }
+    }
+  }
+  return temp;
+}
+// console.log(maxProduct([2, 3, -2, 4]));
 /**/
 /**/

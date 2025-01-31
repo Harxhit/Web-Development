@@ -540,6 +540,8 @@ function maxProduct(array) {
  * Output: 6
  */
 
+function largestProduct(array) {}
+
 /** Problem 5: Implement a sliding window approach to find the maximum sum of `k` consecutive elements.
  * Input: [2, 1, 5, 1, 3, 2], k = 3
  * Output: 9
@@ -590,11 +592,43 @@ function maxProduct(array) {
  * Output: 3 (The longest substring is "abc")
  */
 
+function longestSubString(string) {
+  let maxLength = 0;
+  let left = 0;
+  let set = new Set();
+  for (let right = 0; right < string.length; right++) {
+    while (set.has(string[right])) {
+      set.delete(string[left]);
+      left++;
+    }
+    set.add(string[right]);
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+  return maxLength;
+}
+// console.log(longestSubString("abcabcbb"));
+
 /** Problem 15: Find the subarray whose sum is closest to zero.
  * Input: [1, -1, 2, -3, 4]
- * Output: [2, -3]
+ * Output: [1, -1]
  */
 
+function subarrayCloseToZero(array) {
+  let temp = Infinity;
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    let sum = 0;
+    for (let j = 1; j < array.length; j++) {
+      sum += array[j];
+      if (Math.abs(sum) < temp) {
+        temp = sum;
+        result = array.splice(i, j + 1);
+      }
+    }
+  }
+  return result;
+}
+// console.log(subarrayCloseToZero([1, -1, 2, -3, 4]));
 /** Problem 16: Find the longest increasing subsequence.
  * Input: [10, 9, 2, 5, 3, 7, 101, 18]
  * Output: 4
