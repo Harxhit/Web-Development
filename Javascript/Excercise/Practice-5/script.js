@@ -94,13 +94,70 @@ let rectangle = new Rectangle(5, 4);
 
 /* 6. Create a class `Animal` with a method `speak()`. Extend it to create `Dog` and `Cat` classes that override the `speak()` method. */
 
+class Animal {
+  speak() {
+    return `This animals make this sounds`;
+  }
+}
 
+class Dog extends Animal {
+  speak() {
+    return `Dog makes bark sound`;
+  }
+}
+
+class Cat extends Animal {
+  speak() {
+    return `Cat makes meow sound`;
+  }
+}
+
+const dog = new Dog();
+const cat = new Cat();
+// console.log(dog.speak());
+// console.log(cat.speak());
 
 /* 7. Create a `Circle` class with a radius property. Add a method `area()` to calculate the area of the circle. */
 
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+  area() {
+    const area = Math.PI * this.radius * this.radius;
+    return `The area of the circle is ${area}`;
+  }
+}
+let circle = new Circle(2);
+// console.log(circle.area());
+
 /* 8. Create an `Employee` class with properties `name`, `id`, and `salary`. Add a method to display employee details. */
 
+class Employee {
+  constructor(name, id, salary) {
+    this.name = name;
+    this.id = id;
+    this.salary = salary;
+  }
+  detail() {
+    return `Name of the employee is ${this.name}. Id is ${this.id} and its salary is $${this.salary}`;
+  }
+}
+const employee1 = new Employee("Sam Altman", 1554, 5000000);
+// console.log(employee1.detail());
+
 /* 9. Implement a class `Book` with properties `title`, `author`, and `price`. Add a method `applyDiscount(percent)` to reduce the price by a given percentage. */
+
+class Book {
+  constructor(title, author, price) {
+    this.price = price;
+    this.author = author;
+    this.title = title;
+  }
+  applyDiscount(discount) {
+
+  }
+}
 
 /* 10. Create a class `Shape` with a method `getArea()`. Extend it to create classes `Square` and `Triangle`, overriding the `getArea()` method. */
 
