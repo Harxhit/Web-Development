@@ -29,11 +29,6 @@ Input: "abcde", "ace"
 Output: "ace"
 */
 
-let str1 = "abcde";
-let str2 = "ace";
-
-//Includes not going to work
-
 /* 
 Question 103:
 Create a program to implement the quicksort algorithm.

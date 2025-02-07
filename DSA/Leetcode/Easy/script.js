@@ -10,7 +10,7 @@ Output: [0,1]
 Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 */
 
-const { NeverDepth } = require("three");
+const { NeverDepth, CompressedArrayTexture } = require("three");
 
 function twoSum(array, target) {
   for (let i = 0; i < array.length; i++) {
@@ -531,7 +531,47 @@ function intersectionofArray(array1, array2) {
   return [...result];
 }
 // console.log(intersectionofArray([1, 2, 2, 1], [2, 2]));
-/**/
+
+/*
+Question 26 : Check if two string arrays are equivalent  
+Given two string arrays word1 and word2, return true if the two arrays represent the same string, and false otherwise.
+A string is represented by an array if the array elements concatenated in order forms the string.
+Example 1:
+Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+Output: true
+Explanation:
+word1 represents string "ab" + "c" -> "abc"
+word2 represents string "a" + "bc" -> "abc"
+The strings are the same, so return true.
+*/
+
+function checkString(string1, string2) {
+  let var1 = string1.join("");
+  let var2 = string2.join("");
+  return var1 === var2;
+}
+// console.log(checkString(["ab", "c"], ["a", "bc"]));
+
+function checkEquivalentString(string1, string2) {
+  let temp1 = "";
+  let temp2 = "";
+  for (let i = 0; i < string1.length; i++) {
+    temp1 += string1[i];
+  }
+  for (let j = 0; j < string2.length; j++) {
+    temp2 += string2[j];
+  }
+  if (temp1.length !== temp2.length) {
+    return false;
+  }
+  for (let k = 0; k < temp1.length; k++) {
+    if (temp1[k] !== temp2[k]) {
+      return false;
+    }
+  }
+  return true;
+}
+// console.log(checkEquivalentString(["abc", "d", "defg"], ["abcddefg"]));
 /**/
 /**/
 /**/

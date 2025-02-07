@@ -629,6 +629,7 @@ function subarrayCloseToZero(array) {
   return result;
 }
 // console.log(subarrayCloseToZero([1, -1, 2, -3, 4]));
+
 /** Problem 16: Find the longest increasing subsequence.
  * Input: [10, 9, 2, 5, 3, 7, 101, 18]
  * Output: 4
@@ -662,12 +663,12 @@ function subarrayCloseToZero(array) {
 /** Problem 22: Solve the "Word Break" problem.
  * Input: s = "leetcode", wordDict = ["leet", "code"]
  * Output: True
- */
+*/
 
 /** Problem 23: Find the longest common subsequence.
  * Input: "abcde", "ace"
  * Output: 3
- */
+*/
 
 /** Problem 24: Solve the "House Robber" problem.
  * Input: [2, 7, 9, 3, 1]
@@ -678,3 +679,4 @@ function subarrayCloseToZero(array) {
  * Input: [1, 2, 5], amount = 11
  * Output: 3
  */
+
