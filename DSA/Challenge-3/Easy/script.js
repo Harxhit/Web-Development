@@ -93,6 +93,15 @@ const number = checkPrime(7);
 
 /* Question - 10 => Count the number of digits in an integer. Input: 5432, Output: 4 */
 
+function countDigits(number) {
+  if (number === 0) {
+    return 0;
+  }
+  return 1 + countDigits(Math.floor(number / 10));
+}
+const digit = countDigits(123456);
+// console.log(digit);
+
 /* Question - 11 => Compute power of a number (x^n). Input: (2, 5), Output: 32 */
 
 /* Question - 12 => Print an array using recursion. Input: [1,2,3,4], Output: 1 2 3 4 */
