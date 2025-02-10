@@ -1,18 +1,93 @@
 /* Question - 1 => Find the factorial of a number. Input: n = 5, Output: 120 */
 
+function factorial(number) {
+  if (number == 0 || number == 1) {
+    return 1;
+  }
+  return number * factorial(number - 1);
+}
+
+const n = factorial(5);
+// console.log(n);
+
 /* Question - 2 => Compute the nth Fibonacci number. Input: n = 6, Output: 8 */
 
-/* Question - 3 => Reverse a string using recursion. Input: "hello", Output: "olleh" */
+function fibonacci(number) {
+  if (number <= 1) {
+    return number;
+  }
+  return fibonacci(number - 1) + fibonacci(number - 2);
+}
+const num = fibonacci(6);
+// console.log(num);
+
+/* Question - 3 => Reverse a string using recursion. Input: "hello", 
+Output: "olleh"*/
+
+function reverseString(string) {
+  if (string.length == 0) {
+    return "";
+  }
+  return reverseString(string.substring(1)) + string[0];
+}
+const string = reverseString("hello");
+// console.log(string);
 
 /* Question - 4 => Calculate sum of digits of a number. Input: 123, Output: 6 */
 
-/* Question - 5 => Find the Greatest Common Divisor (GCD). Input: (48, 18), Output: 6 */
+function sumOfDigit(number) {
+  if (number === 0) {
+    return 0;
+  }
+  return (number % 10) + sumOfDigit(Math.floor(number / 10));
+}
+const sum = sumOfDigit(1234);
+// console.log(sum);
+
+/* Question - 5 => Find the Greatest Common Divisor (GCD). Input: (48, 18), 
+Output: 6 
+*/
 
 /* Question - 6 => Print numbers from 1 to n. Input: n = 5, Output: 1 2 3 4 5 */
 
+function printNumber(number, start = 1) {
+  if (start > number) {
+    return;
+  }
+  // console.log(start);
+  return printNumber(number, start + 1);
+}
+const print = printNumber(5);
+// console.log(print);
 /* Question - 7 => Print numbers from n to 1. Input: n = 5, Output: 5 4 3 2 1 */
 
+function reverseN(number) {
+  if (number === 1) {
+    return number;
+  }
+  // console.log(number);
+  return reverseN(number - 1);
+}
+const reversePrint = reverseN(5);
+// console.log(reversePrint);
+
 /* Question - 8 => Check if a number is prime using recursion. Input: n = 7, Output: true */
+
+function checkPrime(number, divisor = 2) {
+  if (number < divisor) {
+    return false;
+  }
+  if (divisor * divisor > number) {
+    return true;
+  }
+  if (number % divisor === 0) {
+    return false;
+  }
+  return checkPrime(number, divisor + 1);
+}
+
+const number = checkPrime(7);
+// console.log(number);
 
 /* Question - 9 => Convert a number to binary using recursion. Input: n = 10, Output: "1010" */
 
