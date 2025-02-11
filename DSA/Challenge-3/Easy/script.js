@@ -104,9 +104,51 @@ const digit = countDigits(123456);
 
 /* Question - 11 => Compute power of a number (x^n). Input: (2, 5), Output: 32 */
 
-/* Question - 12 => Print an array using recursion. Input: [1,2,3,4], Output: 1 2 3 4 */
+function computePower(base, exponent) {
+  if (exponent === 0) {
+    return 1;
+  }
+  if (exponent === 1) {
+    return base;
+  }
+  let num = computePower(base, Math.floor(exponent / 2));
+  if (exponent % 2 === 0) {
+    return num * num;
+  } else {
+    return base * num * num;
+  }
+}
+const exponent = computePower(2, 5);
+// console.log(exponent);
+
+/* Question - 12 => Print an array using recursion. Input: [1,2,3,4], 
+Output: 1 2 3 4 
+*/
+
+function printArray(array, index = 0) {
+  if (index === array.length) {
+    return;
+  }
+  console.log(array[index]);
+  return printArray(array, index + 1);
+}
+const array = [1, 2, 3, 4];
+// printArray(array);
 
 /* Question - 13 => Check if a string is a palindrome. Input: "racecar", Output: true */
+
+function checkPalindrome(str, leftIndex = 0, rightIndex = string.length - 1) {
+  if (left >= right) {
+    return true;
+  }
+  if (str[left] !== str[right]) {
+    return false;
+  }
+  return checkPalindrome(str, left + 1, right - 1);
+}
+// console.log(checkPalindrome("racecar"));
+
+
 
 /* Question - 14 => Find the nth triangular number. Input: n = 4, Output: 10 */
 

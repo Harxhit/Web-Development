@@ -572,7 +572,47 @@ function checkEquivalentString(string1, string2) {
   return true;
 }
 // console.log(checkEquivalentString(["abc", "d", "defg"], ["abcddefg"]));
-/**/
+
+/*
+Question 27 : Valid Palindrome
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+Given a string s, return true if it is a palindrome, or false otherwise.
+Example 1:
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+*/
+
+function validPalindrome(string) {
+  let temp = string.toLowerCase().replace(/[^a-z0-9]/g, "");
+  let left = 0;
+  let right = temp.length - 1;
+  while (left < right) {
+    if (temp[left] !== temp[right]) {
+      return false;
+    }
+    right--;
+    left++;
+  }
+  return true;
+}
+// console.log(validPalindrome("A man, a plan, a canal: Panama"));
+
+function recursiveValidPalindrome(string) {
+  let temp = string.toLowerCase().replace(/[^a-z0-9]/g, "");
+  function checkPalindrome(left, right) {
+    if (left >= right) {
+      return true;
+    }
+    if (temp[left] !== temp[right]) {
+      return false;
+    }
+    return checkPalindrome(left + 1, right - 1);
+  }
+  return checkPalindrome(0, temp.length - 1);
+}
+
+// console.log(recursiveValidPalindrome("A man, a plan, a canal: Panama"));
 /**/
 /**/
 /**/
