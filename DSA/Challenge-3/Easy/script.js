@@ -148,35 +148,148 @@ function checkPalindrome(str, leftIndex = 0, rightIndex = string.length - 1) {
 }
 // console.log(checkPalindrome("racecar"));
 
-
-
 /* Question - 14 => Find the nth triangular number. Input: n = 4, Output: 10 */
+
+function nthTriangular(number) {
+  if (number === 1) {
+    return 1;
+  }
+  return number + nthTriangular(number - 1);
+}
+const nthTerm = nthTriangular(4);
+// console.log(nthTerm);
 
 /* Question - 15 => Find the product of two numbers using recursion. Input: (3, 4), Output: 12 */
 
+function productOfTwo(num1, num2) {
+  if (num1 === 0 || num2 === 0) {
+    return 0;
+  }
+  return num1 + productOfTwo(num1, num2 - 1);
+}
+const product = productOfTwo(3, 4);
+// console.log(product);
+
 /* Question - 16 => Print even numbers up to n. Input: n = 10, Output: 2 4 6 8 10 */
+
+function evenNumber(number) {
+  if (number <= 0) {
+    return 0;
+  }
+  console.log(number);
+  return evenNumber(number - 2);
+}
+// console.log(evenNumber(10));
 
 /* Question - 17 => Print odd numbers up to n. Input: n = 9, Output: 1 3 5 7 9 */
 
+function oddNumber(number) {
+  if (number < 0) {
+    return;
+  }
+  console.log(number);
+  return oddNumber(number - 2);
+}
+// console.log(oddNumber(9));
+
 /* Question - 18 => Find the sum of an array. Input: [1,2,3,4], Output: 10 */
 
-/* Question - 19 => Find the maximum element in an array. Input: [1,5,3,9,2], Output: 9 */
+function sumArray(array, index = 0) {
+  if (index == array.length) {
+    return 0;
+  }
+  return array[index] + sumArray(array, index + 1);
+}
+// console.log(sumArray([1, 2, 3, 4, 5, 6 ]));
+
+/* Question - 19 => Find the maximum element in an array. Input: [1,5,3,9,2]
+Output: 9 */
+
+function maximumElement(array, index = 0) {
+  if (index == array.length) {
+    return -Infinity;
+  }
+  return Math.max(array[index], maximumElement(array, index + 1));
+}
+// console.log(maximumElement([1, 5, 3, 9, 2]));
 
 /* Question - 20 => Find the minimum element in an array. Input: [1,5,3,9,2], Output: 1 */
 
-/* Question - 21 => Compute sum of first n natural numbers. Input: n = 5, Output: 15 */
+function minimumElement(array, index = 0) {
+  if (index === array.length) {
+    return Infinity;
+  }
+  return Math.min(array[index], minimumElement(array, index + 1));
+}
+// console.log(minimumElement([1, 5, 3, 9, 2]));
+
+/* Question - 21 => Compute sum of first n natural numbers. Input: n = 5, 
+Output: 15 */
+
+function sumOfNatural(number) {
+  if (number == 0) {
+    return 0;
+  }
+  return number + sumOfNatural(number - 1);
+}
+// console.log(sumOfNatural(5));
 
 /* Question - 22 => Print the elements of a linked list using recursion. Input: [1,2,3], Output: 1 2 3 */
 
+function printLinkedList(array, index = 0) {
+  if (index === array.length) {
+    return;
+  }
+  console.log(array[index]);
+  printLinkedList(array, index + 1);
+}
+// printLinkedList([1, 2, 3]);
+
 /* Question - 23 => Compute the sum of squares of first n numbers. Input: n = 3, Output: 14 */
 
+function squareOfNth(number) {
+  if (number === 0) {
+    return 0;
+  }
+  return number * number + squareOfNth(number - 1);
+}
+// console.log(squareOfNth(3));
+
 /* Question - 24 => Count occurrences of a digit in a number. Input: (76773, 7), Output: 3 */
+
+function occurenceOfNumber(number, digit) {
+  if (number == 0) {
+    return 0;
+  }
+  let count = 0;
+  if (number % 10 === digit) {
+    count = 1;
+  }
+  return count + occurenceOfNumber(Math.floor(number / 10), digit);
+}
+// console.log(occurenceOfNumber(76773, 7));
 
 /* Question - 25 => Convert a string to uppercase using recursion. Input: "hello", Output: "HELLO" */
 
 /* Question - 26 => Find the sum of even numbers up to n. Input: n = 6, Output: 12 */
 
+function sumOfEvenNth(number) {
+  if (number < 0) {
+    return 0;
+  }
+  return number + sumOfEvenNth(number - 2);
+}
+// console.log(sumOfEvenNth(6));
+
 /* Question - 27 => Find the sum of odd numbers up to n. Input: n = 5, Output: 9 */
+
+function sumOfOddNth(number) {
+  if (number < 0) {
+    return 0;
+  }
+  return number + sumOfOddNth(number - 2);
+}
+// console.log(sumOfOddNth(5));
 
 /* Question - 28 => Find the HCF of two numbers. Input: (15, 25), Output: 5 */
 
