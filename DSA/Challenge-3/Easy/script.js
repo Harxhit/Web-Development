@@ -293,9 +293,36 @@ function sumOfOddNth(number) {
 
 /* Question - 28 => Find the HCF of two numbers. Input: (15, 25), Output: 5 */
 
+function hcf(num1, num2) {
+  if (num2 === 0) {
+    return num1;
+  }
+  return hcf(num2, num1 % num2);
+}
+// console.log(hcf(15, 25));
+
 /* Question - 29 => Check if an array is sorted. Input: [1,2,3,4], Output: true */
 
+function checkSortedArray(array, index = 0) {
+  if (index === array.length - 1) {
+    return true;
+  }
+  if (array[index] > array[index + 1]) {
+    return false;
+  }
+  return checkSortedArray(array, index + 1);
+}
+// console.log(checkSortedArray([1, 2, 3, 4, 9, 8]));
+
 /* Question - 30 => Find the nth term in a geometric series. Input: (a=2, r=3, n=4), Output: 54 */
+
+function geometricSeries(a, r, n) {
+  if (n === 1) {
+    return a;
+  }
+  return r * geometricSeries(a, r, n - 1);
+}
+// console.log(geometricSeries(2, 3, 4));
 
 /* Question - 31 => Print a pattern using recursion. Input: n = 3, Output:
  ***
@@ -303,7 +330,43 @@ function sumOfOddNth(number) {
  *
  */
 
-/* Question - 32 => Reverse an array using recursion. Input: [1,2,3,4], Output: [4,3,2,1] */
+function pattern(number) {
+  if (number === 0) {
+    return "";
+  }
+  console.log("*".repeat(number));
+  return pattern(number - 1);
+}
+// console.log(pattern(3));
+
+/* Question - 32 => Reverse an array using recursion. Input: [1,2,3,4], 
+Output: [4,3,2,1]
+*/
+
+function reverseArray(array, left = 0) {
+  let right = array.length - 1 - left;
+  while (left >= right) {
+    return array;
+  }
+  let temp = array[left];
+  array[left] = array[right];
+  array[right] = temp;
+  return reverseArray(array, left + 1);
+}
+// console.log(reverseArray([1, 2, 3, 4]));
+
+function reverseArrayWithoutSwapping(
+  array,
+  result = [],
+  index = array.length - 1
+) {
+  if (index < 0) {
+    return result;
+  }
+  result.push(array[index]);
+  return reverseArrayWithoutSwapping(array, result, index - 1);
+}
+// console.log(reverseArrayWithoutSwapping([1, 2, 3, 4]));
 
 /* Question - 33 => Convert a number to a string using recursion. Input: 123, Output: "123" */
 
@@ -311,7 +374,34 @@ function sumOfOddNth(number) {
 
 /* Question - 35 => Remove vowels from a string using recursion. Input: "hello", Output: "hll" */
 
+function removeVowels(string, index = 0) {
+  if (index == string.length) {
+    return "";
+  }
+  const currentChar = string[index];
+  const restOfString = removeVowels(string, index + 1);
+  if ("AEIOUaeiou".includes(currentChar)) {
+    return restOfString;
+  } else {
+    return currentChar + restOfString;
+  }
+}
+// console.log(removeVowels("hello"));
+
 /* Question - 36 => Count vowels in a string using recursion. Input: "hello", Output: 2 */
+
+function countVowels(string, index = 0, count = 0) {
+  if (index === string.length) {
+    return count;
+  }
+  const currentChar = string[index];
+  if ("AEIOUaeiou".includes(currentChar)) {
+    return countVowels(string, index + 1, count + 1);
+  } else {
+    return countVowels(string, index + 1, count);
+  }
+}
+// console.log(countVowels("hello"));
 
 /* Question - 37 => Replace all spaces in a string with underscores. Input: "hello world", Output: "hello_world" */
 
@@ -326,6 +416,20 @@ function sumOfOddNth(number) {
 /* Question - 42 => Print the nth row of Pascal’s Triangle. Input: n = 4, Output: [1,4,6,4,1] */
 
 /* Question - 43 => Remove duplicates from a string using recursion. Input: "banana", Output: "ban" */
+
+function removeDuplicates(string, index = 0) {
+  if (index == string.length) {
+    return "";
+  }
+  const currentChar = string[index];
+  const restOfString = removeDuplicates(string, index + 1);
+  if (restOfString.includes(currentChar)) {
+    return restOfString;
+  } else {
+    return currentChar + restOfString;
+  }
+}
+// console.log(removeDuplicates("banana"));
 
 /* Question - 44 => Find the sum of first n even numbers. Input: n = 4, Output: 20 */
 
