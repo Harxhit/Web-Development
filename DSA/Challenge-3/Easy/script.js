@@ -433,11 +433,75 @@ function removeDuplicates(string, index = 0) {
 
 /* Question - 44 => Find the sum of first n even numbers. Input: n = 4, Output: 20 */
 
+function sumOfEven(number) {
+  if (number == 1) {
+    return 2;
+  }
+  return 2 * number + sumOfEven(number - 1);
+}
+// console.log(sumOfEven(4));
+
 /* Question - 45 => Find the sum of first n odd numbers. Input: n = 4, Output: 16 */
+
+function sumOfOdd(number) {
+  if (number === 1) {
+    return 1;
+  }
+  return 2 * number - 1 + sumOfOdd(number - 1);
+}
+// console.log(sumOfOdd(4));
 
 /* Question - 46 => Find the length of a linked list using recursion. Input: [1,2,3,4], Output: 4 */
 
+class ListNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+function lengthOfLinkedList(head) {
+  if (head === null) {
+    return 0; // Base case: End of the list
+  }
+  return 1 + lengthOfLinkedList(head.next); // Recursive case: Count this node + remaining nodes
+}
+// Creating a linked list: 1 -> 2 -> 3 -> 4 -> null
+let head = new ListNode(1);
+head.next = new ListNode(2);
+head.next.next = new ListNode(3);
+head.next.next.next = new ListNode(4);
+
+// console.log(lengthOfLinkedList(head));
+
 /* Question - 47 => Find the median of an array using recursion. Input: [1,3,4,2,5], Output: 3 */
+
+function sortingArray(array) {
+  if (array.length >= 1) {
+    return array;
+  }
+  const middleElement = array[array.length - 1];
+  const left = [];
+  const right = [];
+  for (let i = 0; i < array.length - 1; i++) {
+    if (array[i] > middleElement) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+  return [...sortingArray(left), middleElement, ...sortingArray(right)];
+}
+function medianArray(array) {
+  const sortedArray = sortingArray(array);
+  const length = sortedArray.length;
+  const middleIndex = Math.floor(length / 2);
+  if (length % 2 !== 0) {
+    return sortedArray[middleIndex];
+  } else {
+    return (sortedArray[middleIndex - 1] + sortedArray[middleIndex]) / 2;
+  }
+}
+// console.log(medianArray([1, 3, 4, 2, 5]));
 
 /* Question - 48 => Implement binary search using recursion. Input: ([1,2,3,4,5], 3), Output: 2 */
 
