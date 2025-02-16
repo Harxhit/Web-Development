@@ -359,3 +359,16 @@ Detect if a number is a happy number
 Input: 19
 Output: true
 */
+
+function isHappyNumber(number) {
+  let set = new Set();
+  while (number !== 1 && !set.has(number)) {
+    set.add(number);
+    number = number
+      .toString()
+      .split("")
+      .reduce((sum, digit) => sum + digit * digit, 0);
+  }
+  return number === 1;
+}
+//console.log(isHappyNumber(19));
