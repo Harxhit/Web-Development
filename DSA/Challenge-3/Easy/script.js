@@ -48,6 +48,14 @@ const sum = sumOfDigit(1234);
 Output: 6 
 */
 
+function greatestCommonDivisor(num1, num2) {
+  if (num2 === 0) {
+    return num1;
+  }
+  return greatestCommonDivisor(num2, num1 % num2);
+}
+// console.log(greatestCommonDivisor(48, 18));
+
 /* Question - 6 => Print numbers from 1 to n. Input: n = 5, Output: 1 2 3 4 5 */
 
 function printNumber(number, start = 1) {
@@ -59,6 +67,7 @@ function printNumber(number, start = 1) {
 }
 const print = printNumber(5);
 // console.log(print);
+
 /* Question - 7 => Print numbers from n to 1. Input: n = 5, Output: 5 4 3 2 1 */
 
 function reverseN(number) {
@@ -90,6 +99,14 @@ const number = checkPrime(7);
 // console.log(number);
 
 /* Question - 9 => Convert a number to binary using recursion. Input: n = 10, Output: "1010" */
+
+function binaryConversion(number) {
+  if (number === 0) {
+    return "";
+  }
+  return binaryConversion(Math.floor(number / 2)) + (number % 2).toString();
+}
+// console.log(binaryConversion(10));
 
 /* Question - 10 => Count the number of digits in an integer. Input: 5432, Output: 4 */
 
@@ -271,6 +288,18 @@ function occurenceOfNumber(number, digit) {
 
 /* Question - 25 => Convert a string to uppercase using recursion. Input: "hello", Output: "HELLO" */
 
+function lowercaseToUpperCase(string, index = 0, result = "") {
+  if (index === string.length) {
+    return result;
+  }
+  return lowercaseToUpperCase(
+    string,
+    index + 1,
+    result + string[index].toUpperCase()
+  );
+}
+// console.log(lowercaseToUpperCase("hello"));
+
 /* Question - 26 => Find the sum of even numbers up to n. Input: n = 6, Output: 12 */
 
 function sumOfEvenNth(number) {
@@ -370,7 +399,30 @@ function reverseArrayWithoutSwapping(
 
 /* Question - 33 => Convert a number to a string using recursion. Input: 123, Output: "123" */
 
+function numberToString(n, str = "") {
+  if (n === 0 && str.length > 0) {
+    return str;
+  }
+
+  if (n < 0) {
+    return "-" + numberToString(-n, str);
+  }
+
+  let digits = "0123456789";
+  return numberToString(Math.floor(n / 10), digits[n % 10] + str);
+}
+
+// console.log(numberToString(123));
+
 /* Question - 34 => Find the nth term of an arithmetic series. Input: (a=3, d=2, n=5), Output: 11 */
+
+function nthArithmeticSeries(a, d, n) {
+  if (n === 1) {
+    return a;
+  }
+  return nthArithmeticSeries(a, d, n - 1) + d;
+}
+// console.log(nthArithmeticSeries(3, 2, 5));
 
 /* Question - 35 => Remove vowels from a string using recursion. Input: "hello", Output: "hll" */
 
@@ -405,16 +457,87 @@ function countVowels(string, index = 0, count = 0) {
 
 /* Question - 37 => Replace all spaces in a string with underscores. Input: "hello world", Output: "hello_world" */
 
+function replaceSpaceWithUnderscore(string) {
+  if (string.length === 0) {
+    return "";
+  }
+  let firstCharacter;
+  if (string[0] === " ") {
+    firstCharacter = "_";
+  } else {
+    firstCharacter = string[0];
+  }
+  return firstCharacter + replaceSpaceWithUnderscore(string.slice(1));
+}
+// console.log(replaceSpaceWithUnderscore("hello world"));
+
 /* Question - 38 => Find the number of trailing zeros in factorial of n. Input: 10, Output: 2 */
+
+function trailingOfZeroes(number) {
+  if (number < 5) {
+    return 0;
+  }
+  return Math.floor(number / 5) + trailingOfZeroes(Math.floor(number / 5));
+}
+//console.log(trailingOfZeroes(10));
 
 /* Question - 39 => Merge two sorted arrays using recursion. Input: ([1,3,5], [2,4,6]), Output: [1,2,3,4,5,6] */
 
+function mergeTwoSortedArrays(array1, array2, result = []) {
+  if (array1.length === 0) {
+    return result.concat(array2);
+  }
+  if (array2.length === 0) {
+    return result.concat(array1);
+  }
+  if (array1[0] < array2[0]) {
+    result.push(array1[0]);
+    return mergeTwoSortedArrays(array1.slice(1), array2, result);
+  } else {
+    result.push(array2[0]);
+    return mergeTwoSortedArrays(array1, array2.slice(1), result);
+  }
+}
+// console.log(mergeTwoSortedArrays([1, 3, 5], [2, 4, 6]));
+
 /* Question - 40 => Find the LCM of two numbers. Input: (4, 6), Output: 12 */
+
+function lowestCommonFactor(num1, num2) {
+  return (num1 * num2) / greatestCommonDivisor(num1, num2);
+}
+// console.log(lowestCommonFactor(4, 6));
 
 /* Question - 41 => Count consonants in a string. Input: "hello", Output: 3 */
 
+function countConsonants(string, index = 0, count = 0) {
+  if (index === string.length) {
+    return count;
+  }
+  if ("AEIOUaeiou".includes(string[index])) {
+    return countConsonants(string, index + 1, count);
+  } else {
+    return countConsonants(string, index + 1, count + 1);
+  }
+}
+// console.log(countConsonants("hello"));
+
 /* Question - 42 => Print the nth row of Pascal’s Triangle. Input: n = 4, Output: [1,4,6,4,1] */
 
+function getPascalValue(n, k) {
+  if (k === 0 || k === n) {
+    return 1; 
+  }
+  return getPascalValue(n - 1, k - 1) + getPascalValue(n - 1, k); 
+}
+
+function getNthRow(n, row = [], k = 0) {
+  if (k > n) {
+    return row; 
+  }
+  row.push(getPascalValue(n, k)); 
+  return getNthRow(n, row, k + 1); 
+}
+console.log(getNthRow(4))
 /* Question - 43 => Remove duplicates from a string using recursion. Input: "banana", Output: "ban" */
 
 function removeDuplicates(string, index = 0) {
@@ -505,6 +628,42 @@ function medianArray(array) {
 
 /* Question - 48 => Implement binary search using recursion. Input: ([1,2,3,4,5], 3), Output: 2 */
 
+function binarySearch(arr, left, right, target) {
+  if (left > right) {
+    return -1;
+  }
+  const middleIndex = Math.floor((left + right) / 2);
+  if (arr[middleIndex] === target) {
+    return middleIndex;
+  } else if (arr[middleIndex] > target) {
+    return binarySearch(arr, left, middleIndex + 1, target);
+  } else {
+    return binarySearch(arr, middleIndex - 1, right, target);
+  }
+}
+const arr = [1, 2, 3, 4, 5];
+// console.log(binarySearch(arr, 0, arr.length - 1, 3));
+
 /* Question - 49 => Print a string multiple times using recursion. Input: ("hello", 3), Output: "hello hello hello" */
 
+function multipleString(string, number) {
+  if (number < 0) {
+    return;
+  }
+  console.log(string);
+  return multipleString(string, number - 1);
+}
+// console.log(multipleString("hello",4));
+
 /* Question - 50 => Find the number of ways to climb n stairs (1 or 2 steps at a time). Input: n = 3, Output: 3 */
+
+function climbStars(num) {
+  if (num === 1) {
+    return 1;
+  }
+  if (num === 2) {
+    return 2;
+  }
+  return climbStars(num - 1) + climbStars(num - 2);
+}
+// console.log(climbStars(3));
