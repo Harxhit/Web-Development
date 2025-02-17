@@ -5,6 +5,12 @@ Input: { a: 1, b: 2, c: 3 }, "b"
 Output: { a: 1, c: 3 }
 */
 
+function deleteSpecificKeyFromObject(object, key) {
+  delete object[key];
+  return object;
+}
+//console.log(deleteSpecificKeyFromObject({ a: 1, b: 2, c: 3 }, "b"));
+
 /* 
 Question 52: 
 Count the number of keys in an object
@@ -12,12 +18,34 @@ Input: { a: 1, b: 2, c: 3 }
 Output: 3
 */
 
+function countKeys(object) {
+  let count = 0;
+  for (const key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      count++;
+    }
+  }
+  return count;
+}
+//console.log(countKeys({ a: 1, b: 2, c: 3 }));
 /* 
 Question 53: 
 Return an array of keys from an object
 Input: { a: 1, b: 2, c: 3 }
 Output: ["a", "b", "c"]
 */
+
+function arrayOfKeys(object) {
+  let array = [];
+  for (const key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      const element = key;
+      array.push(element);
+    }
+  }
+  return array;
+}
+//console.log(arrayOfKeys({ a: 1, b: 2, c: 3 }));
 
 /* 
 Question 54: 
@@ -26,12 +54,33 @@ Input: { a: 1, b: 2, c: 3 }
 Output: [1, 2, 3]
 */
 
+function arrayOfValue(object) {
+  let array = [];
+  for (const key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      const element = object[key];
+      array.push(element);
+    }
+  }
+  return array;
+}
+//console.log(arrayOfValue({ a: 1, b: 2, c: 3 }));
+
 /* 
 Question 55: 
 Merge two arrays into an object with the elements of the first array as keys and elements of the second as values
 Input: ["a", "b", "c"], [1, 2, 3]
 Output: { a: 1, b: 2, c: 3 }
 */
+
+function meregeTwoArraysIntoObject(keys, value) {
+  const object = {};
+  for (let i = 0; i < keys.length; i++) {
+    object[keys[i]] = value[i];
+  }
+  return object;
+}
+//console.log(meregeTwoArraysIntoObject(["a", "b", "c"], [1, 2, 3]));
 
 /* 
 Question 56: 
@@ -54,17 +103,43 @@ function compareArray(array1, array2) {
 // console.log(compareArray([1, 2, 3], [6]));
 /* 
 Question 57: 
-Compare two objects and return true if they are equal
+  Compare two objects and return true if they are equal
 Input: { a: 1, b: 2 }, { a: 1, b: 2 }
 Output: true
 */
 
+function equalObject(obj1, obj2) {
+  const key1 = Object.keys(obj1);
+  const key2 = Object.keys(obj2);
+  if (key1.length !== key2.length) {
+    return false;
+  }
+  for (let key in key1) {
+    if (obj1[key] !== obj2[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+//console.log(equalObject({ a: 1, b: 2 }, { a: 1, b: 2 }));
 /* 
 Question 58: 
 Return the sum of all the values in an object
 Input: { a: 1, b: 2, c: 3 }
 Output: 6
 */
+
+function sumOfValue(object) {
+  let sum = 0;
+  for (const key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      const element = object[key];
+      sum += element;
+    }
+  }
+  return sum;
+}
+//console.log(sumOfValue({ a: 1, b: 2, c: 3 }));
 
 /* 
 Question 59: 
@@ -73,12 +148,35 @@ Input: [{ value: 1 }, { value: 3 }, { value: 2 }]
 Output: 3
 */
 
+function maximumValue(array, key) {
+  let max = -Infinity;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i][key] > max) {
+      max = array[i][key];
+    }
+  }
+  return max;
+}
+//console.log(maximumValue([{ value: 1 }, { value: 3 }, { value: 2 }], "value"));
 /* 
 Question 60: 
 Filter an array of objects by a specific property
 Input: [{ name: "John" }, { name: "Jane" }, { name: "Jack" }], "name"
 Output: [{ name: "John" }, { name: "Jane" }]
 */
+
+function filterObject(array, key) {
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i][key]) {
+      result.push(array[i]);
+    }
+  }
+  return result;
+}
+// console.log(
+//   filterObject([{ name: "John" }, { name: "Jane" }, { name: "Jack" }], "name")
+// );
 
 /* 
 Question 61: 
@@ -87,6 +185,11 @@ Input: [{ category: "fruit", name: "apple" }, { category: "fruit", name: "banana
 Output: { fruit: [{ name: "apple" }, { name: "banana" }], vegetable: [{ name: "carrot" }] }
 */
 
+// function groupObject(array) {
+//   let result = [];
+
+// }
+
 /* 
 Question 62: 
 Find the most frequent item in an array
@@ -94,6 +197,24 @@ Input: [1, 2, 2, 3, 3, 3, 4]
 Output: 3
 */
 
+function mostFrequent(array) {
+  let maxCount = 0;
+  let mostFrequent = array[0];
+  let count = {};
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (!count[element]) {
+      count[element] = 0;
+    }
+    count[element]++;
+    if (count[element] > maxCount) {
+      maxCount = count[element];
+      mostFrequent = element;
+    }
+  }
+  return mostFrequent;
+}
+console.log(mostFrequent([1, 2, 2, 3, 3, 3, 4]));
 /* 
 Question 63: 
 Check if a string starts with a specific character

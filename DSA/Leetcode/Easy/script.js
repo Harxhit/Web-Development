@@ -614,7 +614,6 @@ function recursiveValidPalindrome(string) {
 
 // console.log(recursiveValidPalindrome("A man, a plan, a canal: Panama"));
 
-
 /*
 Question 28 : Happy Number ; 
 Write an algorithm to determine if a number n is happy.
@@ -645,6 +644,45 @@ function isHappyNumber(number) {
 }
 //console.log(isHappyNumber(19));
 
+/*
+Question 29 : Majority Element
+Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+Example 1:
+Input: nums = [3,2,3]
+Output: 3
+*/
+
+function majorityElement(array) {
+  let count = {};
+  let maxCount = 0;
+  let mostFrequent = array[0];
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (!count[element]) {
+      count[element] = 0;
+    }
+    count[element]++;
+    if (count[element] > maxCount) {
+      maxCount = count[element];
+      mostFrequent = element;
+    }
+  }
+  return mostFrequent;
+}
+//console.log(majorityElement([3, 2, 3]));
+
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
 /**/
 /**/
 /**/
