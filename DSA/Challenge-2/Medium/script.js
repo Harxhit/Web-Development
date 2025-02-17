@@ -334,6 +334,20 @@ Input: "A man, a plan, a canal, Panama"
 Output: true
 */
 
+function validPalindrome(string) {
+  let combineString = string.toLowerCase().replace(/[a-z0-9]/g, "");
+  let left = 0;
+  let right = combineString.length - 1;
+  while (left < right) {
+    if (combineString[left] !== combineString[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+}
+//console.log(validPalindrome("A man, a plan, a canal, Panama"));
 /* 
 Question 70: 
 Check if a number is a perfect square
@@ -341,6 +355,17 @@ Input: 16
 Output: true
 */
 
+function checkPerfectSqaure(number) {
+  let i = 1;
+  while (i * i <= number) {
+    if (i * i === number) {
+      return true;
+    }
+    i++;
+  }
+  return false;
+}
+console.log(checkPerfectSqaure(16));
 /* 
 Question 71: 
 Generate the power set (all subsets) of a given array
@@ -361,6 +386,11 @@ Implement the quicksort algorithm
 Input: [3, 1, 4, 1, 5, 9, 2]
 Output: [1, 1, 2, 3, 4, 5, 9]
 */
+
+function quickSort(array, low, high) {
+  let temp = array[high];
+  let i = low - 
+}
 
 /* 
 Question 74: 
