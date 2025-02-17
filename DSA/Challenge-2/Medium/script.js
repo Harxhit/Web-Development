@@ -214,7 +214,7 @@ function mostFrequent(array) {
   }
   return mostFrequent;
 }
-console.log(mostFrequent([1, 2, 2, 3, 3, 3, 4]));
+//console.log(mostFrequent([1, 2, 2, 3, 3, 3, 4]));
 /* 
 Question 63: 
 Check if a string starts with a specific character
@@ -222,12 +222,25 @@ Input: "hello", "h"
 Output: true
 */
 
+function checkStringStartWithSpecificCharacter(string, char) {
+  let firstChar = string[0];
+  if (firstChar !== char) {
+    return false;
+  }
+  return true;
+}
+//console.log(checkStringStartWithSpecificCharacter("hello", "h"));
 /* 
 Question 64: 
 Check if a string ends with a specific character
 Input: "hello", "o"
 Output: true
 */
+
+function checkStringEndsWithSpecificCharacter(string, char) {
+  return string[string.length - 1] === char;
+}
+//console.log(checkStringEndsWithSpecificCharacter("hello", "o"));
 
 /* 
 Question 65: 
@@ -236,6 +249,23 @@ Input: "hello", "l", "x"
 Output: "hexxo"
 */
 
+function replaceOccurence(string, char1, replaceChar) {
+  let resultString = "";
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === char1) {
+      resultString += replaceChar;
+    } else {
+      resultString += string[i];
+    }
+  }
+  return resultString;
+}
+//console.log(replaceOccurence("hello", "l", "x"));
+
+function characterReplace(string, char, replaceChar) {
+  return string.split(char).join(replaceChar);
+}
+//console.log(characterReplace("hello", "l", "x"));
 /* 
 Question 66: 
 Count how many times a specific character appears in a string
@@ -243,6 +273,16 @@ Input: "hello", "l"
 Output: 2
 */
 
+function specificCharacterApperance(string, char) {
+  let count = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === char) {
+      count++;
+    }
+  }
+  return count;
+}
+//console.log(specificCharacterApperance("hello", "l"));
 /* 
 Question 67: 
 Reverse the order of elements in an array
@@ -250,12 +290,42 @@ Input: [1, 2, 3, 4]
 Output: [4, 3, 2, 1]
 */
 
+function revereseOrder(array) {
+  return array.reverse();
+}
+//console.log(revereseOrder([1, 2, 3, 4]));
+function revereseOrderLoops(array) {
+  let left = 0;
+  let right = array.length - 1;
+  while (left < right) {
+    let temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
+    left++;
+    right--;
+  }
+  return array;
+}
+//console.log(revereseOrderLoops([1, 2, 3, 4]));
+
 /* 
 Question 68: 
 Find the index of the first occurrence of a specific element in an array
 Input: [1, 2, 3, 4], 3
 Output: 2
 */
+
+function findOccurence(array, target) {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (element === target) {
+      return i;
+    }
+  }
+  return -1;
+}
+//console.log(findOccurence([1, 2, 3, 4], 3));
+//We can also do this using binary,jump etc for more better time complexbility.
 
 /* 
 Question 69: 
