@@ -14,7 +14,6 @@ for (let i = 0; i < n - 1; i++) {
 }
 // console.log(arr);
 
-
 /** Selction Sort**/
 let arr = [64, 25, 12, 22, 11];
 let n = arr.length;
@@ -104,6 +103,23 @@ let quickSort = (arr, low, high) => {
     quickSort(arr, low, pi - 1);
     quickSort(arr, pi + 1, high);
   }
+};
+
+let quickSortAlgorithum = (array) => {
+  if (array.length <= 1) {
+    return array;
+  }
+  let left = [];
+  let right = [];
+  let pivot = array[0];
+  for (let i = 1; i < array.length; i++) {
+    if (array[i] < pivot) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+  return [...quickSort(left), pivot, ...quickSort(right)];
 };
 
 let arr = [10, 7, 8, 9, 1, 5];
@@ -641,5 +657,3 @@ let edges = [
 console.log(kruskal(edges, ["A", "B", "C", "D"]));
 
 /** **/
-
-

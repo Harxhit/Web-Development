@@ -58,8 +58,6 @@ let repeat = string.repeat(3);
 // console.log(repeat);
 // Repeats the string on the basis of given paramter .
 
-let match = string.match('Hello'); 
+let match = string.match("Hello");
 // console.log(match);
 //Is used to find matches of a pattern (regular expression) in a string.
-
-  

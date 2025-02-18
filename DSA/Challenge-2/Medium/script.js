@@ -365,7 +365,7 @@ function checkPerfectSqaure(number) {
   }
   return false;
 }
-console.log(checkPerfectSqaure(16));
+//console.log(checkPerfectSqaure(16));
 /* 
 Question 71: 
 Generate the power set (all subsets) of a given array
@@ -387,11 +387,23 @@ Input: [3, 1, 4, 1, 5, 9, 2]
 Output: [1, 1, 2, 3, 4, 5, 9]
 */
 
-function quickSort(array, low, high) {
-  let temp = array[high];
-  let i = low - 
+function quickSort(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+  let pivot = array[0];
+  let left = [];
+  let right = [];
+  for (let i = 1; i < array.length; i++) {
+    if (array[i] < pivot) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
-
+//console.log(quickSort([3, 1, 4, 1, 5, 9, 2]));
 /* 
 Question 74: 
 Simulate the `bind()` method in JavaScript
@@ -406,12 +418,84 @@ Input: [3, 1, 4, 1, 5, 9, 2]
 Output: [1, 1, 2, 3, 4, 5, 9]
 */
 
+function mergeSort(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+  let middle = Math.floor(array.length / 2);
+  let left = mergeSort(array.slice(0, middle));
+  let right = mergeSort(array.slice(middle));
+
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  let i = 0,
+    j = 0;
+  let result = [];
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i]);
+      i++;
+    } else {
+      result.push(right[j]);
+      j++;
+    }
+  }
+  while (i < left.length) {
+    result.push(left[i]);
+    i++;
+  }
+  while (j < right.length) {
+    result.push(right[j]);
+    j++;
+  }
+  return result;
+}
+//console.log(mergeSort([3, 1, 4, 1, 5, 9, 2]));
+
 /* 
 Question 76: 
 Detect cycles in a linked list
 Input: LinkedList(1 -> 2 -> 3 -> 4 -> 5 -> 2)
 Output: true
 */
+
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
+
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      return true;
+    }
+  }
+  return false;
+}
+
+class ListNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+let head = new ListNode(1);
+let second = new ListNode(2);
+let third = new ListNode(3);
+let fourth = new ListNode(4);
+let fifth = new ListNode(5);
+
+head.next = second;
+second.next = third;
+third.next = fourth;
+fourth.next = fifth;
+fifth.next = second;
+
+//console.log(hasCycle(head));
 
 /* 
 Question 77: 
@@ -420,12 +504,96 @@ Input: push(1), push(2), pop()
 Output: 2
 */
 
+class Stack {
+  constructor() {
+    this.stack = [];
+  }
+
+  push(element) {
+    this.stack.push(element);
+  }
+
+  pop() {
+    if (this.isEmpty()) {
+      return "Stack is empty";
+    }
+    return this.stack.pop();
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  size() {
+    return this.stack.length;
+  }
+
+  peek() {
+    if (this.isEmpty()) {
+      return "Stack is empty";
+    }
+    return this.stack[this.size() - 1];
+  }
+}
+
+const stack = new Stack();
+stack.push(1);
+stack.push(2);
+stack.pop();
+//console.log(stack.size());
+//console.log(stack.peek());
+//console.log(stack.isEmpty());
+
 /* 
 Question 78: 
 Implement a queue data structure
 Input: enqueue(1), enqueue(2), dequeue()
 Output: 1
 */
+
+class Queue {
+  constructor() {
+    this.items = [];
+  }
+  enqueue(element) {
+    this.items.push(element);
+  }
+
+  dequeue() {
+    if (this.isEmpty()) {
+      return "Queue is empty";
+    }
+    return this.items.shift();
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  size() {
+    return this.items.length;
+  }
+
+  peek() {
+    if (this.isEmpty()) {
+      return "Queue is empty";
+    }
+    return this.items[0];
+  }
+
+  clear() {
+    return (this.items = []);
+  }
+
+  print() {
+    console.log(this.items.join("->"));
+  }
+}
+const queue = new Queue();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.dequeue();
+//queue.print();
 
 /* 
 Question 79: 
@@ -461,6 +629,20 @@ Implement a binary search algorithm
 Input: [1, 2, 3, 4, 5], 3
 Output: 2
 */
+
+function binarySearch(array, target) {
+  let left = 0;
+  let right = array.length - 1;
+
+  while (left <= right) {
+    let middle = Math.floor((left + right) / 2);
+    if (array[middle] === target) return middle;
+    else if (target < middle) left = middle - 1;
+    else return (right = middle + 1);
+  }
+  return -1;
+}
+//console.log(binarySearch([1, 2, 3, 4, 5], 3));
 
 /* 
 Question 84: 
