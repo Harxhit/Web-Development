@@ -690,6 +690,80 @@ Output:
   true
 */
 
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   size() {
+//     let count = 0;
+//     let current = this.head;
+//     while (current.next) {
+//       count++;
+//       current = current.next;
+//     }
+//     return count;
+//   }
+
+//   createCycle(index, data) {
+//     if (index < 0 || index > this.size()) {
+//       console.error("Invalid index");
+//     }
+//     let current = this.head;
+//     let targetNode = null;
+//     for (let i = 0; i < index; i++) {
+//       if (i === index) {
+//         targetNode = current;
+//       }
+//       current = current.next;
+//     }
+//     if (targetNode === null) return;
+
+//     for (current = this.head; current !== null; current = current.next) {}
+//     current.next = targetNode;
+//   }
+
+//   haveCycle() {
+//     let fast = this.head;
+//     let slow = this.head;
+//     while (fast !== null && fast.next !== null) {
+//       fast = fast.next.next;
+//       slow = slow.next;
+//       if (fast === slow) {
+//         return true;
+//       }
+//     }
+//     return false;
+//   }
+// }
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(2);
+// list.addLast(3);
+// list.addLast(4);
+// list.addLast(5);
+// list.createCycle(2);
+// console.log(list.haveCycle());
+
 /* 15. Remove a Cycle from a Linked List */
 /*
 Input:
@@ -715,6 +789,37 @@ Input:
 Output:
   30
 */
+
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  addLast(data) {
+    const newNode = new Node(data);
+    if (!this.head) {
+      this.head = newNode;
+      return;
+    }
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
+    }
+    current.next = newNode;
+  }
+
+  findNthNodeEnd() {
+    
+  }
+
+}
 
 /* 17. Remove Duplicates from a Sorted Linked List */
 /*
