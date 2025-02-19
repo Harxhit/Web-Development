@@ -62,6 +62,47 @@ Output:
   null ← [1] ⇄ [2] ⇄ [3] → null
 */
 
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//     this.prev = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       this.tail = newNode;
+//       return;
+//     }
+//     this.tail.next = newNode;
+//     newNode.prev = this.tail;
+//     this.tail = newNode;
+//   }
+
+//   printList() {
+//     let current = this.head;
+//     let output = "";
+//     while (current) {
+//       output += `[${current.data}] <-> `;
+//       current = current.next;
+//     }
+//     console.log("null", output, "null");
+//   }
+// }
+// const doublyList = new LinkedList();
+// doublyList.addLast(1);
+// doublyList.addLast(2);
+// doublyList.addLast(3);
+// doublyList.printList();
+
 /* 3. Find the Length of a Linked List */
 /*
 Input:
@@ -240,6 +281,73 @@ Output:
   head → [10] → [20] → [30] → null
 */
 
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   size() {
+//     let current = this.head;
+//     let count = 0;
+//     while (current) {
+//       count++;
+//       current = current.next;
+//     }
+//     return count;
+//   }
+//   printList() {
+//     let current = this.head;
+//     let output = "";
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head ->", output, "null");
+//   }
+
+//   addAtIndex(index, data) {
+//     if (index < 0 || index > this.size()) {
+//       console.error("Invalid Index");
+//     }
+//     const newNode = new Node(data);
+//     if (index === 0) {
+//       newNode.next = this.head;
+//       this.head = newNode;
+//     }
+//     let current = this.head;
+//     for (let i = 0; i < index - 1; i++) {
+//       current = current.next;
+//     }
+//     newNode.next = current.next;
+//     current.next = newNode;
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(10);
+// list.addLast(30);
+// list.addAtIndex(1, 20);
+// list.printList();
+
 /* 8. Delete the First Node of a Linked List */
 /*
 Input:
@@ -250,6 +358,54 @@ Input:
 Output:
   head → [20] → [30] → null
 */
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   printList() {
+//     let current = this.head;
+//     let output = "";
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head ->", output, "null");
+//   }
+
+//   deleteFirst() {
+//     if (!this.head) {
+//       return;
+//     }
+//     this.head = this.head.next;
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(10);
+// list.addLast(20);
+// list.addLast(30);
+// list.deleteFirst();
+// list.printList();
 
 /* 9. Delete the Last Node of a Linked List */
 /*
@@ -262,6 +418,59 @@ Output:
   head → [10] → [20] → null
 */
 
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   printList() {
+//     let current = this.head;
+//     let output = "";
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+
+//     console.log("head -> ", output, null);
+//   }
+
+//   deleteLast() {
+//     if (!this.head) {
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next.next) {
+//       current = current.next;
+//     }
+//     current.next = current.next.next;
+//   }
+// }
+// const list = new LinkedList();
+// list.addLast(10);
+// list.addLast(20);
+// list.addLast(30);
+// list.deleteLast();
+// list.printList();
+
 /* 10. Delete a Node at a Given Position */
 /*
 Input:
@@ -273,16 +482,132 @@ Output:
   head → [10] → [30] → null
 */
 
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   size() {
+//     let count = 0;
+//     let current = this.head;
+//     while (current) {
+//       count++;
+//       current = current.next;
+//     }
+//     return count;
+//   }
+
+//   deleteAtIndex(index) {
+//     if (!this.head) {
+//       return;
+//     }
+//     if (index == 0) {
+//       this.head = this.head.next;
+//       return;
+//     }
+//     let current = this.head;
+//     for (let i = 0; i < index - 1; i++) {
+//       current = current.next;
+//     }
+//     current.next = current.next.next;
+//   }
+//   printList() {
+//     let current = this.head;
+//     let output = "";
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head -> ", output, "null");
+//   }
+// }
+// const list = new LinkedList();
+// list.addLast(10);
+// list.addLast(20);
+// list.addLast(30);
+// list.deleteAtIndex(1);
+// list.printList();
+
 /* 11. Reverse a Linked List (Iterative) */
 /*
 Input:
-  list.addLast(1);
-  list.addLast(2);
-  list.addLast(3);
-  list.reverse();
+list.addLast(1);
+list.addLast(2);
+list.addLast(3);
+list.reverse();
 Output:
-  head → [3] → [2] → [1] → null
+head → [3] → [2] → [1] → null
 */
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+//   reverse() {
+//     let next = null;
+//     let prev = null;
+//     let current = this.head;
+//     while (current !== null) {
+//       next = current.next;
+//       current.next = prev;
+//       prev = current;
+//       current = next;
+//     }
+//     this.head = prev;
+//   }
+//   printList() {
+//     let current = this.head;
+//     let output = "";
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head", output, "null");
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(2);
+// list.addLast(3);
+// list.reverse();
+// list.printList();
 
 /* 12. Reverse a Linked List (Recursive) */
 /*
@@ -307,6 +632,50 @@ Input:
 Output:
   30
 */
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   findMiddle() {
+//     if (!this.head) {
+//       return null;
+//     }
+//     let slow = this.head;
+//     let fast = this.head;
+//     while (fast !== null && fast.next !== null) {
+//       slow = slow.next;
+//       fast = fast.next.next;
+//     }
+//     return `Middle element is : ${slow.data}`;
+//   }
+// }
+// const list = new LinkedList();
+// list.addLast(10);
+// list.addLast(20);
+// list.addLast(30);
+// list.addLast(40);
+// list.addLast(50);
+// console.log(list.findMiddle());
 
 /* 14. Detect a Cycle in a Linked List (Floyd’s Cycle Detection) */
 /*
