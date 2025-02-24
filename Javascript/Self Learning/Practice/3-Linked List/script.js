@@ -778,25 +778,12 @@ Output:
   false
 */
 
-/* 16. Find the Nth Node from the End of a Linked List */
-/*
-Input:
-  list.addLast(10);
-  list.addLast(20);
-  list.addLast(30);
-  list.addLast(40);
-  list.findNthFromEnd(2);
-Output:
-  30
-*/
-
 class Node {
   constructor(data) {
     this.data = data;
     this.next = null;
   }
 }
-
 class LinkedList {
   constructor() {
     this.head = null;
@@ -815,11 +802,143 @@ class LinkedList {
     current.next = newNode;
   }
 
-  findNthNodeEnd() {
-    
+  size() {
+    let count = 0;
+    let current = this.head;
+    while (current) {
+      count++;
+      current = current.next;
+    }
+    return count;
   }
 
+  createCycle(index) {
+    if (index < 0 || index >= this.size()) console.error("Invalid index");
+    let current = this.head;
+    let targetNode = null;
+    for (let i = 0; i <= index; i++) {
+      if (i === index) {
+        targetNode = current;
+      }
+      current = current.next;
+    }
+    if (targetNode === null) {
+      return null;
+    }
+    for (current = this.head; current !== null; current = current.next) {}
+    current.next = targetNode;
+  }
+
+  haveCycle() {
+    let slow = this.head;
+    let fast = this.head;
+    while (fast !== null && fast.next !== null) {
+      fast = fast.next.next;
+      slow = slow.next;
+      if (fast === slow) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  removeCycle() {
+    let slow = this.head;
+    let fast = this.head;
+    while (fast && fast.next) {
+      fast = fast.next.next;
+      slow = slow.next;
+      if (fast === slow) {
+        break;
+      }
+    }
+    if (!fast || !fast.next) {
+      return;
+    }
+    slow = this.head;
+    while (slow !== fast) {
+      slow = slow.next;
+      fast = fast.next;
+    }
+    while (fast.next !== slow) {
+      fast = fast.next;
+    }
+    fast.next = null;
+  }
 }
+const list = new LinkedList();
+list.addLast(1);
+list.addLast(2);
+list.addLast(3);
+list.addLast(4);
+console.log("Cycle before creating:", list.haveCycle()); // false
+list.createCycle(2);
+console.log("Cycle after creating:", list.haveCycle()); // true
+list.removeCycle();
+console.log("Cycle after removing:", list.haveCycle()); // false
+/* 16. Find the Nth Node from the End of a Linked List */
+/*
+Input:
+  list.addLast(10);
+  list.addLast(20);
+  list.addLast(30);
+  list.addLast(40);
+  list.findNthFromEnd(2);
+Output:
+  30
+*/
+
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   size() {
+//     let count = 0;
+//     let current = this.head;
+//     while (current) {
+//       count++;
+//       current = current.next;
+//     }
+//     return count;
+//   }
+
+//   findNthNodeEnd(number) {
+//     let positionFromStart = this.size() - number;
+//     if (positionFromStart < 0) return null;
+//     let current = this.head;
+//     for (let i = 0; i < positionFromStart; i++) {
+//       current = current.next;
+//     }
+//     return current;
+//   }
+// }
+// const list = new LinkedList();
+// list.addLast(10);
+// list.addLast(20);
+// list.addLast(30);
+// list.addLast(40);
+// console.log(list.findNthNodeEnd(2));
 
 /* 17. Remove Duplicates from a Sorted Linked List */
 /*
