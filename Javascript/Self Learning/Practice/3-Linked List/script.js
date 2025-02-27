@@ -717,29 +717,26 @@ Output:
 //   size() {
 //     let count = 0;
 //     let current = this.head;
-//     while (current.next) {
+//     while (current) {
 //       count++;
 //       current = current.next;
 //     }
 //     return count;
 //   }
 
-//   createCycle(index, data) {
-//     if (index < 0 || index > this.size()) {
-//       console.error("Invalid index");
-//     }
-//     let current = this.head;
+//   createCycle(index) {
+//     if (index < 0 || index > this.size()) console.error("Invalid Index");
 //     let targetNode = null;
-//     for (let i = 0; i < index; i++) {
+//     let current = this.head;
+//     for (let i = 0; current !== null; i++, current = current.next) {
 //       if (i === index) {
 //         targetNode = current;
 //       }
-//       current = current.next;
+//       if (current.next === null) {
+//         current.next = targetNode;
+//         return;
+//       }
 //     }
-//     if (targetNode === null) return;
-
-//     for (current = this.head; current !== null; current = current.next) {}
-//     current.next = targetNode;
 //   }
 
 //   haveCycle() {
@@ -755,12 +752,12 @@ Output:
 //     return false;
 //   }
 // }
+
 // const list = new LinkedList();
 // list.addLast(1);
 // list.addLast(2);
 // list.addLast(3);
 // list.addLast(4);
-// list.addLast(5);
 // list.createCycle(2);
 // console.log(list.haveCycle());
 
@@ -777,105 +774,105 @@ Input:
 Output:
   false
 */
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
 
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
-class LinkedList {
-  constructor() {
-    this.head = null;
-  }
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
 
-  addLast(data) {
-    const newNode = new Node(data);
-    if (!this.head) {
-      this.head = newNode;
-      return;
-    }
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
-    }
-    current.next = newNode;
-  }
+//   size() {
+//     let count = 0;
+//     let current = this.head;
+//     while (current) {
+//       count++;
+//       current = current.next;
+//     }
+//     return count;
+//   }
 
-  size() {
-    let count = 0;
-    let current = this.head;
-    while (current) {
-      count++;
-      current = current.next;
-    }
-    return count;
-  }
+//   createCycle(index) {
+//     if (index < 0 || index > this.size()) console.error("Invalid Index");
+//     let targetNode = null;
+//     let current = this.head;
+//     for (let i = 0; current !== null; i++, current = current.next) {
+//       if (i === index) {
+//         targetNode = current;
+//       }
+//       if ((current.next = null)) {
+//         current.next = targetNode;
+//         return;
+//       }
+//     }
+//   }
 
-  createCycle(index) {
-    if (index < 0 || index >= this.size()) console.error("Invalid index");
-    let current = this.head;
-    let targetNode = null;
-    for (let i = 0; i <= index; i++) {
-      if (i === index) {
-        targetNode = current;
-      }
-      current = current.next;
-    }
-    if (targetNode === null) {
-      return null;
-    }
-    for (current = this.head; current !== null; current = current.next) {}
-    current.next = targetNode;
-  }
+//   haveCycle() {
+//     let fast = this.head;
+//     let slow = this.head;
+//     while (fast !== null && fast.next !== null) {
+//       fast = fast.next.next;
+//       slow = slow.next;
+//       if (fast === slow) {
+//         return true;
+//       }
+//     }
+//     return false;
+//   }
 
-  haveCycle() {
-    let slow = this.head;
-    let fast = this.head;
-    while (fast !== null && fast.next !== null) {
-      fast = fast.next.next;
-      slow = slow.next;
-      if (fast === slow) {
-        return true;
-      }
-    }
-    return false;
-  }
+//   removeCycle() {
+//     let fast = this.head;
+//     let slow = this.head;
 
-  removeCycle() {
-    let slow = this.head;
-    let fast = this.head;
-    while (fast && fast.next) {
-      fast = fast.next.next;
-      slow = slow.next;
-      if (fast === slow) {
-        break;
-      }
-    }
-    if (!fast || !fast.next) {
-      return;
-    }
-    slow = this.head;
-    while (slow !== fast) {
-      slow = slow.next;
-      fast = fast.next;
-    }
-    while (fast.next !== slow) {
-      fast = fast.next;
-    }
-    fast.next = null;
-  }
-}
-const list = new LinkedList();
-list.addLast(1);
-list.addLast(2);
-list.addLast(3);
-list.addLast(4);
-console.log("Cycle before creating:", list.haveCycle()); // false
-list.createCycle(2);
-console.log("Cycle after creating:", list.haveCycle()); // true
-list.removeCycle();
-console.log("Cycle after removing:", list.haveCycle()); // false
+//     while (fast !== null && fast.next !== null) {
+//       fast = fast.next.next;
+//       slow = slow.next;
+//       if (fast === slow) {
+//         break;
+//       }
+//     }
+
+//     if (fast === null || fast.next === null) {
+//       return;
+//     }
+
+//     slow = this.head;
+//     while (fast !== slow) {
+//       slow = slow.next;
+//       fast = fast.next;
+//     }
+//     while (fast.next !== slow) {
+//       fast = fast.next;
+//     }
+//     fast.next = null;
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(2);
+// list.addLast(3);
+// list.addLast(4);
+// list.createCycle(2);
+// list.removeCycle();
+// console.log(list.haveCycle());
+
 /* 16. Find the Nth Node from the End of a Linked List */
 /*
 Input:
