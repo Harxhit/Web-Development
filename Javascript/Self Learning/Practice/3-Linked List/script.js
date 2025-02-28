@@ -950,6 +950,62 @@ Output:
   head → [1] → [2] → [3] → null
 */
 
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   printList() {
+//     let current = this.head;
+//     let output = "";
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head -> ", output, "null");
+//   }
+
+//   removeDuplicates() {
+//     let current = this.head;
+//     while (current !== null && current.next !== null) {
+//       if (current.data === current.next.data) {
+//         current.next = current.next.next;
+//       } else {
+//         current = current.next;
+//       }
+//     }
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(2);
+// list.addLast(3);
+// list.addLast(3);
+// list.addLast(3);
+// list.addLast(4);
+// list.removeDuplicates();
+// list.printList();
+
 /* 18. Remove Duplicates from an Unsorted Linked List */
 /*
 Input:
@@ -963,6 +1019,34 @@ Output:
   head → [1] → [3] → [2] → null
 */
 
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  addLast(data) {
+    const newNode = new Node(data);
+    if (!this.head) {
+      this.head = newNode;
+      return;
+    }
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
+    }
+    current.next = newNode;
+  }
+
+  removeDuplicatesUnsorted() {
+    
+  }
+}
 /* 19. Find Intersection of Two Linked Lists */
 /*
 Input:
