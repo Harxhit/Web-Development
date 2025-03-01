@@ -1019,13 +1019,84 @@ Output:
   head → [1] → [3] → [2] → null
 */
 
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   removeDuplicatesUnsorted() {
+//     let current = this.head;
+//     let prev = null;
+//     let seen = new Set();
+//     while (current !== null) {
+//       if (seen.has(current.data)) {
+//         prev.next = current.next;
+//       } else {
+//         seen.add(current.data);
+//         prev = current;
+//       }
+//       current = current.next;
+//     }
+//   }
+
+//   printList() {
+//     let current = this.head;
+//     let output = "";
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head->", output, "null");
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(3);
+// list.addLast(2);
+// list.addLast(3);
+// list.addLast(1);
+// list.removeDuplicatesUnsorted();
+// list.printList();
+
+/* 19. Find Intersection of Two Linked Lists */
+/*
+Input:
+  list1.addLast(10);
+  list1.addLast(20);
+  list2.addLast(30);
+  list2.head.next = list1.head.next;
+  list1.findIntersection(list2);
+Output:
+  20
+*/
+
 class Node {
   constructor(data) {
     this.data = data;
     this.next = null;
   }
 }
-class LinkedList {
+class LinkedList1 {
   constructor() {
     this.head = null;
   }
@@ -1043,22 +1114,44 @@ class LinkedList {
     current.next = newNode;
   }
 
-  removeDuplicatesUnsorted() {
-    
+  size() {
+    let count = 0;
+    let current = this.head;
+    while (current) {
+      count++;
+      current = current.next;
+    }
+    return count;
+  }
+
+  findIntersection() {}
+}
+class LinkedList2 {
+  constructor() {
+    this.head = null;
+  }
+  addLast(data) {
+    const newNode = new Node(data);
+    if (!this.head) {
+      this.head = newNode;
+      return;
+    }
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
+    }
+    current.next = newNode;
+  }
+  size() {
+    let count = 0;
+    let current = this.head;
+    while (current) {
+      count++;
+      current = current.next;
+    }
+    return count;
   }
 }
-/* 19. Find Intersection of Two Linked Lists */
-/*
-Input:
-  list1.addLast(10);
-  list1.addLast(20);
-  list2.addLast(30);
-  list2.head.next = list1.head.next;
-  list1.findIntersection(list2);
-Output:
-  20
-*/
-
 /* 20. Merge Two Sorted Linked Lists */
 /*
 Input:
