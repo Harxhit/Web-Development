@@ -695,17 +695,17 @@ Explanation: There is a cycle in the linked list, where the tail connects to the
  * @param {ListNode} head
  * @return {boolean}
  */
-var hasCycle = function(head) {
-    let fast = head; 
-    let slow = head; 
-    while(fast !== null && fast.next !== null){
-        fast = fast.next.next ; 
-        slow = slow.next ; 
-        if(fast === slow){
-            return true; 
-        }
+var hasCycle = function (head) {
+  let fast = head;
+  let slow = head;
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    slow = slow.next;
+    if (fast === slow) {
+      return true;
     }
-    return false ;
+  }
+  return false;
 };
 
 /*
@@ -726,16 +726,16 @@ Output: [5,4,3,2,1]
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function(head) {
-    let prev = null; 
-    let current = head;
-    while(current !== null){
-        next = current.next; 
-        current.next = prev; 
-        prev = current; 
-        current = next; 
-    }
-    return prev; 
+var reverseList = function (head) {
+  let prev = null;
+  let current = head;
+  while (current !== null) {
+    next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  return prev;
 };
 /*
 Question 32 : Reverse Linked List
@@ -755,29 +755,29 @@ Output: true
  * @param {ListNode} head
  * @return {boolean}
  */
-var isPalindrome = function(head) {
-    let fast = head; 
-    let slow = head ; 
-    while(fast !== null && fast.next !== null){
-        fast = fast.next.next ; 
-        slow = slow.next ; 
+var isPalindrome = function (head) {
+  let fast = head;
+  let slow = head;
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  let prev = null;
+  let current = slow;
+  while (current !== null) {
+    let next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  while (prev !== null) {
+    if (head.val !== prev.val) {
+      return false;
     }
-    let prev = null ;
-    let current = slow ; 
-    while(current !== null){
-        let next = current.next;
-        current.next = prev ; 
-        prev  = current ; 
-        current = next ; 
-    }
-    while(prev !== null){
-        if(head.val !== prev.val){
-            return false; 
-        }
-        prev= prev.next ; 
-        head = head.next; 
-    }
-    return true; 
+    prev = prev.next;
+    head = head.next;
+  }
+  return true;
 };
 /*
 Question 33 : Intersection of two linked list 
@@ -813,40 +813,40 @@ From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,
  * @param {ListNode} headB
  * @return {ListNode}
  */
-var getIntersectionNode = function(headA, headB) {
-    function size(head){
-        let count = 0 ; 
-        let current = head ; 
-        while(current){
-            count++ ; 
-            current = current.next ; 
-        }
-        return count;
+var getIntersectionNode = function (headA, headB) {
+  function size(head) {
+    let count = 0;
+    let current = head;
+    while (current) {
+      count++;
+      current = current.next;
     }
-    let size1 = size(headA) ; 
-    let size2 = size(headB) ; 
-    let difference  = Math.abs(size1 - size2) ; 
-    let longer ;
-    let shorter; 
-    
-    if(size1 > size2){
-        longer = headA; 
-        shorter = headB; 
-    }else{
-        shorter = headA ; 
-        longer = headB ; 
+    return count;
+  }
+  let size1 = size(headA);
+  let size2 = size(headB);
+  let difference = Math.abs(size1 - size2);
+  let longer;
+  let shorter;
+
+  if (size1 > size2) {
+    longer = headA;
+    shorter = headB;
+  } else {
+    shorter = headA;
+    longer = headB;
+  }
+  for (let i = 0; i < difference; i++) {
+    longer = longer.next;
+  }
+  while (longer !== null && shorter !== null) {
+    if (longer === shorter) {
+      return longer;
     }
-    for(let i = 0 ; i < difference ; i++){
-        longer = longer.next; 
-    }
-    while(longer !== null && shorter !== null){
-        if(longer === shorter){
-            return longer; 
-        }
-        longer = longer.next;
-        shorter = shorter.next; 
-    }
-    return null;
+    longer = longer.next;
+    shorter = shorter.next;
+  }
+  return null;
 };
 /*
 Question 34 : Remove linked list items
@@ -855,7 +855,6 @@ Example 1:
 Input: head = [1,2,6,3,4,5,6], val = 6
 Output: [1,2,3,4,5]
 */
-
 
 /*
 Question 35 : Middle of linked list
@@ -877,17 +876,89 @@ Explanation: The middle node of the list is node 3.
  * @param {ListNode} head
  * @return {ListNode}
  */
-var middleNode = function(head) {
-    let slow = head; 
-    let fast = head; 
-    while(fast !== null && fast.next !== null){
-        fast = fast.next.next; 
-        slow = slow.next; 
-    }
-    return slow; 
+var middleNode = function (head) {
+  let slow = head;
+  let fast = head;
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  return slow;
 };
-/**/
-/**/
+
+/*
+Question 36 : Remove duplicates from sorted linked list
+Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+Example 1:
+Input: head = [1,1,2]
+Output: [1,2]
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function (head) {
+  let current = head;
+  while (current !== null && current.next !== null) {
+    if (current.val === current.next.val) {
+      current.next = current.next.next;
+    } else {
+      current = current.next;
+    }
+  }
+  return head;
+};
+/*
+Question 37 - Merge two sorted linked list
+You are given the heads of two sorted linked lists list1 and list2.
+Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
+Return the head of the merged linked list.
+Example 1:
+Input: list1 = [1,2,4], list2 = [1,3,4]
+Output: [1,1,2,3,4,4] 
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} list1
+ * @param {ListNode} list2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function (list1, list2) {
+  let dummy = new ListNode(0);
+  let current = dummy;
+  let point1 = list1;
+  let point2 = list2;
+
+  while (point1 !== null && point2 !== null) {
+    if (point1.val < point2.val) {
+      current.next = point1;
+      point1 = point1.next;
+    } else {
+      current.next = point2;
+      point2 = point2.next;
+    }
+    current = current.next;
+  }
+  if (point1 !== null) {
+    current.next = point1;
+  } else {
+    current.next = point2;
+  }
+  return dummy.next;
+};
 /**/
 /**/
 /**/

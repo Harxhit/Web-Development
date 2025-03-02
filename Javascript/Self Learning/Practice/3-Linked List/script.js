@@ -1178,6 +1178,76 @@ Input:
 Output:
   head → [1] → [2] → [3] → [4] → [5] → [6] → null
 */
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   mergeSortedList(otherList) {
+//     let list1Pointer = this.head;
+//     let list2Pointer = otherList.head;
+//     let dummyNode = new Node(0);
+//     let current = dummyNode;
+
+//     while (list1Pointer !== null && list2Pointer !== null) {
+//       if (list1Pointer.data < list2Pointer.data) {
+//         current.next = list1Pointer;
+//         list1Pointer = list1Pointer.next;
+//       } else {
+//         current.next = list2Pointer;
+//         list2Pointer = list2Pointer.next;
+//       }
+//       current = current.next;
+//     }
+//     if (list1Pointer !== null) {
+//       current.next = list1Pointer;
+//     } else {
+//       current.next = list2Pointer;
+//     }
+
+//     return dummyNode.next;
+//   }
+
+//   printList() {
+//     let output = "";
+//     let current = this.head;
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head ->", output, "null");
+//   }
+// }
+
+// const list1 = new LinkedList();
+// const list2 = new LinkedList();
+// list1.addLast(1);
+// list1.addLast(3);
+// list1.addLast(5);
+// list2.addLast(2);
+// list2.addLast(4);
+// list2.addLast(6);
+// let mergedList = new LinkedList();
+// mergedList.head = list1.mergeSortedList(list2);
+// mergedList.printList();
 
 /* 21. Check if a Linked List is Palindrome */
 /*
@@ -1189,6 +1259,76 @@ Input:
 Output:
   true
 */
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   isPalindrome() {
+//     if (!this.head || !this.head.next) {
+//       console.log("It is a palindrome");
+//       return;
+//     }
+
+//     let fast = this.head;
+//     let slow = this.head;
+
+//     // Find the middle of the linked list
+//     while (fast !== null && fast.next !== null) {
+//       fast = fast.next.next;
+//       slow = slow.next;
+//     }
+
+//     // Reverse the second half of the linked list
+//     let prev = null;
+//     let current = slow;
+//     while (current !== null) {
+//       let next = current.next;
+//       current.next = prev;
+//       prev = current;
+//       current = next;
+//     }
+
+//     // Compare first half and reversed second half
+//     let firstHalf = this.head;
+//     let secondHalf = prev;
+//     while (secondHalf !== null) {
+//       if (firstHalf.data !== secondHalf.data) {
+//         console.log("It is not a palindrome");
+//         return;
+//       }
+//       firstHalf = firstHalf.next;
+//       secondHalf = secondHalf.next;
+//     }
+//     console.log("It is a palindrome");
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(2);
+// list.addLast(1);
+// list.isPalindrome();
 
 /* 22. Remove Elements with a Given Value */
 /*
