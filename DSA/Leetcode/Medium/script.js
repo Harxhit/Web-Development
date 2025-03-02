@@ -210,5 +210,52 @@ function maxProduct(array) {
   return temp;
 }
 // console.log(maxProduct([2, 3, -2, 4]));
+/*
+Question 25 : Delete Nth node from end of linked list 
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+Example 1:
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+var removeNthFromEnd = function(head, n) {
+    function size(head){
+        let current = head; 
+        let count = 0;
+        while(current){
+            count++;
+            current = current.next;
+        }
+        return count; 
+    }
+    let positionFromEnd = size(head) - n; 
+    if(positionFromEnd < 0 ) return null ;
+    if(positionFromEnd === 0) return head.next; 
+    let current = head; 
+    for(let i = 0 ; i < positionFromEnd - 1; i++){
+        current = current.next; 
+    }
+    current.next = current.next.next; 
+    return head; 
+};
 /**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+
 /**/

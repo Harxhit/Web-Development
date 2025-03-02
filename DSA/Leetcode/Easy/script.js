@@ -672,12 +672,220 @@ function majorityElement(array) {
 }
 //console.log(majorityElement([3, 2, 3]));
 
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
+/*
+Question 30 : Linked List Cycle 
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+Return true if there is a cycle in the linked list. Otherwise, return false.
+Example 1:
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+*/
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+    let fast = head; 
+    let slow = head; 
+    while(fast !== null && fast.next !== null){
+        fast = fast.next.next ; 
+        slow = slow.next ; 
+        if(fast === slow){
+            return true; 
+        }
+    }
+    return false ;
+};
+
+/*
+Question 31 : Reverse Linked List 
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+Example 1:
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+    let prev = null; 
+    let current = head;
+    while(current !== null){
+        next = current.next; 
+        current.next = prev; 
+        prev = current; 
+        current = next; 
+    }
+    return prev; 
+};
+/*
+Question 32 : Reverse Linked List
+Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+Example 1:
+Input: head = [1,2,2,1]
+Output: true
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+    let fast = head; 
+    let slow = head ; 
+    while(fast !== null && fast.next !== null){
+        fast = fast.next.next ; 
+        slow = slow.next ; 
+    }
+    let prev = null ;
+    let current = slow ; 
+    while(current !== null){
+        let next = current.next;
+        current.next = prev ; 
+        prev  = current ; 
+        current = next ; 
+    }
+    while(prev !== null){
+        if(head.val !== prev.val){
+            return false; 
+        }
+        prev= prev.next ; 
+        head = head.next; 
+    }
+    return true; 
+};
+/*
+Question 33 : Intersection of two linked list 
+Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
+For example, the following two linked lists begin to intersect at node c1:
+The test cases are generated such that there are no cycles anywhere in the entire linked structure.
+Note that the linked lists must retain their original structure after the function returns.
+Custom Judge:
+The inputs to the judge are given as follows (your program is not given these inputs):
+intersectVal - The value of the node where the intersection occurs. This is 0 if there is no intersected node.
+listA - The first linked list.
+listB - The second linked list.
+skipA - The number of nodes to skip ahead in listA (starting from the head) to get to the intersected node.
+skipB - The number of nodes to skip ahead in listB (starting from the head) to get to the intersected node.
+The judge will then create the linked structure based on these inputs and pass the two heads, headA and headB to your program. If you correctly return the intersected node, then your solution will be accepted.
+Example 1:
+Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+Output: Intersected at '8'
+Explanation: The intersected node's value is 8 (note that this must not be 0 if the two lists intersect).
+From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
+- Note that the intersected node's value is not 1 because the nodes with value 1 in A and B (2nd node in A and 3rd node in B) are different node references. In other words, they point to two different locations in memory, while the nodes with value 8 in A and B (3rd node in A and 4th node in B) point to the same location in memory.
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function(headA, headB) {
+    function size(head){
+        let count = 0 ; 
+        let current = head ; 
+        while(current){
+            count++ ; 
+            current = current.next ; 
+        }
+        return count;
+    }
+    let size1 = size(headA) ; 
+    let size2 = size(headB) ; 
+    let difference  = Math.abs(size1 - size2) ; 
+    let longer ;
+    let shorter; 
+    
+    if(size1 > size2){
+        longer = headA; 
+        shorter = headB; 
+    }else{
+        shorter = headA ; 
+        longer = headB ; 
+    }
+    for(let i = 0 ; i < difference ; i++){
+        longer = longer.next; 
+    }
+    while(longer !== null && shorter !== null){
+        if(longer === shorter){
+            return longer; 
+        }
+        longer = longer.next;
+        shorter = shorter.next; 
+    }
+    return null;
+};
+/*
+Question 34 : Remove linked list items
+Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+Example 1:
+Input: head = [1,2,6,3,4,5,6], val = 6
+Output: [1,2,3,4,5]
+*/
+
+
+/*
+Question 35 : Middle of linked list
+Given the head of a singly linked list, return the middle node of the linked list.
+If there are two middle nodes, return the second middle node.
+Example 1:
+Input: head = [1,2,3,4,5]
+Output: [3,4,5]
+Explanation: The middle node of the list is node 3.
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var middleNode = function(head) {
+    let slow = head; 
+    let fast = head; 
+    while(fast !== null && fast.next !== null){
+        fast = fast.next.next; 
+        slow = slow.next; 
+    }
+    return slow; 
+};
 /**/
 /**/
 /**/

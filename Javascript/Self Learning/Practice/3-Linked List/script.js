@@ -1090,68 +1090,81 @@ Output:
   20
 */
 
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
-class LinkedList1 {
-  constructor() {
-    this.head = null;
-  }
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
 
-  addLast(data) {
-    const newNode = new Node(data);
-    if (!this.head) {
-      this.head = newNode;
-      return;
-    }
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
-    }
-    current.next = newNode;
-  }
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
 
-  size() {
-    let count = 0;
-    let current = this.head;
-    while (current) {
-      count++;
-      current = current.next;
-    }
-    return count;
-  }
+//   size() {
+//     let count = 0;
+//     let current = this.head;
+//     while (current) {
+//       count++;
+//       current = current.next;
+//     }
+//     return count;
+//   }
 
-  findIntersection() {}
-}
-class LinkedList2 {
-  constructor() {
-    this.head = null;
-  }
-  addLast(data) {
-    const newNode = new Node(data);
-    if (!this.head) {
-      this.head = newNode;
-      return;
-    }
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
-    }
-    current.next = newNode;
-  }
-  size() {
-    let count = 0;
-    let current = this.head;
-    while (current) {
-      count++;
-      current = current.next;
-    }
-    return count;
-  }
-}
+//   findIntersection(otherList) {
+//     let size1 = this.size();
+//     let size2 = otherList.size();
+//     let difference = Math.abs(size1 - size2);
+
+//     let longer;
+//     let shorter;
+//     if (size1 > size2) {
+//       longer = this.head;
+//       shorter = otherList.head;
+//     } else {
+//       shorter = this.head;
+//       longer = otherList.head;
+//     }
+
+//     for (let i = 0; i < difference; i++) {
+//       longer = longer.next;
+//     }
+
+//     while (longer !== null && shorter !== null) {
+//       if (longer === shorter) {
+//         console.log("Intersection between two linked list is:", longer.data);
+//         return;
+//       }
+//       longer = longer.next;
+//       shorter = shorter.next;
+//     }
+//     console.log("No intersection found");
+//     return null;
+//   }
+// }
+// const list1 = new LinkedList();
+// const list2 = new LinkedList();
+// list1.addLast(10);
+// list1.addLast(40);
+// list2.addLast(20);
+// list2.addLast(30);
+
+// list2.head.next = list1.head.next;
+// list1.findIntersection(list2);
+
 /* 20. Merge Two Sorted Linked Lists */
 /*
 Input:
@@ -1288,3 +1301,68 @@ Input:
 Output:
   head → [1] → [2] → [3] → [5] → null
 */
+
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   size() {
+//     let count = 0;
+//     let current = this.head;
+//     while (current) {
+//       count++;
+//       current = current.next;
+//     }
+//     return count;
+//   }
+
+//   removeNthFromEnd(number) {
+//     let positionFromEnd = this.size() - number;
+//     if (positionFromEnd < 0) return null;
+//     if (positionFromEnd === 0) return this.head.next;
+//     let current = this.head;
+//     for (let i = 0; i < positionFromEnd - 1; i++) {
+//       current = current.next;
+//     }
+//     current.next = current.next.next;
+//   }
+
+//   printList() {
+//     let output = "";
+//     let current = this.head;
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head ->", output, "null");
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(2);
+// list.addLast(3);
+// list.addLast(4);
+// list.addLast(5);
+// list.removeNthFromEnd(2);
+// list.printList();
