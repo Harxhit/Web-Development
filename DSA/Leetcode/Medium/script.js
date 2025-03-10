@@ -229,33 +229,134 @@ Output: [1,2,3,5]
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function(head, n) {
-    function size(head){
-        let current = head; 
-        let count = 0;
-        while(current){
-            count++;
-            current = current.next;
-        }
-        return count; 
+var removeNthFromEnd = function (head, n) {
+  function size(head) {
+    let current = head;
+    let count = 0;
+    while (current) {
+      count++;
+      current = current.next;
     }
-    let positionFromEnd = size(head) - n; 
-    if(positionFromEnd < 0 ) return null ;
-    if(positionFromEnd === 0) return head.next; 
-    let current = head; 
-    for(let i = 0 ; i < positionFromEnd - 1; i++){
-        current = current.next; 
+    return count;
+  }
+  let positionFromEnd = size(head) - n;
+  if (positionFromEnd < 0) return null;
+  if (positionFromEnd === 0) return head.next;
+  let current = head;
+  for (let i = 0; i < positionFromEnd - 1; i++) {
+    current = current.next;
+  }
+  current.next = current.next.next;
+  return head;
+};
+
+/*
+Question 26 : Swapping nodes in a linked list
+You are given the head of a linked list, and an integer k.
+Return the head of the linked list after swapping the values of the kth node from the beginning and the kth node from the end (the list is 1-indexed).
+Example 1:
+Input: head = [1,2,3,4,5], k = 2
+Output: [1,4,3,2,5]
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+var swapNodes = function (head, k) {
+  let first = head;
+  let second = head;
+  let count = 1;
+  while (count < k) {
+    first = first.next;
+    count++;
+  }
+
+  let temp = first;
+  while (first.next) {
+    second = second.next;
+    first = first.next;
+  }
+  [temp.val, second.val] = [second.val, first.val];
+  return head;
+};
+
+/*
+Question 27 : Rotate List 
+Given the head of a linked list, rotate the list to the right by k places.
+Example 1:
+Input: head = [1,2,3,4,5], k = 2
+Output: [4,5,1,2,3]
+*/
+var rotateRight = function (head, k) {
+  if (!head || !head.next || k === 0) return head;
+  let count = 0;
+  let current = head;
+  while (current) {
+    count++;
+    current = current.next;
+  }
+  let rotation = k % count;
+  if (rotation === 0) return head;
+  let newTail = head;
+  for (let i = 0; i < count - rotation - 1; i++) {
+    temp = temp.next;
+  }
+  temp.next = head;
+  head = newHead;
+  return head;
+};
+/*
+Question 28 : Add Two Numbers
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+Example 1:
+Input: l1 = [2,4,3], l2 = [5,6,4]
+Output: [7,0,8]
+Explanation: 342 + 465 = 807.
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function (l1, l2) {
+  let carry = 0;
+  let dummy = new ListNode(0);
+  let current = dummy;
+  while (l1 !== null || l2 !== null || carry !== 0) {
+    let sum = carry;
+    if (l1 !== null) {
+      sum += l1.val;
+      l1 = l1.next;
     }
-    current.next = current.next.next; 
-    return head; 
+    if (l2 !== null) {
+      sum += l2.val;
+      l2 = l2.next;
+    }
+    carry = Math.floor(sum / 10);
+    current.next = new ListNode(sum % 10);
+    current = current.next;
+  }
+  return dummy.next;
 };
 /**/
 /**/
 /**/
 /**/
 /**/
-/**/
-/**/
-/**/
-
 /**/

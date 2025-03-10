@@ -1343,7 +1343,68 @@ Output:
   head → [1] → [2] → [3] → null
 */
 
-/* 23. Swap Nodes in a Linked List */
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   printList() {
+//     let output = "";
+//     let current = this.head;
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head->", output, "null");
+//   }
+
+//   removeElements(number) {
+//     while (this.head && this.head.data === number) {
+//       this.head = this.head.next;
+//     }
+//     let current = this.head;
+//     while (current && current.next) {
+//       if (current.next.data === number) {
+//         current.next = current.next.next;
+//       } else {
+//         current = current.next;
+//       }
+//     }
+//   }
+// }
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(2);
+// list.addLast(3);
+// list.addLast(6);
+// list.addLast(4);
+// list.addLast(5);
+// list.addLast(6);
+// list.addLast(6);
+// list.addLast(7);
+// list.removeElements(6);
+// list.printList();
+
+/* 23. Swap Nodes in let a Linked List */
 /*
 Input:
   list.addLast(1);
@@ -1355,6 +1416,83 @@ Output:
   head → [3] → [2] → [1] → [4] → null
 */
 
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let currentNode = this.head;
+//     while (currentNode.next) {
+//       currentNode = currentNode.next;
+//     }
+//     currentNode.next = newNode;
+//   }
+
+//   printList() {
+//     let output = "";
+//     let currentNode = this.head;
+//     while (currentNode) {
+//       output += `[${currentNode.data}] -> `;
+//       currentNode = currentNode.next;
+//     }
+//     console.log("head ->", output, "null");
+//   }
+
+//   swapNodes(num1, num2) {
+//     if (num1 === num2) return;
+//     let pointer1 = null;
+//     let node1 = this.head;
+//     let pointer2 = null;
+//     let node2 = this.head;
+
+//     while (node1 && node1.data !== num1) {
+//       pointer1 = node1;
+//       node1 = node1.next;
+//     }
+
+//     while (node2 && node2.data !== num2) {
+//       pointer2 = node2;
+//       node2 = node2.next;
+//     }
+
+//     if (!node1 || !node2) return;
+
+//     if (pointer1) {
+//       pointer1.next = node2;
+//     } else {
+//       this.head = node2;
+//     }
+//     if (pointer2) {
+//       pointer2.next = node1;
+//     } else {
+//       this.head = node1;
+//     }
+//     let temp = node1.next;
+//     node1.next = node2.next;
+//     node2.next = temp;
+//   }
+// }
+
+// const list = new LinkedList();
+// list.addLast(1);
+// list.addLast(2);
+// list.addLast(3);
+// list.addLast(4);
+// list.swapNodes(1, 4);
+// list.printList();
+
 /* 24. Rotate a Linked List to the Right */
 /*
 Input:
@@ -1365,6 +1503,76 @@ Input:
 Output:
   head → [30] → [10] → [20] → null
 */
+
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   printList() {
+//     let output = "";
+//     let current = this.head;
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head ->", output, "null");
+//   }
+
+//   rotateRight(number) {
+//     let count = 0;
+//     let current = this.head;
+//     while (current) {
+//       count++;
+//       current = current.next;
+//     }
+
+//     let rotation = number % count;
+//     if (rotation === 0) return this.head;
+
+//     let newTail = this.head;
+
+//     for (let i = 0; i < count - rotation - 1; i++) {
+//       newTail = newTail.next;
+//     }
+
+//     let newHead = newTail.next;
+//     newTail.next = null;
+
+//     let temp = newHead;
+//     while (temp.next) {
+//       temp = temp.next;
+//     }
+//     temp.next = this.head;
+
+//     this.head = newHead;
+//   }
+// }
+// const list = new LinkedList();
+// list.addLast(10);
+// list.addLast(20);
+// list.addLast(30);
+// list.rotateRight(1);
+// list.printList();
 
 /* 25. Add Two Numbers Represented by Linked Lists */
 /*
@@ -1379,6 +1587,101 @@ Input:
 Output:
   head → [7] → [0] → [8] → null
 */
+// class Node {
+//   constructor(data) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//   }
+
+//   addLast(data) {
+//     const newNode = new Node(data);
+//     if (!this.head) {
+//       this.head = newNode;
+//       return;
+//     }
+//     let current = this.head;
+//     while (current.next) {
+//       current = current.next;
+//     }
+//     current.next = newNode;
+//   }
+
+//   printList() {
+//     let output = "";
+//     let current = this.head;
+//     while (current) {
+//       output += `[${current.data}] -> `;
+//       current = current.next;
+//     }
+//     console.log("head->", output, "null");
+//   }
+
+//   addNumbers(otherList) {
+//     function reverseList(head) {
+//       let current = head;
+//       let prev = null;
+//       let next = null;
+//       while (current !== null) {
+//         let next = current.next;
+//         current.next = prev;
+//         prev = current;
+//         current = next;
+//       }
+//       return prev;
+//     }
+//     function isFirstOrder(head) {
+//       if (head === null || head.next === null) return false;
+//       return head.data < head.next.data;
+//     }
+//     let reverseNeeded = isFirstOrder(this.head);
+//     if (reverseNeeded) {
+//       this.head = reverseList(this.head);
+//       otherList.head = reverseList(otherList.head);
+//     }
+//     let dummyNode = new Node(0);
+//     let current = dummyNode;
+//     let carry = 0;
+//     let pointer1 = this.head;
+//     let pointer2 = otherList.head;
+
+//     while (pointer1 !== null || pointer2 !== null || carry !== 0) {
+//       let sum = carry;
+//       if (pointer1 !== null) {
+//         sum += pointer1.data;
+//         pointer1 = pointer1.next;
+//       }
+//       if (pointer2 !== null) {
+//         sum += pointer2.data;
+//         pointer2 = pointer2.next;
+//       }
+
+//       carry = Math.floor(sum / 10);
+//       current.next = new Node(sum % 10);
+//       current = current.next;
+//     }
+//     if (reverseNeeded) {
+//       dummyNode.next = reverseList(dummyNode.next);
+//     }
+//     return reverseList(dummyNode.next);
+//   }
+// }
+// const list1 = new LinkedList();
+// const list2 = new LinkedList();
+// list1.addLast(2);
+// list1.addLast(4);
+// list1.addLast(3);
+// list2.addLast(5);
+// list2.addLast(6);
+// list2.addLast(4);
+
+// const resultList = new LinkedList();
+// resultList.head = list1.addNumbers(list2);
+// resultList.printList();
 
 /* 26. Delete a Node Without Head Pointer */
 /*
