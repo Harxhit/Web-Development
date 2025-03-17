@@ -989,6 +989,334 @@ var getDecimalValue = function (head) {
   }
   return result;
 };
+/*
+Question 40 : Next greater element 1
+The next greater element of some element x in an array is the first greater element that is to the right of x in the same array.
+You are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of nums2.
+For each 0 <= i < nums1.length, find the index j such that nums1[i] == nums2[j] and determine the next greater element of nums2[j] in nums2. If there is no next greater element, then the answer for this query is -1.
+Return an array ans of length nums1.length such that ans[i] is the next greater element as described above.
+Example 1:
+Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+Output: [-1,3,-1]
+Explanation: The next greater element for each value of nums1 is as follows:
+- 4 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+- 1 is underlined in nums2 = [1,3,4,2]. The next greater element is 3.
+- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+*/
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+
+var nextGreaterElement = function (nums1, nums2) {
+  let stack = [];
+  let greaterElementMap = new Map();
+
+  for (let number of nums2) {
+    while (stack.length > 0 && stack[stack.length - 1] < number) {
+      greaterElementMap.set(stack.pop(), number);
+    }
+    stack.push(number);
+  }
+  return nums1((number) => greaterElementMap.get(number) || -1);
+};
+
+/*
+Question 41 : Design Circular Deque
+ 
+*/
+/**
+ * @param {number} k
+ */
+var MyCircularDeque = function (k) {
+  this.front = -1;
+  this.rear = -1;
+  this.queue = new Array(k);
+  this.limit = k;
+};
+
+/**
+ * @param {number} value
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.insertFront = function (value) {
+  if (this.isFull()) return false;
+  if (this.isEmpty()) {
+    this.front = 0;
+    this.rear = 0;
+  } else {
+    this.front = (this.front - 1 + this.limit) % this.limit;
+  }
+  this.queue[this.front] = value;
+  return true;
+};
+
+/**
+ * @param {number} value
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.insertLast = function (value) {
+  if (this.isFull()) return false;
+  if (this.isEmpty()) {
+    this.front = 0;
+    this.rear = 0;
+  } else {
+    this.rear = (this.rear + 1) % this.limit;
+  }
+  this.queue[this.rear] = value;
+  return true;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.deleteFront = function () {
+  if (this.isEmpty()) return false;
+  if (this.front === this.rear) {
+    this.front = -1;
+    this.rear = -1;
+  } else {
+    this.front = (this.front + 1) % this.limit;
+  }
+  return true;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.deleteLast = function () {
+  if (this.isEmpty()) return false;
+  if (this.front === this.rear) {
+    this.front = -1;
+    this.rear = -1;
+  } else {
+    this.rear = (this.rear - 1 + this.limit) % this.limit;
+  }
+  return true;
+};
+
+/**
+ * @return {number}
+ */
+MyCircularDeque.prototype.getFront = function () {
+  if (this.isEmpty()) return -1;
+  else return this.queue[this.front];
+};
+
+/**
+ * @return {number}
+ */
+MyCircularDeque.prototype.getRear = function () {
+  if (this.isEmpty()) return -1;
+  else return this.queue[this.rear];
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.isEmpty = function () {
+  return this.front === -1;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.isFull = function () {
+  return (this.rear + 1) % this.limit === this.front;
+};
+
+/**
+ * Your MyCircularDeque object will be instantiated and called as such:
+ * var obj = new MyCircularDeque(k)
+ * var param_1 = obj.insertFront(value)
+ * var param_2 = obj.insertLast(value)
+ * var param_3 = obj.deleteFront()
+ * var param_4 = obj.deleteLast()
+ * var param_5 = obj.getFront()
+ * var param_6 = obj.getRear()
+ * var param_7 = obj.isEmpty()
+ * var param_8 = obj.isFull()
+ **/
+
+/*
+Question 42: Implement Stack using queue
+Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack (push, top, pop, and empty).
+Implement the MyStack class:
+void push(int x) Pushes element x to the top of the stack.
+int pop() Removes the element on the top of the stack and returns it.
+int top() Returns the element on the top of the stack.
+boolean empty() Returns true if the stack is empty, false otherwise.
+Notes:
+You must use only standard operations of a queue, which means that only push to back, peek/pop from front, size and is empty operations are valid.
+Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.
+Example 1:
+Input
+["MyStack", "push", "push", "top", "pop", "empty"]
+[[], [1], [2], [], [], []]
+Output
+[null, null, null, 2, 2, false]
+*/
+var MyStack = function () {
+  this.q1 = [];
+  this.q2 = [];
+};
+
+/**
+ * @param {number} x
+ * @return {void}
+ */
+MyStack.prototype.push = function (x) {
+  this.q1.push(x);
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.pop = function () {
+  if (this.q1.length === 0) return -1; // Fix: Return -1 instead of null
+  while (this.q1.length > 1) this.q2.push(this.q1.shift());
+  let removedElement = this.q1.shift();
+  [this.q1, this.q2] = [this.q2, this.q1]; // Swap queues
+  return removedElement;
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.top = function () {
+  if (this.q1.length === 0) return -1; // Fix: Return -1 instead of null
+  while (this.q1.length > 1) this.q2.push(this.q1.shift());
+  let firstElement = this.q1[0];
+  this.q2.push(this.q1.shift()); // Push the top element back
+  [this.q1, this.q2] = [this.q2, this.q1]; // Swap queues
+  return firstElement;
+};
+
+/**
+ * @return {boolean}
+ */
+MyStack.prototype.empty = function () {
+  return this.q1.length === 0; // Fix: Check q1 instead of q2
+};
+
+/*
+Question 42 : Implement Queue Using Stacks 
+Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty).
+Implement the MyQueue class:
+void push(int x) Pushes element x to the back of the queue.
+int pop() Removes the element from the front of the queue and returns it.
+int peek() Returns the element at the front of the queue.
+boolean empty() Returns true if the queue is empty, false otherwise.
+Notes:
+You must use only standard operations of a stack, which means only push to top, peek/pop from top, size, and is empty operations are valid.
+Depending on your language, the stack may not be supported natively. You may simulate a stack using a list or deque (double-ended queue) as long as you use only a stack's standard operations.
+Example 1:
+Input
+["MyQueue", "push", "push", "peek", "pop", "empty"]
+[[], [1], [2], [], [], []]
+Output
+[null, null, null, 1, 1, false]
+Explanation
+MyQueue myQueue = new MyQueue();
+myQueue.push(1); // queue is: [1]
+myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
+myQueue.peek(); // return 1
+myQueue.pop(); // return 1, queue is [2]
+myQueue.empty(); // return falseImplement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty).
+Implement the MyQueue class:
+void push(int x) Pushes element x to the back of the queue.
+int pop() Removes the element from the front of the queue and returns it.
+int peek() Returns the element at the front of the queue.
+boolean empty() Returns true if the queue is empty, false otherwise.
+Notes:
+You must use only standard operations of a stack, which means only push to top, peek/pop from top, size, and is empty operations are valid.
+Depending on your language, the stack may not be supported natively. You may simulate a stack using a list or deque (double-ended queue) as long as you use only a stack's standard operations.
+Example 1:
+Input
+["MyQueue", "push", "push", "peek", "pop", "empty"]
+[[], [1], [2], [], [], []]
+Output
+[null, null, null, 1, 1, false]
+Explanation
+MyQueue myQueue = new MyQueue();
+myQueue.push(1); // queue is: [1]
+myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
+myQueue.peek(); // return 1
+myQueue.pop(); // return 1, queue is [2]
+myQueue.empty(); // return false
+*/
+
+var MyQueue = function () {
+    this.s1 = [];
+    this.s2 = [];
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MyQueue.prototype.push = function (x) {
+    this.s1.push(x);
+};
+
+/**
+ * @return {number}
+ */
+MyQueue.prototype.pop = function () {
+    if (this.s2.length === 0) {
+        while (this.s1.length > 0) {
+            this.s2.push(this.s1.pop());
+        }
+    }
+
+    if (this.s2.length === 0) {
+        return -1;
+    }
+
+    return this.s2.pop();
+};
+
+/**
+ * @return {number}
+ */
+MyQueue.prototype.peek = function () {
+    if (this.s2.length === 0) {
+        while (this.s1.length > 0) {
+            this.s2.push(this.s1.pop())
+        }; 
+    };
+    if(this.s2.length === 0) {
+        return -1; 
+    }
+    return this.s2[this.s2.length - 1];
+
+};
+
+/**
+ * @return {boolean}
+ */
+MyQueue.prototype.empty = function () {
+    return this.s1.length === 0 && this.s2.length === 0;
+};
+
+/** 
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
 /**/
 /**/
 /**/

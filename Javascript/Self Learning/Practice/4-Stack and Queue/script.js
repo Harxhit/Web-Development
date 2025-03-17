@@ -10,7 +10,7 @@ push(30)
 peek()  
 
 Output:  
-30  
+30  b
 */
 
 // class Stack {
@@ -481,7 +481,7 @@ circularQueue.enqueue(10);
 circularQueue.enqueue(20);
 circularQueue.dequeue();
 circularQueue.enqueue(30);
-console.log(circularQueue.peek());
+// console.log(circularQueue.peek());
 
 /** 10. Find the next greater element for each element in an array using a stack. */
 /**  
@@ -490,7 +490,31 @@ Input:
 
 Output:  
 [5, 10, 10, -1]  
+
 */
+
+// class Stack {
+//   constructor(array) {
+//     this.array = array;
+//   }
+
+//   greaterElement() {
+//     let stack = [];
+//     let num = this.array.length;
+//     let result = new Array(num).fill(-1);
+
+//     for (let i = num - 1; i >= 0; i--) {
+//       while (stack.length > 0 && stack[stack.length - 1] <= this.array[i]) {
+//         stack.pop();
+//       }
+//       if (stack.length > 0) result[i] = stack[stack.length - 1];
+//       stack.push(this.array[i]);
+//     }
+//     return result;
+//   }
+// }
+// const stack = new Stack([4, 5, 2, 10]);
+// console.log(stack.greaterElement());
 
 // ---------------- MEDIUM ----------------
 
@@ -506,6 +530,54 @@ Output:
 30  
 */
 
+class Stack {
+  constructor(size) {
+    this.size = size;
+    this.array = new Array(size);
+    this.right = size;
+    this.left = -1;
+  }
+
+  push1(value) {
+    if (this.left + 1 < this.right) this.array[this.left++] = value;
+    else {
+      console.error("Stack overflow : Stack 1 is empty");
+    }
+  }
+  push2(value) {
+    if (this.left + 1 < this.right) this.array[this.right--] = value;
+    else {
+      console.error("Stack overflow : Stack 2 have no space left");
+    }
+  }
+
+  pop1() {
+    if (this.left >= 0) return this.array[this.left++];
+    else {
+      console.error("Stack empty");
+      return null;
+    }
+  }
+
+  pop2() {
+    if (this.right < this.size) return this.array[this.right--];
+    console.error("Stack empty");
+    return null;
+  }
+
+  printStack() {
+    console.log("Stack 1:", this.array.slice(0, this.left + 1));
+    console.log("Stack 2:", this.array.slice(this.right, this.size));
+  }
+}
+
+const twoStack = new Stack(10);
+twoStack.push1(10);
+twoStack.push1(20);
+twoStack.push2(30);
+twoStack.pop1();
+twoStack.printStack();
+
 /** 12. Implement a stack using two queues. */
 /**  
 Input:  
@@ -517,6 +589,41 @@ peek()
 Output:  
 1  
 */
+
+// class StackUsingQueues {
+//   constructor() {
+//     this.queue1 = [];
+//     this.queue2 = [];
+//   }
+//   push(value) {
+//     this.queue1.push(value);
+//   }
+//   pop() {
+//     if (this.queue1.length === 0) {
+//       console.error("Stack empty");
+//       return null;
+//     }
+//     while (this.queue1.length > 1) this.queue2.push(this.queue1.shift());
+//     let removeElement = this.queue1.shift();
+//     [this.queue1, this.queue2] = [this.queue2, this.queue1];
+//     return removeElement;
+//   }
+//   peek() {
+//     if (this.queue1.length === 0) {
+//       console.error("Stack empty");
+//       return null;
+//     }
+//     while (this.queue1.length > 1) this.queue2.push(this.queue1.shift());
+//     let firstElement = this.queue1[0];
+//     [this.queue1, this.queue2] = [this.queue2, this.queue1];
+//     return firstElement;
+//   }
+// }
+// let stack = new StackUsingQueues();
+// stack.push(1);
+// stack.push(2);
+// stack.pop();
+// console.log(stack.peek());
 
 /** 13. Implement a queue using two stacks. */
 /**  
