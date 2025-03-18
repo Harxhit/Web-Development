@@ -576,7 +576,7 @@ twoStack.push1(10);
 twoStack.push1(20);
 twoStack.push2(30);
 twoStack.pop1();
-twoStack.printStack();
+// twoStack.printStack();
 
 /** 12. Implement a stack using two queues. */
 /**  
@@ -637,6 +637,48 @@ Output:
 2  
 */
 
+class QueueUsingStack {
+  constructor() {
+    this.stack1 = [];
+    this.stack2 = [];
+  }
+
+  enqueue(value) {
+    this.stack1.push(value);
+  }
+
+  dequeue() {
+    if (this.stack2.length === 0) {
+      while (this.stack1.length > 0) {
+        this.stack2.push(this.stack1.pop());
+      }
+    }
+    if (this.stack2.length === 0) {
+      console.error("Stack is empty cannot dequeue element");
+      return null;
+    }
+    return this.stack2.pop();
+  }
+
+  front() {
+    if (this.stack2.length === 0) {
+      while (this.stack1.length > 0) {
+        this.stack2.push(this.stack1.pop());
+      }
+    }
+    if (this.stack2.length === 0) {
+      console.error("Stack is empty cannot show first element");
+      return null;
+    }
+    return this.stack2[this.stack2.length - 1];
+  }
+}
+const queue = new QueueUsingStack();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.dequeue();
+//console.log(queue.front());
+
 /** 14. Implement a min stack that supports push, pop, top, and retrieving the minimum element in O(1). */
 /**  
 Input:  
@@ -648,6 +690,45 @@ getMin()
 Output:  
 2  
 */
+
+class MinStack {
+  constructor() {
+    this.stack = [];
+    this.minStack = [];
+  }
+  push(value) {
+    this.stack.push(value);
+    if (
+      this.minStack.length === 0 ||
+      value <= this.minStack[this.minStack.length - 1]
+    ) {
+      this.minStack.push(value);
+    }
+  }
+  pop() {
+    if (this.stack.length === 0) {
+      console.error("Stack is empty cannot remove element");
+      return null;
+    }
+    let removedElement = this.stack.pop();
+    if (
+      this.minStack.length > 0 &&
+      removedElement === this.minStack[this.minStack.length - 1]
+    ) {
+      this.minStack.pop();
+    }
+    return removedElement;
+  }
+  getMin() {
+    return this.minStack[this.minStack.length - 1];
+  }
+}
+const minStack = new MinStack();
+minStack.push(5);
+minStack.push(2);
+minStack.push(8);
+minStack.pop();
+//console.log(minStack.getMin());
 
 /** 15. Sort a stack using recursion. */
 /**  
@@ -669,6 +750,29 @@ Output:
 10  
 */
 
+class LeastRecentlyUsed {
+  constructor(size) {
+    this.capacity = size;
+    this.queue = new Map();
+  }
+  put(key, value) {
+    if (this.queue.has(key)) this.queue.delete(key);
+    if (this.queue.size >= this.capacity)
+      this.queue.delete(this.queue.keys().next().value);
+    this.queue.set(key, value);
+  }
+  get(key) {
+    if (!this.queue.has(key)) return -1;
+    let removedKey = this.queue.get(key);
+    this.queue.delete(key, removedKey);
+    return removedKey;
+  }
+}
+const leastRecentlyUsed = new LeastRecentlyUsed(10);
+leastRecentlyUsed.put(1, 10);
+leastRecentlyUsed.put(2, 20);
+//console.log(leastRecentlyUsed.get(1));
+
 /** 17. Evaluate a postfix expression using a stack. */
 /**  
 Input:  
@@ -677,6 +781,43 @@ Input:
 Output:  
 11  
 */
+
+class ReversePolishExpression {
+  constructor(expression) {
+    this.expression = expression;
+    this.stack = [];
+  }
+  operation() {
+    let temp = this.expression.split(" ");
+    for (let i = 0; i < temp.length; i++) {
+      if (!isNaN(temp[i])) this.stack.push(Number(temp[i]));
+      else if (["+", "-", "*", "/"].includes(temp[i])) {
+        let second = this.stack.pop();
+        let first = this.stack.pop();
+        let operator = temp[i];
+        let result;
+        switch (operator) {
+          case "+":
+            result = first + second;
+            break;
+          case "-":
+            result = first - second;
+            break;
+          case "*":
+            result = first * second;
+            break;
+          case "/":
+            result = first / second;
+            break;
+        }
+        this.stack.push(result);
+      }
+    }
+    return this.stack[0];
+  }
+}
+const postfixExpression = new ReversePolishExpression("2 3 * 5 +");
+// console.log(postfixExpression.operation());
 
 /** 18. Implement a deque (double-ended queue). */
 /**  
