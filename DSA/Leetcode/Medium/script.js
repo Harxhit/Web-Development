@@ -592,6 +592,288 @@ var evalRPN = function (tokens) {
   }
   return stack[0];
 };
+/*
+Question 33: Design Circular Queue
+Design your implementation of the circular queue. The circular queue is a linear data structure in which the operations are performed based on FIFO (First In First Out) principle, and the last position is connected back to the first position to make a circle. It is also called "Ring Buffer".
+One of the benefits of the circular queue is that we can make use of the spaces in front of the queue. In a normal queue, once the queue becomes full, we cannot insert the next element even if there is a space in front of the queue. But using the circular queue, we can use the space to store new values.
+Implement the MyCircularQueue class:
+MyCircularQueue(k) Initializes the object with the size of the queue to be k.
+int Front() Gets the front item from the queue. If the queue is empty, return -1.
+int Rear() Gets the last item from the queue. If the queue is empty, return -1.
+boolean enQueue(int value) Inserts an element into the circular queue. Return true if the operation is successful.
+boolean deQueue() Deletes an element from the circular queue. Return true if the operation is successful.
+boolean isEmpty() Checks whether the circular queue is empty or not.
+boolean isFull() Checks whether the circular queue is full or not.
+You must solve the problem without using the built-in queue data structure in your programming language. 
+Example 1:
+Input
+["MyCircularQueue", "enQueue", "enQueue", "enQueue", "enQueue", "Rear", "isFull", "deQueue", "enQueue", "Rear"]
+[[3], [1], [2], [3], [4], [], [], [], [4], []]
+Output
+[null, true, true, true, false, 3, true, true, true, 4]
+Explanation
+MyCircularQueue myCircularQueue = new MyCircularQueue(3);
+myCircularQueue.enQueue(1); // return True
+myCircularQueue.enQueue(2); // return True
+myCircularQueue.enQueue(3); // return True
+myCircularQueue.enQueue(4); // return False
+myCircularQueue.Rear();     // return 3
+myCircularQueue.isFull();   // return True
+myCircularQueue.deQueue();  // return True
+myCircularQueue.enQueue(4); // return True
+myCircularQueue.Rear();     // return 4
+*/
+/**
+ * @param {number} k
+ */
+var MyCircularQueue = function (k) {
+  this.capacity = k;
+  this.array = new Array(k);
+  this.front = -1;
+  this.rear = -1;
+};
+
+/**
+ * @param {number} value
+ * @return {boolean}
+ */
+MyCircularQueue.prototype.enQueue = function (value) {
+  if (this.isFull()) return false;
+  if (this.isEmpty()) {
+    this.front = 0;
+  }
+  this.rear = (this.rear + 1) % this.capacity;
+  this.array[this.rear] = value;
+  return true;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularQueue.prototype.deQueue = function () {
+  if (this.isEmpty()) return false;
+  let removeElement = this.array[this.front];
+  if (this.front === this.rear) {
+    this.front = -1;
+    this.rear = -1;
+  } else {
+    this.front = (this.front + 1) % this.capacity;
+  }
+  return true;
+};
+
+/**
+ * @return {number}
+ */
+MyCircularQueue.prototype.Front = function () {
+  if (this.isEmpty()) {
+    return -1;
+  }
+  return this.array[this.front];
+};
+
+/**
+ * @return {number}
+ */
+MyCircularQueue.prototype.Rear = function () {
+  if (this.isEmpty()) {
+    return -1;
+  }
+  return this.array[this.rear];
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularQueue.prototype.isEmpty = function () {
+  return this.front === -1;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularQueue.prototype.isFull = function () {
+  return (this.rear + 1) % this.capacity === this.front;
+};
+
+/**
+ * Your MyCircularQueue object will be instantiated and called as such:
+ * var obj = new MyCircularQueue(k)
+ * var param_1 = obj.enQueue(value)
+ * var param_2 = obj.deQueue()
+ * var param_3 = obj.Front()
+ * var param_4 = obj.Rear()
+ * var param_5 = obj.isEmpty()
+ * var param_6 = obj.isFull()
+ */
+
+/*
+Question 34 : Design Circular Dequeue
+Design your implementation of the circular double-ended queue (deque).
+Implement the MyCircularDeque class:
+MyCircularDeque(int k) Initializes the deque with a maximum size of k.
+boolean insertFront() Adds an item at the front of Deque. Returns true if the operation is successful, or false otherwise.
+boolean insertLast() Adds an item at the rear of Deque. Returns true if the operation is successful, or false otherwise.
+boolean deleteFront() Deletes an item from the front of Deque. Returns true if the operation is successful, or false otherwise.
+boolean deleteLast() Deletes an item from the rear of Deque. Returns true if the operation is successful, or false otherwise.
+int getFront() Returns the front item from the Deque. Returns -1 if the deque is empty.
+int getRear() Returns the last item from Deque. Returns -1 if the deque is empty.
+boolean isEmpty() Returns true if the deque is empty, or false otherwise.
+boolean isFull() Returns true if the deque is full, or false otherwise.
+Example 1:
+Input
+["MyCircularDeque", "insertLast", "insertLast", "insertFront", "insertFront", "getRear", "isFull", "deleteLast", "insertFront", "getFront"]
+[[3], [1], [2], [3], [4], [], [], [], [4], []]
+Output
+[null, true, true, true, false, 2, true, true, true, 4]
+Explanation
+MyCircularDeque myCircularDeque = new MyCircularDeque(3);
+myCircularDeque.insertLast(1);  // return True
+myCircularDeque.insertLast(2);  // return True
+myCircularDeque.insertFront(3); // return True
+myCircularDeque.insertFront(4); // return False, the queue is full.
+myCircularDeque.getRear();      // return 2
+myCircularDeque.isFull();       // return True
+myCircularDeque.deleteLast();   // return True
+myCircularDeque.insertFront(4); // return True
+myCircularDeque.getFront();     // return 4
+*/
+/**
+ * @param {number} k
+ */
+var MyCircularDeque = function (k) {
+  this.array = new Array(k);
+  this.capacity = k;
+  this.rear = -1;
+  this.front = -1;
+};
+
+/**
+ * @param {number} value
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.insertFront = function (value) {
+  if (this.isFull()) return false;
+  if (this.isEmpty()) this.front = this.rear = 0;
+  else {
+    this.front = (this.front - 1 + this.capacity) % this.capacity;
+  }
+  this.array[this.front] = value;
+  return true;
+};
+
+/**
+ * @param {number} value
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.insertLast = function (value) {
+  if (this.isFull()) return false;
+  if (this.isEmpty()) this.front = this.rear = 0;
+  else {
+    this.rear = (this.rear + 1) % this.capacity;
+  }
+  this.array[this.rear] = value;
+  return true;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.deleteFront = function () {
+  if (this.isEmpty()) return false;
+  if (this.front === this.rear) this.front = this.rear = -1;
+  else {
+    this.front = (this.front + 1) % this.capacity;
+  }
+  return true;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.deleteLast = function () {
+  if (this.isEmpty()) return false;
+  if (this.front === this.rear) this.front = this.rear = -1;
+  else {
+    this.rear = (this.rear - 1 + this.capacity) % this.capacity;
+  }
+  return true;
+};
+
+/**
+ * @return {number}
+ */
+MyCircularDeque.prototype.getFront = function () {
+  if (this.isEmpty()) return -1;
+  return this.array[this.front];
+};
+
+/**
+ * @return {number}
+ */
+MyCircularDeque.prototype.getRear = function () {
+  if (this.isEmpty()) return -1;
+  return this.array[this.rear];
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.isEmpty = function () {
+  return this.front === -1;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularDeque.prototype.isFull = function () {
+  return (this.rear + 1) % this.capacity === this.front;
+};
+
+/**
+ * Your MyCircularDeque object will be instantiated and called as such:
+ * var obj = new MyCircularDeque(k)
+ * var param_1 = obj.insertFront(value)
+ * var param_2 = obj.insertLast(value)
+ * var param_3 = obj.deleteFront()
+ * var param_4 = obj.deleteLast()
+ * var param_5 = obj.getFront()
+ * var param_6 = obj.getRear()
+ * var param_7 = obj.isEmpty()
+ * var param_8 = obj.isFull()
+ */
+
+/*
+Question 35: Validate stack sequence
+Given two integer arrays pushed and popped each with distinct values, return true if this could have been the result of a sequence of push and pop operations on an initially empty stack, or false otherwise.
+Example 1:
+Input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+Output: true
+Explanation: We might do the following sequence:
+push(1), push(2), push(3), push(4),
+pop() -> 4,
+push(5),
+pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
+*/
+/**
+ * @param {number[]} pushed
+ * @param {number[]} popped
+ * @return {boolean}
+ */
+var validateStackSequences = function (pushed, popped) {
+  let stack = [];
+  let index = 0;
+  for (let i = 0; i < pushed.length; i++) {
+    stack.push(pushed[i]);
+    while (stack.length > 0 && stack[stack.length - 1] === popped[index]) {
+      stack.pop();
+      index++;
+    }
+  }
+  return stack.length === 0;
+};
+/**/
+/**/
 /**/
 /**/
 /**/

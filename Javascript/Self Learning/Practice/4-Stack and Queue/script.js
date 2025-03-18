@@ -831,6 +831,78 @@ Output:
 20  
 */
 
+class DoubleEndedQueue {
+  constructor(size) {
+    this.size = size;
+    this.array = new Array(size);
+    this.front = -1;
+    this.rear = -1;
+  }
+  isFull() {
+    return (this.rear + 1) % this.size === this.front;
+  }
+  isEmpty() {
+    return this.front === -1;
+  }
+  insertLast(value) {
+    if (this.isFull()) {
+      console.error("Queue is full cannot add element");
+      return null;
+    }
+    if (this.isEmpty()) {
+      this.rear = 0;
+    }
+    this.rear = (this.rear + 1) % this.size;
+    this.array[this.rear] = value;
+  }
+  insertFront(value) {
+    if (this.isFull()) {
+      console.error("Queue is full cannot add element");
+      return null;
+    }
+    if (this.isEmpty()) {
+      this.front = 0;
+    }
+    this.front = (this.front + 1) % this.size;
+    this.array[this.front] = value;
+  }
+  deleteFront() {
+    if (this.isEmpty()) {
+      console.error("Queue is empty cannot remove elements");
+    }
+    let removedElement = this.array[this.front];
+    if (this.front === this.rear) {
+      this.front = -1;
+      this.rear = -1;
+    } else {
+      this.front = (this.front - 1) % this.size;
+    }
+    return removedElement;
+  }
+  deleteLast() {
+    if (this.isEmpty()) {
+      console.error("Cannot remove element from queue it is empty");
+      return null;
+    }
+    let removeElement = this.array[this.rear];
+    if (this.front === this.rear) {
+      this.front = -1;
+      this.rear = -1;
+    } else {
+      this.rear = (this.rear - 1) % this.size;
+    }
+    return removeElement;
+  }
+  getFront() {
+    return this.array[this.front];
+  }
+}
+const doubleEndedQueue = new DoubleEndedQueue(5);
+doubleEndedQueue.insertFront(10);
+doubleEndedQueue.insertLast(20);
+doubleEndedQueue.deleteFront();
+//console.log(doubleEndedQueue.getFront());
+
 /** 19. Check if a given sequence of pushed and popped values is valid for a stack. */
 /**  
 Input:  
@@ -840,6 +912,28 @@ pop: [4, 5, 3, 2, 1]
 Output:  
 true  
 */
+
+class ValidStack {
+  constructor() {
+    this.stack = [];
+  }
+  operation(pushed, popped) {
+    let poppedIndex = 0;
+    for (let i = 0; i < pushed.length; i++) {
+      this.stack.push(pushed[i]);
+      while (
+        this.stack.length > 0 &&
+        this.stack[this.stack.length - 1] === popped[poppedIndex]
+      ) {
+        this.stack.pop();
+        poppedIndex++;
+      }
+    }
+    return this.stack.length === 0;
+  }
+}
+const validStack = new ValidStack();
+// console.log(validStack.operation([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]));
 
 /** 20. Find the largest rectangular area in a histogram using a stack. */
 /**  
