@@ -944,6 +944,38 @@ Output:
 10  
 */
 
+class FindHistogram {
+  constructor() {
+    this.stack = [];
+  }
+  largestRectangle(height) {
+    let maxArea = 0;
+    let n = height.length;
+    for (let i = 0; i < n; i++) {
+      while (
+        this.stack.length > 0 &&
+        height[i] < height[this.stack[this.stack.length - 1]]
+      ) {
+        let h = height[this.stack.pop()];
+        let w;
+        if (this.stack.length === 0) w = i;
+        else w = i - this.stack[this.stack.length - 1] - 1;
+        maxArea = Math.max(maxArea, w * h);
+      }
+      this.stack.push(i);
+    }
+    while (this.stack.length === 0) {
+      let h = height[this.stack.pop()];
+      let w;
+      if (this.stack.length === 0) w = n;
+      else w = n - this.stack[this.stack.length - 1] - 1;
+    }
+    return maxArea;
+  }
+}
+const histogram = new FindHistogram();
+//console.log(histogram.largestRectangle([2, 1, 5, 6, 2, 3]));
+
 // ---------------- HARD ----------------
 
 /** 21. Implement a stack that supports getMin() in O(1) without using extra space. */
@@ -958,6 +990,57 @@ Output:
 2  
 */
 
+class StackWithMinSpace {
+  constructor() {
+    this.stack = [];
+    this.min = 0;
+  }
+  push(value) {
+    if (this.isEmpty()) {
+      this.stack.push(value);
+      this.min = value;
+    }
+    if (value < this.min) {
+      this.stack.push(2 * value - this.min);
+      this.min = value;
+    }
+    if (value >= this.min) this.stack.push(value);
+  }
+
+  pop() {
+    let poppedValue = this.stack.pop();
+    if (poppedValue >= this.min) {
+      return poppedValue;
+    } else if (poppedValue < this.min)
+      return (this.min = 2 * this.min - poppedValue);
+  }
+
+  isEmpty() {
+    if (this.stack.length === 0) return true;
+    else return false;
+  }
+
+  isFull() {
+    return this.stack.length === 0;
+  }
+
+  getMin() {
+    return this.min;
+  }
+
+  peek() {
+    if (this.stack[0] > this.min) return this.stack[0];
+    if (this.stack[0] < this.min) return this.min;
+  }
+}
+
+const temp = new StackWithMinSpace();
+temp.push(5);
+temp.push(2);
+temp.push(10);
+//console.log(temp.getMin());
+//console.log(temp.peek());
+
 /** 22. Implement a max stack that supports push, pop, top, and retrieving the max element in O(1). */
 /**  
 Input:  
@@ -970,6 +1053,41 @@ Output:
 5  
 */
 
+class MaxStack {
+  constructor() {
+    this.stack = [];
+    this.maxStack = [];
+  }
+  push(value) {
+    if (this.stack.length === 0) this.maxStack.push(value);
+    else
+      this.maxStack.push(
+        Math.max(value, this.maxStack[this.maxStack.length - 1])
+      );
+    this.stack.push(value);
+  }
+  pop() {
+    if (this.isEmpty()) return null;
+    this.maxStack.pop();
+    return this.stack.pop();
+  }
+  top() {
+    return this.stack[0];
+  }
+  getMax() {
+    return this.maxStack[this.maxStack.length - 1];
+  }
+  isEmpty() {
+    return this.stack.length === 0;
+  }
+}
+const maxStack = new MaxStack();
+maxStack.push(3);
+maxStack.push(1);
+maxStack.push(5);
+//console.log(maxStack.getMax());
+//console.log(maxStack.top());
+
 /** 23. Implement a k-stacks in a single array. */
 /**  
 Input:  
@@ -981,6 +1099,8 @@ pop(1)
 Output:  
 10  
 */
+
+
 
 /** 24. Design a data structure that supports push, pop, increment operations efficiently. */
 /**  
