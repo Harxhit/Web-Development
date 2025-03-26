@@ -1100,7 +1100,9 @@ Output:
 10  
 */
 
-
+class KStack {
+  constructor() {}
+}
 
 /** 24. Design a data structure that supports push, pop, increment operations efficiently. */
 /**  
@@ -1114,6 +1116,40 @@ Output:
 25  
 */
 
+class CustomStack {
+  constructor() {
+    this.stack = [];
+    this.inc = [];
+  }
+  push(value) {
+    this.stack.push(value);
+    this.inc.push(0);
+  }
+  pop() {
+    if (this.stack.length === 0) return -1;
+    let index = this.stack.length - 1;
+    let value = this.stack.pop() + this.inc[index];
+    if (index > 0) this.inc[index - 1] += this.inc[index];
+    this.inc.pop();
+    return value;
+  }
+  increment(index, value) {
+    let n = Math.min(index, this.stack.length);
+    if (n > 0) this.inc[n - 1] += value;
+  }
+  peek() {
+    let temp = this.stack.length - 1;
+    if (this.stack.length === 0) return -1;
+    return this.stack[temp] + this.inc[temp];
+  }
+}
+const customStack = new CustomStack();
+customStack.push(10);
+customStack.push(20);
+customStack.increment(2, 5);
+//console.log(customStack.peek());
+customStack.pop();
+
 /** 25. Implement a sliding window maximum using a deque. */
 /**  
 Input:  
@@ -1122,6 +1158,38 @@ Input:
 Output:  
 [3, 3, 5, 5, 6, 7]  
 */
+
+class SlidingWindow {
+  constructor(nums, k) {
+    this.size = k;
+    this.nums = nums;
+    this.dq = [];
+    this.result = [];
+  }
+  findMax() {
+    for (let i = 0; i < this.nums.length; i++) {
+      while (this.dq.length > 0 && this.dq[0] < i - this.size + 1) {
+        this.dq.shift();
+      }
+      while (
+        this.dq.length > 0 &&
+        this.nums[this.dq[this.dq.length - 1]] < this.nums[i]
+      ) {
+        this.dq.pop();
+      }
+      this.dq.push(i);
+      if (i >= this.size - 1) {
+        this.result.push(this.nums[this.dq[0]]);
+      }
+    }
+    return this.result;
+  }
+}
+
+const nums = [1, 3, -1, -3, 5, 3, 6, 7];
+const k = 3;
+const slidindWindow = new SlidingWindow(nums, k);
+//console.log(slidindWindow.findMax());
 
 /** 26. Find the maximum area of water trapped between bars (Rainwater Trapping). */
 /**  
