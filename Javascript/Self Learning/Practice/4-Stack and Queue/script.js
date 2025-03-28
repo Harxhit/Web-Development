@@ -1200,6 +1200,28 @@ Output:
 6  
 */
 
+function rainwaterTrapping(array) {
+  let leftArray = new Array(array.length);
+  let rightArray = new Array(array.length);
+
+  let leftMax = -Infinity;
+  for (let i = 0; i < array.length; i++) {
+    leftMax = Math.max(leftMax, array[i]);
+    leftArray[i] = leftMax;
+  }
+  let rightMax = -Infinity;
+  for (let i = array.length - 1; i >= 0; i--) {
+    rightMax = Math.max(rightMax, array[i]);
+    rightArray[i] = rightMax;
+  }
+  let count = 0;
+  for (let i = 0; i < array.length; i++) {
+    count += Math.min(leftArray[i], rightArray[i]) - array[i];
+  }
+  return count;
+}
+//console.log(rainwaterTrapping([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
+
 /** 27. Find the number of valid substrings with balanced parentheses. */
 /**  
 Input:  
@@ -1208,6 +1230,23 @@ Input:
 Output:  
 3  
 */
+
+function validSubstrings(string) {
+  let count = 0;
+  for (let i = 0; i < string.length; i++) {
+    let closeCount = 0;
+    let openCount = 0;
+    for (let j = i; j < string.length; j++) {
+      if (string[j] === "(") openCount++;
+      else if (string[j] === ")") closeCount++;
+      if (closeCount === openCount) count++;
+      else if (closeCount > openCount) break;
+    }
+  }
+  return count;
+}
+const string = "(()())";
+//console.log(validSubstrings(string));
 
 /** 28. Design a food ordering system using a queue. */
 /**  
@@ -1220,6 +1259,54 @@ Output:
 101  
 */
 
+class OrderingSystem {
+  constructor() {
+    this.queue = [];
+    this.orderCount = 100;
+  }
+  placeOrder(customerName, itemsOrdered) {
+    let orders = {
+      orderId: this.orderCount++,
+      customerName: customerName,
+      orderStatus: "Pending",
+      itemsOrdered: itemsOrdered,
+    };
+    this.queue.push(orders);
+    console.log(
+      `Order placed for ${customerName} with orderID of ${orders.orderId}`
+    );
+  }
+  serveOrder() {
+    if (this.queue.length === 0) console.error("No pending order");
+    let servedOrder = this.queue.shift();
+    servedOrder.orderStatus = "Served";
+    console.log(
+      `Order served for the customer ${servedOrder.customerName} with orderId of ${servedOrder.orderId} `
+    );
+  }
+  viewOrders() {
+    if (this.queue.length === 0) {
+      console.log("No pending orders.");
+      return;
+    }
+
+    console.log("Pending Orders:");
+    this.queue.forEach((order) => {
+      console.log(
+        `Order #${order.orderId}: ${
+          order.customerName
+        } - ${order.itemsOrdered.join(", ")}`
+      );
+    });
+  }
+}
+const foodSystem = new OrderingSystem();
+// foodSystem.placeOrder("Alice", ["Burger", "Fries"], 2);
+// foodSystem.placeOrder("Bob", ["Pizza", "Coke"]);
+// foodSystem.viewOrders();
+// foodSystem.serveOrder();
+// foodSystem.viewOrders();
+
 /** 29. Implement a stack with O(1) time complexity for push, pop, and median. */
 /**  
 Input:  
@@ -1231,6 +1318,43 @@ median()
 Output:  
 20  
 */
+
+class TryAgainAfterLearningHeap {
+  constructor() {
+    this.stack = [];
+    this.bst = [];
+  }
+  push(x) {
+    this.stack.push(x);
+    let left = 0;
+    let right = this.bst.length;
+    while (left < right) {
+      let mid = Math.max((left + right) / 2);
+      if (this.bst[mid] < x) left = mid + 1;
+      else right = mid;
+    }
+    this.bst.splice(left, 0, x);
+  }
+  pop() {
+    if (this.stack.length === 0) return null;
+    let removedElement = this.stack.pop();
+    let index = this.bst.indexOf(removedElement);
+    if (index !== -1) this.bst.splice(index, 1);
+    return removedElement;
+  }
+  median() {
+    if (this.bst.length === 0) return null;
+    let mid = Math.floor(this.bst.length / 2);
+    if (this.bst.length % 2 === 1) return this.bst[mid];
+    return (this.bst[mid - 1] + this.bst[mid]) / 2;
+  }
+}
+
+const tryAgain = new TryAgainAfterLearningHeap();
+tryAgain.push(10);
+tryAgain.push(20);
+tryAgain.push(30);
+//console.log(tryAgain.median());
 
 /** 30. Implement an expression parser using a stack. */
 /**  
