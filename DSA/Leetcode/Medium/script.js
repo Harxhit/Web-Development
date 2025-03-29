@@ -982,6 +982,59 @@ var leastInterval = function (tasks, n) {
   if (minInterval < tasks.length) minInterval = tasks.length;
   return minInterval;
 };
+
+/*
+Question 38 : Kth largest element in array 
+Given an integer array nums and an integer k, return the kth largest element in the array.
+Note that it is the kth largest element in the sorted order, not the kth distinct element.
+Can you solve it without sorting?
+Example 1:
+Input: nums = [3,2,1,5,6,4], k = 2
+Output: 5
+*/
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findKthLargest = function (nums, k) {
+  let n = nums.length;
+
+  function heapify(i, size) {
+    let largest = i;
+    let left = i * 2 + 1;
+    let right = i * 2 + 2;
+
+    if (left < size && nums[left] > nums[largest]) largest = left;
+    if (right < size && nums[right] > nums[largest]) largest = right;
+
+    if (largest !== i) {
+      [nums[i], nums[largest]] = [nums[largest], nums[i]];
+      heapify(largest, size);
+    }
+  }
+
+  for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+    heapify(i, n);
+  }
+
+  for (let i = 0; i < k - 1; i++) {
+    [nums[0], nums[n - 1]] = [nums[n - 1], nums[0]];
+    n--;
+    heapify(0, n);
+  }
+
+  return nums[0];
+};
 /**/
 /**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+
 /**/
