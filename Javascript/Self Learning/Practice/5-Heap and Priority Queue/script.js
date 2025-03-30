@@ -298,35 +298,210 @@ function KthSmallestElement(array, k) {
     Output: [1, 5, 7, 9]
 **/
 
-/** 11: 
+function removeElementMinHeap(array, number) {
+  let index;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === number) {
+      index = i;
+      break;
+    }
+  }
+  if (index === undefined) return array;
+  let lastIndex = array.length - 1;
+  [array[index], array[lastIndex]] = [array[lastIndex], array[index]];
+  array.pop();
+  function heapify(i) {
+    let smallest = i;
+    let left = i * 2 + 1;
+    let right = i * 2 + 2;
+
+    if (left < array.length && array[left] < array[smallest]) smallest = left;
+    if (right < array.length && array[right] < array[smallest]) {
+      smallest = right;
+    }
+
+    if (smallest !== i) {
+      [array[i], array[smallest]] = [array[smallest], array[i]];
+      heapify(smallest);
+    }
+  }
+  if (index > array.length) heapify(index);
+  return array;
+}
+
+//console.log(removeElementMinHeap([1, 3, 5, 7, 9], 3));
+
+/** Question 11: 
     Remove an element from a Max Heap.
     Input: Heap = [10, 5, 3, 2, 1], Remove 5
     Output: [10, 3, 2, 1]
 **/
 
-/** 12: 
+function removeElementMaxHeap(array, k) {
+  let index;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === k) {
+      index = i;
+      break;
+    }
+  }
+  if (index === undefined) return array;
+
+  let lastIndex = array.length - 1;
+  [array[index], array[lastIndex]] = [array[lastIndex], array[index]];
+  array.pop();
+
+  function heapify(i) {
+    let largest = i;
+    let left = i * 2 + 1;
+    let right = i * 2 + 2;
+
+    if (left < array.length && array[left] > array[largest]) largest = left;
+    if (right < array.length && array[right] > array[largest]) largest = right;
+
+    if (largest !== i) {
+      [array[i], array[largest]] = [array[largest], array[i]];
+      heapify(largest);
+    }
+  }
+  if (index > array.length) return heapify(index);
+  return array;
+}
+//console.log(removeElementMaxHeap([10, 5, 3, 2, 1], 5));
+
+/** Question 12: 
     Build a Min Heap from an unsorted array.
     Input: [9, 5, 6, 2, 3]
     Output: [2, 3, 6, 9, 5]
 **/
 
-/** 13: 
+function buildMinHeapFromUnsortedArray(array) {
+  let index = array.length;
+  function heapify(i) {
+    let smallest = i;
+    let left = i * 2 + 1;
+    let right = i * 2 + 2;
+
+    if (left < index && array[left] < array[smallest]) smallest = left;
+    if (right < index && array[right] < array[smallest]) smallest = right;
+
+    if (smallest !== i) {
+      [array[i], array[smallest]] = [array[smallest], array[i]];
+      heapify(smallest);
+    }
+  }
+
+  for (let i = Math.floor((index - 1) / 2); i >= 0; i--) {
+    heapify(i);
+  }
+  return array;
+}
+//console.log(buildMinHeapFromUnsortedArray([9, 5, 6, 2, 3]));
+
+/** Question 13: 
     Build a Max Heap from an unsorted array.
     Input: [3, 6, 9, 2, 10]
     Output: [10, 6, 9, 2, 3]
 **/
 
-/** 14: 
+function buildUnsortedMaxHeap(array) {
+  let index = array.length;
+  function heapify(i) {
+    let larget = i;
+    let left = i * 2 + 1;
+    let right = i * 2 + 2;
+
+    if (left < index && array[left] > array[larget]) larget = left;
+    if (right < index && array[right] > array[larget]) larget = right;
+
+    if (larget !== i) {
+      [array[i], array[larget]] = [array[larget], array[i]];
+      heapify(larget);
+    }
+  }
+
+  for (let i = Math.floor((index - 1) / 2); i >= 0; i--) {
+    heapify(i);
+  }
+  return array;
+}
+//console.log(buildUnsortedMaxHeap([3, 6, 9, 2, 10]));
+
+/** Question 14: 
     Implement a Priority Queue using a Min Heap.
     Input: Insert (3, "Task A"), (1, "Task B"), (2, "Task C")
     Output: ["Task B", "Task C", "Task A"]
 **/
 
-/** 15: 
+class MinPriorityQueue {
+  constructor() {
+    this.heap = [];
+  }
+  insert(priority, task) {
+    this.heap.push({ priority, task });
+    this.heapifyUp(this.heap.length - 1);
+  }
+  heapifyUp(index) {
+    let parentIndex = Math.floor((index - 1) / 2);
+
+    if (
+      index > 0 &&
+      this.heap[index].priority < this.heap[parentIndex].priority
+    ) {
+      [this.heap[index], this.heap[parentIndex]] = [
+        this.heap[parentIndex],
+        this.heap[index],
+      ];
+      this.heapifyUp(parentIndex);
+    }
+  }
+  show() {
+    return this.heap;
+  }
+}
+
+const priorityQueue = new MinPriorityQueue();
+priorityQueue.insert(3, "Task A");
+priorityQueue.insert(1, "Task B");
+priorityQueue.insert(2, "Task C");
+//console.log(priorityQueue.show());
+
+/** Question 15: 
     Implement a Priority Queue using a Max Heap.
     Input: Insert (3, "Task A"), (1, "Task B"), (2, "Task C")
     Output: ["Task A", "Task C", "Task B"]
 **/
+
+class MaxPriorityQueue {
+  constructor() {
+    this.array = [];
+  }
+  insert(priority, task) {
+    this.array.push({ priority, task });
+    this.heapifyUp(this.array.length - 1);
+  }
+  heapifyUp(index) {
+    let parentIndex = Math.floor((index - 1) / 2);
+
+    while (
+      index > 0 &&
+      this.array[index].priority > this.array[parentIndex].priority
+    ) {
+      [this.array[index], this.array[parentIndex]] = [
+        this.array[parentIndex],
+        this.array[index],
+      ];
+    }
+  }
+  show() {
+    return this.array;
+  }
+}
+const maxPriorityQueue = new MaxPriorityQueue();
+maxPriorityQueue.insert(3, "Task A");
+maxPriorityQueue.insert(1, "Task B");
+maxPriorityQueue.insert(2, "Task C");
+//console.log(maxPriorityQueue.show());
 
 // ===================== MEDIUM (15 Questions) =====================
 
