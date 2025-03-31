@@ -137,7 +137,117 @@ var longestValidParentheses = function (s) {
   }
   return maxLength;
 };
-/**/
+
+/*
+Question 5 : Find Median from data stream
+The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values.
+For example, for arr = [2,3,4], the median is 3.
+For example, for arr = [2,3], the median is (2 + 3) / 2 = 2.5.
+Implement the MedianFinder class:
+MedianFinder() initializes the MedianFinder object.
+void addNum(int num) adds the integer num from the data stream to the data structure.
+double findMedian() returns the median of all elements so far. Answers within 10-5 of the actual answer will be accepted.
+Example 1:
+Input
+["MedianFinder", "addNum", "addNum", "findMedian", "addNum", "findMedian"]
+[[], [1], [2], [], [3], []]
+Output
+[null, null, null, 1.5, null, 2.0]
+Explanation
+MedianFinder medianFinder = new MedianFinder();
+medianFinder.addNum(1);    // arr = [1]
+medianFinder.addNum(2);    // arr = [1, 2]
+medianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
+medianFinder.addNum(3);    // arr[1, 2, 3]
+medianFinder.findMedian(); // return 2.0
+*/
+var MedianFinder = function () {
+  this.maxHeap = [];
+  this.minHeap = [];
+};
+
+MedianFinder.prototype.heapifyUp = function (heap, isMinHeap) {
+  let index = heap.length - 1;
+  while (index > 0) {
+    let parentIndex = Math.floor((index - 1) / 2);
+
+    if (
+      (isMinHeap && heap[index] < heap[parentIndex]) ||
+      (!isMinHeap && heap[index] > heap[parentIndex])
+    ) {
+      [heap[index], heap[parentIndex]] = [heap[parentIndex], heap[index]];
+      index = parentIndex;
+    } else break;
+  }
+};
+
+MedianFinder.prototype.heapifyDown = function (heap, isMinHeap) {
+  let index = 0;
+  let length = heap.length;
+
+  while (true) {
+    let swapIndex = index;
+    let left = index * 2 + 1;
+    let right = index * 2 + 2;
+
+    if (
+      left < length &&
+      ((isMinHeap && heap[left] < heap[swapIndex]) ||
+        (!isMinHeap && heap[left] > heap[swapIndex]))
+    ) {
+      swapIndex = left;
+    }
+    if (
+      right < length &&
+      ((isMinHeap && heap[right] < heap[swapIndex]) ||
+        (!isMinHeap && heap[right] > heap[swapIndex]))
+    ) {
+      swapIndex = right;
+    }
+    if (swapIndex === index) break;
+
+    [heap[index], heap[swapIndex]] = [heap[swapIndex], heap[index]];
+    index = swapIndex;
+  }
+};
+
+MedianFinder.prototype.addNum = function (num) {
+  if (this.maxHeap.length === 0 || num <= this.maxHeap[0]) {
+    this.maxHeap.push(num);
+    this.heapifyUp(this.maxHeap, false);
+  } else {
+    this.minHeap.push(num);
+    this.heapifyUp(this.minHeap, true);
+  }
+
+  if (this.maxHeap.length > this.minHeap.length + 1) {
+    this.minHeap.push(this.removeRoot(this.maxHeap, false));
+    this.heapifyUp(this.minHeap, true);
+  } else if (this.minHeap.length > this.maxHeap.length) {
+    this.maxHeap.push(this.removeRoot(this.minHeap, true));
+    this.heapifyUp(this.maxHeap, false);
+  }
+};
+
+MedianFinder.prototype.removeRoot = function (heap, isMinHeap) {
+  if (heap.length === 0) return null;
+  if (heap.length === 1) return heap.pop();
+
+  const root = heap[0];
+  heap[0] = heap.pop();
+  this.heapifyDown(heap, isMinHeap);
+  return root;
+};
+
+MedianFinder.prototype.findMedian = function () {
+  if (this.maxHeap.length > this.minHeap.length) {
+    return this.maxHeap[0];
+  } else if (this.minHeap.length > this.maxHeap.length) {
+    return this.minHeap[0];
+  } else {
+    return (this.maxHeap[0] + this.minHeap[0]) / 2;
+  }
+};
 /**/
 /**/
 /**/

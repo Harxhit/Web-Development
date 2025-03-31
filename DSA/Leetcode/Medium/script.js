@@ -1026,7 +1026,97 @@ var findKthLargest = function (nums, k) {
 
   return nums[0];
 };
-/**/
+/*
+Question 39 : Find k Closest Element
+Given a sorted integer array arr, two integers k and x, return the k closest integers to x in the array. The result should also be sorted in ascending order.
+An integer a is closer to x than an integer b if:
+|a - x| < |b - x|, or
+|a - x| == |b - x| and a < b
+Example 1:
+Input: arr = [1,2,3,4,5], k = 4, x = 3
+Output: [1,2,3,4]
+*/
+/**
+ * @param {number[]} arr
+ * @param {number} k
+ * @param {number} x
+ * @return {number[]}
+ */
+var findClosestElements = function (arr, k, x) {
+  let heap = [];
+
+  function heapifyUp() {
+    let index = heap.length - 1;
+    while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2);
+      if (
+        heap[index][0] > heap[parentIndex][0] ||
+        (heap[index][0] === heap[parentIndex][0] &&
+          heap[index][1] > heap[parentIndex][1])
+      ) {
+        [heap[index], heap[parentIndex]] = [heap[parentIndex], heap[index]];
+        index = parentIndex;
+      } else {
+        break;
+      }
+    }
+  }
+
+  function heapifyDown() {
+    let index = 0;
+    let length = heap.length;
+    while (true) {
+      let swapIndex = index;
+      let left = index * 2 + 1;
+      let right = index * 2 + 2;
+
+      if (
+        left < length &&
+        (heap[left][0] > heap[swapIndex][0] ||
+          (heap[left][0] === heap[swapIndex][0] &&
+            heap[left][1] > heap[swapIndex][1]))
+      ) {
+        swapIndex = left;
+      }
+
+      if (
+        right < length &&
+        (heap[right][0] > heap[swapIndex][0] ||
+          (heap[right][0] === heap[swapIndex][0] &&
+            heap[right][1] > heap[swapIndex][1]))
+      ) {
+        swapIndex = right;
+      }
+
+      if (swapIndex === index) break;
+
+      [heap[index], heap[swapIndex]] = [heap[swapIndex], heap[index]];
+      index = swapIndex;
+    }
+  }
+
+  function removeRoot() {
+    if (heap.length === 0) return null;
+    if (heap.length === 1) return heap.pop();
+
+    const root = heap[0];
+    heap[0] = heap.pop();
+    heapifyDown();
+    return root;
+  }
+
+  for (let num of arr) {
+    let difference = Math.abs(num - x);
+    heap.push([difference, num]);
+    heapifyUp();
+
+    while (heap.length > k) {
+      removeRoot();
+    }
+  }
+
+  return heap.map((pair) => pair[1]).sort((a, b) => a - b);
+};
 /**/
 /**/
 /**/

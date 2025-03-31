@@ -505,23 +505,197 @@ maxPriorityQueue.insert(2, "Task C");
 
 // ===================== MEDIUM (15 Questions) =====================
 
-/** 16: 
+/** Question 16: 
     Find the median of a running stream of numbers using two heaps.
     Input: [5, 15, 1, 3]
     Output: [5, 10, 5, 4]
 **/
 
-/** 17: 
+class FindMedian {
+  constructor() {
+    this.maxHeap = [];
+    this.minHeap = [];
+  }
+  insert(value) {
+    if (this.maxHeap.length === 0 || this.maxHeap[0] >= value) {
+      this.maxHeap.push(value);
+      this.heapifyUp(this.maxHeap, false);
+    } else {
+      this.minHeap.push(value);
+      this.heapifyUp(this.minHeap, true);
+    }
+
+    if (this.maxHeap.length > this.minHeap.length + 1) {
+      let removed = this.removeRoot(this.maxHeap, false);
+      this.minHeap.push(removed);
+      this.heapifyUp(this.minHeap, true);
+    } else if (this.minHeap.length > this.maxHeap.length) {
+      let removed = this.removeRoot(this.minHeap, true);
+      this.maxHeap.push(removed);
+      this.heapifyUp(this.maxHeap, false);
+    }
+  }
+
+  heapifyUp(heap, isMinHeap) {
+    let index = heap.length - 1;
+
+    while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2);
+
+      if (
+        (isMinHeap && heap[index] < heap[parentIndex]) ||
+        (!isMinHeap && heap[index] > heap[parentIndex])
+      ) {
+        [heap[index], heap[parentIndex]] = [heap[parentIndex], heap[index]];
+        index = parentIndex;
+      } else break;
+    }
+  }
+
+  heapifyDown(heap, isMinHeap) {
+    let index = 0;
+    let length = heap.length;
+
+    while (true) {
+      let swapIndex = index;
+      let left = index * 2 + 1;
+      let right = index * 2 + 2;
+
+      if (
+        (left < length && isMinHeap && heap[left] < heap[swapIndex]) ||
+        (left < length && !isMinHeap && heap[left] > heap[swapIndex])
+      ) {
+        swapIndex = left;
+      }
+      if (
+        (right < length && isMinHeap && heap[right] < heap[swapIndex]) ||
+        (right < length && !isMinHeap && heap[right] > heap[swapIndex])
+      ) {
+        swapIndex = right;
+      }
+
+      if (swapIndex === index) break;
+
+      [heap[index], heap[swapIndex]] = [heap[swapIndex], heap[index]];
+      index = swapIndex;
+    }
+  }
+
+  removeRoot(heap, isMinHeap) {
+    if (heap.length === 0) return null;
+    if (heap.length === 1) return heap.pop();
+
+    const root = heap[0];
+    heap[0] = heap.pop();
+    this.heapifyDown(heap, isMinHeap);
+    return root;
+  }
+
+  median() {
+    if (this.maxHeap.length > this.minHeap.length) return this.maxHeap[0];
+    else if (this.maxHeap.length < this.minHeap.length) return this.minHeap[0];
+    else return (this.maxHeap[0] + this.minHeap[0]) / 2;
+  }
+}
+const findMedian = new FindMedian();
+let numberArray = [5, 15, 1, 3];
+let resultMedianArray = [];
+for (let num of numberArray) {
+  findMedian.insert(num);
+  resultMedianArray.push(findMedian.median());
+}
+//console.log(resultMedianArray);
+
+/** Question 17: 
     Find K closest numbers to a given value using a heap.
     Input: [1, 3, 7, 8, 9], k = 2, x = 5
     Output: [3, 7]
 **/
 
-/** 18: 
+function closestNumber(arr, k, x) {
+  let heap = [];
+
+  function heapifyUp() {
+    let index = heap.length - 1;
+    while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2);
+      if (
+        heap[index][0] > heap[parentIndex][0] ||
+        (heap[index][0] === heap[parentIndex][0] &&
+          heap[index][1] > heap[parentIndex][1])
+      ) {
+        [heap[index], heap[parentIndex]] = [heap[parentIndex], heap[index]];
+        index = parentIndex;
+      } else {
+        break;
+      }
+    }
+  }
+
+  function heapifyDown() {
+    let index = 0;
+    let length = heap.length;
+    while (true) {
+      let swapIndex = index;
+      let left = index * 2 + 1;
+      let right = index * 2 + 2;
+
+      if (
+        left < length &&
+        (heap[left][0] > heap[swapIndex][0] ||
+          (heap[left][0] === heap[swapIndex][0] &&
+            heap[left][1] > heap[swapIndex][1]))
+      ) {
+        swapIndex = left;
+      }
+
+      if (
+        right < length &&
+        (heap[right][0] > heap[swapIndex][0] ||
+          (heap[right][0] === heap[swapIndex][0] &&
+            heap[right][1] > heap[swapIndex][1]))
+      ) {
+        swapIndex = right;
+      }
+
+      if (swapIndex === index) break;
+
+      [heap[index], heap[swapIndex]] = [heap[swapIndex], heap[index]];
+      index = swapIndex;
+    }
+  }
+
+  function removeRoot() {
+    if (heap.length === 0) return null;
+    if (heap.length === 1) return heap.pop();
+
+    const root = heap[0];
+    heap[0] = heap.pop();
+    heapifyDown();
+    return root;
+  }
+
+  for (let num of arr) {
+    let difference = Math.abs(num - x);
+    heap.push([difference, num]);
+    heapifyUp();
+
+    while (heap.length > k) {
+      removeRoot();
+    }
+  }
+
+  return heap.map((pair) => pair[1]).sort((a, b) => a - b);
+}
+// console.log(closestNumber([1, 3, 7, 8, 9], 2, 5));
+
+/** Question 18: 
     Merge K sorted arrays using a Min Heap.
     Input: [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
     Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 **/
+
+
 
 /** 19: 
     Find the shortest path in a weighted graph using Dijkstra’s Algorithm.
