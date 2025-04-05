@@ -206,6 +206,7 @@ list.addLast(10);
 list.addLast(15);
 list.addLast(25);
 console.log(list.search(15))
+
 /* 5. Insert at the Beginning of a Linked List */
 /*
 Input:

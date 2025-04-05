@@ -695,19 +695,188 @@ function closestNumber(arr, k, x) {
     Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 **/
 
+function mergeKSortedArray(array) {
+  let resultArray = [];
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array[i].length; j++) {
+      resultArray.push(array[i][j]);
+    }
+  }
+  function heapify(n, i) {
+    let smallest = i;
+    let left = i * 2 + 1;
+    let right = i * 2 + 2;
 
+    if (left < n && resultArray[left] < resultArray[smallest]) {
+      smallest = left;
+    }
+    if (right < n && resultArray[right] < resultArray[smallest]) {
+      smallest = right;
+    }
 
-/** 19: 
+    if (smallest !== i) {
+      [resultArray[i], resultArray[smallest]] = [
+        resultArray[smallest],
+        resultArray[i],
+      ];
+      heapify(n, smallest);
+    }
+  }
+  let index = resultArray.length;
+
+  for (let i = Math.floor((index - 1) / 2); i >= 0; i--) {
+    heapify(index, i);
+  }
+
+  for (let i = index - 1; i > 0; i--) {
+    [resultArray[0], resultArray[i]] = [resultArray[i], resultArray[0]];
+    heapify(i, 0);
+  }
+  return resultArray.reverse();
+}
+// console.log(
+//   mergeKSortedArray([
+//     [1, 4, 7],
+//     [2, 5, 8],
+//     [3, 6, 9],
+//   ])
+// );
+
+/** Question 19: 
     Find the shortest path in a weighted graph using Dijkstra’s Algorithm.
     Input: Graph with edges [(A,B,4), (A,C,1), (C,B,2)], Start=A
     Output: {A: 0, B: 3, C: 1}
 **/
 
-/** 20-30: Various problems including:
-    - Sliding window maximum using heaps.
-    - Task scheduling with heaps.
-    - Huffman Encoding using heaps.
-    - Rearranging characters in a string with no adjacent duplicates.
+
+
+/** 20: Sliding Window Maximum Using Heaps
+  Problem Statement: 
+    Given an array of integers `nums` and an integer `k`, return an array of the maximum number in each sliding window of size `k`.
+
+  Input:
+    - nums: an array of integers, e.g., [1, 3, -1, -3, 5, 3, 6, 7]
+    - k: an integer representing the window size, e.g., 3
+
+  Output:
+    - An array of the maximums in each sliding window of size `k`, e.g., [3, 3, 5, 5, 6, 7]
+**/
+
+/** 21: Task Scheduling with Heaps
+  Problem Statement: 
+    Given a list of tasks with their required execution times, and a number of processors, schedule the tasks in a way that minimizes the total processing time using a heap-based priority queue.
+  
+  Input:
+    - tasks: A list of integers representing task durations, e.g., [5, 3, 7, 1]
+    - processors: An integer representing the number of processors, e.g., 2
+
+  Output:
+    - A list representing the total time taken for each processor, e.g., [8, 8]
+**/
+
+/** 22: Huffman Encoding Using Heaps
+  Problem Statement: 
+    Given a string of characters, create a Huffman tree to generate the corresponding Huffman encoding using a priority queue (min heap).
+  
+  Input:
+    - A string of characters, e.g., "aabacabad"
+  
+  Output:
+    - A map or string showing the Huffman encoding, e.g., { 'a': '00', 'b': '11', 'c': '101', 'd': '100' }
+**/
+
+/** 23: Rearranging Characters in a String with No Adjacent Duplicates
+  Problem Statement: 
+    Given a string, rearrange it so that no two adjacent characters are the same. If it’s not possible, return an empty string.
+
+  Input:
+    - A string, e.g., "aaabc"
+  
+  Output:
+    - A rearranged string with no adjacent duplicates, e.g., "abc" or any permutation of "abc"
+**/
+
+/** 24: Median of Two Sorted Arrays
+  Problem Statement: 
+    Given two sorted arrays `nums1` and `nums2`, find the median of the two sorted arrays in O(log(min(n, m))) time complexity.
+
+  Input:
+    - nums1: A sorted array of integers, e.g., [1, 3]
+    - nums2: A sorted array of integers, e.g., [2]
+
+  Output:
+    - The median, e.g., 2.0
+**/
+
+/** 25: Merge K Sorted Arrays Using Heaps
+  Problem Statement: 
+    Given `k` sorted arrays, merge them into one sorted array using a min heap.
+
+  Input:
+    - An array of `k` sorted arrays, e.g., [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+  
+  Output:
+    - A single sorted array, e.g., [1, 2, 3, 4, 5, 6, 7, 8, 9]
+**/
+
+/** 26: Top K Frequent Elements
+  Problem Statement: 
+    Given an array of integers, find the `k` most frequent elements using a heap.
+
+  Input:
+    - nums: An array of integers, e.g., [1, 1, 1, 2, 2, 3]
+    - k: An integer representing the number of most frequent elements to find, e.g., 2
+
+  Output:
+    - A list of the `k` most frequent elements, e.g., [1, 2]
+**/
+
+/** 27: Find the Kth Largest Element in an Array
+  Problem Statement: 
+    Given an unsorted array, find the `k`th largest element using a heap.
+
+  Input:
+    - nums: An unsorted array of integers, e.g., [3, 2, 1, 5, 6, 4]
+    - k: An integer representing the kth largest element to find, e.g., 2
+
+  Output:
+    - The `k`th largest element, e.g., 5
+**/
+
+/** 28: Find Median of Data Stream Using Heaps
+  Problem Statement: 
+    Design a data structure that supports the following operations:
+    - `addNum(num)`: Add a number to the data stream.
+    - `findMedian()`: Return the median of all numbers added.
+
+  Input:
+    - `addNum(1)`, `addNum(2)`, `findMedian()`
+
+  Output:
+    - 1.5
+**/
+
+/** 29: Sort a Nearly Sorted (K Sorted) Array
+  Problem Statement: 
+    Given an array of integers where each element is at most `k` positions away from its sorted position, sort the array efficiently using a heap.
+
+  Input:
+    - nums: A nearly sorted array, e.g., [3, 2, 1, 5, 4, 6, 8]
+    - k: An integer representing the distance from the correct position, e.g., 3
+
+  Output:
+    - The sorted array, e.g., [1, 2, 3, 4, 5, 6, 8]
+**/
+
+/** 30: Reorganize String (No Adjacent Duplicates)
+  Problem Statement:
+    Given a string, rearrange it so that no two adjacent characters are the same. If this is not possible, return an empty string.
+
+  Input:
+    - A string, e.g., "aab"
+  
+  Output:
+    - A rearranged string with no adjacent duplicates, e.g., "aba"
 **/
 
 // ===================== HARD (10 Questions) =====================
