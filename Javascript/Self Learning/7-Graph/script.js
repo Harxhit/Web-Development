@@ -276,6 +276,90 @@ const grid = [
   ["L", "L", "W", "W", "W"],
 ];
 
-const islandCount = (grid) => {};
+const islandCount = (grid) => {
+  let visited = new Set();
+  let count = 0;
+  for (let r = 0; r < grid.length; r++) {
+    for (let c = 0; c < grid[0].length; c++) {
+      if (calculation(grid, r, c, visited)) {
+        count++;
+      }
+    }
+  }
+  return count;
+};
 
-islandCount(grid); // 3
+const calculation = (grid, r, c, visited) => {
+  const validRow = r >= 0 && r < grid.length;
+  const validCol = c >= 0 && c < grid[0].length;
+
+  if (!validRow || !validCol) return false;
+
+  if (grid[r][c] === "W") return false;
+
+  const pos = r + "," + c;
+  if (visited.has(pos)) return false;
+  visited.add(pos);
+
+  calculation(grid, r + 1, c, visited); //Goes down
+  calculation(grid, r - 1, c, visited); //Goes up
+  calculation(grid, r, c + 1, visited); //Goes right
+  calculation(grid, r, c - 1, visited); // Goes left
+
+  return true;
+};
+
+//console.log(islandCount(grid)); // 3
+
+/** 
+Problem 6 : Write a function, minimumIsland, that takes in a grid containing Ws and Ls. W represents water and L represents land. The function should return the size of the smallest island. An island is a vertically or horizontally connected region of land.
+
+You may assume that the grid contains at least one island.
+**/
+
+const minGrid = [
+  ["L", "W", "W", "L", "W"],
+  ["L", "W", "W", "L", "L"],
+  ["W", "L", "W", "L", "W"],
+  ["W", "W", "W", "W", "W"],
+  ["W", "W", "L", "L", "L"],
+];
+
+const minimumIsland = (grid) => {
+  const visited = new Set();
+  let minSize = Infinity;
+  for (let r = 0; r < grid.length; r++) {
+    for (let c = 0; c < grid[0].length; c++) {
+      const size = exploreMinIsland(grid, r, c, visited);
+      if (size > 0 && size < minSize) {
+        minSize = size;
+      }
+    }
+  }
+  return minSize;
+};
+
+const exploreMinIsland = (grid, r, c, visited) => {
+  const validRow = r >= 0 && r < grid.length;
+  const validCol = c >= 0 && c < grid[0].length;
+
+  if (!validCol || !validRow) return 0;
+
+  if (grid[r][c] === "W") return 0;
+
+  const pos = r + "," + c;
+  if (visited.has(pos)) return 0;
+  visited.add(pos);
+
+  let size = 1;
+
+  size += exploreMinIsland(grid, r + 1, c, visited);
+  size += exploreMinIsland(grid, r - 1, c, visited);
+  size += exploreMinIsland(grid, r, c + 1, visited);
+  size += exploreMinIsland(grid, r, c - 1, visited);
+
+  return size;
+};
+//console.log(minimumIsland(minGrid)); // -> 1
+
+

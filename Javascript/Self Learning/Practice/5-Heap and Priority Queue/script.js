@@ -744,13 +744,13 @@ function mergeKSortedArray(array) {
 
 /** Question 19: 
     Find the shortest path in a weighted graph using Dijkstra’s Algorithm.
-    Input: Graph with edges [(A,B,4), (A,C,1), (C,B,2)], Start=A
+    Input: Graph with edges [(A,B,4), (A,C,1), (C,B,2)], Start = A
     Output: {A: 0, B: 3, C: 1}
 **/
 
 
 
-/** 20: Sliding Window Maximum Using Heaps
+/** Question 20: Sliding Window Maximum Using Heaps
   Problem Statement: 
     Given an array of integers `nums` and an integer `k`, return an array of the maximum number in each sliding window of size `k`.
 

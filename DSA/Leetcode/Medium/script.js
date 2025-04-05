@@ -1117,8 +1117,107 @@ var findClosestElements = function (arr, k, x) {
 
   return heap.map((pair) => pair[1]).sort((a, b) => a - b);
 };
-/**/
-/**/
+
+/*
+Question 40 : Number of Island 
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+Example 1:
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+*/
+/**
+ * @param {character[][]} grid
+ * @return {number}
+ */
+var numIslands = function (grid) {
+  let visited = new Set();
+  let count = 0;
+  for (let r = 0; r < grid.length; r++) {
+    for (let c = 0; c < grid[0].length; c++) {
+      if (explore(grid, r, c, visited)) {
+        count++;
+      }
+    }
+  }
+  return count;
+
+  function explore(grid, r, c, visited) {
+    const validRow = r >= 0 && r < grid.length;
+    const validCol = c >= 0 && c < grid[0].length;
+
+    if (!validRow || !validCol) return false;
+
+    if (grid[r][c] === "0") return false;
+
+    const pos = r + "," + c;
+
+    if (visited.has(pos)) return false;
+    visited.add(pos);
+
+    explore(grid, r + 1, c, visited);
+    explore(grid, r - 1, c, visited);
+    explore(grid, r, c + 1, visited);
+    explore(grid, r, c - 1, visited);
+
+    return true;
+  }
+};
+
+/*
+Question 41 : Max area of island 
+You are given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+The area of an island is the number of cells with a value 1 in the island.
+Return the maximum area of an island in grid. If there is no island, return 0.
+Example 1:
+Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Output: 6
+Explanation: The answer is not 11, because the island must be connected 4-directionally.
+*/
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var maxAreaOfIsland = function (grid) {
+  let visited = new Set();
+  let maxSize = 0;
+  for (let r = 0; r < grid.length; r++) {
+    for (let c = 0; c < grid[0].length; c++) {
+      const size = exploreSize(grid, r, c, visited);
+      if (size > 0 && size > maxSize) {
+        maxSize = size;
+      }
+    }
+  }
+  return maxSize;
+
+  function exploreSize(grid, r, c, visited) {
+    const validRow = r >= 0 && r < grid.length;
+    const validCol = c >= 0 && c < grid[0].length;
+
+    if (!validRow || !validCol) return 0;
+
+    if (grid[r][c] === 0) return 0;
+
+    let pos = r + "," + c;
+    if (visited.has(pos)) return 0;
+    visited.add(pos);
+
+    let size = 1;
+
+    size += exploreSize(grid, r + 1, c, visited);
+    size += exploreSize(grid, r - 1, c, visited);
+    size += exploreSize(grid, r, c + 1, visited);
+    size += exploreSize(grid, r, c - 1, visited);
+
+    return size;
+  }
+};
 /**/
 /**/
 /**/
