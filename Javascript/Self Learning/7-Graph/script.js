@@ -362,4 +362,277 @@ const exploreMinIsland = (grid, r, c, visited) => {
 };
 //console.log(minimumIsland(minGrid)); // -> 1
 
+/**Cycle detection =>
+Cycle detection means checking if there's a loop in a graph — a path that starts and ends at the same node
+Example - 
+A → B → C
+     ↑   ↓
+     E ← D
 
+**/
+
+/**
+ * 🔁 Problem 1: Detect Cycle in an Undirected Graph
+ *
+ * Problem:
+ * Given an undirected graph with V vertices and E edges,
+ * determine if the graph contains a cycle.
+ *
+ * Input:
+ * V = 5
+ * edges = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 1]]
+ *
+ * Output:
+ * true
+ *
+ * Explanation:
+ * There is a cycle: 1 → 2 → 3 → 4 → 1
+ */
+
+const detectCycle = (vertices, edges) => {
+  const graph = adjacencyList(edges);
+  const queue = [];
+  const visited = new Array(vertices).fill(false);
+
+  const bfs = (start) => {
+    queue.push([start, -1]);
+    while (queue.length > 0) {
+      const [node, parent] = queue.shift();
+      visited[node] = true;
+      for (let neighbour of graph[node] || []) {
+        if (!visited[neighbour]) {
+          queue.push([neighbour, node]);
+        } else if (neighbour !== parent) return true;
+      }
+    }
+    return false;
+  };
+
+  for (let i = 0; i < vertices; i++) {
+    if (!visited[i]) {
+      if (bfs(i)) return true;
+    }
+  }
+  return false;
+};
+
+const adjacencyList = (edges) => {
+  const graph = {};
+  edges.forEach(([u, v]) => {
+    if (!graph[u]) graph[u] = [];
+    if (!graph[v]) graph[v] = [];
+
+    graph[u].push(v);
+    graph[v].push(u);
+  });
+  return graph;
+};
+
+// console.log(
+//   detectCycle(5, [
+//     [0, 1],
+//     [1, 2],
+//     [2, 3],
+//     [3, 4],
+//     [4, 1],
+//   ])
+// );
+
+/**
+ * 🔁 Problem 2: Detect Cycle in Each Connected Component
+ *
+ * Problem:
+ * Given a disconnected undirected graph with multiple components,
+ * determine if any of the components contain a cycle.
+ *
+ * Input:
+ * V = 6
+ * edges = [[0, 1], [1, 2], [3, 4]]
+ *
+ * Output:
+ * false
+ *
+ * Explanation:
+ * No component contains a cycle.
+ */
+
+const detectCycleComponent = (vertices, edges) => {
+  const graph = adjacencyList(edges);
+  const queue = [];
+  const visited = new Array(vertices).fill(false);
+
+  const bfs = (start) => {
+    queue.push([start, -1]);
+    while (queue.length > 0) {
+      const [node, parent] = queue.shift();
+      visited[node] = true;
+      for (let neighbour of graph[node] || []) {
+        if (!visited[neighbour]) {
+          queue.push([neighbour, node]);
+        } else if (parent !== neighbour) return true;
+      }
+    }
+    return false;
+  };
+
+  for (let i = 0; i < vertices; i++) {
+    if (!visited[i]) {
+      if (bfs(i)) return true;
+    }
+  }
+  return false;
+};
+
+// console.log(
+//   detectCycleComponent(6, [
+//     [0, 1],
+//     [1, 2],
+//     [3, 4],
+//   ])
+// );
+
+/**
+ * 🔁 Problem 3: Is Graph a Tree?
+ *
+ * Problem:
+ * Given `n` nodes labeled from 0 to n - 1 and a list of edges,
+ * determine if the graph is a valid tree (connected and acyclic).
+ *
+ * Input:
+ * n = 5
+ * edges = [[0, 1], [0, 2], [0, 3], [1, 4]]
+ *
+ * Output:
+ * true
+ *
+ * Explanation:
+ * Graph is connected and has no cycles.
+ */
+
+// console.log(
+//   detectCycle(5, [
+//     [0, 1],
+//     [0, 2],
+//     [0, 3],
+//     [1, 4],
+//   ])
+// );
+
+/**
+ * 🔁 Problem 4: Find Redundant Connection
+ *
+ * Problem:
+ * You are given a list of edges representing an undirected graph.
+ * The graph started as a tree but one extra edge was added.
+ * Find the edge that creates a cycle.
+ *
+ * Input:
+ * edges = [[1, 2], [1, 3], [2, 3]]
+ *
+ * Output:
+ * [2, 3]
+ *
+ * Explanation:
+ * Removing edge [2, 3] breaks the cycle and leaves a tree.
+ */
+
+const unionStep = (edges) => {
+  const parent = [];
+
+  for (let i = 0; i <= edges.length; i++) {
+    parent[i] = i;
+  }
+
+  const find = (x) => {
+    if (parent[x] !== x) {
+      parent[x] = find(parent[x]);
+    }
+    return parent[x];
+  };
+
+  const union = (x, y) => {
+    const rootX = find(x);
+    const rootY = find(y);
+
+    if (rootX === rootY) return false;
+
+    parent[rootY] = rootX;
+    return true;
+  };
+
+  for (const [u, v] of edges) {
+    if (!union(u, v)) {
+      return [u, v];
+    }
+  }
+  return [];
+};
+
+// console.log(
+//   unionStep([
+//     [1, 2],
+//     [1, 3],
+//     [2, 3],
+//   ])
+// );
+
+/**
+ * 🔁 Problem 5: BFS-Based Cycle Detection with Adjacency List
+ *
+ * Problem:
+ * Write a function that takes a graph in the form of an adjacency list
+ * and returns true if the graph contains any cycle using BFS.
+ *
+ * Input:
+ * graph = {
+ *   0: [1],
+ *   1: [0, 2],
+ *   2: [1, 3],
+ *   3: [2, 4],
+ *   4: [3, 1]
+ * }
+ *
+ * Output:
+ * true
+ *
+ * Explanation:
+ * There is a cycle: 1 → 2 → 3 → 4 → 1
+ */
+
+const detect = (grp) => {
+  const queue = [];
+  const length = Object.keys(grp).length;
+  const visited = new Array(length).fill(false);
+
+  const bfs = (start) => {
+    queue.push([start, -1]);
+    while (queue.length > 0) {
+      const [node, parent] = queue.shift();
+      visited[node] = true;
+      for (let neighbour of grp[node] || []) {
+        if (!visited[neighbour]) {
+          queue.push([neighbour, node]);
+        } else if (parent !== neighbour) return true;
+      }
+    }
+    return false;
+  };
+
+  for (let node in grp) {
+    const num = Number(node);
+    if (!visited[num]) {
+      if (bfs(num)) return true;
+    }
+  }
+  return false;
+};
+
+const grp = {
+  0: [1],
+  1: [0, 2],
+  2: [1, 3],
+  3: [2, 4],
+  4: [3, 1],
+};
+
+//console.log(detect(grp));
