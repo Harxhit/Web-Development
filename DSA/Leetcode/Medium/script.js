@@ -1261,9 +1261,112 @@ var findRedundantConnection = function (edges) {
     }
   }
   return -1;
-};    
-/**/
-/**/
+};
+/*
+Question 43 : Course Schedule
+There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+Return true if you can finish all courses. Otherwise, return false.
+Example 1:
+Input: numCourses = 2, prerequisites = [[1,0]]
+Output: true
+Explanation: There are a total of 2 courses to take. 
+To take course 1 you should have finished course 0. So it is possible.
+*/
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
+var canFinish = function (numCourses, prerequisites) {
+  const topo = [];
+  const visited = new Set();
+  const mother = new Set();
+  const graph = buildGraph(numCourses, prerequisites);
+
+  function detectCycle(children) {
+    visited.add(node);
+    mother.add(children);
+
+    for (let neighbour of graph[children]) {
+      if (!visited.has(neighbour)) {
+        if (detectCycle(neighbour)) return true;
+      } else if (mother.has(neighbour)) return true;
+    }
+    mother.delete(children);
+    topo.push(children);
+    return false;
+  }
+
+  function buildGraph(numCourses, prerequisites) {
+    const graph = {};
+    for (let i = 0; i < numCourses; i++) {
+      graph[i] = [];
+    }
+    prerequisites.forEach(([u, v]) => graph[v].push(u));
+    return graph;
+  }
+
+  for (let node = 0; node < numCourses; node++) {
+    if (!visited.has(node)) {
+      if (detectCycle(node)) return false;
+    }
+  }
+
+  return topo.length === numCourses;
+};
+/*
+Question 44 : Course Schedule II
+There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+Return the ordering of courses you should take to finish all courses. If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
+Example 1:
+Input: numCourses = 2, prerequisites = [[1,0]]
+Output: [0,1]
+Explanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1].
+*/
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {number[]}
+ */
+var findOrder = function (numCourses, prerequisites) {
+  const graph = buildGraph(numCourses, prerequisites);
+  const visited = new Set();
+  const temp = new Set();
+  const topo = [];
+
+  function dfs(node) {
+    visited.add(node);
+    temp.add(node);
+    for (let neighbour of graph[node]) {
+      if (!visited.has(neighbour)) {
+        if (dfs(neighbour)) return true;
+      } else if (temp.has(neighbour)) return true;
+    }
+    temp.delete(node);
+    topo.push(node);
+    return false;
+  }
+
+  for (let i = 0; i < numCourses; i++) {
+    if (!visited.has(i)) {
+      if (dfs(i)) return [];
+    }
+  }
+
+  function buildGraph(numCourses, edges) {
+    const graph = {};
+    for (let i = 0; i < numCourses; i++) {
+      graph[i] = [];
+    }
+    edges.forEach(([u, v]) => graph[v].push(u));
+    return graph;
+  }
+
+  return topo.reverse();
+};
+
 /**/
 /**/
 /**/

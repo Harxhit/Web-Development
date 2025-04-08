@@ -636,3 +636,497 @@ const grp = {
 };
 
 //console.log(detect(grp));
+
+/**
+ * 🔁 Problem 1: Detect Cycle in an Undirected Graph (DFS)
+ *
+ * Problem:
+ * Given an undirected graph with V vertices and E edges,
+ * determine if the graph contains a cycle using DFS.
+ *
+ * Input:
+ * V = 5
+ * edges = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 1]]
+ *
+ * Output:
+ * true
+ *
+ * Explanation:
+ * There is a cycle: 1 → 2 → 3 → 4 → 1
+ */
+
+const detectCycleDFS = (edges) => {
+  const graph = buildGraph(edges);
+  const visited = new Set();
+
+  const dfs = (node, parent) => {
+    visited.add(node);
+    for (let neighbour of graph[node]) {
+      if (!visited.has(neighbour)) {
+        if (dfs(neighbour, node)) return true;
+        else if (neighbour !== parent) return true;
+      }
+    }
+    return false;
+  };
+
+  const length = Object.keys(graph).length;
+  for (let node = 0; node < length; node++) {
+    if (!visited.has(node)) {
+      if (dfs(node, -1)) return true;
+    }
+  }
+  return false;
+};
+
+const buildGraph = (edges) => {
+  const graph = {};
+  edges.forEach(([u, v]) => {
+    if (!graph[u]) graph[u] = [];
+    if (!graph[v]) graph[v] = [];
+
+    graph[u].push(v);
+    graph[v].push(u);
+  });
+
+  return graph;
+};
+
+// console.log(
+//   detectCycleDFS([
+//     [0, 1],
+//     [1, 2],
+//     [2, 3],
+//     [3, 4],
+//     [4, 1],
+//   ])
+// );
+
+/**
+ * 🔁 Problem 2: Detect Cycle in Disconnected Graph (DFS)
+ *
+ * Problem:
+ * Given an undirected graph that may be disconnected,
+ * detect if any of its components contain a cycle using DFS.
+ *
+ * Input:
+ * V = 6
+ * edges = [[0, 1], [1, 2], [3, 4]]
+ *
+ * Output:
+ * false
+ *
+ * Explanation:
+ * No component contains a cycle.
+ */
+
+const detectCycleComponentDFS = (edges) => {
+  const graph = buildGraph(edges);
+  const visited = new Set();
+
+  const dfs = (node, parent) => {
+    if (!visited.has(node)) return false;
+    visited.add(node);
+
+    for (let neighbour of graph[node]) {
+      if (!visited.has(neighbour)) {
+        if (dfs(neighbour, node)) return true;
+        else if (parent !== neighbour) return true;
+      }
+    }
+    return false;
+  };
+  const length = Object.keys(graph).length;
+  for (let node = 0; node < length; node++) {
+    if (!visited.has(node)) {
+      if (dfs(node, -1)) return true;
+    }
+  }
+  return false;
+};
+// console.log(
+//   detectCycleComponentDFS([
+//     [0, 1],
+//     [1, 2],
+//     [3, 4],
+//   ])
+// );
+
+/**
+ * 🔁 Problem 3: Detect Cycle in Tree Structure
+ *
+ * Problem:
+ * Given an undirected graph with n nodes and n-1 edges,
+ * check if it contains a cycle (i.e., check if it is not a tree).
+ *
+ * Input:
+ * n = 5
+ * edges = [[0, 1], [0, 2], [1, 3], [1, 4]]
+ *
+ * Output:
+ * false
+ *
+ * Explanation:
+ * Tree structure has no cycles.
+ */
+
+const detectCycleTreeDFS = (edges) => {
+  const visited = new Set();
+  const graph = buildGraph(edges);
+
+  const dfs = (node, parent) => {
+    if (!visited.has(node)) return false;
+    visited.add(node);
+    for (let neighbour of graph[node]) {
+      if (!visited.has(neighbour)) {
+        if (dfs(neighbour, node)) return true;
+        else if (parent !== neighbour) return true;
+      }
+    }
+    return false;
+  };
+
+  const length = Object.keys(graph).length;
+  for (let i = 0; i < length; i++) {
+    if (!visited.has(i)) {
+      if (dfs(i, -1)) return true;
+    }
+  }
+  return false;
+};
+// console.log(
+//   detectCycleTreeDFS([
+//     [0, 1],
+//     [0, 2],
+//     [1, 3],
+//     [1, 4],
+//   ])
+// );
+
+/**
+ * 🔁 Problem 4: Find All Nodes Part of a Cycle
+ *
+ * Problem:
+ * Return all nodes that are part of any cycle in an undirected graph.
+ *
+ * Input:
+ * V = 6
+ * edges = [[0, 1], [1, 2], [2, 0], [3, 4]]
+ *
+ * Output:
+ * [0, 1, 2]
+ *
+ * Explanation:
+ * Nodes 0, 1, and 2 form a cycle.
+ */
+
+const findCycleNodes = (vertices, edges) => {
+  const graph = buildGraph(edges);
+  const visited = new Set();
+  const hasCycle = new Set();
+
+  const dfs = (node, parent, path) => {
+    visited.add(node);
+    path.push(node);
+    if (!graph[node]) return;
+
+    for (let neighbour of graph[node]) {
+      if (!visited.has(neighbour)) {
+        dfs(neighbour, node, path);
+      } else if (neighbour !== parent && path.includes(neighbour)) {
+        const index = path.indexOf(neighbour);
+        for (let i = index; i < path.length; i++) {
+          hasCycle.add(path[i]);
+        }
+      }
+    }
+
+    path.pop();
+  };
+
+  for (let i = 0; i < vertices; i++) {
+    if (!visited.has(i)) {
+      dfs(i, -1, []);
+    }
+  }
+
+  return Array.from(hasCycle);
+};
+
+// console.log(
+//   findCycleNodes(6, [
+//     [0, 1],
+//     [1, 2],
+//     [2, 0],
+//     [3, 4],
+//   ])
+// );
+
+/**
+ * 🔁 Problem 5: Detect Self-Loop and Multi-Edges as Cycles
+ *
+ * Problem:
+ * Given an undirected graph, detect if there’s a self-loop (edge from a node to itself)
+ * or multiple edges between the same two nodes which form a cycle.
+ *
+ * Input:
+ * V = 4
+ * edges = [[0, 1], [1, 2], [2, 0], [0, 0]]
+ *
+ * Output:
+ * true
+ *
+ * Explanation:
+ * Self-loop on node 0 is a cycle.
+ */
+
+// console.log(
+//   detectCycleDFS([
+//     [0, 1],
+//     [1, 2],
+//     [2, 0],
+//     [0, 0],
+//   ])
+// );
+
+/** Topological sort => Topological Sort is a linear ordering of the vertices in a Directed Acyclic Graph (DAG) such that for every directed edge u → v, u comes before v in the ordering.
+When to Use It?
+You use topological sort when:
+You want to schedule tasks that depend on each other.
+You're trying to resolve dependencies (like package managers, build systems).
+You're figuring out an order of courses, projects, or processes where some things must happen before others.
+ **/
+
+/**
+ * Problem 1: Course Schedule
+ * ---------------------------------
+ * Description:
+ * Given numCourses and prerequisites list, check if you can finish all courses.
+ * This is equivalent to detecting a cycle in a directed graph.
+ *
+ * Input:
+ * numCourses = 4
+ * prerequisites = [[1,0],[2,1],[3,2]]
+ *
+ * Output:
+ * true
+ *
+ * Explanation:
+ * One possible order is [0,1,2,3], so it’s possible to finish all courses.
+ */
+
+const topo = (numCourses, edges) => {
+  let topoArray = [];
+  const graph = buildAdjanceyList(numCourses, edges);
+  const visited = new Set();
+  const recursion = new Set();
+
+  const detectCycleTopo = (node) => {
+    visited.add(node);
+    recursion.add(node);
+    for (let neighbour of graph[node]) {
+      if (!visited.has(neighbour)) {
+        if (detectCycleTopo(neighbour)) {
+          return true;
+        } else if (recursion.has(neighbour)) {
+          return true;
+        }
+      }
+    }
+    recursion.delete(node);
+    topoArray.push(node);
+    return false;
+  };
+
+  for (let node = 0; node < numCourses; node++) {
+    if (!visited.has(node)) {
+      if (detectCycleTopo(node)) return false;
+    }
+  }
+  return topoArray.length === numCourses;
+};
+
+const buildAdjanceyList = (numCourses, edges) => {
+  let graph = {};
+
+  for (let i = 0; i < numCourses; i++) {
+    graph[i] = [];
+  }
+  edges.forEach(([u, v]) => {
+    graph[u].push(v);
+  });
+
+  return graph;
+};
+
+// console.log(
+//   topo(4, [
+//     [1, 0],
+//     [2, 1],
+//     [3, 2],
+//   ])
+// );
+
+/**
+ * Problem 2: Course Schedule II
+ * ---------------------------------
+ * Description:
+ * Similar to Problem 1, but now return the actual order of course completion.
+ * If multiple valid orders exist, return any.
+ *
+ * Input:
+ * numCourses = 4
+ * prerequisites = [[1,0],[2,1],[3,2]]
+ *
+ * Output:
+ * [0,1,2,3]
+ *
+ * Explanation:
+ * Topological sort of the course dependency graph.
+ */
+
+const findOrder = (numCourses, edges) => {
+  const topoArray = [];
+  const graph = buildGraph(numCourses, edges);
+  const visited = new Set();
+  const recursion = new Set();
+
+  const dfs = (node) => {
+    visited.add(node);
+    recursion.add(node);
+    for (let neighbour of graph[node]) {
+      if (!visited.has(neighbour)) {
+        if (dfs(neighbour)) return true;
+      } else if (recursion.has(neighbour)) return true;
+    }
+    recursion.delete(node);
+    topoArray.push(node);
+    return false;
+  };
+
+  for (let i = 0; i < numCourses; i++) {
+    if (!visited.has(i)) {
+      if (dfs(i)) return false;
+    }
+  }
+
+  function buildGraph(numCourses, edges) {
+    const graph = {};
+    for (let i = 0; i < numCourses; i++) {
+      graph[i] = [];
+    }
+    edges.forEach(([u, v]) => {
+      graph[v].push(u);
+    });
+    return graph;
+  }
+
+  return topoArray.reverse();
+};
+
+// console.log(
+//   findOrder(4, [
+//     [1, 0],
+//     [2, 1],
+//     [3, 2],
+//   ])
+// );
+
+/**
+ * Problem 3: Alien Dictionary
+ * ---------------------------------
+ * Description:
+ * Given a sorted list of words from an alien dictionary, return a string representing
+ * the order of characters in the alien language. Return "" if ordering is not possible.
+ *
+ * Input:
+ * words = ["wrt", "wrf", "er", "ett", "rftt"]
+ *
+ * Output:
+ * "wertf"
+ *
+ * Explanation:
+ * Order of letters: w -> e -> r -> t -> f
+ */
+
+/**
+ * Problem 4: Minimum Time to Complete All Tasks
+ * ---------------------------------
+ * Description:
+ * Given a list of tasks and their dependencies, each task takes unit time. Return the
+ * minimum time required to finish all tasks with parallel execution allowed.
+ *
+ * Input:
+ * n = 3
+ * relations = [[1,3],[2,3]]
+ * time = [3,2,5]
+ *
+ * Output:
+ * 8
+ *
+ * Explanation:
+ * Task 3 depends on 1 and 2. So, max(time[1], time[2]) + time[3] = max(3,2) + 5 = 8
+ */
+
+function minTime(n, relations, time) {
+  const graph = buildGraph(n, relations);
+  const visited = new Set();
+  const finshTime = new Array(n).fill(0);
+
+  const dfs = (node) => {
+    if (visited.has(node)) return -1;
+    visited.add(node);
+
+    let maxTime = 0;
+    for (let neighbour of graph[node]) {
+      const sum = dfs(neighbour);
+      if (sum === -1) return -1;
+      maxTime = Math.max(maxTime, sum);
+    }
+    visited.delete(node);
+    finshTime[node] = time[node] + maxTime;
+    return finshTime[node];
+  };
+
+  function buildGraph(vertices, edges) {
+    const graph = {};
+    for (let i = 0; i < vertices; i++) {
+      graph[i] = [];
+    }
+    edges.forEach(([u, v]) => graph[v - 1].push(u - 1));
+    return graph;
+  }
+
+  let result = 0;
+  for (let i = 0; i < n; i++) {
+    let temp = dfs(i);
+    if (temp === -1) return -1;
+    result = Math.max(result, temp);
+  }
+  return result;
+}
+const time = [3, 2, 5];
+const n = 3;
+const relations = [
+  [1, 3],
+  [2, 3],
+];
+
+console.log(minTime(n, relations, time));
+/**
+ * Problem 5: All Topological Sorts of a DAG
+ * ---------------------------------
+ * Description:
+ * Given a DAG with N nodes and edges, print all possible topological orderings.
+ *
+ * Input:
+ * N = 4
+ * edges = [[0,1],[0,2],[1,3],[2,3]]
+ *
+ * Output:
+ * [0,1,2,3]
+ * [0,2,1,3]
+ *
+ * Explanation:
+ * Both orders are valid topological sorts of the graph.
+ */
