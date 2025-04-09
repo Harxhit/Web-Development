@@ -1112,7 +1112,8 @@ const relations = [
   [2, 3],
 ];
 
-console.log(minTime(n, relations, time));
+//console.log(minTime(n, relations, time));
+
 /**
  * Problem 5: All Topological Sorts of a DAG
  * ---------------------------------
@@ -1130,3 +1131,446 @@ console.log(minTime(n, relations, time));
  * Explanation:
  * Both orders are valid topological sorts of the graph.
  */
+
+const topologicalOrder = (n, edges) => {
+  const graph = buildGraph(n, edges);
+  const visited = new Set();
+  const inDegree = new Array(n).fill(0);
+
+  for (let [u, v] of edges) {
+    inDegree[v]++;
+  }
+
+  const result = [];
+
+  const dfs = (path) => {
+    let flag = false;
+
+    for (let i = 0; i < n; i++) {
+      if (!visited.has(i) && inDegree[i] === 0) {
+        visited.add(i);
+        path.push(i);
+
+        for (let neighbour of graph[i]) {
+          inDegree[neighbour]--;
+        }
+
+        dfs(path);
+
+        visited.delete(i);
+        path.pop();
+
+        for (let neighbour of graph[i]) {
+          inDegree[neighbour]++;
+        }
+
+        flag = true;
+      }
+    }
+    if (!false && path.length === n) {
+      result.push([...path]);
+    }
+  };
+
+  dfs([]);
+
+  function buildGraph(n, edges) {
+    const graph = {};
+    for (let i = 0; i < n; i++) {
+      graph[i] = [];
+    }
+
+    edges.forEach(([u, v]) => graph[u].push(v));
+    return graph;
+  }
+
+  return result;
+};
+
+// console.log(
+//   topologicalOrder(4, [
+//     [0, 1],
+//     [0, 2],
+//     [1, 3],
+//     [2, 3],
+//   ])
+// );
+
+/** 
+1. Disjoint Sets
+Two sets are disjoint if they have no elements in common.
+In graphs, this means the nodes are in different connected components (no path between them).
+
+✅ Example:
+{0,1} and {2,3} → Disjoint sets in the graph if there's no edge connecting them. 
+
+2. Joint Sets
+Two sets are joint if they share at least one node or there is a path between the nodes in both sets.
+In graphs, it means they are in the same connected component.
+
+✅ Example:
+If 0 is connected to 1, and 1 is connected to 2, then {0,1,2} is a joint set.
+
+ 3. Union Operation
+The union operation is used to merge two disjoint sets into one.
+In graphs, it means connecting two nodes with an edge.
+
+✅ Example:
+union(2, 3) → Connects nodes 2 and 3, merging their sets.
+he find operation tells us which set a node belongs to.
+It returns the representative (root) of the set.
+
+4. Find Operation
+The find operation tells us which set a node belongs to.
+It returns the representative (root) of the set.
+
+✅ Example:
+find(4) might return 1, meaning node 4 belongs to the component rooted at 1.
+
+ 5. Cycle Detection
+When performing union(x, y), if x and y already belong to the same set (i.e., find(x) === find(y)),
+then connecting them again would create a cycle.
+
+6. Union by Rank
+To keep the tree balanced, always attach the smaller ranked tree to the bigger one.
+
+7. Path Compression
+During find(), update the parent of every node in the path to directly point to the root.
+This makes future queries faster.
+**/
+
+/**
+ * PROBLEM 1: Check if Two Nodes are Connected (Joint)
+ *
+ * Given an undirected graph with n nodes and edges,
+ * and a query (u, v), determine whether u and v are in the same connected component.
+ *
+ * Input:
+ * n = 5
+ * edges = [[0, 1], [1, 2], [3, 4]]
+ * query = [0, 2]
+ *
+ * Output:
+ * true
+ */
+
+const checkConnectedNode = (n, edges, query) => {
+  const parent = [];
+
+  for (let i = 0; i < n; i++) {
+    parent[i] = i;
+  }
+
+  const find = (x) => {
+    if (parent[x] !== x) {
+      parent[x] = find(parent[x]);
+    }
+    return parent[x];
+  };
+
+  const union = (u, v) => {
+    const rootX = find(u);
+    const rootY = find(v);
+
+    if (rootX === rootY) return false; //Cycle detected;
+
+    parent[rootX] = rootY;
+    return true;
+  };
+
+  for (let [u, v] of edges) {
+    union(u, v);
+  }
+
+  return find(query[0]) === find(query[1]);
+};
+// console.log(
+//   checkConnectedNode(
+//     5,
+//     [
+//       [0, 1],
+//       [1, 2],
+//       [3, 4],
+//     ],
+//     [0, 2]
+//   )
+// );
+
+/**
+ * PROBLEM 2: Count Number of Disjoint Sets
+ *
+ * Given a graph with n nodes and a list of edges,
+ * count how many disconnected components (disjoint sets) the graph has.
+ *
+ * Input:
+ * n = 6
+ * edges = [[0, 1], [2, 3], [4, 5]]
+ *
+ * Output:
+ * 3
+ */
+
+const disconnectedComponents = (n, edges) => {
+  const parent = [];
+
+  for (let i = 0; i < n; i++) {
+    parent[i] = i;
+  }
+  const find = (x) => {
+    if (parent[x] !== x) {
+      parent[x] = find(parent[x]);
+    }
+    return parent[x];
+  };
+
+  const union = (u, v) => {
+    const rootX = find(u);
+    const rootY = find(v);
+
+    if (rootX === rootY) return false;
+
+    parent[rootY] === rootX;
+    return true;
+  };
+
+  let count = n;
+  for (let [u, v] of edges) {
+    union(u, v);
+    count--;
+  }
+
+  return count;
+};
+
+// console.log(
+//   disconnectedComponents(6, [
+//     [0, 1],
+//     [2, 3],
+//     [4, 5],
+//   ])
+// );
+
+/**
+ * PROBLEM 3: Detect Cycle in Undirected Graph
+ *
+ * Given n nodes and a list of edges in an undirected graph,
+ * determine whether the graph contains a cycle using union-find.
+ *
+ * Input:
+ * n = 4
+ * edges = [[0, 1], [1, 2], [2, 3], [1, 3]]
+ *
+ * Output:
+ * true
+ */
+
+const findCycleUnDirectedGraph = (n, edges) => {
+  const graph = buildGraph(edges);
+  const visited = new Set();
+
+  const dfs = (node, parent) => {
+    visited.add(node);
+    for (let neighbour of graph[node]) {
+      if (!visited.has(neighbour)) {
+        if (dfs(neighbour, node)) return true;
+      } else if (neighbour !== parent) return true;
+    }
+    return false;
+  };
+
+  function buildGraph(edges) {
+    const graph = {};
+
+    edges.forEach(([u, v]) => {
+      if (!graph[u]) graph[u] = [];
+      if (!graph[v]) graph[v] = [];
+
+      graph[u].push(v);
+      graph[v].push(u);
+    });
+    return graph;
+  }
+  for (let i = 0; i < n; i++) {
+    if (!visited.has()) {
+      if (dfs(i, -1)) return true;
+    }
+  }
+  return false;
+};
+
+// console.log(
+//   findCycleUnDirectedGraph(4, [
+//     [0, 1],
+//     [1, 2],
+//     [2, 3],
+//     [1, 3],
+//   ])
+// );
+
+/**
+ * PROBLEM 4: Dynamic Connectivity Queries
+ *
+ * You are given a sequence of union operations and connectivity queries.
+ * After performing each union, answer whether two nodes are connected.
+ *
+ * Input:
+ * n = 5
+ * operations = [
+ *   ["union", 0, 1],
+ *   ["union", 1, 2],
+ *   ["connected", 0, 2],
+ *   ["connected", 3, 4]
+ * ]
+ *
+ * Output:
+ * [true, false]
+ */
+
+function dynamicConnectivity(n, operations) {
+  const parent = [];
+  const result = [];
+  for (let i = 0; i < n; i++) {
+    parent[i] = i;
+  }
+
+  function find(x) {
+    if (parent[x] !== x) parent[x] = find(parent[x]);
+    return parent[x];
+  }
+
+  function union(u, v) {
+    const rootX = find(u);
+    const rootY = find(v);
+
+    if (rootX === rootY) return false;
+
+    parent[rootX] = rootY;
+    return true;
+  }
+  for (let [type, u, v] of operations) {
+    if (type === "connected") {
+      result.push(find(u) === find(v));
+    }
+    if (type === "union") {
+      union(u, v);
+    }
+  }
+  return result;
+}
+const num = 5;
+const operations = [
+  ["union", 0, 1],
+  ["union", 1, 2],
+  ["connected", 0, 2],
+  ["connected", 3, 4],
+];
+//console.log(dynamicConnectivity(num, operations));
+/**
+ * PROBLEM 5: Find Number of Provinces
+ *
+ * Given an adjacency matrix where matrix[i][j] = 1 means cities i and j are directly connected,
+ * return the number of provinces (disconnected groups of cities).
+ *
+ * Input:
+ * isConnected = [
+ *   [1, 1, 0],
+ *   [1, 1, 0],
+ *   [0, 0, 1]
+ * ]
+ *
+ * Output:
+ * 2
+ */
+
+function numberOfProviences(operation) {
+  const parent = [];
+  const uniqueParents = new Set();
+
+  for (let i = 0; i < operation.length; i++) {
+    parent[i] = i;
+  }
+
+  function find(x) {
+    if (parent[x] !== x) parent[x] = find(parent[x]);
+    return parent[x];
+  }
+
+  function union(u, v) {
+    const rootX = find(u);
+    const rootY = find(v);
+
+    if (rootX === rootY) return false;
+
+    parent[rootX] = rootY;
+    return true;
+  }
+
+  for (let i = 0; i < operation.length; i++) {
+    for (let j = i + 1; j < operation.length; j++) {
+      if (operation[i][j] === 1) {
+        union(i, j);
+      }
+    }
+  }
+
+  for (let i = 0; i < operation.length; i++) {
+    uniqueParents.add(find(i));
+  }
+
+  return uniqueParents.size;
+}
+
+const isConnected = [
+  [1, 1, 0],
+  [1, 1, 0],
+  [0, 0, 1],
+];
+
+//console.log(numberOfProviences(isConnected));
+
+//------------------------------------Kruskal’s Algorithm----------------------------------------------
+
+function kruskal(n, edges) {
+  edges.sort((a, b) => a[2] - b[2]);
+
+  const parent = [];
+  for (let i = 0; i < n; i++) {
+    parent[i] = i;
+  }
+
+  function find(x) {
+    if (parent[x] !== x) parent[x] = find(parent[x]);
+    return parent[x];
+  }
+
+  function union(u, v) {
+    const rootU = find(u);
+    const rootV = find(v);
+    if (rootU === rootV) return false;
+    parent[rootU] = rootV;
+    return true;
+  }
+
+  const mst = [];
+  let totalWeight = 0;
+
+  for (let [u, v, w] of edges) {
+    if (union(u, v)) {
+      mst.push([u, v, w]);
+      totalWeight += w;
+    }
+  }
+
+  return { mst, totalWeight };
+}
+
+// Example
+const operation = [
+  [0, 1, 10],
+  [0, 2, 6],
+  [0, 3, 5],
+  [1, 3, 15],
+  [2, 3, 4],
+];
+
+console.log(kruskal(4, operation));

@@ -1367,9 +1367,132 @@ var findOrder = function (numCourses, prerequisites) {
   return topo.reverse();
 };
 
-/**/
-/**/
-/**/
-/**/
+/*
+Question 45: Number of Provinces
+There are n cities. Some of them are connected, while some are not. If city a is connected directly with city b, and city b is connected directly with city c, then city a is connected indirectly with city c.
+A province is a group of directly or indirectly connected cities and no other cities outside of the group.
+You are given an n x n matrix isConnected where isConnected[i][j] = 1 if the ith city and the jth city are directly connected, and isConnected[i][j] = 0 otherwise.
+Return the total number of provinces.
+Example 1:
+Input: isConnected = [[1,1,0],[1,1,0],[0,0,1]]
+Output: 2
+*/
+/**
+ * @param {number[][]} isConnected
+ * @return {number}
+ */
+var findCircleNum = function (isConnected) {
+  const parent = [];
+  const length = isConnected.length;
 
+  for (let i = 0; i < length; i++) {
+    parent[i] = i;
+  }
+
+  function find(x) {
+    if (parent[x] !== x) parent[x] = find(parent[x]);
+    return parent[x];
+  }
+
+  function union(u, v) {
+    const rootX = find(u);
+    const rootY = find(v);
+
+    if (rootX === rootY) return false;
+
+    parent[rootX] = rootY;
+    return true;
+  }
+
+  for (let i = 0; i < length; i++) {
+    for (let j = i + 1; j < length; j++) {
+      if (isConnected[i][j] === 1) {
+        union(i, j);
+      }
+    }
+  }
+  const uniqueParents = new Set();
+
+  for (let i = 0; i < length; i++) {
+    uniqueParents.add(find(i));
+  }
+
+  return uniqueParents.size;
+};
+/*
+Question 46 : Minimum Cost to connect All points
+You are given an array points representing integer coordinates of some points on a 2D-plane, where points[i] = [xi, yi].
+The cost of connecting two points [xi, yi] and [xj, yj] is the manhattan distance between them: |xi - xj| + |yi - yj|, where |val| denotes the absolute value of val.
+Return the minimum cost to make all points connected. All points are connected if there is exactly one simple path between any two points.
+Example 1:
+Input: points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+Output: 20
+Explanation: 
+We can connect the points as shown above to get the minimum cost of 20.
+Notice that there is a unique path between every pair of points.
+*/
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
+var minCostConnectPoints = function (points) {
+  const parent = [];
+  for (let i = 0; i < points.length; i++) {
+    parent[i] = i;
+  }
+  function find(x) {
+    if (parent[x] !== x) parent[x] = find(parent[x]);
+    return parent[x];
+  }
+  function union(u, v) {
+    const x = find(u);
+    const y = find(v);
+
+    if (x === y) return false;
+    parent[x] = y;
+    return true;
+  }
+
+  const edge = [];
+
+  for (let i = 0; i < points.length; i++) {
+    for (let j = i + 1; j < points.length; j++) {
+      let dist =
+        Math.abs(points[i][0] - points[j][0]) +
+        Math.abs(points[i][1] - points[j][1]);
+      edge.push([dist, i, j]);
+    }
+  }
+  edge.sort((a, b) => a[0] - b[0]);
+
+  let total = 0;
+  for (let [dist, u, v] of edge) {
+    if (union(u, v)) {
+      total += dist;
+    }
+  }
+
+  return total;
+};
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
 /**/
