@@ -353,6 +353,23 @@ Output:
 Balanced  
 */
 
+function balancedParenthese(string) {
+  let stack = [];
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === "(" || string[i] === "{" || string[i] === "[") {
+      stack.push(string[i]);
+    } else if (string[i] === ")" || string[i] === "}" || string[i] === "]") {
+      if (stack.length === 0) return "Unbalanced";
+      let pop = stack.pop();
+      if (string[i] === ")" && pop !== "(") return "Unbalanced";
+      if (string[i] === "}" && pop !== "{") return "Unbalanced";
+      if (string[i] === "]" && pop !== "[") return "Unbalanced";
+    }
+  }
+  return "Balanced";
+}
+console.log(balancedParenthese("({[]})"));
+
 /** 8. Reverse a string using a stack. */
 /**  
 Input:  
