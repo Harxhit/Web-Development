@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather Card</title>
+    <link rel="stylesheet" href="/tailwind/public/style.css" />
+  </head>
+  <body
+    class="bg-gradient-to-br from-blue-400 to-indigo-600 min-h-screen flex items-center justify-center"
+  >
+    <div
+      class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8 shadow-xl w-80 text-center text-white"
+    >
+      <!-- Search Input and Button -->
+      <div class="mb-6 flex gap-2">
+        <input
+          id="cityInput"
+          type="text"
+          placeholder="Enter city..."
+          class="flex-1 p-2 rounded-xl text-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+        />
+        <button
+          id="searchButton"
+          class="px-4 bg-white text-indigo-600 font-semibold rounded-xl hover:bg-indigo-100 transition"
+        >
+          Show
+        </button>
+      </div>
+
+      <!-- Weather Info -->
+      <div class="mb-4">
+        <h2 id="cityName" class="text-2xl font-bold">New York City</h2>
+        <p id="currentDate" class="text-sm">Saturday, April 26</p>
+      </div>
+
+      <div class="flex flex-col items-center justify-center mb-6">
+        <img
+          id="weatherIcon"
+          src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png"
+          alt="Weather Icon"
+          class="w-20 h-20 mb-2"
+        />
+        <h1 id="temperature" class="text-5xl font-bold">22°C</h1>
+        <p id="weatherCondition" class="text-lg">Sunny</p>
+      </div>
+
+      <div class="flex justify-between text-sm mt-4">
+        <div class="flex flex-col items-center">
+          <span>🌡️</span>
+          <span id="tempHigh">High: 26°C</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span>❄️</span>
+          <span id="tempLow">Low: 18°C</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span>💨</span>
+          <span id="windSpeed">Wind: 15km/h</span>
+        </div>
+      </div>
+
+      <!-- Error Message at Bottom -->
+      <p id="errorMessage" class="mt-6 text-red-500 text-sm">
+        <!-- Error like "City not found" will appear here -->
+      </p>
+    </div>
+    <script src="/javascript/Projects/Weather/script.js"></script>
+  </body>
+</html>
