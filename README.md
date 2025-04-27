@@ -48,6 +48,14 @@ Welcome to my web development journey! This README highlights the skills I have 
 - **Blog Page** : This project is a custom desgined for a AnimeTV blog page which is built only HTML and TAILWINDCSS . It provides visually appealing and responsive interface to users .
 - **Destination Page** : This project is a custom desgined for a travel page which is built only HTML and TAILWINDCSS . It provides information about travel services, packages, and destinations. The website features interactive sections such as travel service offerings, popular locations, and customizable travel packages.
 
+### **JavaScript**
+
+- **To Do List** : A simple and responsive To-Do List application built with HTML, Tailwind CSS, and JavaScript. This project allows users to add tasks to a list and manage their tasks in a minimalistic and clean interface.
+
+- **Weather** :A beautiful and simple Weather Card web application built with **HTML**, **TailwindCSS**, and **JavaScript**.  
+It allows users to search for any city and displays the current weather, temperature, wind speed, and more!
+
+
 ### **TailwindCSS & Bootstrap**
 
 - **Responsive Designs**: Built layouts optimized for all devices using TailwindCSS.
