@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple eCommerce</title>
+    <link rel="stylesheet" href="/tailwind/public/style.css" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold text-center mb-6" id="page-title">
+        Simple eCommerce
+      </h1>
+
+      <!-- Products List -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        id="product-list"
+      >
+        <!-- Product 1 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg" id="product-1">
+          <img
+            src="/assests/images/product1.jpg"
+            alt="Product 1"
+            class="w-full h-48 object-cover rounded-lg mb-4"
+            id="product-1-img"
+          />
+
+          <h3 class="text-xl font-semibold mb-2" id="product-1-name">
+            Anime Figures
+          </h3>
+          <p class="text-gray-700 mb-4" id="product-1-price">₹500</p>
+          <button
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            id="product-1-btn"
+          >
+            Add to Cart
+          </button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg" id="product-2">
+          <img
+            src="/assests/images/product2.webp"
+            alt="Product 2"
+            class="w-full h-48 object-cover rounded-lg mb-4"
+            id="product-2-img"
+          />
+          <h3 class="text-xl font-semibold mb-2" id="product-2-name">
+            Jacob & Co. watches
+          </h3>
+          <p class="text-gray-700 mb-4" id="product-2-price">₹300</p>
+          <button
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            id="product-2-btn"
+          >
+            Add to Cart
+          </button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg" id="product-3">
+          <img
+            src="/assests/images/product3.jpg"
+            alt="Product 3"
+            class="w-full h-48 object-cover rounded-lg mb-4"
+            id="product-3-img"
+          />
+          <h3 class="text-xl font-semibold mb-2" id="product-3-name">
+            Nike Dior Shoes
+          </h3>
+          <p class="text-gray-700 mb-4" id="product-3-price">₹700</p>
+          <button
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            id="product-3-btn"
+          >
+            Add to Cart
+          </button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg" id="product-4">
+          <img
+            src="/assests/images/product4.webp"
+            alt="Product 4"
+            class="w-full h-48 object-cover rounded-lg mb-4"
+            id="product-4-img"
+          />
+          <h3 class="text-xl font-semibold mb-2" id="product-4-name">
+            Loui Vuitton Bags
+          </h3>
+          <p class="text-gray-700 mb-4" id="product-4-price">₹600</p>
+          <button
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            id="product-4-btn"
+          >
+            Add to Cart
+          </button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg" id="product-5">
+          <img
+            src="/assests/images/product5.jpg"
+            alt="Product 5"
+            class="w-full h-48 object-cover rounded-lg mb-4"
+            id="product-5-img"
+          />
+          <h3 class="text-xl font-semibold mb-2" id="product-5-name">Basket</h3>
+          <p class="text-gray-700 mb-4" id="product-5-price">₹400</p>
+          <button
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            id="product-5-btn"
+          >
+            Add to Cart
+          </button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg" id="product-6">
+          <img
+            src="/assests/images/product6.jpg"
+            alt="Product 6"
+            class="w-full h-48 object-cover rounded-lg mb-4"
+            id="product-6-img"
+          />
+          <h3 class="text-xl font-semibold mb-2" id="product-6-name">
+            Laptops
+          </h3>
+          <p class="text-gray-700 mb-4" id="product-6-price">₹800</p>
+          <button
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            id="product-6-btn"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart Section -->
+      <div class="mt-8 p-4 bg-white rounded-lg shadow-lg" id="cart-section">
+        <h2 class="text-2xl font-semibold mb-4" id="cart-title">Cart</h2>
+        <ul id="cart-items"></ul>
+        <button
+          class="bg-green-500 text-white px-4 py-2 rounded-lg hidden"
+          id="checkout-btn"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+    <script src="/javascript/Projects/Ecommerce/script.js"></script>
+  </body>
+</html>
