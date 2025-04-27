@@ -53,8 +53,10 @@ Welcome to my web development journey! This README highlights the skills I have 
 - **To Do List** : A simple and responsive To-Do List application built with HTML, Tailwind CSS, and JavaScript. This project allows users to add tasks to a list and manage their tasks in a minimalistic and clean interface.
 
 - **Weather** :A beautiful and simple Weather Card web application built with **HTML**, **TailwindCSS**, and **JavaScript**.  
-It allows users to search for any city and displays the current weather, temperature, wind speed, and more!
+  It allows users to search for any city and displays the current weather, temperature, wind speed, and more!
 
+- **Simple eCommerce** :This is a simple and responsive eCommerce website built using **HTML**, **Tailwind CSS**, and **JavaScript**.  
+  It allows users to browse products, add them to a cart, and view the cart summary.
 
 ### **TailwindCSS & Bootstrap**
 
