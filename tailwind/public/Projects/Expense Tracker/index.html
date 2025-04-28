@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="/tailwind/public/style.css" />
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <h1 class="text-2xl font-bold text-center mb-6">Expense Tracker</h1>
+
+      <form id="expense-form" class="space-y-4">
+        <div>
+          <label for="title" class="block text-gray-700">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            required
+            class="w-full mt-1 p-2 border rounded-xl focus:ring-2 focus:ring-blue-500"
+            placeholder="e.g., Grocery"
+          />
+        </div>
+
+        <div>
+          <label for="amount" class="block text-gray-700">Amount ($)</label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            required
+            class="w-full mt-1 p-2 border rounded-xl focus:ring-2 focus:ring-blue-500"
+            placeholder="e.g., 50"
+          />
+        </div>
+
+        <button
+          id="submit"
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-xl"
+        >
+          Add Expense
+        </button>
+      </form>
+
+      <div class="mt-8">
+        <h2 class="text-xl font-semibold mb-4">Expenses</h2>
+        <ul id="expense-list" class="space-y-2">
+          <!-- Expenses will be listed here -->
+        </ul>
+      </div>
+
+      <div class="mt-6 p-4 bg-gray-100 rounded-xl text-center">
+        <p class="text-gray-600">
+          Total: <span id="total" class="font-bold text-gray-800">$0</span>
+        </p>
+      </div>
+      <p class="text-red-600 mt-4 mb-4 hidden" id="error-message"></p>
+    </div>
+    <script src="/javascript/Projects/Expense Tracker/script.js"></script>
+  </body>
+</html>

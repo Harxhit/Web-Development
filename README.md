@@ -58,6 +58,8 @@ Welcome to my web development journey! This README highlights the skills I have 
 - **Simple eCommerce** :This is a simple and responsive eCommerce website built using **HTML**, **Tailwind CSS**, and **JavaScript**.  
   It allows users to browse products, add them to a cart, and view the cart summary.
 
+- **Expense Tracker** : It is a simple web application to track your daily expenses. You can add expenses, view the list of added expenses, and check the total amount spent. It helps you manage and monitor your spending with a clean user interface and responsive design.
+
 ### **TailwindCSS & Bootstrap**
 
 - **Responsive Designs**: Built layouts optimized for all devices using TailwindCSS.
