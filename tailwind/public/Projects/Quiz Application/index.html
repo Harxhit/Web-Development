@@ -1,0 +1,58 @@
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Quiz</title>
+      <link rel="stylesheet" href="/tailwind/public/style.css" />
+    </head>
+    <body class="flex items-center justify-center min-h-screen bg-purple-100">
+      <div class="max-w-2xl w-full p-6 bg-white rounded-2xl shadow-lg space-y-8">
+        <div id="question-container" class="space-y-4">
+          <!-- Question text -->
+          <h2 id="question" class="text-2xl font-semibold text-gray-700">
+            Question text here
+          </h2>
+
+          <!-- Options -->
+        <!-- Options -->
+        <div id="options" class="flex flex-col gap-4">
+          <button
+            id="option1"
+            class="option-btn px-4 py-2 bg-purple-300 rounded-xl hover:bg-purple-400 transition"
+          >
+            Option 1
+          </button>
+          <button
+            id="option2"
+            class="option-btn px-4 py-2 bg-purple-300 rounded-xl hover:bg-purple-400 transition"
+          >
+            Option 2
+          </button>
+          <button
+            id="option3"
+            class="option-btn px-4 py-2 bg-purple-300 rounded-xl hover:bg-purple-400 transition"
+          >
+            Option 3
+          </button>
+          <button
+            id="option4"
+            class="option-btn px-4 py-2 bg-purple-300 rounded-xl hover:bg-purple-400 transition"
+          >
+            Option 4
+          </button>
+        </div>
+
+
+        <!-- Next button -->
+        <div class="text-right">
+          <button
+            id="nextBtn"
+            class="px-6 py-2 bg-green-500 text-white rounded-2xl hover:bg-green-600 transition"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+      <script src="/javascript/Projects/Quiz App/script.js"></script>
+    </body>
+  </html>

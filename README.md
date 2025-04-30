@@ -60,6 +60,8 @@ Welcome to my web development journey! This README highlights the skills I have 
 
 - **Expense Tracker** : It is a simple web application to track your daily expenses. You can add expenses, view the list of added expenses, and check the total amount spent. It helps you manage and monitor your spending with a clean user interface and responsive design.
 
+- **Quiz Application** : A simple yet interactive web-based quiz application built with HTML, CSS (Tailwind), and JavaScript. Test your knowledge on programming concepts with 10 multiple-choice questions.
+
 ### **TailwindCSS & Bootstrap**
 
 - **Responsive Designs**: Built layouts optimized for all devices using TailwindCSS.
