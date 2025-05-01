@@ -1,6 +1,6 @@
 # Node.js Learning Journey
 
-Welcome to my Node.js learning repository! This project is dedicated to tracking my progress as I learn Node.js, a powerful JavaScript runtime that allows me to build server-side applications. In this repository, I'll explore key concepts, work on projects, and document everything I learn along the way.
+Welcome to my Node.js learning ! This project is dedicated to tracking my progress as I learn Node.js, a powerful JavaScript runtime that allows me to build server-side applications. In this repository, I'll explore key concepts, work on projects, and document everything I learn along the way.
 
 ## Table of Contents
 
