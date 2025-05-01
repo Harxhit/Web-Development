@@ -1573,4 +1573,6 @@ const operation = [
   [2, 3, 4],
 ];
 
-console.log(kruskal(4, operation));
+//console.log(kruskal(4, operation));
+
+
