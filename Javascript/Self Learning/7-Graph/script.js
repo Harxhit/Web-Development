@@ -1575,4 +1575,258 @@ const operation = [
 
 //console.log(kruskal(4, operation));
 
+//Dijkstra's Algorithum
 
+function dijkstra(graph, start) {
+  const n = graph.length;
+  const distance = new Array(n).fill(Infinity);
+  const visited = new Array(n).fill(false);
+
+  distance[start] = 0;
+
+  for (let i = 0; i < n - 1; i++) {
+    // Find the unvisited node with smallest distance
+    let u = -1;
+    for (let j = 0; j < n; j++) {
+      if (!visited[j] && (u === -1 || distance[j] < distance[u])) {
+        u = j;
+      }
+    }
+
+    // If no nodes left to process
+    if (u === -1) break;
+
+    visited[u] = true;
+
+    // Update distances for adjacent nodes
+    for (let v = 0; v < n; v++) {
+      if (!visited[v] && graph[u][v] !== Infinity) {
+        const newDistance = distance[u] + graph[u][v];
+        if (newDistance < distance[v]) {
+          distance[v] = newDistance;
+        }
+      }
+    }
+  }
+
+  return distance;
+}
+
+// const graph = [
+//   [0, 4, 2, Infinity, Infinity],
+//   [Infinity, 0, 3, 2, 3],
+//   [Infinity, 1, 0, 4, 5],
+//   [Infinity, Infinity, Infinity, 0, Infinity],
+//   [Infinity, Infinity, Infinity, 1, 0],
+// ];
+
+// console.log(dijkstra(graph, 0));
+
+// Output: [0, 3, 2, 5, 6] (correct shortest distances from node 0)
+/**Basic Dijkstra's Shortest Path
+ * Problem: Find the shortest path from source to all nodes in a weighted graph
+ *
+ * Input:
+ * @param {number} n - Number of nodes (0 to n-1)
+ * @param {number[][]} edges - Array of [u, v, weight] representing directed edges
+ * @param {number} src - Source node
+ *
+ * Output:
+ * @return {number[]} - Array where dist[i] = shortest distance from src to node i
+ *                     Return -1 if node is unreachable
+ *
+ * Example:
+ * Input: n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], src = 0
+ * Output: [0, 2, 3]
+ */
+function shortestPathPr(n, edges, src) {
+  function makingGraph(edges) {
+    const adjList = {};
+
+    edges.forEach(([u, v, weight]) => {
+      if (!adjList[u]) {
+        adjList[u] = [];
+      }
+      adjList[u].push([v, weight]);
+
+      if (!adjList[v]) {
+        adjList[v] = [];
+      }
+      adjList[v].push([u, weight]);
+    });
+
+    return adjList;
+  }
+
+  let graph = makingGraph(edges);
+  let distances = new Array(n).fill(Infinity);
+  let visited = new Array(n).fill(false);
+
+  distances[src] = 0;
+
+  for (let i = 0; i < n - 1; i++) {
+    // Find the unvisited node with the smallest distance
+    let u = -1;
+    for (let j = 0; j < n; j++) {
+      if (!visited[j] && (u === -1 || distances[j] < distances[u])) {
+        u = j;
+      }
+    }
+
+    if (u === -1) break; // No node to visit, all nodes are visited or unreachable
+    visited[u] = true;
+
+    // Update distances for all neighbors of u
+    for (let [v, weight] of graph[u]) {
+      if (!visited[v]) {
+        const newDist = distances[u] + weight;
+        if (newDist < distances[v]) {
+          distances[v] = newDist;
+        }
+      }
+    }
+  }
+
+  return distances;
+}
+
+// console.log(
+//   shortestPathPr(
+//     3,
+//     [
+//       [0, 1, 2],
+//       [1, 2, 1],
+//       [0, 2, 4],
+//     ],
+//     0
+//   )
+// );
+
+/**Network delay time
+ * Problem: Find how long it takes for all nodes to receive a signal from source
+ *
+ * Input:
+ * @param {number[][]} times - [u, v, w] where w is transmission time
+ * @param {number} n - Number of nodes (1 to n)
+ * @param {number} k - Source node
+ *
+ * Output:
+ * @return {number} - Maximum time for signal to reach all nodes, -1 if impossible
+ *
+ * Example:
+ * Input: times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
+ * Output: 2
+ */
+var networkDelayTime = function (times, n, k) {
+  function adjacencyList(edges) {
+    let graph = {};
+    for (let i = 1; i <= n; i++) {
+      graph[i] = [];
+    }
+    edges.forEach(([u, v, weight]) => {
+      graph[u].push([v, weight]);
+    });
+    return graph;
+  }
+
+  let graph = adjacencyList(times);
+  let visited = new Array(n + 1).fill(false);
+  let distances = new Array(n + 1).fill(Infinity);
+
+  distances[k] = 0;
+
+  for (let i = 0; i < n; i++) {
+    let u = -1;
+    for (let j = 1; j <= n; j++) {
+      if (!visited[j] && (u === -1 || distances[j] < distances[u])) {
+        u = j;
+      }
+    }
+
+    if (u === -1) break;
+    visited[u] = true;
+
+    for (let [v, weight] of graph[u]) {
+      const newDistance = distances[u] + weight;
+      if (newDistance < distances[v]) {
+        distances[v] = newDistance;
+      }
+    }
+  }
+
+  let answer = -Infinity;
+  for (let i = 1; i <= n; i++) {
+    if (answer < distances[i]) {
+      answer = distances[i];
+    }
+  }
+  return answer === Infinity ? -1 : answer;
+};
+
+let times = [
+  [2, 1, 1],
+  [2, 3, 1],
+  [3, 4, 1],
+];
+let k = 2;
+let length = 4;
+
+// console.log(networkDelayTime(times, length, k));
+
+/**Cheapest flights with k stops
+ * Problem: Find cheapest price from src to dst with at most k stops
+ *
+ * Input:
+ * @param {number} n - Number of cities
+ * @param {number[][]} flights - [from, to, price]
+ * @param {number} src - Source city
+ * @param {number} dst - Destination city
+ * @param {number} k - Maximum allowed stops
+ *
+ * Output:
+ * @return {number} - Cheapest price, -1 if no route exists
+ *
+ * Example:
+ * Input: n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1
+ * Output: 200
+ */
+var findCheapestPrice = function (n, flights, src, dst, k) {
+  // Implementation
+};
+
+/**Path with minimum effor
+ * Problem: Find path from top-left to bottom-right with minimum effort
+ * (Effort = maximum absolute difference in heights along path)
+ *
+ * Input:
+ * @param {number[][]} heights - 2D grid of heights
+ *
+ * Output:
+ * @return {number} - Minimum effort required
+ *
+ * Example:
+ * Input: heights = [[1,2,2],[3,8,2],[5,3,5]]
+ * Output: 2 (Path 1→3→5→3→5)
+ */
+var minimumEffortPath = function (heights) {
+  // Implementation
+};
+
+/**Number of restricted paths
+ * Problem: Count number of restricted paths from node 1 to n
+ * (Restricted path = path where distance to n decreases at each step)
+ *
+ * Input:
+ * @param {number} n - Number of nodes
+ * @param {number[][]} edges - [u, v, weight]
+ *
+ * Output:
+ * @return {number} - Number of restricted paths modulo 10^9+7
+ *
+ * Example:
+ * Input: n = 5, edges = [[1,2,3],[1,3,3],[2,3,1],[1,4,2],[3,5,1],[4,5,1]]
+ * Output: 3
+ */
+var countRestrictedPaths = function (n, edges) {
+  // Implementation
+};

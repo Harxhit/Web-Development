@@ -748,7 +748,67 @@ function mergeKSortedArray(array) {
     Output: {A: 0, B: 3, C: 1}
 **/
 
+function shortestPath(edges, start) {
+  function makeAdjacenyList(edges) {
+    let graph = {};
+    edges.forEach(([u, v, weight]) => {
+      if (!graph[u]) {
+        graph[u] = [];
+      }
+      if (!graph[v]) {
+        graph[v] = [];
+      }
+      graph[u].push([v, weight]);
+      graph[v].push([u, weight]);
+    });
+    return graph;
+  }
 
+  let graph = makeAdjacenyList(edges);
+  let nodes = Object.keys(graph);
+
+  let visited = {};
+  let distance = {};
+
+  nodes.forEach((node) => {
+    visited[node] = false;
+    distance[node] = Infinity;
+  });
+
+  distance[start] = 0;
+
+  for (let i = 0; i < nodes.length - 1; i++) {
+    let u = null;
+    for (let j = 0; j < nodes.length; j++) {
+      let node = nodes[j];
+      if (!visited[node] && (u === null || distance[node] < distance[u])) {
+        u = node;
+      }
+    }
+
+    if (u === null) break;
+    visited[u] = true;
+
+    for (let v = 0; v < graph[u].length; v++) {
+      let [neighbor, weight] = graph[u][v];
+      if (!visited[neighbor]) {
+        let newDistance = distance[u] + weight;
+        if (newDistance < distance[neighbor]) {
+          distance[neighbor] = newDistance;
+        }
+      }
+    }
+  }
+  return distance;
+}
+
+let edges = [
+  ["A", "B", 4],
+  ["A", "C", 1],
+  ["C", "B", 2],
+];
+let start = "A";
+console.log(shortestPath(edges, start));
 
 /** Question 20: Sliding Window Maximum Using Heaps
   Problem Statement: 
