@@ -13,6 +13,11 @@ Welcome to my web development journey! This README highlights the skills I have 
 - **TailwindCSS**: Leveraging a utility-first CSS framework for efficient and responsive designs.
 - **Bootstrap**: Building responsive and mobile-first web pages quickly using pre-designed components.
 - **Git & GitHub**: Managing code changes, version control, and collaborating on projects effectively.
+-  **JavaScript**: Added interactivity to web pages with DOM manipulation and event handling.
+- **Express.js** *(Learning Phase)*: Basics of setting up server-side applications.
+- **MongoDB** *(Learning Phase)*: Introduction to NoSQL databases and CRUD operations.
+
+- 
 
 ### Tools & Resources
 
