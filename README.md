@@ -17,7 +17,7 @@ Welcome to my web development journey! This README highlights the skills I have 
 - **Express.js** *(Learning Phase)*: Basics of setting up server-side applications.
 - **MongoDB** *(Learning Phase)*: Introduction to NoSQL databases and CRUD operations.
 
-- 
+
 
 ### Tools & Resources
 
