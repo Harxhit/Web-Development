@@ -1575,7 +1575,7 @@ const operation = [
 
 //console.log(kruskal(4, operation));
 
-//Dijkstra's Algorithum
+//----------------------------------------Dijkstra's Algorithum-------------------------------------
 
 function dijkstra(graph, start) {
   const n = graph.length;
@@ -1773,7 +1773,7 @@ let length = 4;
 
 // console.log(networkDelayTime(times, length, k));
 
-/**Cheapest flights with k stops
+/** Cheapest flights with k stops
  * Problem: Find cheapest price from src to dst with at most k stops
  *
  * Input:
@@ -1791,10 +1791,51 @@ let length = 4;
  * Output: 200
  */
 var findCheapestPrice = function (n, flights, src, dst, k) {
-  // Implementation
-};
+  const graph = buildAdjanceyList(flights);
+  const queue = [[0, src, 0]];
+  let visited = Array.from({ length: n }, () =>
+    new Array(k + 2).fill(Infinity)
+  );
+  visited[src][0] = 0;
 
-/**Path with minimum effor
+  while (queue.length > 0) {
+    // Sort the queue to simulate a min-heap (priority queue)
+    queue.sort((a, b) => a[0] - b[0]);
+    const [cost, city, stops] = queue.shift();
+
+    if (city === dst) return cost;
+    if (stops > k) continue;
+
+    for (const [neighbor, price] of graph[city]) {
+      const newCost = cost + price;
+      const newStops = stops + 1;
+      if (newStops <= k + 1 && newCost < visited[neighbor][newStops]) {
+        visited[neighbor][newStops] = newCost;
+        queue.push([newCost, neighbor, newStops]);
+      }
+    }
+  }
+  return -1;
+
+  function buildAdjanceyList(edges) {
+    let graph = {};
+    for (let i = 0; i < n; i++) graph[i] = [];
+    edges.forEach(([u, v, price]) => graph[u].push([v, price]));
+    return graph;
+  }
+};
+let flights = [
+  [0, 1, 100],
+  [1, 2, 100],
+  [0, 2, 500],
+];
+let number = 3;
+let kk = 1;
+let src = 0;
+let dst = 2;
+//console.log(findCheapestPrice(number, flights, src, dst, kk));
+
+/** Path with minimum effort
  * Problem: Find path from top-left to bottom-right with minimum effort
  * (Effort = maximum absolute difference in heights along path)
  *
@@ -1809,10 +1850,51 @@ var findCheapestPrice = function (n, flights, src, dst, k) {
  * Output: 2 (Path 1→3→5→3→5)
  */
 var minimumEffortPath = function (heights) {
-  // Implementation
-};
+  let directions = [
+    [1, 0],
+    [0, 1],
+    [-1, 0],
+    [0, -1],
+  ];
+  const m = heights.length;
+  const n = heights[0].length;
+  let visited = Array.from({ length: m }, () => new Array(n).fill(Infinity));
+  visited[0][0] = 0;
+  const heap = [[0, 0, 0]];
 
-/**Number of restricted paths
+  while (heap.length > 0) {
+    heap.sort((a, b) => a[0] - b[0]);
+
+    let [currentEffort, x, y] = heap.shift();
+
+    if (x === m - 1 && y === n - 1) return currentEffort;
+
+    for (let [dx, dy] of directions) {
+      let nx = x + dx;
+      let ny = y + dy;
+
+      if (nx >= 0 && ny >= 0 && nx < m && ny < n) {
+        let newEffort = Math.max(
+          currentEffort,
+          Math.abs(heights[nx][ny] - heights[x][y])
+        );
+        if (visited[nx][ny] > newEffort) {
+          visited[nx][ny] = newEffort;
+          heap.push([newEffort, nx, ny]);
+        }
+      }
+    }
+  }
+  return -1;
+};
+// console.log(
+//   minimumEffortPath([
+//     [1, 2, 2],
+//     [3, 8, 2],
+//     [5, 3, 5],
+//   ])
+// );
+/** Number of restricted paths
  * Problem: Count number of restricted paths from node 1 to n
  * (Restricted path = path where distance to n decreases at each step)
  *
@@ -1828,5 +1910,63 @@ var minimumEffortPath = function (heights) {
  * Output: 3
  */
 var countRestrictedPaths = function (n, edges) {
-  // Implementation
+  const MOD = 1e9 + 7;
+
+  const graph = buildAdjanceyList(edges);
+  const distances = new Array(n + 1).fill(Infinity);
+  distances[n] = 0;
+  const heap = [[0, n]];
+  while (heap.length > 0) {
+    heap.sort((a, b) => a[0] - b[0]);
+    const [temp, u] = heap.shift();
+
+    if (temp > distances[u]) continue;
+
+    for (let [v, w] of graph[u]) {
+      let newDistance = distances[u] + w;
+      if (distances[v] > newDistance) {
+        distances[v] = newDistance;
+        heap.push([distances[v], v]);
+      }
+    }
+  }
+  const memo = new Array(n + 1).fill(-1);
+
+  function dfs(u) {
+    if (u === n) return 1;
+    if (memo[u] !== -1) return memo[u];
+
+    let total = 0;
+    for (let [v] of graph[u]) {
+      if (distances[v] < distances[u]) {
+        total = (total + dfs(v)) % MOD;
+      }
+    }
+    memo[u] = total;
+    return total;
+  }
+
+  function buildAdjanceyList(edges) {
+    let graph = {};
+    for (let i = 1; i <= n; i++) {
+      graph[i] = [];
+    }
+    edges.forEach(([u, v, w]) => {
+      graph[u].push([v, w]);
+      graph[v].push([u, w]);
+    });
+    return graph;
+  }
+
+  return dfs(1);
 };
+// console.log(
+//   countRestrictedPaths(5, [
+//     [1, 2, 3],
+//     [1, 3, 3],
+//     [2, 3, 1],
+//     [1, 4, 2],
+//     [3, 5, 1],
+//     [4, 5, 1],
+//   ])
+// );

@@ -1534,9 +1534,330 @@ var networkDelayTime = function (times, n, k) {
   }
   return answer === Infinity ? -1 : answer;
 };
-/**/
-/**/
-/**/
+/*
+
+Question 48 : Cheapest flights within k stops
+There are n cities connected by some number of flights. You are given an array flights where flights[i] = [fromi, toi, pricei] indicates that there is a flight from city fromi to city toi with cost pricei.
+You are also given three integers src, dst, and k, return the cheapest price from src to dst with at most k stops. If there is no such route, return -1.
+Example 1:
+Input: n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0, dst = 3, k = 1
+Output: 700
+Explanation:
+The graph is shown above.
+The optimal path with at most 1 stop from city 0 to 3 is marked in red and has cost 100 + 600 = 700.
+Note that the path through cities [0,1,2,3] is cheaper but is invalid because it uses 2 stops.
+*/
+/**
+ * @param {number} n
+ * @param {number[][]} flights
+ * @param {number} src
+ * @param {number} dst
+ * @param {number} k
+ * @return {number}
+ */
+var findCheapestPrice = function (n, flights, src, dst, k) {
+  const queue = [[0, src, 0]];
+  const visited = Array.from({ length: n }, () =>
+    new Array(k + 2).fill(Infinity)
+  );
+  visited[src][0] = 0;
+  const graph = buildGraph(flights);
+
+  while (queue.length > 0) {
+    queue.sort((a, b) => a[0] - b[0]);
+    let [cost, city, stops] = queue.shift();
+
+    if (city === dst) return cost;
+    if (stops > k) continue;
+
+    for (let [neighbour, price] of graph[city]) {
+      let newPrice = cost + price;
+      let newStops = stops + 1;
+      if (newStops <= k + 1 && visited[neighbour][newStops] > newPrice) {
+        visited[neighbour][newStops] = newPrice;
+        queue.push([newPrice, neighbour, newStops]);
+      }
+    }
+  }
+
+  function buildGraph(edges) {
+    let graph = {};
+    for (let i = 0; i < n; i++) {
+      graph[i] = [];
+    }
+    edges.forEach(([u, v, price]) => graph[u].push([v, price]));
+    return graph;
+  }
+  return -1;
+};
+/*
+Question 48 : Path with minimum effort 
+You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of size rows x columns, where heights[row][col] represents the height of cell (row, col). You are situated in the top-left cell, (0, 0), and you hope to travel to the bottom-right cell, (rows-1, columns-1) (i.e., 0-indexed). You can move up, down, left, or right, and you wish to find a route that requires the minimum effort.
+A route's effort is the maximum absolute difference in heights between two consecutive cells of the route.
+Return the minimum effort required to travel from the top-left cell to the bottom-right cell.
+Example 1:
+Input: heights = [[1,2,2],[3,8,2],[5,3,5]]
+Output: 2
+Explanation: The route of [1,3,5,3,5] has a maximum absolute difference of 2 in consecutive cells.
+This is better than the route of [1,2,2,2,5], where the maximum absolute difference is 3.
+*/
+/**
+ * @param {number[][]} heights
+ * @return {number}
+ */
+var minimumEffortPath = function (heights) {
+  const m = heights.length;
+  const n = heights[0].length;
+  const directions = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+  ];
+  const visited = Array.from({ length: m }, () => new Array(n).fill(Infinity));
+  visited[0][0] = 0;
+
+  const heap = new MinHeap();
+  heap.insert([0, 0, 0]);
+
+  while (heap.size() > 0) {
+    const [currEffort, x, y] = heap.extractMin();
+
+    if (x === m - 1 && y === n - 1) {
+      return currEffort;
+    }
+
+    if (currEffort > visited[x][y]) {
+      continue;
+    }
+
+    for (const [dx, dy] of directions) {
+      const nx = x + dx;
+      const ny = y + dy;
+
+      if (nx >= 0 && nx < m && ny >= 0 && ny < n) {
+        const newEffort = Math.max(
+          currEffort,
+          Math.abs(heights[nx][ny] - heights[x][y])
+        );
+        if (newEffort < visited[nx][ny]) {
+          visited[nx][ny] = newEffort;
+          heap.insert([newEffort, nx, ny]);
+        }
+      }
+    }
+  }
+
+  return -1;
+};
+
+class MinHeap {
+  constructor() {
+    this.heap = [];
+  }
+
+  insert(val) {
+    this.heap.push(val);
+    this.bubbleUp();
+  }
+
+  extractMin() {
+    const min = this.heap[0];
+    const end = this.heap.pop();
+    if (this.heap.length > 0) {
+      this.heap[0] = end;
+      this.sinkDown();
+    }
+    return min;
+  }
+
+  bubbleUp() {
+    let index = this.heap.length - 1;
+    while (index > 0) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      if (this.heap[parentIndex][0] <= this.heap[index][0]) break;
+      [this.heap[parentIndex], this.heap[index]] = [
+        this.heap[index],
+        this.heap[parentIndex],
+      ];
+      index = parentIndex;
+    }
+  }
+
+  sinkDown() {
+    let index = 0;
+    const length = this.heap.length;
+    while (true) {
+      const leftChildIndex = 2 * index + 1;
+      const rightChildIndex = 2 * index + 2;
+      let smallest = index;
+
+      if (
+        leftChildIndex < length &&
+        this.heap[leftChildIndex][0] < this.heap[smallest][0]
+      ) {
+        smallest = leftChildIndex;
+      }
+      if (
+        rightChildIndex < length &&
+        this.heap[rightChildIndex][0] < this.heap[smallest][0]
+      ) {
+        smallest = rightChildIndex;
+      }
+      if (smallest === index) break;
+      [this.heap[index], this.heap[smallest]] = [
+        this.heap[smallest],
+        this.heap[index],
+      ];
+      index = smallest;
+    }
+  }
+
+  size() {
+    return this.heap.length;
+  }
+}
+/*
+Question 49 : Number of restricted paths from last node
+There is an undirected weighted connected graph. You are given a positive integer n which denotes that the graph has n nodes labeled from 1 to n, and an array edges where each edges[i] = [ui, vi, weighti] denotes that there is an edge between nodes ui and vi with weight equal to weighti.
+A path from node start to node end is a sequence of nodes [z0, z1, z2, ..., zk] such that z0 = start and zk = end and there is an edge between zi and zi+1 where 0 <= i <= k-1.
+The distance of a path is the sum of the weights on the edges of the path. Let distanceToLastNode(x) denote the shortest distance of a path between node n and node x. A restricted path is a path that also satisfies that distanceToLastNode(zi) > distanceToLastNode(zi+1) where 0 <= i <= k-1.
+Return the number of restricted paths from node 1 to node n. Since that number may be too large, return it modulo 109 + 7.
+Example 1:
+Input: n = 5, edges = [[1,2,3],[1,3,3],[2,3,1],[1,4,2],[5,2,2],[3,5,1],[5,4,10]]
+Output: 3
+Explanation: Each circle contains the node number in black and its distanceToLastNode value in blue. The three restricted paths are:
+1) 1 --> 2 --> 5
+2) 1 --> 2 --> 3 --> 5
+3) 1 --> 3 --> 5
+*/
+var countRestrictedPaths = function (n, edges) {
+  const MOD = 1e9 + 7;
+  const distances = new Array(n + 1).fill(Infinity);
+  const graph = buildGraph(edges);
+  distances[n] = 0;
+  let heap = new Heap();
+  heap.insert([0, n]);
+
+  while (!heap.isEmpty()) {
+    const [currentDist, u] = heap.extractMin();
+
+    if (currentDist > distances[u]) continue;
+
+    for (let [v, w] of graph[u]) {
+      let newDistance = distances[u] + w;
+      if (distances[v] > newDistance) {
+        distances[v] = newDistance;
+        heap.insert([distances[v], v]);
+      }
+    }
+  }
+
+  const memo = new Array(n + 1).fill(-1);
+  function dfs(u) {
+    if (u === n) return 1;
+    if (memo[u] !== -1) return memo[u];
+
+    let total = 0;
+    for (let [v, w] of graph[u]) {
+      if (distances[v] < distances[u]) {
+        total = (total + dfs(v)) % MOD;
+      }
+    }
+    memo[u] = total;
+    return total;
+  }
+
+  function buildGraph(edges) {
+    let graph = {};
+    for (let i = 1; i <= n; i++) {
+      graph[i] = [];
+    }
+    edges.forEach(([u, v, w]) => {
+      graph[u].push([v, w]);
+      graph[v].push([u, w]);
+    });
+    return graph;
+  }
+
+  return dfs(1);
+};
+
+class Heap {
+  constructor() {
+    this.heap = [];
+  }
+
+  insert(val) {
+    this.heap.push(val);
+    this.bubbleUp();
+  }
+
+  extractMin() {
+    if (this.heap.length === 0) return null;
+    const min = this.heap[0];
+    const end = this.heap.pop();
+    if (this.heap.length > 0) {
+      this.heap[0] = end;
+      this.sinkDown();
+    }
+    return min;
+  }
+
+  peek() {
+    return this.heap.length > 0 ? this.heap[0] : null;
+  }
+
+  size() {
+    return this.heap.length;
+  }
+
+  isEmpty() {
+    return this.heap.length === 0;
+  }
+
+  bubbleUp() {
+    let index = this.heap.length - 1;
+    while (index > 0) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      if (this.heap[parentIndex][0] <= this.heap[index][0]) break;
+      [this.heap[parentIndex], this.heap[index]] = [
+        this.heap[index],
+        this.heap[parentIndex],
+      ];
+      index = parentIndex;
+    }
+  }
+
+  sinkDown() {
+    let index = 0;
+    const length = this.heap.length;
+    while (true) {
+      const leftChildIndex = 2 * index + 1;
+      const rightChildIndex = 2 * index + 2;
+      let smallest = index;
+
+      if (
+        leftChildIndex < length &&
+        this.heap[leftChildIndex][0] < this.heap[smallest][0]
+      ) {
+        smallest = leftChildIndex;
+      }
+      if (
+        rightChildIndex < length &&
+        this.heap[rightChildIndex][0] < this.heap[smallest][0]
+      ) {
+        smallest = rightChildIndex;
+      }
+      if (smallest === index) break;
+      [this.heap[index], this.heap[smallest]] = [
+        this.heap[smallest],
+        this.heap[index],
+      ];
+      index = smallest;
+    }
+  }
+}
 /**/
 /**/
 /**/
