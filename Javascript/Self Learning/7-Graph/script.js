@@ -1970,3 +1970,257 @@ var countRestrictedPaths = function (n, edges) {
 //     [4, 5, 1],
 //   ])
 // );
+
+// -----------------------------Bellmans Ford Algorithum ---------------------------------------------
+function bellmanFord(edges, V, src) {
+  const dist = new Array(V).fill(Infinity);
+  dist[src] = 0;
+
+  // this part of code is change
+  for (let i = 0; i < V - 1; i++) {
+    for (const [u, v, w] of edges) {
+      if (dist[u] !== Infinity && dist[u] + w < dist[v]) {
+        dist[v] = dist[u] + w;
+      }
+    }
+  }
+
+  // this part of code is change
+  for (const [u, v, w] of edges) {
+    if (dist[u] !== Infinity && dist[u] + w < dist[v]) {
+      console.log("Graph contains negative weight cycle");
+      return;
+    }
+  }
+
+  return dist;
+}
+/**
+ * Problem 1: Single Source Shortest Path
+ *
+ * Given a directed graph with V vertices and E edges, find the shortest path from a source node to all other nodes.
+ * The graph contains edges with positive and negative weights. No negative weight cycles exist.
+ *
+ * Input:
+ *   - An integer V (1 <= V <= 100) representing the number of vertices.
+ *   - An integer E (1 <= E <= 1000) representing the number of edges.
+ *   - An array of E triplets [u, v, w], where u is the source node, v is the destination node, and w is the edge weight.
+ *   - An integer src representing the source node (0 <= src < V).
+ *
+ * Output:
+ *   - An array of shortest distances from the source node to every other node. If a node is not reachable, return Infinity.
+ *
+ * Example:
+ * Input:
+ *   V = 4, E = 5
+ *   edges = [[0, 1, 4], [0, 2, 5], [1, 2, -3], [2, 3, 4], [3, 1, -10]]
+ *   src = 0
+ *
+ * Output:
+ *   [0, 4, 2, 6]
+ */
+
+function singleSourceShortestPath(v, e, edges, src) {
+  let distances = new Array(v).fill(Infinity);
+  distances[src] = 0;
+
+  // Relax all edges (v - 1) times
+  for (let i = 0; i < v - 1; i++) {
+    for (let [u, v, weight] of edges) {
+      if (distances[u] !== Infinity && distances[u] + weight < distances[v]) {
+        distances[v] = distances[u] + weight;
+      }
+    }
+  }
+
+  // Check for negative weight cycles
+  for (let [u, v, weight] of edges) {
+    if (distances[u] !== Infinity && distances[u] + weight < distances[v]) {
+      return "Graph contains a negative weight cycle";
+    }
+
+    return distances;
+  }
+}
+// console.log(
+//   singleSourceShortestPath(
+//     4,
+//     5,
+//     [
+//       [0, 1, 4],
+//       [0, 2, 5],
+//       [1, 2, -3],
+//       [2, 3, 4],
+//       [3, 1, -10],
+//     ],
+//     0
+//   )
+// );
+
+/**
+ * Problem 2: Detect Negative Weight Cycle
+ *
+ * Given a directed graph with V vertices and E edges, find if there is a negative weight cycle in the graph.
+ * A negative weight cycle is a cycle whose total sum of weights is negative.
+ *
+ * Input:
+ *   - An integer V (1 <= V <= 100) representing the number of vertices.
+ *   - An integer E (1 <= E <= 1000) representing the number of edges.
+ *   - An array of E triplets [u, v, w], where u is the source node, v is the destination node, and w is the edge weight.
+ *
+ * Output:
+ *   - Return "Yes" if there is a negative weight cycle, otherwise return "No".
+ *
+ * Example:
+ * Input:
+ *   V = 4, E = 5
+ *   edges = [[0, 1, 4], [0, 2, 5], [1, 2, -3], [2, 3, 4], [3, 1, -10]]
+ *
+ * Output:
+ *   Yes
+ */
+
+function detectNegativeCycle(V, E, edges) {
+  let distances = new Array(V).fill(0);
+  for (let i = 0; i < V - 1; i++) {
+    for (let [u, v, w] of edges) {
+      let newDistance = distances[u] + w;
+      if (newDistance < distances[v]) {
+        distances[v] = distances[u] + w;
+      }
+    }
+
+    for (let [u, v, w] of edges) {
+      if (distances[v] + w < distances[v]) {
+        return "Yes";
+      }
+    }
+  }
+  return "No";
+}
+// console.log(
+//   detectNegativeCycle(4, 5, [
+//     [0, 1, 4],
+//     [0, 2, 5],
+//     [1, 2, -3],
+//     [2, 3, 4],
+//     [3, 1, -10],
+//   ])
+// );
+/**
+ * Problem 3: Longest Path in a Graph with Negative Weights
+ *
+ * Given a directed graph with V vertices and E edges, find the longest path from a source node to all other nodes.
+ * The graph may contain negative weights but no negative weight cycles.
+ *
+ * Input:
+ *   - An integer V (1 <= V <= 100) representing the number of vertices.
+ *   - An integer E (1 <= E <= 1000) representing the number of edges.
+ *   - An array of E triplets [u, v, w], where u is the source node, v is the destination node, and w is the edge weight.
+ *   - An integer src representing the source node (0 <= src < V).
+ *
+ * Output:
+ *   - An array of longest distances from the source node to every other node. If a node is not reachable, return -Infinity.
+ *
+ * Example:
+ * Input:
+ *   V = 4, E = 4
+ *   edges = [[0, 1, -1], [0, 2, 3], [1, 2, 1], [2, 3, 2]]
+ *   src = 0
+ *
+ * Output:
+ *   [-Infinity, -1, 3, 5]
+ */
+
+function longestPathInNegativeGraph(V, E, edges, src) {
+  let distances = new Array(V).fill(Infinity);
+  distances[src] = 0;
+
+  let invertedEdges = edges.map(([u, v, w]) => [u, v, -w]);
+
+  for (let i = 0; i < V - 1; i++) {
+    let updated = false;
+    for (let [u, v, w] of invertedEdges) {
+      if (distances[u] !== Infinity && distances[v] > distances[u] + w) {
+        distances[v] = distances[u] + w;
+        updated = true;
+      }
+    }
+    if (!updated) break;
+  }
+
+  for (let i = 0; i < V; i++) {
+    if (distances[i] === -Infinity) {
+      distances[i] = -Infinity;
+    } else {
+      distances[i] = -distances[i];
+    }
+  }
+
+  return distances;
+}
+
+// console.log(
+//   longestPathInNegativeGraph(
+//     4,
+//     4,
+//     [
+//       [0, 1, -1],
+//       [0, 2, 3],
+//       [1, 2, 1],
+//       [2, 3, 2],
+//     ],
+//     0
+//   )
+// );
+
+/**
+ * Problem 4: Shortest Path with Negative Weights and Multiple Edges
+ *
+ * Given a graph with V vertices and E edges, find the shortest path from a source node to all other nodes.
+ * The graph may have multiple edges between two nodes, including negative weights. The graph may contain negative weight edges, but there are no negative weight cycles.
+ *
+ * Input:
+ *   - An integer V (1 <= V <= 100) representing the number of vertices.
+ *   - An integer E (1 <= E <= 1000) representing the number of edges.
+ *   - An array of E triplets [u, v, w], where u is the source node, v is the destination node, and w is the edge weight.
+ *   - An integer src representing the source node (0 <= src < V).
+ *
+ * Output:
+ *   - An array of shortest distances from the source node to all other nodes.
+ *
+ * Example:
+ * Input:
+ *   V = 5, E = 6
+ *   edges = [[0, 1, 4], [0, 2, 5], [1, 2, -3], [2, 3, 4], [3, 1, -10], [1, 3, 6]]
+ *   src = 0
+ *
+ * Output:
+ *   [0, 4, 2, 6, Infinity]
+ */
+
+/**
+ * Problem 5: Find Shortest Path to a Specific Node
+ *
+ * Given a directed graph with V vertices and E edges, find the shortest path from a source node to a target node.
+ * The graph may contain negative edge weights, but there are no negative weight cycles.
+ *
+ * Input:
+ *   - An integer V (1 <= V <= 100) representing the number of vertices.
+ *   - An integer E (1 <= E <= 1000) representing the number of edges.
+ *   - An array of E triplets [u, v, w], where u is the source node, v is the destination node, and w is the edge weight.
+ *   - An integer src representing the source node (0 <= src < V).
+ *   - An integer target representing the target node (0 <= target < V).
+ *
+ * Output:
+ *   - The shortest distance from the source node to the target node. If the target is unreachable, return -1.
+ *
+ * Example:
+ * Input:
+ *   V = 4, E = 5
+ *   edges = [[0, 1, 4], [0, 2, 5], [1, 2, -3], [2, 3, 4], [3, 1, -10]]
+ *   src = 0, target = 3
+ *
+ * Output:
+ *   6
+ */
