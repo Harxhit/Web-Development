@@ -2222,5 +2222,37 @@ function longestPathInNegativeGraph(V, E, edges, src) {
  *   src = 0, target = 3
  *
  * Output:
- *   6
+ *   -13
  */
+
+function shortestPathToSpecificNode(V, E, edges, src, target) {
+  let distances = new Array(V).fill(Infinity);
+  distances[src] = 0;
+
+  for (let i = 0; i < V - 1; i++) {
+    for (let [u, v, w] of edges) {
+      let newDistance = distances[u] + w;
+      if (distances[u] !== Infinity && distances[v] > newDistance) {
+        distances[v] = newDistance;
+      }
+    }
+  }
+
+  console.log("Distances:", distances);
+  return distances[target];
+}
+// console.log(
+//   shortestPathToSpecificNode(
+//     4,
+//     5,
+//     [
+//       [0, 1, 4],
+//       [0, 2, 5],
+//       [1, 2, -3],
+//       [2, 3, 4],
+//       [3, 1, -10],
+//     ],
+//     0,
+//     3
+//   )
+// );
