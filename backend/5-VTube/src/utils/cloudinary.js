@@ -1,5 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
-import fs from 'node:fs';
+import fs from 'fs';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Configuration
 cloudinary.config({
@@ -8,27 +10,53 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-//Uploading to Cloudinary
-const uploadToCloudinary = async function (localFilePath) {
-  try {
-    if (!localFilePath) return null;
+// Log the configuration
+// console.log('Cloudinary Configuration:', cloudinary.config());
 
+// Uploading to Cloudinary
+const uploadToCloudinary = async function (localFilePath) {
+  // Log the local file path
+  console.log('uploadToCloudinary called with:', localFilePath);
+
+  if (!localFilePath) {
+    const error = { error: 'Local file path is missing' };
+    console.log(
+      'uploadToCloudinary - No localFilePath, returning error',
+      error,
+    );
+    return error;
+  }
+
+  try {
     // Uploading the file to Cloudinary
     const response = await cloudinary.uploader.upload(localFilePath, {
-      resource_type: 'auto', // It automatically detects the file type
+      resource_type: 'auto',
     });
 
-    console.log('File uploaded successfully on Cloudinary', response.url); // Corrected the typo
+    console.log('File uploaded successfully on Cloudinary', response.url);
 
-    // Removing the local file after uploading to Cloudinary
-    fs.unlinkSync(localFilePath);
+    // Removing the local file after uploading to Cloudinary (asynchronously)
+    fs.unlink(localFilePath, (err) => {
+      if (err) {
+        console.error('Error deleting local file:', err);
+        //  Don't throw here, log and continue.
+      } else {
+        console.log('Local file deleted successfully:', localFilePath);
+      }
+    });
 
-    // Returning the Cloudinary response
-    return response;
+    return response; // Return the successful response
   } catch (error) {
-    fs.unlinkSync(localFilePath);
+    fs.unlink(localFilePath, (unlinkErr) => {
+      if (unlinkErr) {
+        console.error(
+          'Error deleting local file after upload error',
+          unlinkErr,
+        );
+      }
+    });
     console.error('Error uploading file to Cloudinary', error);
-    return null;
+    return { error: error };
   }
 };
 

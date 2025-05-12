@@ -27,7 +27,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      required: true, 
+      required: true,
       default: '',
     },
     coverImage: {
@@ -57,7 +57,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 userSchema.pre('save', async function (next) {
-  if (!this.modified('password')) return next();
+  if (!this.isModified('password')) return next();
   this.password = bcrypt.hash(this.password);
   next();
 });
@@ -78,6 +78,7 @@ userSchema.methods.AccessToken = function () {
       _id: this.id,
       email: this.email,
       username: this.username,
+      fullName: this.fullName,
     },
     process.env.SECRET_TEXT_ACCESSTOKEN,
     { expiresIn: process.env.ACCESSTOKEN_EXPIRE },
