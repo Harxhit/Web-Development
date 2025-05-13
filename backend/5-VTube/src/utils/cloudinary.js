@@ -10,12 +10,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-// Log the configuration
-// console.log('Cloudinary Configuration:', cloudinary.config());
+// console.log('Cloudinary Config:', {
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY, // Make sure this is hidden or masked when using in production
+//   api_secret: process.env.CLOUDINARY_SECRET, // Same for the api_secret
+// });
+
 
 // Uploading to Cloudinary
 const uploadToCloudinary = async function (localFilePath) {
-  // Log the local file path
   console.log('uploadToCloudinary called with:', localFilePath);
 
   if (!localFilePath) {
@@ -39,7 +42,6 @@ const uploadToCloudinary = async function (localFilePath) {
     fs.unlink(localFilePath, (err) => {
       if (err) {
         console.error('Error deleting local file:', err);
-        //  Don't throw here, log and continue.
       } else {
         console.log('Local file deleted successfully:', localFilePath);
       }
@@ -47,6 +49,9 @@ const uploadToCloudinary = async function (localFilePath) {
 
     return response; // Return the successful response
   } catch (error) {
+    console.error('Error uploading file to Cloudinary', error);
+
+    // Clean up local file if an error occurs
     fs.unlink(localFilePath, (unlinkErr) => {
       if (unlinkErr) {
         console.error(
@@ -55,9 +60,19 @@ const uploadToCloudinary = async function (localFilePath) {
         );
       }
     });
-    console.error('Error uploading file to Cloudinary', error);
+
     return { error: error };
   }
 };
 
-export default uploadToCloudinary;
+const deleteFromCloudinary = async (publicId) => {
+  try {
+    const result = await cloudinary.uploader.destroy(publicId);
+    console.log('Deleted from cloudinary', publicId);
+  } catch (error) {
+    console.log('Error deleting from cloudinary', error);
+    return null;
+  }
+};
+
+export { uploadToCloudinary, deleteFromCloudinary };
