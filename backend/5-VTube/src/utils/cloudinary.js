@@ -12,8 +12,8 @@ cloudinary.config({
 
 // console.log('Cloudinary Config:', {
 //   cloud_name: process.env.CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY, // Make sure this is hidden or masked when using in production
-//   api_secret: process.env.CLOUDINARY_SECRET, // Same for the api_secret
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_SECRET, 
 // });
 
 
