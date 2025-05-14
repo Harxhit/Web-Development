@@ -1,4 +1,4 @@
-# VTube Backend - API Documentation and Project Overview
+# VTube
 
 ## Project Overview
 
