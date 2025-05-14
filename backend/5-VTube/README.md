@@ -26,19 +26,20 @@ This README provides a detailed overview of the project structure, the API endpo
 * **fs (fs/promises):** Node.js module for file system operations (async).
 
 ## Project Structure
-├───node_modules          # Project dependencies
-├───public                # Publicly accessible files (e.g., temporary uploads)
-│   └───temp              # Temporary storage for uploaded files
-└───src
-├───controllers       # Route handler functions (API endpoint logic)
-├───db                # Database connection and configuration
-├───middlewares       # Custom middleware (authentication, file upload)
-├───models            # Mongoose schema definitions
-├───public            # (Duplicate - likely should be one at root)
-│   └───temp
-├───routes            # API route definitions
-├───utils             # Utility classes and functions (error handling, responses)
-└───validators        # Joi schema definitions for validation
+├── node_modules            # Project dependencies
+├── public                  # Publicly accessible files (e.g., static uploads)
+│   └── temp                # Temporary storage for uploaded files
+├── src
+│   ├── controllers         # Route handler functions (API endpoint logic)
+│   ├── db                  # Database connection and configuration
+│   ├── middlewares         # Custom middleware (authentication, file upload, etc.)
+│   ├── models              # Mongoose schema definitions
+│   ├── public              # (Duplicate - consider removing or merging with root /public)
+│   │   └── temp
+│   ├── routes              # API route definitions
+│   ├── utils               # Utility classes and functions (error handling, responses)
+│   └── validators          # Joi schema definitions for validation
+
 
 ## Implemented API Endpoints and Use Cases
 
