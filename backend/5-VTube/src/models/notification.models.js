@@ -2,35 +2,42 @@ import mongoose, { Schema } from 'mongoose';
 
 const notificationSchema = new Schema(
   {
-    userId: {
+    receiverId: {
       type: Schema.Types.ObjectId,
       ref: 'User',
+      required: true,
+    },
+    senderId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    notificationType: {
+      type: String,
+      enum: [
+        'upload',
+        'comment',
+        'like',
+        'reply',
+        'subscription',
+        'mention',
+        'follow',
+      ],
       required: true,
     },
     content: {
       type: String,
       required: true,
     },
-    timestamp: {
-      type: Date,
-      default: Date.now,
+    targetId: {
+      type: Schema.Types.ObjectId,
+    },
+    targetModel: {
+      type: String,
+      enum: ['Video', 'Comment', 'User'],
     },
     isRead: {
       type: Boolean,
       default: false,
-    },
-    notificationType: {
-      type: String,
-      enum: ['upload', 'comment', 'like', 'subscription'],
-      required: true,
-    },
-    relatedVideoId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Video',
-    },
-    relatedCommentId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment',
     },
   },
   { timestamps: true },
