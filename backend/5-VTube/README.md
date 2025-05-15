@@ -1,4 +1,4 @@
-# VTube Backend - API Documentation and Project Overview
+# VTube
 
 ## Project Overview
 
@@ -26,19 +26,20 @@ This README provides a detailed overview of the project structure, the API endpo
 * **fs (fs/promises):** Node.js module for file system operations (async).
 
 ## Project Structure
-├───node_modules          # Project dependencies
-├───public                # Publicly accessible files (e.g., temporary uploads)
-│   └───temp              # Temporary storage for uploaded files
-└───src
-├───controllers       # Route handler functions (API endpoint logic)
-├───db                # Database connection and configuration
-├───middlewares       # Custom middleware (authentication, file upload)
-├───models            # Mongoose schema definitions
-├───public            # (Duplicate - likely should be one at root)
-│   └───temp
-├───routes            # API route definitions
-├───utils             # Utility classes and functions (error handling, responses)
-└───validators        # Joi schema definitions for validation
+├── node_modules            # Project dependencies
+├── public                  # Publicly accessible files (e.g., static uploads)
+│   └── temp                # Temporary storage for uploaded files
+├── src
+│   ├── controllers         # Route handler functions (API endpoint logic)
+│   ├── db                  # Database connection and configuration
+│   ├── middlewares         # Custom middleware (authentication, file upload, etc.)
+│   ├── models              # Mongoose schema definitions
+│   ├── public              # (Duplicate - consider removing or merging with root /public)
+│   │   └── temp
+│   ├── routes              # API route definitions
+│   ├── utils               # Utility classes and functions (error handling, responses)
+│   └── validators          # Joi schema definitions for validation
+
 
 ## Implemented API Endpoints and Use Cases
 
@@ -75,4 +76,4 @@ Consistent API responses using `ApiResponse` (success) and `ApiError` (failure) 
 * Unit and integration testing.
 
 ## Contact me : harsxit04@gmail.com
-## Postman : https://.postman.co/workspace/My-Workspace~6a352d83-98eb-4fd1-8aa4-5201a911b9e0/collection/44616569-59d76e1c-7497-4cd9-86a4-b3c9835be3a0?action=share&creator=44616569
+##### Postman : https://.postman.co/workspace/My-Workspace~6a352d83-98eb-4fd1-8aa4-5201a911b9e0/collection/44616569-59d76e1c-7497-4cd9-86a4-b3c9835be3a0?action=share&creator=44616569
