@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import healthCheckRoutes from './controllers/healthcheck.controllers.js';
 import router from './routes/user.routes.js';
 import videoRouter from './routes/video.routes.js';
+import commentRouter from './routes/comment.routes.js';
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 // Middleware
@@ -24,5 +25,8 @@ app.use('/api/v1/user', router);
 
 //Video routes
 app.use('/api/v1/video', videoRouter);
+
+//Comment routes
+app.use('/api/v1', commentRouter);
 
 export default app;
