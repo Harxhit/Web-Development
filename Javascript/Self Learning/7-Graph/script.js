@@ -2256,3 +2256,128 @@ function shortestPathToSpecificNode(V, E, edges, src, target) {
 //     3
 //   )
 // );
+
+//------------------------------Tarjans Algorithum-----------------------------------------------------
+
+function tarjansAlgorithm(graph) {
+  let index = 0;
+  const stack = [];
+  const indexMap = {}; // Discovery time of each node
+  const lowLink = {}; // Lowest reachable ancestor for each node
+  const onStack = {}; // Keep track of nodes currently in the stack
+  const sccs = [];
+
+  function strongconnect(node) {
+    indexMap[node] = index;
+    lowLink[node] = index;
+    index++;
+    stack.push(node);
+    onStack[node] = true;
+
+    const neighbors = graph[node] || [];
+    for (const neighbor of neighbors) {
+      if (indexMap[neighbor] === undefined) {
+        strongconnect(neighbor);
+        lowLink[node] = Math.min(lowLink[node], lowLink[neighbor]);
+      } else if (onStack[neighbor]) {
+        lowLink[node] = Math.min(lowLink[node], indexMap[neighbor]);
+      }
+    }
+
+    if (lowLink[node] === indexMap[node]) {
+      const scc = [];
+      let n;
+      do {
+        n = stack.pop();
+        onStack[n] = false;
+        scc.push(n);
+      } while (n !== node);
+      sccs.push(scc);
+    }
+  }
+
+  for (const node in graph) {
+    if (indexMap[node] === undefined) {
+      strongconnect(node);
+    }
+  }
+
+  return sccs;
+}
+
+const graph2 = {
+  A: ["B"],
+  B: ["D"],
+  D: ["A"],
+};
+console.log(
+  "Strongly Connected Components in graph2:",
+  tarjansAlgorithm(graph2)
+);
+// Expected output: [ [ 'A', 'D', 'B' ] ] (order might vary)
+/**
+ * 1. Find Bridges in a Graph (Basic - related to Tarjan's core ideas)
+ *
+ * You are given an undirected connected graph represented by n nodes and a list of edges.
+ * Find all the bridges in the graph. A bridge is an edge whose deletion increases the number of connected components.
+ * Return a list of the bridge edges (each edge represented as a pair of nodes).
+ *
+ * Input: n = 5, edges = [[1,0],[0,2],[2,1],[0,3],[3,4]]
+ * Output: [[0,3],[3,4]] (order might vary)
+ */
+function findBridges(n, edges) {
+  
+  // Implementation using Tarjan's concepts (discovery time, low-link) goes here
+}
+
+/**
+ * 2. Detect Cycle in a Directed Graph (Basic - core concept in SCC finding)
+ *
+ * Given a directed graph represented by an adjacency list, determine if the graph contains a cycle.
+ *
+ * Input: graph = {0: [1, 2], 1: [2], 2: [0, 3], 3: [3]}
+ * Output: true
+ */
+function canFinish(numCourses, prerequisites) {
+  // LeetCode #207 - can be adapted for cycle detection
+  // Implementation using DFS and tracking visited/recursion stack (similar to Tarjan's) goes here
+}
+
+/**
+ * 3. Critical Connections in a Network (Medium-Hard - direct application of Tarjan's)
+ *
+ * There are n servers numbered from 0 to n-1 connected by undirected server-to-server connections forming a network where some connections are critical.
+ * A critical connection is a connection that, if removed, will make some servers unable to reach some other servers.
+ * Return all critical connections in the network in any order.
+ *
+ * Input: n = 4, connections = [[0,1],[1,2],[2,0],[1,3]]
+ * Output: [[1,3]]
+ */
+function criticalConnections(n, connections) {
+  // Implementation using Tarjan's bridge-finding algorithm goes here
+}
+/**
+ * 4. Find All Articulation Points (Cut Vertices) in a Graph (Medium-Hard - related to Tarjan's core ideas)
+ *
+ * You are given an undirected connected graph represented by n nodes and a list of edges.
+ * Find all articulation points (cut vertices) in the graph. An articulation point is a node whose removal increases the number of connected components.
+ * Return a list of the articulation points.
+ *
+ * Input: n = 5, edges = [[1,0],[0,2],[2,1],[0,3],[3,4]]
+ * Output: [0, 3] (order might vary)
+ */
+function findCutVertices(n, edges) {
+  // Implementation using Tarjan's concepts (discovery time, low-link) goes here
+}
+/**
+ * 5. Strongly Connected Components (Tough - direct application of Tarjan's)
+ *
+ * Given a directed graph represented by an adjacency list, find all the strongly connected components in the graph.
+ * Return a list of lists, where each inner list represents a strongly connected component.
+ *
+ * Input: graph = {0: [1, 2], 1: [2], 2: [0, 3], 3: [3]}
+ * Output: [[3], [2, 1, 0]] (order might vary)
+ */
+function findSCCs(graph) {
+  // Implementation of Tarjan's Strongly Connected Components algorithm goes here
+}
