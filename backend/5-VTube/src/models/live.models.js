@@ -18,6 +18,7 @@ const liveSchema = new Schema(
     },
     startTime: {
       type: Date,
+      default: Date.now(),
       required: true,
     },
     endTime: {

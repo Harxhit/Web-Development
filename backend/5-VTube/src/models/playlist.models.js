@@ -22,6 +22,12 @@ const playlistSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    videos: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Video',
+      },
+    ],
     videoCount: {
       type: Number,
       default: 0,
