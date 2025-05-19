@@ -8,10 +8,10 @@ fs.mkdirSync(tempDir, { recursive: true });
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    //Console logs
+    // Console logs
     // console.log('req', req);
     // console.log('File', file);
-    console.log('Uploading file to:', tempDir);
+    // console.log('Uploading file to:', tempDir);
     cb(null, tempDir);
   },
   filename: function (req, file, cb) {
@@ -24,11 +24,11 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   fileFilter: function (req, file, cb) {
-    console.log('File details:');
-    console.log('Fieldname:', file.fieldname);
-    console.log('Original name:', file.originalname);
-    console.log('Encoding:', file.encoding);
-    console.log('Mimetype:', file.mimetype);
+    // console.log('File details:');
+    // console.log('Fieldname:', file.fieldname);
+    // console.log('Original name:', file.originalname);
+    // console.log('Encoding:', file.encoding);
+    // console.log('Mimetype:', file.mimetype);
     cb(null, true);
   },
 });

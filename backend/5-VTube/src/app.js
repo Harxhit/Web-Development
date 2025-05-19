@@ -11,6 +11,9 @@ import subscriptionRouter from './routes/subscription.routes.js';
 import channelRouter from './routes/channel.routes.js';
 import playlistRouter from './routes/playlist.routes.js';
 import liveRouter from './routes/live.routes.js';
+import superchatRouter from './routes/superchat.routes.js';
+import videoadRouter from './routes/videAds.routes.js';
+import adplacementRouter from './routes/addPlacement.routes.js';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -56,4 +59,12 @@ app.use('/api/v1/playlist', playlistRouter);
 //Live route
 app.use('/api/v1/live', liveRouter);
 
+//Superchat route
+app.use('/api/v1/superchat', superchatRouter);
+
+//Video ad router
+app.use('/api/v1/video/ad', videoadRouter);
+
+//Ad placement router
+app.use('/api/v1/video/adplacement', adplacementRouter);
 export default app;

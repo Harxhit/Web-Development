@@ -213,7 +213,7 @@ const searchVideos = asyncHandler(async (request, response) => {
 });
 
 const getAllVideo = asyncHandler(async (request, response) => {
-  const videos = await Video.find().sort({ createdAt: -1 }); 
+  const videos = await Video.find().sort({ createdAt: -1 });
 
   return response
     .status(200)

@@ -8,8 +8,8 @@ const videoadSchema = new Schema(
       maxlength: 100,
       trim: true,
     },
-    contentUrl: {
-      type: String, // Assuming URL to ad content (e.g., cloud storage URL)
+    videoFile: {
+      type: String,
       required: true,
     },
     duration: {
@@ -22,7 +22,7 @@ const videoadSchema = new Schema(
     },
     targetDemographics: {
       ageGroup: {
-        type: String, // e.g., "18-24", "25-34", etc.
+        type: String,
       },
     },
   },

@@ -11,9 +11,10 @@ const verifyJwt = asyncHandler(async (request, _, next) => {
     request.body?.access_token ||
     (authHeader?.startsWith('Bearer ') ? authHeader.split(' ')[1] : null);
 
-  // console.log('-------------------- Verifying JWT --------------------');
-  // console.log('Raw Authorization Header:', authHeader);
-  // console.log('Extracted Token:', token);
+    // console.log('Authorization Header:', request.headers.authorization);
+    // console.log('Cookies:', request.cookies);
+    // console.log('Body:', request.body);
+    
 
   if (!token) {
     console.log('Error: Access token not found');
