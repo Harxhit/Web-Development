@@ -13,11 +13,9 @@ Welcome to my web development journey! This README highlights the skills I have 
 - **TailwindCSS**: Leveraging a utility-first CSS framework for efficient and responsive designs.
 - **Bootstrap**: Building responsive and mobile-first web pages quickly using pre-designed components.
 - **Git & GitHub**: Managing code changes, version control, and collaborating on projects effectively.
--  **JavaScript**: Added interactivity to web pages with DOM manipulation and event handling.
-- **Express.js** *(Learning Phase)*: Basics of setting up server-side applications.
-- **MongoDB** *(Learning Phase)*: Introduction to NoSQL databases and CRUD operations.
-
-
+- **JavaScript**: Added interactivity to web pages with DOM manipulation and event handling.
+- **Express.js** _(Learning Phase)_: Basics of setting up server-side applications.
+- **MongoDB** _(Learning Phase)_: Introduction to NoSQL databases and CRUD operations.
 
 ### Tools & Resources
 
@@ -72,12 +70,22 @@ Welcome to my web development journey! This README highlights the skills I have 
 - **Responsive Designs**: Built layouts optimized for all devices using TailwindCSS.
 - **Bootstrap Components**: Implemented pre-styled components like modals, carousels, and forms.
 
+### **Backend**
+
+- **Server**: This project is a basic Node.js HTTP server that serves static files (HTML, CSS, JS) and handles custom routes, including a simulated **bad request** handler. It does not use Express or any external libraries.
+- **Book managment**:A simple RESTful API built with **Node.js** and **Express.js** to manage a list of books. This project supports basic CRUD operations (Create, Read, Delete) and is perfect for beginners learning how to build backend services with Express.
+- **Vtube** : The VTube Backend is the server-side component of a video-sharing platform,
+  similar in concept to YouTube. Built using Node.js, Express.js, and MongoDB,
+  this backend provides a robust and scalable API for managing users, videos,
+  authentication, and other essential functionalities. The project aims to deliver
+  a seamless experience for users to upload, view, and interact with video
+  content.
+
 ## 🚀 Next Steps
 
 My journey doesn’t stop here!
 
 - I aim to create more complex projects using advanced layouts and interactions.
-- Explore backend development to build full-stack applications.
 - Deepen my expertise in JavaScript and front-end frameworks.
 - Explore 3-D world of website desgning.
 

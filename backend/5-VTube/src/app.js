@@ -14,6 +14,8 @@ import liveRouter from './routes/live.routes.js';
 import superchatRouter from './routes/superchat.routes.js';
 import videoadRouter from './routes/videAds.routes.js';
 import adplacementRouter from './routes/addPlacement.routes.js';
+import premiumRouter from './routes/premium.routes.js';
+import watchHistoryRouter from './routes/watchHistory.routes.js';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -67,4 +69,11 @@ app.use('/api/v1/video/ad', videoadRouter);
 
 //Ad placement router
 app.use('/api/v1/video/adplacement', adplacementRouter);
+
+//Vtube premimum
+app.use('/api/v1/user/premimum', premiumRouter);
+
+//Watch history
+app.use('/api/v1/user/history', watchHistoryRouter);
+
 export default app;

@@ -17,7 +17,7 @@ const premiumSubscriptionSchema = new Schema(
     },
     paymentMethod: {
       type: String,
-      maxlength: 50,
+      enum: ['credit card ', 'upi', 'debit card', 'net banking', 'redeem code'],
       required: true,
     },
     autoRenew: {
@@ -28,6 +28,14 @@ const premiumSubscriptionSchema = new Schema(
       type: String,
       enum: ['individual', 'family', 'student'],
       required: true,
+    },
+    isCancelled: {
+      type: Boolean,
+      default: false,
+    },
+    cancelledAt: {
+      type: Date,
+      default: null,
     },
   },
   { timestamps: true },

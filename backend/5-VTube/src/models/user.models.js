@@ -53,6 +53,11 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
+    premiumSubscription: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PremiumSubscription',
+      default: null,
+    },
   },
   { timestamps: true },
 );
