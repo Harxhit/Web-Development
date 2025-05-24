@@ -1,0 +1,21 @@
+{
+  "name": "resell",
+  "version": "1.0.0",
+  "description": "This is the backend for the resell website ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "Harshit Singh Parihar",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.5.0",
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0"
+  }
+}
