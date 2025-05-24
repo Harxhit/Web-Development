@@ -1,4 +1,4 @@
-# Resell & Share Platform
+# Croudly
 
 ## 🚀 Project Overview
 
