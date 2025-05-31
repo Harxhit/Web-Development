@@ -1,0 +1,15 @@
+2025-05-31 12:10:30 error: ValidationError: "profileImage" is not allowed to be empty
+2025-05-31 12:11:17 error: ValidationError: "profileImage" must be a valid uri
+2025-05-31 12:39:09 error: Error: queryTxt EREFUSED cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-31 12:39:17 error: ImageKit Upload Error: The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-05-31 12:39:17 error: TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+    at Object.openSync (node:fs:571:10)
+    at Object.readFileSync (node:fs:452:35)
+    at uploadToImageKit (file:///D:/Web-Development/Projects/Croudly/backend/src/utils/imageKit.util.js:19:27)
+    at signUp (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/user.controller.js:39:38)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-05-31 12:42:30 error: ImageKit Upload Error: Missing fileName parameter for upload
+2025-05-31 12:42:30 error: Upload error Missing fileName parameter for upload
+2025-05-31 12:46:50 error: ImageKit Upload Error: Your account cannot be authenticated.
+2025-05-31 12:46:50 error: Upload error Your account cannot be authenticated.

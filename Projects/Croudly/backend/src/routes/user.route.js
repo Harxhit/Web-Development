@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import upload from '../middlewares/multer.middleware.js';
+import asyncHandler from '../utils/asyncHandler.util.js';
 import {
   signIn,
   signOut,
@@ -13,7 +15,12 @@ import {
   forgotPassword,
   resetPassword,
   deleteAccount,
-} from '../controllers/user.conrtoller.js';
+} from '../controllers/user.controller.js';
 
+const userRouter = Router();
 
+userRouter
+  .route('/sign-up')
+  .post(upload.single('profileImage'), asyncHandler(signUp));
 
+export default userRouter;
