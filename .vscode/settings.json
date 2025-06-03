@@ -1,0 +1,8 @@
+{
+  "mdb.presetConnections": [
+    {
+      "name": "Atlas Cluster",
+      "connectionString": "mongodb+srv://harxhitttt:harshit1308@cluster0.kez1ma6.mongodb.net/AggregationPipelinesPractice?retryWrites=true&w=majority&appName=Cluster0"
+    }
+  ]
+}
