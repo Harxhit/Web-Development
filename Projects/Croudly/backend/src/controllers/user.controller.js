@@ -1,10 +1,36 @@
-import path from 'path';
 import User from '../models/user.models.js';
 import ApiError from '../utils/apiError.util.js';
 import logger from '../utils/logger.util.js';
 import { uploadToImageKit, deleteLocalFile } from '../utils/imageKit.util.js';
 import registerUserValidation from '../validation/sign-up.validation.js';
 import updatedUser from '../validation/update.validation.js';
+
+const generateAccessTokenAndRefreshToken = async (userId) => {
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      logger.error('User not found', {
+        message: error.message,
+        stack: error.stack,
+      });
+      throw new ApiError(404, 'Authentication failed');
+    }
+
+    const accessToken = await user.generateAccessToken();
+    const refreshToken = await user.generateRefreshToken();
+    user.refreshToken = refreshToken;
+    await user.save({ validateBeforeSave: false });
+    return { accessToken, refreshToken };
+  } catch (error) {
+    logger.log('Access token error', {
+      message: error.message,
+      stack: error.stack,
+    });
+    logger.error('Access token generation error');
+    throw new ApiError(404, 'Access token generation error');
+  }
+};
 
 const signUp = async (request, response) => {
   logger.info('Sign-up request received', { body: request.body });
@@ -52,7 +78,6 @@ const signUp = async (request, response) => {
       throw new ApiError(500, 'Failed to upload profile image');
     }
   }
-
   // Create user
   const user = await User.create({
     username,
@@ -64,6 +89,9 @@ const signUp = async (request, response) => {
     age,
     profileImage: profileImageUrl || null,
   });
+  //Tokens
+  const { accessToken, refreshToken } =
+    await generateAccessTokenAndRefreshToken(user._id);
 
   if (!user) {
     logger.error('User creation failed');
@@ -74,8 +102,97 @@ const signUp = async (request, response) => {
 
   return response.status(201).json({
     success: true,
-    data: user,
+    data: {
+      user: user,
+      refreshToken: refreshToken,
+      accessToken: accessToken,
+    },
     message: 'User registration successful.',
+  });
+};
+
+const signIn = async (request, response) => {
+  console.log(request.body);
+  const { username, email, password } = request.body;
+
+  if (!username && !email) {
+    logger.error('Username or email is required');
+    throw new ApiError(400, 'Username or email is required');
+  }
+
+  if (!password) {
+    logger.error('Password is required');
+    throw new ApiError(400, 'Password is required');
+  }
+
+  const user = await User.findOne({
+    $or: [{ username }, { email }],
+  });
+
+  if (!user) {
+    logger.error('User not found');
+    throw new ApiError(401, 'User not found');
+  }
+
+  //Check password
+  const isPasswordValid = await user.isPasswordCorrect(password);
+  if (!isPasswordValid) {
+    logger.error('Incorrect password');
+    throw new ApiError(401, 'Incorrect password');
+  }
+
+  //  Mark user as active
+  if (!user.isActive) {
+    user.isActive = true;
+    await user.save({ validateBeforeSave: false });
+  }
+
+  const { accessToken, refreshToken } =
+    await generateAccessTokenAndRefreshToken(user._id);
+
+  response.cookie('refreshToken', refreshToken, {
+    httpOnly: true,
+    secure: false,
+    sameSite: 'Lax',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    path: '/',
+  });
+
+  return response.status(200).json({
+    success: true,
+    data: {
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        isActive: user.isActive,
+      },
+    },
+    message: 'User logged in successfully',
+  });
+};
+
+const signOut = async (request, response) => {
+  const userId = request.user._id;
+
+  await User.findByIdAndUpdate(
+    userId,
+    { refreshToken: null, isActive: false },
+    { new: true },
+  );
+
+  response.clearCookie('refreshToken', {
+    httpOnly: true,
+    secure: false,
+    sameSite: 'Lax',
+    path: '/',
+  });
+  console.log('Cookies after clearing:', request.cookies);
+  response.status(200).json({
+    success: true,
+    message: 'User logged out successfully',
   });
 };
 
@@ -94,9 +211,6 @@ const updateProfileDetails = async (request, response) => {
 };
 
 const updateProfilePicture = async (request, response) => {};
-
-const signIn = async (request, response) => {};
-const signOut = async (request, response) => {};
 
 const getUser = async (request, response) => {};
 

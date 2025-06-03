@@ -1,6 +1,10 @@
 import { Schema } from 'mongoose';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const userSchema = new Schema(
   {
@@ -48,6 +52,13 @@ const userSchema = new Schema(
       enum: ['User', 'Admin'],
       default: 'User',
     },
+    refreshToken: {
+      type: String,
+    },
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true },
 );
@@ -64,6 +75,31 @@ userSchema.pre('save', async function (next) {
 // Method to compare password
 userSchema.methods.isPasswordCorrect = async function (password) {
   return bcrypt.compare(password, this.password);
+};
+
+//Generate access token
+userSchema.methods.generateAccessToken = async function () {
+  const token = jwt.sign(
+    {
+      _id: this._id,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRES },
+  );
+  return token;
+};
+
+//Genrate refresh token
+userSchema.methods.generateRefreshToken = async function () {
+  const token = jwt.sign(
+    {
+      _id: this._id,
+      username: this.username,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRES },
+  );
+  return token;
 };
 
 const User = mongoose.model('User', userSchema);

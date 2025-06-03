@@ -124,8 +124,8 @@ const generateRefreshAndAccessToken = async (userId) => {
     await user.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
   } catch (error) {
-    throw new ApiError(500, 'Fail generating access token and refresh token');
     console.log('Error', error);
+    throw new ApiError(500, 'Fail generating access token and refresh token');
   }
 };
 

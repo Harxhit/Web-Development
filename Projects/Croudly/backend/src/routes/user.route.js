@@ -16,6 +16,7 @@ import {
   resetPassword,
   deleteAccount,
 } from '../controllers/user.controller.js';
+import verifyJwt from '../middlewares/authentication.middleware.js';
 
 const userRouter = Router();
 
@@ -23,4 +24,6 @@ userRouter
   .route('/sign-up')
   .post(upload.single('profileImage'), asyncHandler(signUp));
 
+userRouter.route('/sign-in').post(asyncHandler(signIn));
+userRouter.route('/sign-out').post(verifyJwt, asyncHandler(signOut));
 export default userRouter;
