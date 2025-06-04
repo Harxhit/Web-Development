@@ -4,6 +4,9 @@ import logger from '../utils/logger.util.js';
 import { uploadToImageKit, deleteLocalFile } from '../utils/imageKit.util.js';
 import registerUserValidation from '../validation/sign-up.validation.js';
 import updatedUser from '../validation/update.validation.js';
+import Joi from 'joi';
+import crypto from 'crypto';
+import { http } from 'winston';
 
 const generateAccessTokenAndRefreshToken = async (userId) => {
   try {
@@ -208,23 +211,342 @@ const updateProfileDetails = async (request, response) => {
     throw new ApiError(404, error.message);
   }
   const { username, firstName, lastName, age, email, phoneNumber } = value;
+
+  const userId = request.user?._id;
+  console.log(userId);
+
+  if (!userId) {
+    logger.error('User id not found');
+    throw new ApiError('User id not found');
+  }
+  const userUpdate = await User.findByIdAndUpdate(
+    userId,
+    {
+      username,
+      age,
+      email,
+      phoneNumber,
+      firstName,
+      lastName,
+    },
+    { new: true },
+  );
+
+  if (!userUpdate) {
+    logger.error('Not able to updated user');
+    throw new ApiError(404, 'Not able to updated the user');
+  }
+
+  response.status(201).json({
+    success: true,
+    data: userUpdate,
+    message: 'User updated successfully',
+  });
 };
 
-const updateProfilePicture = async (request, response) => {};
+const updateProfilePicture = async (request, response) => {
+  const userId = request.user?._id;
 
-const getUser = async (request, response) => {};
+  if (!userId) {
+    logger.error('User not authenticated');
+    throw new ApiError(401, 'User not authenticated');
+  }
 
-const getUserById = async (request, response) => {};
+  if (!request.file) {
+    logger.error('Profile image file is required');
+    throw new ApiError(400, 'Profile image file is required');
+  }
 
-const getAllUser = async (request, response) => {};
+  let profileImageUrl;
 
-const refreshToken = async (request, reponse) => {};
+  try {
+    const imageKitResponse = await uploadToImageKit(
+      request.file.path,
+      request.file.originalname,
+    );
+    profileImageUrl = imageKitResponse?.url;
 
-const changePassword = async (request, response) => {};
+    await deleteLocalFile(request.file.path);
+    logger.info('Image uploaded successfully');
+  } catch (error) {
+    logger.error('Upload error', {
+      message: error.message,
+      stack: error.stack,
+    });
+    throw new ApiError(500, 'Failed to upload profile image');
+  }
 
-const forgotPassword = async (request, response) => {};
+  const updatedProfilePicture = await User.findByIdAndUpdate(
+    userId,
+    {
+      $set: { profileImage: profileImageUrl },
+    },
+    { new: true },
+  );
 
-const resetPassword = async (request, response) => {};
+  response.status(200).json({
+    success: true,
+    data: updatedProfilePicture,
+    message: 'Profile picture changed successfully',
+  });
+};
+
+const getUser = async (request, response) => {
+  const userId = request.user?._id;
+
+  if (!userId) {
+    logger.error('User not found');
+    throw new ApiError('User not found');
+  }
+
+  const getUser = await User.findById(userId).select(
+    '-password -refreshToken -__v -createdAt -updatedAt',
+  );
+  if (!getUser) {
+    logger.error('User not found');
+    throw new ApiError(404, 'User not found');
+  }
+  response.status(200).json({
+    success: true,
+    data: getUser,
+    message: 'User retrieved successfully',
+  });
+};
+
+const getUserById = async (request, response) => {
+  const userId = request.params?.id;
+
+  if (!userId) {
+    logger.error('User not found');
+    throw new ApiError('User not found');
+  }
+
+  const getUser = await User.findById(userId).select(
+    '-password -refreshToken -__v -createdAt -updatedAt',
+  );
+  if (!getUser) {
+    logger.error('User not found');
+    throw new ApiError(404, 'User not found');
+  }
+  response.status(200).json({
+    success: true,
+    data: getUser,
+    message: 'User retrieved successfully',
+  });
+};
+
+const getAllUser = async (request, response) => {
+  const users = await User.find({ role: 'User' }).select(
+    '-password -refreshToken -__v -createdAt -updatedAt',
+  );
+
+  if (!users || users.length === 0) {
+    logger.error('No users found');
+    throw new ApiError(404, 'No users found');
+  }
+
+  response.status(200).json({
+    success: true,
+    data: users,
+    message: 'Users retrieved successfully',
+  });
+};
+
+const changePassword = async (request, response) => {
+  const schema = Joi.object({
+    oldPassword: Joi.string()
+      .min(8)
+      .max(128)
+      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/)
+      .required()
+      .messages({
+        'string.empty': 'Old password is required',
+        'string.min': 'Old password must be at least 8 characters long',
+        'string.max': 'Old password must not exceed 128 characters',
+        'string.pattern.base':
+          'Old password must contain uppercase, lowercase, number, and special character',
+      }),
+    newPassword: Joi.string()
+      .min(8)
+      .max(128)
+      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/)
+      .required()
+      .messages({
+        'string.empty': 'New password is required',
+        'string.min': 'New password must be at least 8 characters long',
+        'string.max': 'New password must not exceed 128 characters',
+        'string.pattern.base':
+          'New password must contain uppercase, lowercase, number, and special character',
+      }),
+  });
+
+  const { error, value } = schema.validate(request.body);
+
+  if (error) {
+    logger.error('Validation error', {
+      message: error.message,
+      stack: error.stack,
+    });
+    throw new ApiError(400, error.message);
+  }
+
+  const { oldPassword, newPassword } = value;
+  const userId = request.user?._id;
+
+  if (!userId) {
+    logger.error('User ID missing from request');
+    throw new ApiError(401, 'Unauthorized');
+  }
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      logger.error('User not found');
+      throw new ApiError(404, 'User not found');
+    }
+
+    const isMatch = await user.isPasswordCorrect(oldPassword);
+    if (!isMatch) {
+      logger.error('Old password is incorrect');
+      throw new ApiError(401, 'Old password is incorrect');
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    return response.status(200).json({
+      success: true,
+      message: 'Password changed successfully',
+    });
+  } catch (err) {
+    logger.error('Error while changing password', {
+      message: err.message,
+      stack: err.stack,
+    });
+    throw new ApiError(500, 'Internal Server Error');
+  }
+};
+
+const forgetPassword = async (request, response) => {
+  const schema = Joi.object({
+    token: Joi.string().required().messages({
+      'string.empty': 'Token is required',
+    }),
+    newPassword: Joi.string()
+      .min(8)
+      .max(128)
+      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/)
+      .required()
+      .messages({
+        'string.empty': 'New password is required',
+        'string.min': 'New password must be at least 8 characters long',
+        'string.max': 'New password must not exceed 128 characters',
+        'string.pattern.base':
+          'New password must contain uppercase, lowercase, number, and special character',
+      }),
+  });
+
+  const { error, value } = schema.validate(request.body);
+
+  if (error) {
+    logger.error('Validation error', {
+      message: error.message,
+      stack: error.stack,
+    });
+    throw new ApiError(404, 'Validation error');
+  }
+  const { token, newPassword } = value;
+  const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: hashedToken,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      logger.error('Reset token is invalid or expired');
+      throw new ApiError(400, 'Reset token is invalid or expired');
+    }
+
+    user.password = newPassword;
+
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    await user.save();
+
+    return response.status(200).json({
+      success: true,
+      message: 'Password reset successfully',
+    });
+  } catch (err) {
+    logger.error('Reset password failed', {
+      message: err.message,
+      stack: err.stack,
+    });
+    throw new ApiError(500, 'Internal Server Error');
+  }
+};
+
+const forgotPassword = async (request, response) => {
+  const schema = Joi.object({
+    email: Joi.string().email().required().messages({
+      'string.empty': 'Email is required',
+      'string.email': 'Invalid email format',
+    }),
+  });
+
+  const { error, value } = schema.validate(request.body);
+
+  if (error) {
+    logger.log('Validation error', {
+      message: error.message,
+      stack: error.stack,
+    });
+    throw new ApiError(404, 'Email validation error');
+  }
+
+  const { email, phoneNumber } = value;
+
+  const user = await User.findOne({
+    $or: [{ email }, { phoneNumber }],
+  });
+  if (!user) {
+    logger.error('User not found with this email or phone number');
+    throw new ApiError(404, 'User not found with this email or phone number');
+  }
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  user.resetPasswordToken = hashedToken;
+  user.resetPasswordExpires = Date.now() + 30 * 60 * 1000;
+  await user.save({ validateBeforeSave: false });
+
+  const resetUrl = `https://cloudly.com/reset-password/${resetToken}`;
+};
+
+const resetPassword = async (request, response) => {
+  const schema = Joi.object({
+    newPassword: Joi.string()
+      .min(8)
+      .max(128)
+      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/)
+      .required()
+      .messages({
+        'string.empty': 'New password is required',
+        'string.min': 'New password must be at least 8 characters long',
+        'string.max': 'New password must not exceed 128 characters',
+        'string.pattern.base':
+          'New password must contain uppercase, lowercase, number, and special character',
+      }),
+  });
+
+  const { error, value } = schema.validate(request.body);
+};
 
 const deleteAccount = async (request, response) => {};
 
@@ -237,9 +559,8 @@ export {
   getUserById,
   getUser,
   getAllUser,
-  refreshToken,
   changePassword,
-  forgotPassword,
+  forgetPassword,
   resetPassword,
   deleteAccount,
 };

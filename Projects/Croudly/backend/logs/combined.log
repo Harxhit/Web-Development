@@ -344,3 +344,278 @@
 2025-06-03 15:19:21 info: MongoDB connected successfully
 2025-06-03 15:19:21 info: Server is running at http://127.0.0.1:3000
 2025-06-03 15:20:34 info: MongoDB connected successfully
+2025-06-04 10:11:47 info: MongoDB connected successfully
+2025-06-04 10:11:47 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:13:38 info: Request body
+2025-06-04 10:14:22 info: MongoDB connected successfully
+2025-06-04 10:14:22 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:14:24 info: Request body
+2025-06-04 10:15:17 info: MongoDB connected successfully
+2025-06-04 10:15:18 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:15:24 info: MongoDB connected successfully
+2025-06-04 10:15:24 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:15:32 info: MongoDB connected successfully
+2025-06-04 10:15:32 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:15:39 info: Request body
+2025-06-04 10:15:39 error: ValidationError: "lastname" is not allowed
+2025-06-04 10:15:52 info: Request body
+2025-06-04 10:17:42 info: MongoDB connected successfully
+2025-06-04 10:17:42 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:18:02 info: MongoDB connected successfully
+2025-06-04 10:18:02 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:18:12 info: MongoDB connected successfully
+2025-06-04 10:18:12 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:18:17 info: MongoDB connected successfully
+2025-06-04 10:18:17 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:18:26 info: MongoDB connected successfully
+2025-06-04 10:18:26 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:18:30 info: MongoDB connected successfully
+2025-06-04 10:18:30 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:18:40 info: MongoDB connected successfully
+2025-06-04 10:18:40 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:18:54 info: MongoDB connected successfully
+2025-06-04 10:18:54 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:19:01 info: MongoDB connected successfully
+2025-06-04 10:19:01 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:19:04 info: MongoDB connected successfully
+2025-06-04 10:19:04 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:19:18 info: MongoDB connected successfully
+2025-06-04 10:19:18 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:19:27 info: MongoDB connected successfully
+2025-06-04 10:19:27 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:19:51 info: MongoDB connected successfully
+2025-06-04 10:19:51 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:19:54 info: MongoDB connected successfully
+2025-06-04 10:19:54 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:20:02 info: MongoDB connected successfully
+2025-06-04 10:20:02 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:20:06 info: MongoDB connected successfully
+2025-06-04 10:20:06 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:20:15 info: MongoDB connected successfully
+2025-06-04 10:20:15 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:20:28 info: MongoDB connected successfully
+2025-06-04 10:20:28 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:20:35 info: MongoDB connected successfully
+2025-06-04 10:20:35 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:20:41 info: MongoDB connected successfully
+2025-06-04 10:20:41 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:21:02 info: MongoDB connected successfully
+2025-06-04 10:21:02 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:21:06 info: MongoDB connected successfully
+2025-06-04 10:21:06 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:21:49 info: MongoDB connected successfully
+2025-06-04 10:21:49 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:21:54 info: MongoDB connected successfully
+2025-06-04 10:21:54 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:22:00 info: MongoDB connected successfully
+2025-06-04 10:22:00 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:22:23 info: MongoDB connected successfully
+2025-06-04 10:22:23 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:22:27 info: MongoDB connected successfully
+2025-06-04 10:22:27 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:22:37 info: MongoDB connected successfully
+2025-06-04 10:22:37 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:22:42 info: MongoDB connected successfully
+2025-06-04 10:22:42 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:22:48 info: MongoDB connected successfully
+2025-06-04 10:22:48 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:22:52 info: MongoDB connected successfully
+2025-06-04 10:22:52 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:23:02 info: MongoDB connected successfully
+2025-06-04 10:23:02 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:23:19 info: MongoDB connected successfully
+2025-06-04 10:23:19 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:25:54 info: MongoDB connected successfully
+2025-06-04 10:25:54 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:25:57 info: MongoDB connected successfully
+2025-06-04 10:25:57 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:26:01 info: MongoDB connected successfully
+2025-06-04 10:26:01 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:26:03 info: MongoDB connected successfully
+2025-06-04 10:26:03 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:26:06 info: MongoDB connected successfully
+2025-06-04 10:26:06 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:26:21 info: MongoDB connected successfully
+2025-06-04 10:26:21 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:26:37 info: MongoDB connected successfully
+2025-06-04 10:26:37 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:02 info: MongoDB connected successfully
+2025-06-04 10:27:02 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:08 info: MongoDB connected successfully
+2025-06-04 10:27:08 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:25 info: MongoDB connected successfully
+2025-06-04 10:27:25 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:33 info: MongoDB connected successfully
+2025-06-04 10:27:33 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:36 info: MongoDB connected successfully
+2025-06-04 10:27:36 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:39 info: MongoDB connected successfully
+2025-06-04 10:27:39 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:49 info: MongoDB connected successfully
+2025-06-04 10:27:49 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:51 info: MongoDB connected successfully
+2025-06-04 10:27:51 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:27:59 info: MongoDB connected successfully
+2025-06-04 10:27:59 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:28:05 info: MongoDB connected successfully
+2025-06-04 10:28:05 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:28:12 info: MongoDB connected successfully
+2025-06-04 10:28:12 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:28:16 info: MongoDB connected successfully
+2025-06-04 10:28:16 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:28:21 info: MongoDB connected successfully
+2025-06-04 10:28:21 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:28:36 info: MongoDB connected successfully
+2025-06-04 10:28:36 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:28:59 info: MongoDB connected successfully
+2025-06-04 10:28:59 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:29:06 info: MongoDB connected successfully
+2025-06-04 10:29:06 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:29:13 info: MongoDB connected successfully
+2025-06-04 10:29:13 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:30:35 info: MongoDB connected successfully
+2025-06-04 10:30:35 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:31:07 info: MongoDB connected successfully
+2025-06-04 10:31:07 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:31:18 info: MongoDB connected successfully
+2025-06-04 10:31:18 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:31:23 info: MongoDB connected successfully
+2025-06-04 10:31:23 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:31:26 info: MongoDB connected successfully
+2025-06-04 10:31:26 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:31:34 info: MongoDB connected successfully
+2025-06-04 10:31:34 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:31:40 info: MongoDB connected successfully
+2025-06-04 10:31:40 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:31:46 info: MongoDB connected successfully
+2025-06-04 10:31:46 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:31:53 info: MongoDB connected successfully
+2025-06-04 10:31:53 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:32:01 info: MongoDB connected successfully
+2025-06-04 10:32:01 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:32:11 info: MongoDB connected successfully
+2025-06-04 10:32:11 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:32:17 info: MongoDB connected successfully
+2025-06-04 10:32:17 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:32:20 info: MongoDB connected successfully
+2025-06-04 10:32:20 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:32:26 info: MongoDB connected successfully
+2025-06-04 10:32:26 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:32:45 info: MongoDB connected successfully
+2025-06-04 10:32:45 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:34:38 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_aeMv_tJeq.jpeg
+2025-06-04 10:34:38 info: Image uploaded successfully
+2025-06-04 10:34:38 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\luffy.jpeg
+2025-06-04 10:35:11 info: Request body
+2025-06-04 10:36:50 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_7m5rIjHN4.jpeg
+2025-06-04 10:36:50 info: Image uploaded successfully
+2025-06-04 10:36:50 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\luffy.jpeg
+2025-06-04 10:39:24 info: MongoDB connected successfully
+2025-06-04 10:39:24 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:40:34 info: MongoDB connected successfully
+2025-06-04 10:40:34 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:40:43 info: MongoDB connected successfully
+2025-06-04 10:40:43 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:40:49 info: MongoDB connected successfully
+2025-06-04 10:40:49 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:40:55 info: MongoDB connected successfully
+2025-06-04 10:40:55 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:03 info: MongoDB connected successfully
+2025-06-04 10:41:03 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:12 info: MongoDB connected successfully
+2025-06-04 10:41:12 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:17 info: MongoDB connected successfully
+2025-06-04 10:41:17 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:20 info: MongoDB connected successfully
+2025-06-04 10:41:20 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:27 info: MongoDB connected successfully
+2025-06-04 10:41:27 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:32 info: MongoDB connected successfully
+2025-06-04 10:41:32 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:42 info: MongoDB connected successfully
+2025-06-04 10:41:42 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:46 info: MongoDB connected successfully
+2025-06-04 10:41:46 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:52 info: MongoDB connected successfully
+2025-06-04 10:41:52 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:41:55 info: MongoDB connected successfully
+2025-06-04 10:41:55 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:42:01 info: MongoDB connected successfully
+2025-06-04 10:42:01 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:42:03 info: MongoDB connected successfully
+2025-06-04 10:42:03 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:42:18 info: MongoDB connected successfully
+2025-06-04 10:42:18 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:42:22 info: MongoDB connected successfully
+2025-06-04 10:42:22 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:42:46 info: MongoDB connected successfully
+2025-06-04 10:42:46 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:43:04 info: MongoDB connected successfully
+2025-06-04 10:43:04 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:43:18 info: MongoDB connected successfully
+2025-06-04 10:43:18 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:43:29 info: MongoDB connected successfully
+2025-06-04 10:43:29 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:43:40 info: MongoDB connected successfully
+2025-06-04 10:43:40 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:43:48 info: MongoDB connected successfully
+2025-06-04 10:43:48 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:55:21 info: MongoDB connected successfully
+2025-06-04 10:55:21 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:55:46 info: MongoDB connected successfully
+2025-06-04 10:55:46 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:55:58 info: MongoDB connected successfully
+2025-06-04 10:55:58 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:56:01 info: Sign-up request received
+2025-06-04 10:56:02 info: User successfully created
+2025-06-04 10:56:19 info: MongoDB connected successfully
+2025-06-04 10:56:19 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:57:28 error: Token not found
+2025-06-04 10:58:25 info: MongoDB connected successfully
+2025-06-04 10:58:25 info: Server is running at http://127.0.0.1:3000
+2025-06-04 10:58:34 warn: Unauthorized access attempt by non-admin user
+2025-06-04 10:58:34 error: Error: Access denied. Admins only.
+    at new ApiError (file:///D:/Web-Development/Projects/Croudly/backend/src/utils/apiError.util.js:6:11)
+    at isAdmin (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/isAdmin.middleware.js:21:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 11:01:40 info: MongoDB connected successfully
+2025-06-04 11:01:40 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:01:49 info: MongoDB connected successfully
+2025-06-04 11:01:49 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:10:50 warn: Unauthorized access attempt by non-admin user
+2025-06-04 11:10:50 error: Error: Access denied. Admins only.
+    at new ApiError (file:///D:/Web-Development/Projects/Croudly/backend/src/utils/apiError.util.js:6:11)
+    at isAdmin (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/isAdmin.middleware.js:21:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 11:16:48 info: MongoDB connected successfully
+2025-06-04 11:43:50 info: MongoDB connected successfully
+2025-06-04 11:43:50 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:45:16 error: Token not found
+2025-06-04 11:47:17 info: MongoDB connected successfully
+2025-06-04 11:47:17 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:47:24 info: MongoDB connected successfully
+2025-06-04 11:47:24 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:47:30 info: MongoDB connected successfully
+2025-06-04 11:47:30 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:47:44 info: MongoDB connected successfully
+2025-06-04 11:47:44 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:47:50 info: MongoDB connected successfully
+2025-06-04 11:47:50 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:48:16 info: MongoDB connected successfully
+2025-06-04 11:48:16 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:48:25 info: MongoDB connected successfully
+2025-06-04 11:48:25 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:55:15 info: MongoDB connected successfully
+2025-06-04 11:55:15 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:55:40 info: MongoDB connected successfully
+2025-06-04 11:55:40 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:55:53 info: MongoDB connected successfully
+2025-06-04 11:55:53 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:55:56 info: MongoDB connected successfully
+2025-06-04 11:55:56 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:55:59 info: MongoDB connected successfully
+2025-06-04 11:55:59 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:56:17 info: MongoDB connected successfully
+2025-06-04 11:56:17 info: Server is running at http://127.0.0.1:3000
+2025-06-04 11:56:26 info: MongoDB connected successfully
+2025-06-04 11:56:26 info: Server is running at http://127.0.0.1:3000
