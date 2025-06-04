@@ -24,3 +24,34 @@
     at isAdmin (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/isAdmin.middleware.js:21:13)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 2025-06-04 11:45:16 error: Token not found
+2025-06-04 17:42:19 error: User not found with this email or phone number
+2025-06-04 17:42:40 error: User not found with this email or phone number
+2025-06-04 17:46:52 error: Error: Forbidden
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\@sendgrid\client\src\classes\client.js:167:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 17:49:00 error: Error: Forbidden
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\@sendgrid\client\src\classes\client.js:167:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 17:49:34 error: Error: Forbidden
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\@sendgrid\client\src\classes\client.js:167:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 17:51:36 error: Error: Forbidden
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\@sendgrid\client\src\classes\client.js:167:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 17:53:11 error: Error: Forbidden
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\@sendgrid\client\src\classes\client.js:167:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 17:54:54 error: Error: Forbidden
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\@sendgrid\client\src\classes\client.js:167:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 17:55:34 error: Error: Forbidden
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\@sendgrid\client\src\classes\client.js:167:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 17:55:50 error: Error: Forbidden
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\@sendgrid\client\src\classes\client.js:167:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04 18:23:59 error: Incorrect password
+2025-06-04 18:26:49 error: Incorrect password
+2025-06-04 18:26:53 error: Incorrect password
+2025-06-04 18:27:43 error: Incorrect password
+2025-06-04 18:27:51 error: Incorrect password

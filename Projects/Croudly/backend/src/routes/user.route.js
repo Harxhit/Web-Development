@@ -11,7 +11,7 @@ import {
   getUser,
   getAllUser,
   changePassword,
-  forgetPassword,
+  forgotPassword,
   resetPassword,
   deleteAccount,
 } from '../controllers/user.controller.js';
@@ -61,7 +61,17 @@ userRouter
   .route('/password/change-password')
   .patch(verifyJwt, asyncHandler(changePassword));
 
+// Forgot password
+userRouter
+  .route('/password/forgot-password')
+  .post(asyncHandler(forgotPassword));
 
+// Reset password
+userRouter
+  .route('/password/reset-password/:token')
+  .patch(asyncHandler(resetPassword));
 
+//Hard delete user
+userRouter.route('/delete').delete(verifyJwt, asyncHandler(deleteAccount));
 
 export default userRouter;

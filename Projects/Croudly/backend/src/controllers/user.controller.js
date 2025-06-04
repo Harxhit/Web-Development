@@ -6,7 +6,7 @@ import registerUserValidation from '../validation/sign-up.validation.js';
 import updatedUser from '../validation/update.validation.js';
 import Joi from 'joi';
 import crypto from 'crypto';
-import { http } from 'winston';
+import sendMail from '../utils/sendmail.util.js';
 
 const generateAccessTokenAndRefreshToken = async (userId) => {
   try {
@@ -427,11 +427,8 @@ const changePassword = async (request, response) => {
   }
 };
 
-const forgetPassword = async (request, response) => {
+const resetPassword = async (request, response) => {
   const schema = Joi.object({
-    token: Joi.string().required().messages({
-      'string.empty': 'Token is required',
-    }),
     newPassword: Joi.string()
       .min(8)
       .max(128)
@@ -455,7 +452,8 @@ const forgetPassword = async (request, response) => {
     });
     throw new ApiError(404, 'Validation error');
   }
-  const { token, newPassword } = value;
+  const { newPassword } = value;
+  const token = request.params.token;
   const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
 
   try {
@@ -489,6 +487,7 @@ const forgetPassword = async (request, response) => {
   }
 };
 
+// TODO: Forgot password using phone number also
 const forgotPassword = async (request, response) => {
   const schema = Joi.object({
     email: Joi.string().email().required().messages({
@@ -496,7 +495,7 @@ const forgotPassword = async (request, response) => {
       'string.email': 'Invalid email format',
     }),
   });
-
+  console.log(request.body);
   const { error, value } = schema.validate(request.body);
 
   if (error) {
@@ -507,11 +506,9 @@ const forgotPassword = async (request, response) => {
     throw new ApiError(404, 'Email validation error');
   }
 
-  const { email, phoneNumber } = value;
+  const { email } = value;
 
-  const user = await User.findOne({
-    $or: [{ email }, { phoneNumber }],
-  });
+  const user = await User.findOne({ email });
   if (!user) {
     logger.error('User not found with this email or phone number');
     throw new ApiError(404, 'User not found with this email or phone number');
@@ -526,29 +523,46 @@ const forgotPassword = async (request, response) => {
   user.resetPasswordExpires = Date.now() + 30 * 60 * 1000;
   await user.save({ validateBeforeSave: false });
 
-  const resetUrl = `https://cloudly.com/reset-password/${resetToken}`;
-};
+  const resetLink = `https://cloudly.com/reset-password/${resetToken}`;
 
-const resetPassword = async (request, response) => {
-  const schema = Joi.object({
-    newPassword: Joi.string()
-      .min(8)
-      .max(128)
-      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/)
-      .required()
-      .messages({
-        'string.empty': 'New password is required',
-        'string.min': 'New password must be at least 8 characters long',
-        'string.max': 'New password must not exceed 128 characters',
-        'string.pattern.base':
-          'New password must contain uppercase, lowercase, number, and special character',
-      }),
+  await sendMail({
+    to: user.email,
+    templateId: 'd-96dd5760300b42b4ae1bf96323c67e7f',
+    dynamicTemplateData: {
+      resetLink,
+    },
   });
 
-  const { error, value } = schema.validate(request.body);
+  return response.status(201).json({
+    success: true,
+    message: 'Reset send successfully to your mail id',
+  });
 };
 
-const deleteAccount = async (request, response) => {};
+// TODO: Dont hard delete user
+const deleteAccount = async (req, res) => {
+  const userId = req.user?._id;
+
+  if (!userId) {
+    logger.error('Unauthorized: No user ID found in request');
+    throw new ApiError(401, 'Unauthorized');
+  }
+
+  const user = await User.findById(userId);
+  if (!user) {
+    logger.warn(`User not found with ID: ${userId}`);
+    throw new ApiError(404, 'User not found');
+  }
+
+  await User.findByIdAndDelete(userId);
+
+  logger.info(`User ${user.email} deleted permanently`);
+
+  return res.status(200).json({
+    success: true,
+    message: 'User deleted successfully',
+  });
+};
 
 export {
   signIn,
@@ -560,7 +574,7 @@ export {
   getUser,
   getAllUser,
   changePassword,
-  forgetPassword,
+  forgotPassword,
   resetPassword,
   deleteAccount,
 };
