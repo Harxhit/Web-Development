@@ -141,3 +141,4 @@
     at D:\Web-Development\Projects\Croudly\backend\node_modules\router\index.js:295:15
 2025-06-05 17:40:13 error: ValidationError: "location.address" is not allowed
 2025-06-05 17:40:49 error: ValidationError: "location.address" is not allowed
+2025-06-05 18:48:58 error: Token not found

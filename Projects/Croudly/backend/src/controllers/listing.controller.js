@@ -8,7 +8,7 @@ import {
   userReverseGeoCoding,
 } from '../middlewares/location.middleare.js';
 import updateListingValidator from '../validation/updateListing.validation.js';
-
+``
 const createListing = async (request, response) => {
   const uploadedImages = request.files?.images;
   if (!uploadedImages || uploadedImages.length === 0) {
@@ -193,11 +193,63 @@ const updateListing = async (request, response) => {
   });
 };
 
-const getAllListing = async (request, response) => {};
+const getAllListing = async (request, response) => {
+  const allListings = await Listing.find({ isDeleted: false }).select(
+    ' -updatedAt -__v',
+  );
+  if (!allListings || allListings.length === 0) {
+    logger.error('No listings found', {
+      message: 'No listings found',
+      stack: error.stack,
+    });
+  }
+  return response.status(200).json({
+    success: true,
+    data: allListings,
+    message: 'Successfully listed all items',
+  });
+};
 
-const getListingById = async (request, response) => {};
+const getListingById = async (request, response) => {
+  const itemId = request.params.itemId;
+  if (!itemId) {
+    logger.error('Item ID is required', {
+      message: 'Item ID is required',
+      stack: error.stack,
+    });
+    throw new ApiError(400, 'Item ID is required');
+  }
+  const item = await Listing.findById(itemId).select(' -updatedAt -__v');
+  if (!item) {
+    logger.error('Listing not found', {
+      message: 'Listing not found',
+      stack: error.stack,
+    });
+    throw new ApiError(404, 'Listing not found');
+  }
+  return response.status(200).json({
+    success: true,
+    data: item,
+    message: 'Successfully retrieved the listing',
+  });
+};
 
-const getListingByUser = async (request, response) => {};
+const getListingByUser = async (request, response) => {
+  const userId = request.user?._id;
+
+  if (!userId) {
+    logger.error('Authentication error', {
+      message: error.message,
+      stack: error.stack,
+    });
+  }
+  const itemByUser = await Listing.findById(userId).select(' -updatedAt -__v');
+  return response.status(201).json({
+    success: true,
+    data: itemByUser,
+    message: 'Successfully listed all items listed by user',
+  });
+};
 
 const deleteListing = async (request, response) => {};
 
@@ -211,4 +263,10 @@ const rejectListing = async (request, response) => {};
 
 const reportListing = async (request, response) => {};
 
-export { createListing, updateListing };
+export {
+  createListing,
+  updateListing,
+  getListingByUser,
+  getAllListing,
+  getListingById,
+};

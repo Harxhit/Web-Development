@@ -1147,3 +1147,22 @@
 2025-06-05 18:11:29 info: Server is running at http://127.0.0.1:3000
 2025-06-05 18:18:12 info: MongoDB connected successfully
 2025-06-05 18:18:12 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:42:20 info: MongoDB connected successfully
+2025-06-05 18:42:20 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:42:25 info: MongoDB connected successfully
+2025-06-05 18:42:25 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:43:32 info: Sign-up request received
+2025-06-05 18:43:36 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/ChatGPT_Image_Jun_4__2025__01_23_29_PM_CLoJrWJ9m.png
+2025-06-05 18:43:36 info: Profile image uploaded and deleted successfully
+2025-06-05 18:43:36 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\ChatGPT Image Jun 4, 2025, 01_23_29 PM.png
+2025-06-05 18:43:47 info: Sign-up request received
+2025-06-05 18:43:52 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/ChatGPT_Image_Jun_4__2025__01_23_29_PM_ud2Rg2N_YP.png
+2025-06-05 18:43:52 info: Profile image uploaded and deleted successfully
+2025-06-05 18:43:52 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\ChatGPT Image Jun 4, 2025, 01_23_29 PM.png
+2025-06-05 18:43:52 info: User successfully created
+2025-06-05 18:48:58 error: Token not found
+2025-06-05 18:50:31 info: MongoDB connected successfully
+2025-06-05 18:50:31 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:54:20 info: MongoDB connected successfully
+2025-06-05 18:54:20 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:54:44 info: MongoDB connected successfully

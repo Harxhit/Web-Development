@@ -3,12 +3,16 @@ import verifyJwt from '../middlewares/authentication.middleware.js';
 import {
   createListing,
   updateListing,
+  getListingByUser,
+  getAllListing,
+  getListingById,
 } from '../controllers/listing.controller.js';
 import upload from '../middlewares/multer.middleware.js';
 import { Router } from 'express';
-
+import isAdmin from '../middlewares/isAdmin.middleware.js';
 const listingRouter = Router();
 
+//Create listing
 listingRouter
   .route('/create-listing')
   .post(
@@ -17,6 +21,7 @@ listingRouter
     asyncHandler(createListing),
   );
 
+//Update Listing
 listingRouter
   .route('/update/:itemId')
   .patch(
@@ -24,5 +29,19 @@ listingRouter
     upload.fields([{ name: 'images', maxCount: 10 }]),
     asyncHandler(updateListing),
   );
+
+// Get all listings (admin only)
+listingRouter
+  .route('/admin/all')
+  .get(verifyJwt, isAdmin, asyncHandler(getAllListing));
+
+// Get all listings for normal users (could be limited)
+listingRouter.route('/user/all').get(verifyJwt, asyncHandler(getAllListing));
+
+// Get listings created by the currently logged-in user
+listingRouter.route('/user').get(verifyJwt, asyncHandler(getListingByUser));
+
+// Get a single listing by ID (for both user/admin)
+listingRouter.route('/:itemId').get(verifyJwt, asyncHandler(getListingById));
 
 export default listingRouter;
