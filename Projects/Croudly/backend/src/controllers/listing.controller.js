@@ -9,7 +9,35 @@ import {
 } from '../middlewares/location.middleare.js';
 
 const createListing = async (request, response) => {
-  logger.info('info', JSON.stringify(request.body));
+  const uploadedImages = request.files?.images;
+  if (!uploadedImages || uploadedImages.length === 0) {
+    throw new ApiError(400, 'At least one image is required');
+  }
+
+  logger.info('Uploaded files', uploadedImages);
+
+  // Upload each image to ImageKit
+  const imageUrls = [];
+  for (const file of uploadedImages) {
+    try {
+      const imageResponse = await uploadToImageKit(
+        file.path,
+        file.originalname,
+      );
+      if (imageResponse?.url) {
+        imageUrls.push(imageResponse.url);
+        await deleteLocalFile(file.path);
+      }
+    } catch (err) {
+      logger.error('Image upload error', {
+        message: err.message,
+        stack: err.stack,
+      });
+    }
+  }
+
+  // Inject image URLs into request body
+  request.body.images = imageUrls;
 
   // Validate request body
   const { error, value } = listingValidator.validate(request.body);
@@ -33,34 +61,9 @@ const createListing = async (request, response) => {
   } = value;
 
   try {
-    // Get user coordinates (returns [lon, lat])
     const coordinates = await userGeoLocation(request, response);
-
-    // Reverse geocode to get full address
     const address = await userReverseGeoCoding(coordinates);
 
-    // Image handling
-    let imageUrl = null;
-    if (request.file) {
-      try {
-        const imageResponse = await uploadToImageKit(
-          request.file.path,
-          request.file.originalname,
-        );
-        imageUrl = imageResponse?.url || null;
-        await deleteLocalFile(request.file.path);
-        logger.info(
-          'info',
-          'Local image file deleted and image uploaded successfully',
-        );
-      } catch (err) {
-        logger.error('Error uploading image', {
-          message: err.message,
-          stack: err.stack,
-        });
-      }
-    }
-    console.log(address.display_name);
     // Create the new listing
     const newItem = await Listing.create({
       userId,
@@ -69,7 +72,7 @@ const createListing = async (request, response) => {
       category,
       listingType,
       price,
-      images: imageUrl ? [imageUrl] : [],
+      images: imageUrls,
       quantity,
       expiresAt,
       location: {

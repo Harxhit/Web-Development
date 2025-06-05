@@ -32,9 +32,8 @@ const listingValidator = Joi.object({
     coordinates: Joi.array().items(Joi.number()).length(2).optional(),
   }).optional(),
 
-  images: Joi.array().items(Joi.string().uri()).min(1).optional().messages({
+  images: Joi.array().items(Joi.string()).min(1).required().messages({
     'array.min': 'At least one image URL is required',
-    'string.uri': 'Images must be valid URLs',
   }),
 
   isActive: Joi.boolean().optional(),

@@ -8,6 +8,10 @@ const listingRouter = Router();
 
 listingRouter
   .route('/create-listing')
-  .post(verifyJwt, upload.single('images'), asyncHandler(createListing));
+  .post(
+    verifyJwt,
+    upload.fields([{ name: 'images', maxCount: 10 }]),
+    asyncHandler(createListing),
+  );
 
 export default listingRouter;

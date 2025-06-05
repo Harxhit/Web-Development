@@ -120,3 +120,11 @@
     at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3104:17
     at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\schemaType.js:1407:9
     at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2025-06-05 16:04:02 error: ValidationError: "images" is required
+2025-06-05 16:04:42 error: ValidationError: "images" is required
+2025-06-05 16:05:13 error: ValidationError: "images" is required
+2025-06-05 16:05:42 error: ValidationError: "images" is required
+2025-06-05 16:09:29 error: ValidationError: "images" is required
+2025-06-05 16:10:29 error: ValidationError: "images" is required
+2025-06-05 16:14:05 error: ValidationError: "images" is required
+2025-06-05 16:20:02 error: ValidationError: "images" is required

@@ -953,3 +953,114 @@
 2025-06-05 13:18:27 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_GpzN7NmHH.jpeg
 2025-06-05 13:18:27 info: info
 2025-06-05 13:18:27 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\luffy.jpeg
+2025-06-05 16:01:20 info: MongoDB connected successfully
+2025-06-05 16:01:20 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:02:05 info: MongoDB connected successfully
+2025-06-05 16:02:05 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:02:15 info: MongoDB connected successfully
+2025-06-05 16:02:15 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:02:38 info: MongoDB connected successfully
+2025-06-05 16:02:38 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:02:45 info: MongoDB connected successfully
+2025-06-05 16:02:45 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:03:15 info: MongoDB connected successfully
+2025-06-05 16:03:15 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:03:18 info: MongoDB connected successfully
+2025-06-05 16:03:21 info: MongoDB connected successfully
+2025-06-05 16:03:21 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:04:02 info: info
+2025-06-05 16:04:02 error: ValidationError: "images" is required
+2025-06-05 16:04:30 info: MongoDB connected successfully
+2025-06-05 16:04:30 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:04:42 info: MongoDB connected successfully
+2025-06-05 16:04:42 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:04:42 info: info
+2025-06-05 16:04:42 error: ValidationError: "images" is required
+2025-06-05 16:04:56 info: MongoDB connected successfully
+2025-06-05 16:04:56 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:05:02 info: MongoDB connected successfully
+2025-06-05 16:05:02 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:05:05 info: MongoDB connected successfully
+2025-06-05 16:05:05 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:05:13 info: info
+2025-06-05 16:05:13 error: ValidationError: "images" is required
+2025-06-05 16:05:25 info: MongoDB connected successfully
+2025-06-05 16:05:25 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:05:35 info: MongoDB connected successfully
+2025-06-05 16:05:35 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:05:42 info: info
+2025-06-05 16:05:42 error: ValidationError: "images" is required
+2025-06-05 16:07:44 info: MongoDB connected successfully
+2025-06-05 16:07:44 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:07:52 info: MongoDB connected successfully
+2025-06-05 16:07:52 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:09:25 info: MongoDB connected successfully
+2025-06-05 16:09:25 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:09:29 info: info
+2025-06-05 16:09:29 error: ValidationError: "images" is required
+2025-06-05 16:09:48 info: MongoDB connected successfully
+2025-06-05 16:09:48 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:10:29 info: info
+2025-06-05 16:10:29 error: ValidationError: "images" is required
+2025-06-05 16:12:28 info: MongoDB connected successfully
+2025-06-05 16:12:28 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:12:48 info: MongoDB connected successfully
+2025-06-05 16:12:48 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:12:55 info: MongoDB connected successfully
+2025-06-05 16:12:55 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:13:01 info: MongoDB connected successfully
+2025-06-05 16:13:01 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:13:09 info: MongoDB connected successfully
+2025-06-05 16:13:09 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:13:20 info: MongoDB connected successfully
+2025-06-05 16:13:20 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:13:29 info: MongoDB connected successfully
+2025-06-05 16:13:29 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:13:39 info: MongoDB connected successfully
+2025-06-05 16:13:39 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:13:48 info: MongoDB connected successfully
+2025-06-05 16:13:48 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:14:05 error: ValidationError: "images" is required
+2025-06-05 16:19:56 info: MongoDB connected successfully
+2025-06-05 16:19:56 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:20:02 error: ValidationError: "images" is required
+2025-06-05 16:21:28 info: MongoDB connected successfully
+2025-06-05 16:21:28 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:22:02 info: MongoDB connected successfully
+2025-06-05 16:22:02 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:22:11 info: MongoDB connected successfully
+2025-06-05 16:22:11 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:22:17 info: MongoDB connected successfully
+2025-06-05 16:22:17 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:22:19 info: info
+2025-06-05 16:22:52 info: MongoDB connected successfully
+2025-06-05 16:22:52 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:22:54 info: info
+2025-06-05 16:23:02 info: MongoDB connected successfully
+2025-06-05 16:23:02 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:24:13 info: MongoDB connected successfully
+2025-06-05 16:24:13 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:24:22 info: MongoDB connected successfully
+2025-06-05 16:24:22 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:24:36 info: MongoDB connected successfully
+2025-06-05 16:24:36 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:24:58 info: Uploaded files
+2025-06-05 16:25:02 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/ChatGPT_Image_Jun_4__2025__01_23_29_PM_UuBwA_v4v.png
+2025-06-05 16:25:02 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\ChatGPT Image Jun 4, 2025, 01_23_29 PM.png
+2025-06-05 16:25:04 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_ioaa44UVx.jpeg
+2025-06-05 16:25:04 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\luffy.jpeg
+2025-06-05 16:25:05 info: info
+2025-06-05 16:31:03 info: MongoDB connected successfully
+2025-06-05 16:31:03 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:31:17 info: MongoDB connected successfully
+2025-06-05 16:31:17 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:31:35 info: MongoDB connected successfully
+2025-06-05 16:31:35 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:34:02 info: MongoDB connected successfully
+2025-06-05 16:34:02 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:34:47 info: MongoDB connected successfully
+2025-06-05 16:34:47 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:34:55 info: MongoDB connected successfully
+2025-06-05 16:34:55 info: Server is running at http://127.0.0.1:3000
+2025-06-05 16:35:24 info: MongoDB connected successfully
+2025-06-05 16:35:24 info: Server is running at http://127.0.0.1:3000

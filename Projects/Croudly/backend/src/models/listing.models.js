@@ -49,7 +49,7 @@ const lisitingSchema = new Schema(
     images: {
       type: [String],
       default: [],
-      // required: true,
+      required: true,
     },
     isActive: {
       type: Boolean,
