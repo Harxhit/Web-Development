@@ -1064,3 +1064,86 @@
 2025-06-05 16:34:55 info: Server is running at http://127.0.0.1:3000
 2025-06-05 16:35:24 info: MongoDB connected successfully
 2025-06-05 16:35:24 info: Server is running at http://127.0.0.1:3000
+2025-06-05 17:33:11 info: MongoDB connected successfully
+2025-06-05 17:33:11 info: Server is running at http://127.0.0.1:3000
+2025-06-05 17:39:33 info: JsonWebTokenError: invalid signature
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:171:19
+    at getSecret (D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at verifyJwt (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/authentication.middleware.js:23:25)
+    at Layer.handleRequest (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\layer.js:152:17)
+    at next (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\route.js:117:3)
+    at handle (D:\Web-Development\Projects\Croudly\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\layer.js:152:17)
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\router\index.js:295:15
+2025-06-05 17:39:33 error: JsonWebTokenError: invalid signature
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:171:19
+    at getSecret (D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at verifyJwt (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/authentication.middleware.js:23:25)
+    at Layer.handleRequest (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\layer.js:152:17)
+    at next (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\route.js:117:3)
+    at handle (D:\Web-Development\Projects\Croudly\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\layer.js:152:17)
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\router\index.js:295:15
+2025-06-05 17:39:59 info: Uploaded files
+2025-06-05 17:40:03 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/aot_92WMzJycJ.png
+2025-06-05 17:40:03 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\aot.png
+2025-06-05 17:40:08 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/main2_4xc_ArEPK5.jpg
+2025-06-05 17:40:08 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\main2.jpg
+2025-06-05 17:40:11 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/naruto_HJiDaKM_d.png
+2025-06-05 17:40:11 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\naruto.png
+2025-06-05 17:40:13 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/one_d-ReFCHoo.jpg
+2025-06-05 17:40:13 error: ValidationError: "location.address" is not allowed
+2025-06-05 17:40:13 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\one.jpg
+2025-06-05 17:40:35 info: MongoDB connected successfully
+2025-06-05 17:40:35 info: Server is running at http://127.0.0.1:3000
+2025-06-05 17:40:38 info: Uploaded files
+2025-06-05 17:40:41 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/aot_HVzZuaKw9.png
+2025-06-05 17:40:41 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\aot.png
+2025-06-05 17:40:44 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/main2_AT2TUeOWx.jpg
+2025-06-05 17:40:44 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\main2.jpg
+2025-06-05 17:40:47 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/naruto_TrgJ6QGwI.png
+2025-06-05 17:40:47 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\naruto.png
+2025-06-05 17:40:49 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/one_9pOlghHwJ.jpg
+2025-06-05 17:40:49 error: ValidationError: "location.address" is not allowed
+2025-06-05 17:40:49 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\one.jpg
+2025-06-05 17:42:38 info: MongoDB connected successfully
+2025-06-05 17:42:38 info: Server is running at http://127.0.0.1:3000
+2025-06-05 17:42:41 info: Uploaded files
+2025-06-05 17:42:44 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/aot_RR6w78wPFe.png
+2025-06-05 17:42:44 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\aot.png
+2025-06-05 17:42:47 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/main2_NxFDSvWhC5.jpg
+2025-06-05 17:42:47 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\main2.jpg
+2025-06-05 17:42:50 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/naruto_UNVD-_ZgF.png
+2025-06-05 17:42:50 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\naruto.png
+2025-06-05 17:42:52 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/one_7YwbnfljP.jpg
+2025-06-05 17:42:52 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\one.jpg
+2025-06-05 17:43:48 info: MongoDB connected successfully
+2025-06-05 17:43:48 info: Server is running at http://127.0.0.1:3000
+2025-06-05 17:44:39 info: Uploaded files
+2025-06-05 17:44:42 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/aot_ObL7Z7iVuA.png
+2025-06-05 17:44:42 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\aot.png
+2025-06-05 17:44:45 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/main2_6yBwUwmKy.jpg
+2025-06-05 17:44:45 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\main2.jpg
+2025-06-05 17:44:48 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/naruto_xadppIMTH.png
+2025-06-05 17:44:48 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\naruto.png
+2025-06-05 17:44:50 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/one_NuH1NOr4yF.jpg
+2025-06-05 17:44:50 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\one.jpg
+2025-06-05 17:44:50 info: info
+2025-06-05 18:05:45 info: MongoDB connected successfully
+2025-06-05 18:05:45 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:06:42 info: MongoDB connected successfully
+2025-06-05 18:06:42 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:07:15 info: MongoDB connected successfully
+2025-06-05 18:07:15 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:07:40 info: MongoDB connected successfully
+2025-06-05 18:07:40 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:11:13 info: MongoDB connected successfully
+2025-06-05 18:11:13 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:11:29 info: MongoDB connected successfully
+2025-06-05 18:11:29 info: Server is running at http://127.0.0.1:3000
+2025-06-05 18:18:12 info: MongoDB connected successfully
+2025-06-05 18:18:12 info: Server is running at http://127.0.0.1:3000

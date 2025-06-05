@@ -7,14 +7,13 @@ import {
   userGeoLocation,
   userReverseGeoCoding,
 } from '../middlewares/location.middleare.js';
+import updateListingValidator from '../validation/updateListing.validation.js';
 
 const createListing = async (request, response) => {
   const uploadedImages = request.files?.images;
   if (!uploadedImages || uploadedImages.length === 0) {
     throw new ApiError(400, 'At least one image is required');
   }
-
-  logger.info('Uploaded files', uploadedImages);
 
   // Upload each image to ImageKit
   const imageUrls = [];
@@ -56,14 +55,25 @@ const createListing = async (request, response) => {
     category,
     listingType,
     price,
+    location: inputLocation = {},
     quantity,
     expiresAt,
   } = value;
 
-  try {
-    const coordinates = await userGeoLocation(request, response);
-    const address = await userReverseGeoCoding(coordinates);
+  let finalLocation = inputLocation;
 
+  if (
+    !inputLocation ||
+    !inputLocation.city ||
+    !inputLocation.state ||
+    !inputLocation.country ||
+    !inputLocation.address
+  ) {
+    const coordinates = await userGeoLocation(request, response);
+    finalLocation = await userReverseGeoCoding(coordinates);
+  }
+
+  try {
     // Create the new listing
     const newItem = await Listing.create({
       userId,
@@ -76,10 +86,10 @@ const createListing = async (request, response) => {
       quantity,
       expiresAt,
       location: {
-        address: address.address || '',
-        city: address.city || '',
-        state: address.state || '',
-        country: address.country || '',
+        address: finalLocation.address || '',
+        city: finalLocation.city || '',
+        state: finalLocation.state || '',
+        country: finalLocation.country || '',
       },
     });
 
@@ -97,13 +107,97 @@ const createListing = async (request, response) => {
   }
 };
 
+const updateListing = async (request, response) => {
+  const { error, value } = updateListingValidator.validate(request.body);
+  if (error) {
+    logger.error('Validation error', {
+      message: error.message,
+      stack: error.stack,
+    });
+    throw new ApiError(400, 'Validation error');
+  }
+
+  const uploadedImages = request.files?.images;
+  let imageUrls = [];
+
+  if (uploadedImages && uploadedImages.length >= 1) {
+    for (let file of uploadedImages) {
+      try {
+        const imageResponse = await uploadToImageKit(
+          file.path,
+          file.originalname,
+        );
+        if (imageResponse?.url) {
+          imageUrls.push(imageResponse.url);
+          await deleteLocalFile(file.path);
+        }
+      } catch (error) {
+        logger.error('Failed uploading images', {
+          message: error.message,
+          stack: error.stack,
+        });
+        throw new ApiError(500, 'Failed uploading images');
+      }
+    }
+  }
+
+  const {
+    title,
+    description,
+    category,
+    listingType,
+    price,
+    location: inputLocation = {},
+    quantity,
+    expiresAt,
+    images,
+  } = value;
+
+  const itemId = request.params.itemId;
+
+  const updateData = {
+    title,
+    description,
+    category,
+    listingType,
+    price,
+    quantity,
+    expiresAt,
+  };
+
+  if (Object.keys(inputLocation).length > 0) {
+    const existingItem = await Listing.findById(itemId);
+    if (!existingItem) {
+      throw new ApiError(404, 'Listing not found');
+    }
+    updateData.location = {
+      ...existingItem.location.toObject(),
+      ...inputLocation,
+    };
+  }
+
+  if (imageUrls.length > 0) {
+    updateData.images = imageUrls;
+  } else if (images) {
+    updateData.images = images;
+  }
+
+  const updatedItem = await Listing.findByIdAndUpdate(itemId, updateData, {
+    new: true,
+  });
+
+  return response.status(200).json({
+    success: true,
+    data: updatedItem,
+    message: 'Listed item updated successfully',
+  });
+};
+
 const getAllListing = async (request, response) => {};
 
 const getListingById = async (request, response) => {};
 
 const getListingByUser = async (request, response) => {};
-
-const updateListing = async (request, response) => {};
 
 const deleteListing = async (request, response) => {};
 
@@ -117,4 +211,4 @@ const rejectListing = async (request, response) => {};
 
 const reportListing = async (request, response) => {};
 
-export { createListing };
+export { createListing, updateListing };

@@ -128,3 +128,16 @@
 2025-06-05 16:10:29 error: ValidationError: "images" is required
 2025-06-05 16:14:05 error: ValidationError: "images" is required
 2025-06-05 16:20:02 error: ValidationError: "images" is required
+2025-06-05 17:39:33 error: JsonWebTokenError: invalid signature
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:171:19
+    at getSecret (D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (D:\Web-Development\Projects\Croudly\backend\node_modules\jsonwebtoken\verify.js:101:10)
+    at verifyJwt (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/authentication.middleware.js:23:25)
+    at Layer.handleRequest (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\layer.js:152:17)
+    at next (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\route.js:117:3)
+    at handle (D:\Web-Development\Projects\Croudly\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\layer.js:152:17)
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\router\index.js:295:15
+2025-06-05 17:40:13 error: ValidationError: "location.address" is not allowed
+2025-06-05 17:40:49 error: ValidationError: "location.address" is not allowed
