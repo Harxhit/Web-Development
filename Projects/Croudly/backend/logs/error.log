@@ -55,3 +55,68 @@
 2025-06-04 18:26:53 error: Incorrect password
 2025-06-04 18:27:43 error: Incorrect password
 2025-06-04 18:27:51 error: Incorrect password
+2025-06-05 12:42:06 error: User not found
+2025-06-05 12:58:23 error: ValidationError: "images" is required
+2025-06-05 13:01:38 error: ValidationError: "images" is required
+2025-06-05 13:02:32 error: ReferenceError: error is not defined
+    at userReverseGeoCoding (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/location.middleare.js:80:18)
+    at createListing (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/listing.models.js:40:27)
+2025-06-05 13:02:32 error: Error: Not able to fetch user addresss
+    at new ApiError (file:///D:/Web-Development/Projects/Croudly/backend/src/utils/apiError.util.js:6:11)
+    at userReverseGeoCoding (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/location.middleare.js:105:11)
+    at createListing (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/listing.models.js:40:27)
+2025-06-05 13:07:01 error: ValidationError: Listing validation failed: location: Cast to string failed for value "{
+  address: '905, West Middlefield Road, Mountain View, Santa Clara County, California, 94043, USA',
+  city: 'Mountain View',
+  state: 'California',
+  country: 'United States of America',
+  raw: {
+    place_id: '330638918409',
+    licence: 'https://locationiq.com/attribution',
+    lat: '37.405555',
+    lon: '-122.077473',
+    display_name: '905, West Middlefield Road, Mountain View, Santa Clara County, California, 94043, USA',
+    boundingbox: [ '37.405555', '37.405555', '-122.077473', '-122.077473' ],
+    importance: 0.225,
+    address: {
+      house_number: '905',
+      road: 'West Middlefield Road',
+      city: 'Mountain View',
+      county: 'Santa Clara County',
+      state: 'California',
+      postcode: '94043',
+      country: 'United States of America',
+      country_code: 'us'
+    }
+  }
+}" (type Object) at path "location"
+    at Document.invalidate (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3343:32)
+    at model.$set (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:1480:12)
+    at model.$set (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:1132:16)
+    at model.Document (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:178:12)
+    at model.Model (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\model.js:127:12)
+    at new model (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\model.js:4807:15)
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\model.js:2757:20
+    at Array.map (<anonymous>)
+    at Function.create (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\model.js:2745:34)
+    at createListing (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/listing.models.js:65:35)
+2025-06-05 13:09:13 error: ValidationError: Listing validation failed: location: Path `location` is required.
+    at Document.invalidate (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3343:32)
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3104:17
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2025-06-05 13:10:10 error: ValidationError: Listing validation failed: location: Path `location` is required.
+    at Document.invalidate (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3343:32)
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3104:17
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2025-06-05 13:13:14 error: ValidationError: Listing validation failed: location: Path `location` is required.
+    at Document.invalidate (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3343:32)
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3104:17
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2025-06-05 13:13:50 error: ValidationError: Listing validation failed: location: Path `location` is required.
+    at Document.invalidate (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3343:32)
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\document.js:3104:17
+    at D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)

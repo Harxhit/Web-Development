@@ -1,6 +1,7 @@
 import express from 'express';
 import errorHandler from './middlewares/error.middleware.js';
 import userRouter from './routes/user.route.js';
+import listingRouter from './routes/listing.routes.js';
 import cookie from 'cookie-parser';
 const app = express();
 
@@ -11,5 +12,8 @@ app.use(cookie());
 
 //User route
 app.use('/api/v1/users', userRouter);
+
+//Listing route
+app.use('/api/v1/users/listing', listingRouter);
 
 export default app;
