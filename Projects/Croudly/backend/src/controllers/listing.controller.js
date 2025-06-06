@@ -8,7 +8,7 @@ import {
   userReverseGeoCoding,
 } from '../middlewares/location.middleare.js';
 import updateListingValidator from '../validation/updateListing.validation.js';
-``
+
 const createListing = async (request, response) => {
   const uploadedImages = request.files?.images;
   if (!uploadedImages || uploadedImages.length === 0) {
@@ -251,11 +251,170 @@ const getListingByUser = async (request, response) => {
   });
 };
 
-const deleteListing = async (request, response) => {};
+const deleteListing = async (request, response) => {
+  const listingId = request.params.itemId;
 
-const searchListing = async (request, response) => {};
+  if (!listingId) {
+    logger.error('Not able to listed item');
+    throw new ApiError(404, 'Not able to find listed item');
+  }
+  const deleted = await Listing.findByIdAndUpdate(listingId, {
+    $set: {
+      isDeleted: true,
+    },
+  });
 
-const getNearByListing = async (request, response) => {};
+  return response.json({
+    success: true,
+    message: 'Item deleted successfully',
+  });
+};
+
+const searchListing = async (request, response) => {
+  try {
+    const { query } = request;
+    const searchCriteria = {};
+
+    const q = query.q;
+
+    if (q) {
+      const regex = { $regex: q, $options: 'i' };
+
+      const orConditions = [
+        { title: regex },
+        { description: regex },
+        { category: regex },
+        { listingType: regex },
+        { 'location.address': regex },
+        { 'location.city': regex },
+        { 'location.state': regex },
+        { 'location.country': regex },
+      ];
+
+      const qNumber = Number(q);
+      if (!isNaN(qNumber)) {
+        orConditions.push({ price: qNumber });
+        orConditions.push({ quantity: qNumber });
+      }
+
+      searchCriteria.$or = orConditions;
+    } else {
+      if (query.title) {
+        searchCriteria.title = { $regex: query.title, $options: 'i' };
+      }
+      if (query.city) {
+        searchCriteria['location.city'] = { $regex: query.city, $options: 'i' };
+      }
+      if (query.country) {
+        searchCriteria['location.country'] = {
+          $regex: query.country,
+          $options: 'i',
+        };
+      }
+      if (query.state) {
+        searchCriteria['location.state'] = {
+          $regex: query.state,
+          $options: 'i',
+        };
+      }
+      if (query.listingType) {
+        searchCriteria.listingType = {
+          $regex: query.listingType,
+          $options: 'i',
+        };
+      }
+      if (query.category) {
+        searchCriteria.category = { $regex: query.category, $options: 'i' };
+      }
+    }
+
+    searchCriteria.isDeleted = false;
+
+    const listings = await Listing.find(searchCriteria).select(
+      '-updatedAt -__v',
+    );
+
+    if (!listings || listings.length === 0) {
+      return response.status(404).json({
+        success: false,
+        message: 'No listings found for the given criteria',
+      });
+    }
+
+    return response.status(200).json({
+      success: true,
+      data: listings,
+      message: 'Successfully found relevant listings for you',
+    });
+  } catch (error) {
+    console.error('Error searching listings', {
+      message: error.message,
+      stack: error.stack,
+    });
+
+    return response.status(500).json({
+      success: false,
+      message: 'Server error while searching listings',
+    });
+  }
+};
+
+const getNearByListing = async (request, response) => {
+  const { location: inputLocation = {} } = request.body;
+
+  let finalLocation = inputLocation;
+
+  if (!inputLocation || Object.keys(inputLocation).length === 0) {
+    try {
+      const coordinates = await userGeoLocation(request, response);
+      finalLocation = await userReverseGeoCoding(coordinates);
+    } catch (error) {
+      logger.error('Error fetching user location', {
+        message: error.message,
+        stack: new Error().stack,
+      });
+      throw new ApiError(404, 'Error fetching user location');
+    }
+  }
+
+  const query = {};
+  if (finalLocation.city) {
+    query['location.city'] = {
+      $regex: `^${finalLocation.city}$`,
+      $options: 'i',
+    };
+  } else if (finalLocation.country) {
+    query['location.country'] = {
+      $regex: `^${finalLocation.country}$`,
+      $options: 'i',
+    };
+  } else if (finalLocation.state) {
+    query['location.state'] = {
+      $regex: `^${finalLocation.state}$`,
+      $options: 'i',
+    };
+  }
+
+  if (Object.keys(query).length === 0) {
+    logger.error('Error finding listing: no usable location provided');
+    throw new ApiError(400, 'No valid location data provided for search');
+  }
+
+  try {
+    const searchResult = await Listing.find(query).select('-__v -updatedAt');
+    return response.status(200).json({
+      success: true,
+      data: searchResult,
+      message: 'Relevant searches for you',
+    });
+  } catch (error) {
+    logger.error('Error querying listings', {
+      message: error.message,
+      stack: new Error().stack,
+    });
+    throw new ApiError(500, 'Error querying listings');
+  }
+};
 
 const approveListing = async (request, response) => {};
 
@@ -269,4 +428,7 @@ export {
   getListingByUser,
   getAllListing,
   getListingById,
+  deleteListing,
+  searchListing,
+  getNearByListing,
 };

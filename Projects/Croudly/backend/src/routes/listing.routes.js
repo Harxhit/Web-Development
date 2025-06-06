@@ -6,6 +6,9 @@ import {
   getListingByUser,
   getAllListing,
   getListingById,
+  deleteListing,
+  searchListing,
+  getNearByListing,
 } from '../controllers/listing.controller.js';
 import upload from '../middlewares/multer.middleware.js';
 import { Router } from 'express';
@@ -41,7 +44,20 @@ listingRouter.route('/user/all').get(verifyJwt, asyncHandler(getAllListing));
 // Get listings created by the currently logged-in user
 listingRouter.route('/user').get(verifyJwt, asyncHandler(getListingByUser));
 
+//Search listing
+listingRouter.route('/search').get(verifyJwt, asyncHandler(searchListing));
+
+//Get nearby listing
+listingRouter
+  .route('/search/nearby')
+  .get(verifyJwt, asyncHandler(getNearByListing));
+
 // Get a single listing by ID (for both user/admin)
 listingRouter.route('/:itemId').get(verifyJwt, asyncHandler(getListingById));
+
+//Delete lisiting
+listingRouter
+  .route('/delete/:itemId')
+  .patch(verifyJwt, asyncHandler(deleteListing));
 
 export default listingRouter;

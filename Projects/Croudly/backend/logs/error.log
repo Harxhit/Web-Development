@@ -142,3 +142,14 @@
 2025-06-05 17:40:13 error: ValidationError: "location.address" is not allowed
 2025-06-05 17:40:49 error: ValidationError: "location.address" is not allowed
 2025-06-05 18:48:58 error: Token not found
+2025-06-06 11:48:23 error: ReferenceError: error is not defined
+    at userReverseGeoCoding (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/location.middleare.js:78:18)
+    at getNearByListing (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/listing.controller.js:334:29)
+2025-06-06 11:48:23 error: Error
+    at getNearByListing (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/listing.controller.js:338:16)
+2025-06-06 11:48:42 error: ReferenceError: error is not defined
+    at userReverseGeoCoding (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/location.middleare.js:78:18)
+    at getNearByListing (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/listing.controller.js:334:29)
+2025-06-06 11:48:42 error: Error
+    at getNearByListing (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/listing.controller.js:338:16)
+2025-06-06 12:41:20 error: Token not found
