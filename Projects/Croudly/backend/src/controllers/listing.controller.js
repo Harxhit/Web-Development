@@ -416,11 +416,69 @@ const getNearByListing = async (request, response) => {
   }
 };
 
-const approveListing = async (request, response) => {};
+const approveListing = async (request, response) => {
+  const listingId = request.params.itemId;
 
-const rejectListing = async (request, response) => {};
+  const check = await Listing.findById(listingId);
 
-const reportListing = async (request, response) => {};
+  if (check.isApproved === true) {
+    return response.status(201).json({
+      success: false,
+      message: 'Listing is already approved',
+    });
+  }
+  const approveListing = await Listing.findByIdAndUpdate(
+    listingId,
+    {
+      $set: {
+        isApproved: true,
+      },
+    },
+    { new: true },
+  );
+
+  if (!approveListing) {
+    logger.error('Listing not found', {
+      message: error.message,
+      stack: new Error().stack,
+    });
+  }
+
+  return response.status(201).json({
+    success: true,
+    data: approveListing,
+    message: 'Listing approved by admin',
+  });
+};
+
+const rejectListing = async (request, response) => {
+  const listingId = request.params.itemId;
+
+  const listing = await Listing.findById(listingId);
+
+  if (!listing) {
+    return response.status(404).json({
+      success: false,
+      message: 'Listing not found',
+    });
+  }
+
+  if (listing.isApproved === true) {
+    return response.status(400).json({
+      success: false,
+      message: 'Listing is already approved and cannot be rejected',
+    });
+  }
+
+  listing.isDeleted = true;
+  await listing.save();
+
+  return response.status(200).json({
+    success: true,
+    data: listing,
+    message: 'Listing has been rejected',
+  });
+};
 
 export {
   createListing,
@@ -431,4 +489,6 @@ export {
   deleteListing,
   searchListing,
   getNearByListing,
+  approveListing,
+  rejectListing,
 };

@@ -9,6 +9,8 @@ import {
   deleteListing,
   searchListing,
   getNearByListing,
+  approveListing,
+  rejectListing,
 } from '../controllers/listing.controller.js';
 import upload from '../middlewares/multer.middleware.js';
 import { Router } from 'express';
@@ -59,5 +61,15 @@ listingRouter.route('/:itemId').get(verifyJwt, asyncHandler(getListingById));
 listingRouter
   .route('/delete/:itemId')
   .patch(verifyJwt, asyncHandler(deleteListing));
+
+//Approve listing
+listingRouter
+  .route('/approve/:itemId')
+  .patch(verifyJwt, isAdmin, asyncHandler(approveListing));
+
+//Reject listing
+listingRouter
+  .route('/reject/:itemId')
+  .patch(verifyJwt, isAdmin, asyncHandler(rejectListing));
 
 export default listingRouter;

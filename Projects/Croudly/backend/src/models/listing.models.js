@@ -53,7 +53,11 @@ const lisitingSchema = new Schema(
     },
     isActive: {
       type: Boolean,
-      default: true,
+      default: false,
+    },
+    isApproved: {
+      type: Boolean,
+      default: false,
     },
     expiresAt: {
       type: Date,
