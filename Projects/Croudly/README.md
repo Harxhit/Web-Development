@@ -2,72 +2,77 @@
 
 ## 🚀 Project Overview
 
-This platform empowers users to **resell and share unused or partially used
-goods and experiences** in a social, community-driven way. While it includes
-_ticket reselling_ (concerts, sports, travel, gaming, etc.), it also extends
-to other scenarios like **sharing food orders, event passes, and group
-experiences**.
+This platform empowers users to **resell and share unused or partially used goods and experiences** in a social, community-driven way. While it includes _ticket reselling_ (concerts, sports, travel, gaming, etc.), it also extends to other scenarios like **sharing food orders, event passes, and group experiences**.
 
-Imagine you bought 10 concert tickets but two friends cancel last minute.
+Imagine you bought 10 concert tickets but two friends cancel last minute.  
 Instead of losing money, you can either:
 
 - _Resell those tickets to others_ at any price you set,
-- Or _invite new people to join your group socially_, so no one misses out and
-  everyone enjoys together.
+- Or _invite new people to join your group socially_, so no one misses out and everyone enjoys together.
 
-Similarly, if you ordered a large pizza but can’t finish it, you can **resell or
-share slices** with others nearby who want some.
+Similarly, if you ordered a large pizza but can’t finish it, you can **resell or share slices** with others nearby who want some.
 
 ---
 
-## 🎯 Key Features
+## 🎯 Key Features (Vision)
 
 - _Multi-category Reselling_: Tickets, food orders, event passes, and more
-- _Social Grouping & Invites_: Connect with friends or strangers to share
-  experiences
-- _Flexible Pricing_: Sellers can set any price; buyers decide whether to pay
-- _User Profiles & Ratings_: Build trust through reviews and ratings
-- _Secure Payments & Transfers_: Payment gateway integration and verified
-  transfers
-- _Multi-tenant Architecture_: Support for different groups, organizers, or
-  regions
+- _Social Grouping & Invites_: Connect with friends or new people to share experiences
+- _Flexible Pricing_: Sellers decide the value
+- _Trust & Safety_: User reviews, identity checks, and verified transactions
+- _Secure Transfers_: Payments and digital ticket sharing
+- _Community-first_: Built for emerging markets and everyday situations
 
 ---
 
-## 🔑 Why This Is Different
+## 🛠️ Current Progress
 
-- Goes beyond just tickets — embraces diverse social experiences
-- Enables _social resell & sharing_, not just simple buy/sell
-- Focuses on _community, trust, and user-driven connections_
-- Designed for emerging markets with unique local needs
+We’re actively working on the backend and architecture:
+
+- ✅ User authentication & profiles
+- ✅ Password reset & account management
+- ✅ Create and manage resellable items
+- ✅ Geo-based discovery for nearby listings
+- ✅ Admin flow for safe approvals
+- 🔄 Currently building:
+  - **Experience Rooms** — social spaces where users can:
+    - Share what they’re doing in real-time
+    - Invite others to join virtually or in-person
+    - Post media, chat, and later even video-call
+  - Public/private modes, 1-on-1 chats, and room invites
+- 🔜 Planned: Real-time voice/video rooms for deeper shared moments
 
 ---
 
 ## 💡 Monetization Ideas
 
-- Commission on every transaction (e.g., 1%)
-- Featured or premium listings for sellers
-- Advertising opportunities targeting event and food lovers
+- 💸 **2% commission on every ticket sold** – A small cut from each transaction keeps the platform running and growing.
+- 🚀 **Premium & Featured Listings** – Sellers can boost visibility with spotlighted posts.
+- 🤝 **Partnerships & Collabs** – Team up with event organizers, food platforms, or travel companies for exclusive deals and integrations.
+- 📢 **Targeted Ads** – Smart, relevant ads for people looking for events, food, or fun nearby.
+
+
 
 ---
 
-## 🎯 Target Audience
+## 🎯 Who’s This For?
 
-- Event-goers with unused or extra tickets
-- Food lovers with shareable orders
-- Social groups wanting to invite others last-minute
-- Sellers in emerging markets lacking secure resale options
+- 🎫 **The Plug** – Got extra tickets? Flip ‘em or find new crew to vibe with at the last minute.
+- 🍟 **Foodies & Slice-Savers** – Too many wings? Half a pizza left? Share the love, don’t waste it.
+- 🎉 **The Plan Changers** – Friends bailed? No stress — meet cool new people and keep the plan alive.
+- 🌐 **Hustlers in the Wild** – Making moves in emerging cities? Sell safely, connect locally, and build trust without the sketchy DMs.
 
 ---
 
 ## 🚧 Current Status
 
-- Planning and backend design underway
-- Core models for multi-tenant, user, ticket, and social invites defined
-- Focus on building scalable and secure backend APIs
+- Backend architecture and core logic in development
+- “Experience Rooms” and media/chat features under active build
+- Frontend planned after backend foundations are stable
 
 ---
 
 ## 📞 Contact
 
-Built by _Harshit Singh Parihar_ — Please connect through email for further informations.
+Built by _Harshit Singh Parihar_ — Reach out via email for questions, ideas, or contributions.
+`
