@@ -373,6 +373,7 @@ const sendMessageToRoom = async (request, response) => {
   });
 };
 
+//Voice recording
 const uploadRoomMedia = async (request, response) => {
   const mediaValidation = Joi.object({
     type: Joi.string()
