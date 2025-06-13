@@ -27,6 +27,7 @@
     "mongoose": "^8.15.0",
     "multer": "^2.0.0",
     "node-ipinfo": "^4.0.1",
+    "uuid": "^11.1.0",
     "winston": "^3.17.0"
   }
 }

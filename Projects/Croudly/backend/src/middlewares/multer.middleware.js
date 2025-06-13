@@ -41,6 +41,18 @@ const fileFilter = (req, file, cb) => {
     'video/x-ms-wmv',
     'video/webm',
     'video/x-matroska',
+
+    //Voice
+    'audio/mpeg',
+    'audio/wav',
+    'audio/x-wav',
+    'audio/ogg',
+    'audio/aac',
+    'audio/mp4',
+    'audio/m4a',
+    'audio/webm',
+    'audio/amr',
+    'audio/3gpp',
   ];
 
   if (allowedMimeTypes.includes(file.mimetype)) {
