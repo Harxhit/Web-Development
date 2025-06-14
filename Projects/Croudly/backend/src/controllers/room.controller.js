@@ -6,6 +6,7 @@ import createExperienceRoomValidator from '../validation/createRoom.validation.j
 import Joi from 'joi';
 import { v4 as uuidv4 } from 'uuid';
 import { uploadToImageKit, deleteLocalFile } from '../utils/imageKit.util.js';
+import path from 'path';
 
 const createExperienceRoom = async (request, response) => {
   const { error, value } = createExperienceRoomValidator.validate(request.body);
@@ -28,6 +29,19 @@ const createExperienceRoom = async (request, response) => {
   const newExperienceRoom = await ExperienceRoom.create({
     name,
     creator: creatorDetails,
+    members: [
+      {
+        user: creatorUserId,
+        joinedAt: new Date(),
+      },
+    ],
+    moderators: [
+      {
+        user: creatorUserId,
+        role: 'host',
+        assignedAt: new Date(),
+      },
+    ],
   });
 
   if (!newExperienceRoom) {
@@ -368,12 +382,12 @@ const sendMessageToRoom = async (request, response) => {
 
   return response.status(201).json({
     success: true,
-    data: message,
+    data: {
+      message,
+    },
     message: 'Message sent successfully',
   });
 };
-
-//Voice recording
 const uploadRoomMedia = async (request, response) => {
   const mediaValidation = Joi.object({
     type: Joi.string()
@@ -392,7 +406,10 @@ const uploadRoomMedia = async (request, response) => {
       message: error.message,
       stack: error.stack,
     });
-    throw new ApiError(400, error.message);
+    return response.status(400).json({
+      success: false,
+      message: error.message,
+    });
   }
 
   const { roomId } = request.params;
@@ -401,7 +418,10 @@ const uploadRoomMedia = async (request, response) => {
 
   const room = await ExperienceRoom.findById(roomId);
   if (!room) {
-    throw new ApiError(404, 'Room not found');
+    return response.status(404).json({
+      success: false,
+      message: 'Room not found',
+    });
   }
 
   const mediaUrls = [];
@@ -409,16 +429,27 @@ const uploadRoomMedia = async (request, response) => {
   if (request.files && request.files.length > 0) {
     for (const file of request.files) {
       try {
-        const uploaded = await uploadToImageKit(file, file.originalname);
+        // console.log('Uploading file', file);
+        const uploaded = await uploadToImageKit(file.path, file.originalname);
         if (uploaded?.url) {
+          // logger.info('Uploaded to ImageKit:', uploaded.url);
           mediaUrls.push({
             type,
             url: uploaded.url,
+            postedBy: userId,
+            postedAt: new Date(),
           });
+        } else {
+          logger.error('No url returned from imagekit');
+          throw new ApiError(404, 'No URL returned from ImageKit');
         }
-        deleteLocalFile(file);
+        deleteLocalFile(file.path);
       } catch (err) {
         logger.error('Upload error', { message: err.message });
+        return response.status(500).json({
+          success: false,
+          message: `Upload failed: ${err.message}`,
+        });
       }
     }
   }
@@ -429,6 +460,8 @@ const uploadRoomMedia = async (request, response) => {
       message: 'Either text or media is required',
     });
   }
+
+  room.media.push(...mediaUrls);
 
   room.messages.push({
     sender: userId,
@@ -447,23 +480,233 @@ const uploadRoomMedia = async (request, response) => {
 
 const expireOldRoom = async (request, response) => {};
 
-const getRoomMembers = async (request, response) => {};
+const getRoomMembers = async (request, response) => {
+  const { roomId } = request.params;
+
+  const room = await ExperienceRoom.findById(roomId);
+  if (!room) {
+    logger.error('Room not found', {
+      roomId,
+      stack: new Error().stack,
+    });
+    throw new ApiError(404, 'Room not found');
+  }
+
+  const members = await User.find({
+    _id: { $in: room.members.map((m) => m.user) },
+  }).select('-refreshToken -__v -updatedAt');
+
+  if (!members || members.length === 0) {
+    logger.warn('No members found in room', {
+      roomId,
+      stack: new Error().stack,
+    });
+    return response.status(404).json({
+      success: false,
+      message: 'No members found in this room',
+    });
+  }
+
+  return response.status(200).json({
+    success: true,
+    message: 'Room members fetched successfully',
+    data: members,
+  });
+};
 
 const getRoomMessages = async (request, response) => {};
 
-const deleteRoomMessages = async (request, response) => {};
+const deleteMessageFromRoom = async (request, response) => {
+  const { roomId } = request.params;
+  const { messageId } = request.body;
+  const userId = request.user?._id;
 
-const deleteMessageFromRoom = async (request, response) => {};
+  const room = await ExperienceRoom.findById(roomId);
 
-const getRoomMedia = async (request, response) => {};
+  if (!room) {
+    return response.status(404).json({
+      success: false,
+      message: 'Room does not exist',
+    });
+  }
 
-const deleteRoomMedia = async (request, response) => {};
+  const messageToDelete = room.messages.find(
+    (message) => message._id.toString() === messageId.toString(),
+  );
+
+  if (!messageToDelete) {
+    return response.status(404).json({
+      success: false,
+      message: 'Message not found in this room',
+    });
+  }
+
+  const isCreator = room.creator.toString() === userId.toString();
+  const isModerator = room.moderators?.some(
+    (modId) => modId.toString() === userId.toString(),
+  );
+  const isSender = messageToDelete.sender.toString() === userId.toString();
+
+  if (!isSender && !isModerator && !isCreator) {
+    return response.status(403).json({
+      success: false,
+      message:
+        'Only the sender, a moderator, or the room creator can delete this message',
+    });
+  }
+
+  room.messages = room.messages.filter(
+    (msg) => msg._id.toString() !== messageId.toString(),
+  );
+
+  await room.save();
+
+  return response.status(200).json({
+    success: true,
+    message: 'Message deleted successfully',
+  });
+};
+
+const deleteRoomMessages = async (request, response) => {
+  const { roomId } = request.params;
+  const userId = request.user?._id;
+
+  const room = await ExperienceRoom.findById(roomId);
+
+  if (!room) {
+    return response.json({
+      success: false,
+      message: 'Room does not exist',
+    });
+  }
+
+  const isUserModerator = room.moderators.some(
+    (modId) => modId.toString() === userId.toString(),
+  );
+
+  const isUserCreator = room.creator.toString() === userId.toString();
+
+  if (!isUserModerator && !isUserCreator) {
+    return response.json({
+      success: false,
+      message: 'Sorry you do not have authority to delete messages',
+    });
+  }
+
+  room.messages = [];
+
+  await room.save();
+
+  return response.status(201).json({
+    success: true,
+    message: 'Successfully deleted all messages',
+  });
+};
+
+const getRoomMedia = async (request, response) => {
+  const { roomId } = request.params;
+  const userId = request.user?.id;
+
+  const room = await ExperienceRoom.findById(roomId);
+
+  if (!room) {
+    return response.json({
+      success: false,
+      message: 'No room found',
+    });
+  }
+  const isRoomPrivate = room.mode === 'private';
+  const isUserMember = room.members.some(
+    (member) => member._id.toString() === userId.toString(),
+  );
+
+  if (isRoomPrivate && !isUserMember) {
+    return response.json({
+      message: 'Sorry you are not member of room you cannot access media.',
+    });
+  }
+
+  const roomMedia = room.media;
+
+  return response.status(201).json({
+    success: true,
+    data: roomMedia,
+    message: 'Room media fetched successfully',
+  });
+};
+
+const deleteRoomMedia = async (request, response) => {
+  const { roomId } = request.params;
+  const { mediaId } = request.body;
+  const userId = request.user?._id;
+
+  const room = await ExperienceRoom.findById(roomId);
+
+  if (!room) {
+    return response.status(404).json({
+      success: false,
+      message: 'Room not found',
+    });
+  }
+
+  const isUserModerator = room.moderators?.some(
+    (modId) => modId.toString() === userId.toString(),
+  );
+  const isUserCreator = room.creator.toString() === userId.toString();
+  const mediaToDelete = room.media.find(
+    (media) => media._id.toString() === mediaId.toString(),
+  );
+  const isUserPostedMedia =
+    mediaToDelete?.postedBy.toString() === userId.toString();
+
+  if (!isUserModerator && !isUserCreator && !isUserPostedMedia) {
+    return response.status(403).json({
+      success: false,
+      message: 'You are not authorized to delete this media file',
+    });
+  }
+
+  room.media = room.media.filter(
+    (media) => media._id.toString() !== mediaId.toString(),
+  );
+
+  await room.save();
+
+  return response.status(200).json({
+    success: true,
+    message: 'Media deleted successfully',
+  });
+};
 
 const toogleRoomPrivacy = async (request, response) => {};
 
 const verifyRoomAccess = async (request, response) => {};
 
-const isUserRoomAdmin = async (request, response) => {};
+const isUserRoomAdmin = async (request, response) => {
+  const { roomId } = request.params;
+  const userId = request.user?._id;
+
+  const room = await ExperienceRoom.findById(roomId);
+
+  if (!room) {
+    return response.json({
+      success: false,
+      message: 'Room does not exist',
+    });
+  }
+
+  if (room.creator.toString() === userId.toString()) {
+    return response.status(201).json({
+      success: true,
+      message: 'Yes user is the creator of room',
+    });
+  } else {
+    return response.json({
+      success: false,
+      message: 'User is not the creator of the room',
+    });
+  }
+};
 
 const generateVideoToken = async (request, response) => {};
 

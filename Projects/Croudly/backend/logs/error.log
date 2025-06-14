@@ -153,3 +153,26 @@
 2025-06-06 11:48:42 error: Error
     at getNearByListing (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/listing.controller.js:338:16)
 2025-06-06 12:41:20 error: Token not found
+2025-06-14 10:19:19 error: Error
+    at createExperienceRoom (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/room.controller.js:16:14)
+    at file:///D:/Web-Development/Projects/Croudly/backend/src/utils/asyncHandler.util.js:2:19
+    at Layer.handleRequest (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\layer.js:152:17)
+    at next (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\route.js:157:13)
+    at verifyJwt (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/authentication.middleware.js:37:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-14 10:34:11 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-14 10:34:14 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-14 10:34:17 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-14 11:56:39 error: ImageKit Upload Error: The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:56:39 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:56:39 error: ImageKit Upload Error: The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:56:39 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:58:12 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:58:14 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:59:07 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:59:18 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 12:04:02 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 12:05:56 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object

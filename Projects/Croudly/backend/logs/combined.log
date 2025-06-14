@@ -1335,3 +1335,122 @@
 2025-06-13 10:50:26 info: Server is running at http://127.0.0.1:3000
 2025-06-13 10:50:30 info: MongoDB connected successfully
 2025-06-13 10:50:30 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:16:45 info: MongoDB connected successfully
+2025-06-14 10:16:45 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:17:47 info: MongoDB connected successfully
+2025-06-14 10:17:47 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:19:19 error: Error
+    at createExperienceRoom (file:///D:/Web-Development/Projects/Croudly/backend/src/controllers/room.controller.js:16:14)
+    at file:///D:/Web-Development/Projects/Croudly/backend/src/utils/asyncHandler.util.js:2:19
+    at Layer.handleRequest (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\layer.js:152:17)
+    at next (D:\Web-Development\Projects\Croudly\backend\node_modules\router\lib\route.js:157:13)
+    at verifyJwt (file:///D:/Web-Development/Projects/Croudly/backend/src/middlewares/authentication.middleware.js:37:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-14 10:20:20 info: MongoDB connected successfully
+2025-06-14 10:20:20 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:20:50 info: MongoDB connected successfully
+2025-06-14 10:20:50 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:23:07 info: MongoDB connected successfully
+2025-06-14 10:23:07 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:23:11 info: MongoDB connected successfully
+2025-06-14 10:23:11 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:23:39 info: MongoDB connected successfully
+2025-06-14 10:23:39 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:23:50 info: MongoDB connected successfully
+2025-06-14 10:23:50 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:24:23 info: MongoDB connected successfully
+2025-06-14 10:24:23 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:28:40 info: MongoDB connected successfully
+2025-06-14 10:28:40 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:28:51 info: MongoDB connected successfully
+2025-06-14 10:28:51 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:30:22 info: MongoDB connected successfully
+2025-06-14 10:30:22 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:30:31 info: MongoDB connected successfully
+2025-06-14 10:30:31 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:30:38 info: MongoDB connected successfully
+2025-06-14 10:30:38 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:30:48 info: MongoDB connected successfully
+2025-06-14 10:30:48 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:31:57 info: MongoDB connected successfully
+2025-06-14 10:31:57 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:34:11 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-14 10:34:14 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-14 10:34:17 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-14 10:58:03 info: MongoDB connected successfully
+2025-06-14 10:58:03 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:59:47 info: MongoDB connected successfully
+2025-06-14 10:59:47 info: Server is running at http://127.0.0.1:3000
+2025-06-14 10:59:57 info: MongoDB connected successfully
+2025-06-14 10:59:57 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:01:48 info: MongoDB connected successfully
+2025-06-14 11:01:48 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:02:06 info: MongoDB connected successfully
+2025-06-14 11:02:06 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:02:09 info: MongoDB connected successfully
+2025-06-14 11:02:09 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:02:57 info: MongoDB connected successfully
+2025-06-14 11:02:57 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:47:25 info: MongoDB connected successfully
+2025-06-14 11:47:25 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:52:21 info: MongoDB connected successfully
+2025-06-14 11:52:21 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:55:00 info: MongoDB connected successfully
+2025-06-14 11:55:00 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:55:13 info: MongoDB connected successfully
+2025-06-14 11:55:13 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:56:37 info: MongoDB connected successfully
+2025-06-14 11:56:37 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:56:39 error: ImageKit Upload Error: The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:56:39 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:56:39 error: ImageKit Upload Error: The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:56:39 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:57:15 info: MongoDB connected successfully
+2025-06-14 11:57:15 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:58:03 info: MongoDB connected successfully
+2025-06-14 11:58:03 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:58:12 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/avatar_pRCTMsiFC7.jpg
+2025-06-14 11:58:12 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:58:14 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_1Ndo_0WAj.jpeg
+2025-06-14 11:58:14 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:58:44 info: MongoDB connected successfully
+2025-06-14 11:58:44 info: Server is running at http://127.0.0.1:3000
+2025-06-14 11:59:07 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/avatar_wgpbyxnjy.jpg
+2025-06-14 11:59:07 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 11:59:18 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_ea2NR2ETLj.jpeg
+2025-06-14 11:59:18 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 12:03:45 info: MongoDB connected successfully
+2025-06-14 12:03:45 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:03:52 info: MongoDB connected successfully
+2025-06-14 12:03:52 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:04:02 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/avatar_yjk_G6vN9p.jpg
+2025-06-14 12:04:02 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 12:04:26 info: MongoDB connected successfully
+2025-06-14 12:04:26 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:05:26 info: MongoDB connected successfully
+2025-06-14 12:05:26 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:05:41 info: MongoDB connected successfully
+2025-06-14 12:05:41 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:05:47 info: MongoDB connected successfully
+2025-06-14 12:05:47 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:05:56 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/avatar_0BH-FVHIz.jpg
+2025-06-14 12:05:56 error: Upload error The "path" argument must be of type string or an instance of Buffer or URL. Received an instance of Object
+2025-06-14 12:07:56 info: MongoDB connected successfully
+2025-06-14 12:07:56 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:08:44 info: MongoDB connected successfully
+2025-06-14 12:08:44 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:08:48 info: MongoDB connected successfully
+2025-06-14 12:08:48 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:08:56 info: MongoDB connected successfully
+2025-06-14 12:08:56 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:09:05 info: MongoDB connected successfully
+2025-06-14 12:09:05 info: Server is running at http://127.0.0.1:3000
+2025-06-14 12:09:30 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/avatar_svF8xU9gW.jpg
+2025-06-14 12:09:30 info: Uploaded to ImageKit:
+2025-06-14 12:09:30 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\avatar.jpg
+2025-06-14 12:09:32 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_l-ZvhgaQr.jpeg
+2025-06-14 12:09:32 info: Uploaded to ImageKit:
+2025-06-14 12:09:32 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\luffy.jpeg

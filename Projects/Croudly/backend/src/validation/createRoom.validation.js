@@ -7,12 +7,6 @@ const createExperienceRoomValidator = Joi.object({
     'string.max': 'Room name must not exceed 100 characters',
   }),
 
-  creator: Joi.string().length(24).hex().required().messages({
-    'string.empty': 'Creator ID is required',
-    'string.length': 'Creator ID must be a valid 24-character ObjectId',
-    'string.hex': 'Creator ID must be a valid hexadecimal ObjectId',
-  }),
-
   mode: Joi.string().valid('public', 'private').default('public').messages({
     'any.only': 'Mode must be either "public" or "private"',
   }),
