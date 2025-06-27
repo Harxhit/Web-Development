@@ -9,9 +9,7 @@ dotenv.config();
 interface jwtPayload {
   _id: string;
 }
-interface UserAuth extends UserDocument {
-  user?: UserDocument;
-}
+
 const verifyJwt = async (
   request: Request,
   response: Response,

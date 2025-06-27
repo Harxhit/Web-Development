@@ -1,5 +1,6 @@
 import 'express';
 import { UserDocument } from '../../models/user.models';
+import { ListingDocument } from '../../models/listing.models';
 declare module 'express' {
   export interface Request {
     user?: UserDocument;

@@ -1462,3 +1462,110 @@
 2025-06-23 20:28:37 info: Server is running at http://127.0.0.1:3000
 2025-06-23 20:29:43 info: Sign-up request received
 2025-06-23 20:29:45 info: User successfully created
+2025-06-24 11:31:24 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:31:41 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:32:22 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:32:49 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:33:06 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:33:22 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:34:00 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:34:25 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:34:33 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:34:54 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:35:11 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:35:49 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:36:13 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:39:57 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:40:44 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:41:02 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:41:13 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:41:25 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:41:52 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:42:05 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:42:18 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:43:09 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:43:16 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:44:02 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 11:44:57 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 12:38:59 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 12:49:44 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-24 12:50:03 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-27 09:43:11 info: MongoDB connected successfully
+2025-06-27 09:43:11 info: Server is running at http://127.0.0.1:3000
+2025-06-27 09:48:28 info: MongoDB connected successfully
+2025-06-27 09:48:28 info: Server is running at http://127.0.0.1:3000
+2025-06-27 09:49:31 info: MongoDB connected successfully
+2025-06-27 09:49:31 info: Server is running at http://127.0.0.1:3000
+2025-06-27 09:52:12 info: MongoDB connected successfully
+2025-06-27 09:52:12 info: Server is running at http://127.0.0.1:3000
+2025-06-27 09:52:40 info: MongoDB connected successfully
+2025-06-27 09:52:40 info: Server is running at http://127.0.0.1:3000
+2025-06-27 09:55:28 info: MongoDB connected successfully
+2025-06-27 09:55:28 info: Server is running at http://127.0.0.1:3000
+2025-06-27 10:02:03 info: MongoDB connected successfully
+2025-06-27 10:02:03 info: Server is running at http://127.0.0.1:3000
+2025-06-27 10:02:15 info: MongoDB connected successfully
+2025-06-27 10:02:15 info: Server is running at http://127.0.0.1:3000
+2025-06-27 10:02:31 info: MongoDB connected successfully
+2025-06-27 10:02:31 info: Server is running at http://127.0.0.1:3000
+2025-06-27 11:30:01 info: MongoDB connected successfully
+2025-06-27 11:30:01 info: Server is running at http://127.0.0.1:3000
+2025-06-27 11:30:27 info: undefined
+2025-06-27 11:37:39 info: MongoDB connected successfully
+2025-06-27 11:37:39 info: Server is running at http://127.0.0.1:3000
+2025-06-27 11:38:14 error: ValidationError: "images" is required
+2025-06-27 11:39:14 error: MongooseServerSelectionError: Server selection timed out after 30000 ms
+    at _handleConnectionErrors (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\connection.js:1165:11)
+    at NativeConnection.openUri (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\connection.js:1096:11)
+    at async connectToDataBase (D:\Web-Development\Projects\Croudly\backend\src\database\index.ts:17:24)
+2025-06-27 11:40:09 error: MongooseServerSelectionError: Server selection timed out after 30000 ms
+    at _handleConnectionErrors (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\connection.js:1165:11)
+    at NativeConnection.openUri (D:\Web-Development\Projects\Croudly\backend\node_modules\mongoose\lib\connection.js:1096:11)
+    at async connectToDataBase (D:\Web-Development\Projects\Croudly\backend\src\database\index.ts:17:24)
+2025-06-27 11:58:28 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-27 11:59:28 error: Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.kez1ma6.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-06-27 12:31:51 info: MongoDB connected successfully
+2025-06-27 12:31:51 info: Server is running at http://127.0.0.1:3000
+2025-06-27 12:31:55 error: ValidationError: "images" is required
+2025-06-27 12:32:47 info: MongoDB connected successfully
+2025-06-27 12:32:47 info: Server is running at http://127.0.0.1:3000
+2025-06-27 12:33:43 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_qgg31GJxk.jpeg
+2025-06-27 12:33:43 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\luffy.jpeg
+2025-06-27 12:33:45 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/arit_singh_photo_11zon__1__4aUS_a6RW.jpg
+2025-06-27 12:33:45 error: ValidationError: "images" is required
+2025-06-27 12:33:45 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\arit singh photo_11zon (1).jpg
+2025-06-27 12:34:13 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/luffy_lE9Nfu7jer.jpeg
+2025-06-27 12:34:13 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\luffy.jpeg
+2025-06-27 12:34:16 info: Uploaded to ImageKit: https://ik.imagekit.io/pzv2idg9d/arit_singh_photo_11zon__1__HzK09gmfoR.jpg
+2025-06-27 12:34:16 error: ValidationError: "images" is required
+2025-06-27 12:34:16 info: Deleted local file: D:\Web-Development\Projects\Croudly\uploads\arit singh photo_11zon (1).jpg

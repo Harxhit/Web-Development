@@ -1,4 +1,5 @@
 import ipinfo, { IPinfoWrapper } from 'node-ipinfo';
+import { Request } from 'express';
 import axios from 'axios';
 import logger from '../utils/logger.util';
 import ApiError from '../utils/apiError.util';
@@ -7,10 +8,10 @@ import fs from 'fs';
 import path from 'path';
 dotenv.config();
 
-const ipInfo = new IPinfoWrapper(process.env.IP_INFO_TOKEN);
+const ipInfo = new IPinfoWrapper(process.env.IP_INFO_TOKEN!);
 const locationDirectory = path.resolve('../locations');
 
-const userGeoLocation = async (request) => {
+const userGeoLocation = async (request: Request) => {
   if (!fs.existsSync(locationDirectory)) {
     fs.mkdirSync(locationDirectory, { recursive: true });
     logger.info(
@@ -20,7 +21,9 @@ const userGeoLocation = async (request) => {
   }
   try {
     const ip =
-      request.headers['x-forwarded-for']?.split(',').shift() ||
+      (Array.isArray(request.headers['x-forwarded-for'])
+        ? request.headers['x-forwarded-for'][0]
+        : request.headers['x-forwarded-for']?.split(',')[0]) ||
       request.connection?.remoteAddress ||
       request.socket?.remoteAddress ||
       request.ip;
@@ -57,16 +60,18 @@ const userGeoLocation = async (request) => {
 
     console.log(responseData);
     return coordinates;
-  } catch (error) {
-    logger.error('Ip info lookup failed', {
-      message: error.message,
-      stack: error.stack,
-    });
-    throw new ApiError(500, 'Ip info lookup failed');
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error('Ip info lookup failed', {
+        message: error.message,
+        stack: error.stack,
+      });
+      throw new ApiError(500, 'Ip info lookup failed');
+    }
   }
 };
 
-const userReverseGeoCoding = async (coordinates) => {
+const userReverseGeoCoding = async (coordinates: number) => {
   try {
     if (
       !Array.isArray(coordinates) ||
@@ -74,10 +79,7 @@ const userReverseGeoCoding = async (coordinates) => {
       typeof coordinates[0] !== 'number' ||
       typeof coordinates[1] !== 'number'
     ) {
-      logger.error('Invalid geolocation', {
-        message: error.message,
-        stack: error.stack,
-      });
+      logger.error('Invalid geolocation');
       throw new ApiError(404, 'Invalid geolocation');
     }
 
@@ -95,12 +97,14 @@ const userReverseGeoCoding = async (coordinates) => {
       country: data.address.country || '',
       raw: data,
     };
-  } catch (error) {
-    logger.error('Reverse geo coding failed', {
-      message: error.message,
-      stack: error.stack,
-    });
-    throw new ApiError(500, 'Not able to fetch user addresss');
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error('Reverse geo coding failed', {
+        message: error.message,
+        stack: error.stack,
+      });
+      throw new ApiError(500, 'Not able to fetch user addresss');
+    }
   }
 };
 
